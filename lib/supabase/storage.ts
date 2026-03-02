@@ -1,66 +1,120 @@
 // lib/supabase/storage.ts
-// All file uploads use Supabase Storage Buckets — free & integrated
-// Buckets to create in Supabase dashboard (all public read):
-//   site-assets | avatars | blog-images | product-images | menu-images
+// Supabase Storage Buckets — replaces Cloudinary. FREE up to 1GB.
 
 import { createClient } from "./client";
 
-export type UploadBucket =
-  | "site-assets"
-  | "avatars"
-  | "blog-images"
-  | "product-images"
-  | "menu-images";
+const BUCKET_SITES = "site-assets";
+const BUCKET_AVATARS = "avatars";
+const BUCKET_TEMPLATES = "template-previews";
 
-const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/webp", "image/gif", "image/svg+xml"];
-const MAX_SIZE = 10 * 1024 * 1024; // 10MB
+export type StorageBucket =
+  | typeof BUCKET_SITES
+  | typeof BUCKET_AVATARS
+  | typeof BUCKET_TEMPLATES;
 
 export async function uploadFile(
+  bucket: StorageBucket,
+  path: string,
   file: File,
-  bucket: UploadBucket,
-  path: string
-): Promise<string> {
-  if (!ALLOWED_TYPES.includes(file.type)) throw new Error("Invalid file type");
-  if (file.size > MAX_SIZE) throw new Error("File too large. Maximum 10MB.");
-
+  options?: { contentType?: string }
+): Promise<string | null> {
   const supabase = createClient();
-  const sanitized = path.replace(/[^a-zA-Z0-9/_.-]/g, "-");
 
-  const { error } = await supabase.storage
+  // Convert to webp for images to save space
+  const { data, error } = await supabase.storage
     .from(bucket)
-    .upload(sanitized, file, { upsert: true, contentType: file.type });
+    .upload(path, file, {
+      upsert: true,
+      contentType: options?.contentType || file.type,
+      cacheControl: "3600",
+    });
 
-  if (error) throw new Error(`Upload failed: ${error.message}`);
+  if (error) {
+    console.error("Storage upload error:", error.message);
+    return null;
+  }
 
-  const { data } = supabase.storage.from(bucket).getPublicUrl(sanitized);
-  return data.publicUrl;
+  const { data: urlData } = supabase.storage
+    .from(bucket)
+    .getPublicUrl(data.path);
+
+  return urlData.publicUrl;
 }
 
-export async function deleteFile(bucket: UploadBucket, path: string): Promise<void> {
+export async function uploadSiteImage(
+  siteId: string,
+  file: File
+): Promise<string | null> {
+  const ext = file.name.split(".").pop() || "jpg";
+  const path = `${siteId}/${Date.now()}.${ext}`;
+  return uploadFile(BUCKET_SITES, path, file);
+}
+
+export async function uploadAvatar(
+  userId: string,
+  file: File
+): Promise<string | null> {
+  const ext = file.name.split(".").pop() || "jpg";
+  const path = `${userId}/avatar.${ext}`;
+  return uploadFile(BUCKET_AVATARS, path, file);
+}
+
+export async function uploadFavicon(
+  siteId: string,
+  file: File
+): Promise<string | null> {
+  const path = `${siteId}/favicon.ico`;
+  return uploadFile(BUCKET_SITES, path, file);
+}
+
+export async function uploadLogo(
+  siteId: string,
+  file: File
+): Promise<string | null> {
+  const ext = file.name.split(".").pop() || "png";
+  const path = `${siteId}/logo.${ext}`;
+  return uploadFile(BUCKET_SITES, path, file);
+}
+
+export async function deleteFile(
+  bucket: StorageBucket,
+  path: string
+): Promise<boolean> {
   const supabase = createClient();
-  await supabase.storage.from(bucket).remove([path]);
+  const { error } = await supabase.storage.from(bucket).remove([path]);
+  return !error;
 }
 
-export async function uploadSiteAsset(file: File, siteId: string, filename: string) {
-  return uploadFile(file, "site-assets", `${siteId}/${filename}`);
+export async function deleteSiteAssets(siteId: string): Promise<void> {
+  const supabase = createClient();
+  const { data } = await supabase.storage
+    .from(BUCKET_SITES)
+    .list(siteId);
+
+  if (data && data.length > 0) {
+    const paths = data.map((f) => `${siteId}/${f.name}`);
+    await supabase.storage.from(BUCKET_SITES).remove(paths);
+  }
 }
 
-export async function uploadAvatar(file: File, userId: string) {
-  const ext = file.name.split(".").pop() || "jpg";
-  return uploadFile(file, "avatars", `${userId}/avatar.${ext}`);
-}
-
-export async function uploadBlogImage(file: File, siteId: string, postId: string) {
-  const ext = file.name.split(".").pop() || "jpg";
-  return uploadFile(file, "blog-images", `${siteId}/${postId}/cover.${ext}`);
-}
-
-export async function uploadProductImage(file: File, siteId: string, productId: string, index: number) {
-  const ext = file.name.split(".").pop() || "jpg";
-  return uploadFile(file, "product-images", `${siteId}/${productId}/image-${index}.${ext}`);
-}
-
-export async function uploadMenuImage(file: File, siteId: string, itemId: string) {
-  const ext = file.name.split(".").pop() || "jpg";
-  return uploadFile(file, "menu-images", `${siteId}/${itemId}/photo.${ext}`);
-}
+// ── Supabase Storage Setup Instructions ────────────────────────────────────
+// Run this SQL in your Supabase SQL Editor to create the buckets:
+//
+// INSERT INTO storage.buckets (id, name, public)
+// VALUES
+//   ("site-assets", "site-assets", true),
+//   ("avatars", "avatars", true),
+//   ("template-previews", "template-previews", true);
+//
+// Then add RLS policies:
+// -- Allow authenticated users to upload to site-assets
+// CREATE POLICY "Auth users can upload"
+//   ON storage.objects FOR INSERT
+//   TO authenticated
+//   WITH CHECK (bucket_id = "site-assets");
+//
+// -- Allow public read
+// CREATE POLICY "Public read"
+//   ON storage.objects FOR SELECT
+//   TO public
+//   USING (bucket_id IN ("site-assets", "avatars", "template-previews"));

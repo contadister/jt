@@ -1,40 +1,43 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma/client";
 import { sendWelcomeEmail } from "@/lib/arkesel/client";
-import { nanoid } from "nanoid";
 
-// Generate a unique referral code
 function generateReferralCode(): string {
-  return nanoid(8).toUpperCase();
+  const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+  let code = "JST-";
+  for (let i = 0; i < 6; i++) {
+    code += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return code;
 }
 
 export async function POST(req: Request) {
   try {
-    const { supabaseId, email, fullName, phone, referralCode } =
-      await req.json();
+    const body = await req.json();
+    const { id, email, fullName, phone, referralCode } = body as {
+      id: string;
+      email: string;
+      fullName: string;
+      phone?: string;
+      referralCode?: string;
+    };
 
-    if (!supabaseId || !email || !fullName) {
-      return NextResponse.json(
-        { error: "Missing required fields" },
-        { status: 400 }
-      );
+    if (!id || !email || !fullName) {
+      return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
     }
 
-    // Check if user already exists
-    const existing = await prisma.user.findUnique({ where: { email } });
+    // Avoid duplicates (Google OAuth may call this twice)
+    const existing = await prisma.user.findUnique({ where: { id } });
     if (existing) {
       return NextResponse.json({ user: existing });
     }
 
-    // Find referrer if referral code provided
-    let referrerId: string | undefined;
+    // Referral code lookup
+    let referredById: string | undefined;
     if (referralCode) {
-      const referrer = await prisma.user.findUnique({
-        where: { referralCode },
-      });
+      const referrer = await prisma.user.findUnique({ where: { referralCode } });
       if (referrer) {
-        referrerId = referrer.id;
-        // Give referrer GHS 20 credit
+        referredById = referrer.id;
         await prisma.user.update({
           where: { id: referrer.id },
           data: { referralCreditsGhs: { increment: 20 } },
@@ -42,32 +45,40 @@ export async function POST(req: Request) {
       }
     }
 
-    // Create user record
+    // First user or admin email = ADMIN role
+    const adminEmail = process.env.ADMIN_EMAIL?.toLowerCase();
+    const userCount = await prisma.user.count();
+    const isAdmin = email.toLowerCase() === adminEmail || userCount === 0;
+
     const user = await prisma.user.create({
       data: {
-        id: supabaseId, // Use Supabase UID as primary key for easy joining
-        email,
+        id,
+        email: email.toLowerCase(),
         fullName,
         phone: phone || null,
+        role: isAdmin ? "ADMIN" : "USER",
         referralCode: generateReferralCode(),
-        referredById: referrerId || null,
-        // Auto-assign admin role to the configured admin email
-        role:
-          email === process.env.ADMIN_EMAIL ? "ADMIN" : "USER",
+        referredById: referredById ?? null,
       },
     });
 
-    // Send welcome email (fire and forget — don't block response)
-    sendWelcomeEmail(email, fullName).catch((err) =>
-      console.error("Welcome email failed:", err)
-    );
+    // Welcome email - fire and forget
+    sendWelcomeEmail(email, fullName).catch(() => undefined);
 
-    return NextResponse.json({ user }, { status: 201 });
-  } catch (error) {
-    console.error("Register API error:", error);
-    return NextResponse.json(
-      { error: "Internal server error" },
-      { status: 500 }
-    );
+    // Welcome notification
+    await prisma.notification.create({
+      data: {
+        userId: user.id,
+        type: "welcome",
+        title: "Welcome to Josett!",
+        message: "Your account is ready. Create your first website now.",
+        actionUrl: "/dashboard/sites/new",
+      },
+    });
+
+    return NextResponse.json({ user });
+  } catch (err) {
+    console.error("Register API error:", err);
+    return NextResponse.json({ error: "Failed to create profile" }, { status: 500 });
   }
 }

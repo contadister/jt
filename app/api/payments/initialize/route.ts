@@ -1,77 +1,54 @@
-// app/api/payments/initialize/route.ts
 import { NextResponse } from "next/server";
 import { createServerClient } from "@/lib/supabase/server";
-import { PrismaClient } from "@prisma/client";
-import { initializeTransaction, generateReference } from "@/lib/paystack/client";
-import { z } from "zod";
-
-const prisma = new PrismaClient();
-
-const schema = z.object({
-  siteId: z.string().uuid(),
-  paymentType: z.enum(["new", "renewal"]).default("new"),
-});
+import { prisma } from "@/lib/prisma/client";
+import { initializePayment } from "@/lib/paystack/client";
+import { nanoid } from "nanoid";
 
 export async function POST(req: Request) {
   try {
     const supabase = createServerClient();
     const { data: { session } } = await supabase.auth.getSession();
+    if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-    if (!session) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    const { siteId, amountGhs } = await req.json();
+    if (!siteId || !amountGhs) {
+      return NextResponse.json({ error: "Missing siteId or amountGhs" }, { status: 400 });
     }
 
-    const body = await req.json() as unknown;
-    const parsed = schema.safeParse(body);
+    // Verify site belongs to this user
+    const site = await prisma.site.findFirst({ where: { id: siteId, userId: session.user.id } });
+    if (!site) return NextResponse.json({ error: "Site not found" }, { status: 404 });
 
-    if (!parsed.success) {
-      return NextResponse.json({ error: "Invalid input" }, { status: 400 });
-    }
+    const user = await prisma.user.findUnique({ where: { id: session.user.id } });
+    if (!user) return NextResponse.json({ error: "User not found" }, { status: 404 });
 
-    const { siteId, paymentType } = parsed.data;
+    const reference = `josett_${nanoid(16)}`;
+    const isRenewal = !!site.subscriptionEnd;
 
-    // Fetch the site
-    const site = await prisma.site.findFirst({
-      where: { id: siteId, userId: session.user.id },
-      include: { user: true },
-    });
-
-    if (!site) {
-      return NextResponse.json({ error: "Site not found" }, { status: 404 });
-    }
-
-    const amount = site.discountedPriceGhs ?? site.monthlyPriceGhs;
-    const reference = generateReference(siteId);
-
-    const txn = await initializeTransaction({
-      email: session.user.email!,
-      amount,
-      reference,
-      metadata: {
-        siteId,
-        userId: session.user.id,
-        siteName: site.name,
-        paymentType,
-      },
-    });
-
-    // Save pending payment
+    // Create pending payment record
     await prisma.payment.create({
       data: {
         userId: session.user.id,
         siteId,
         paystackReference: reference,
-        amountGhs: amount,
+        amountGhs,
         status: "PENDING",
-        paymentType: paymentType === "renewal" ? "RENEWAL" : "NEW",
+        paymentType: isRenewal ? "RENEWAL" : "NEW",
       },
     });
 
-    return NextResponse.json({ authorizationUrl: txn.authorization_url, reference });
+    // Initialize with Paystack
+    const result = await initializePayment({
+      email: user.email,
+      amount: amountGhs,
+      reference,
+      callbackUrl: `${process.env.NEXT_PUBLIC_APP_URL}/payment/verify`,
+      metadata: { siteId, userId: session.user.id, siteName: site.name },
+    });
+
+    return NextResponse.json({ authorization_url: result.authorization_url, reference });
   } catch (error) {
-    console.error("Payment init error:", error);
-    return NextResponse.json({ error: "Failed to initialize payment" }, { status: 500 });
-  } finally {
-    await prisma.$disconnect();
+    console.error("Payment initialize error:", error);
+    return NextResponse.json({ error: "Payment initialization failed" }, { status: 500 });
   }
 }

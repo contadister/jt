@@ -1,124 +1,78 @@
-// app/api/payments/verify/route.ts
 import { NextResponse } from "next/server";
-import { createServerClient } from "@/lib/supabase/server";
-import { PrismaClient } from "@prisma/client";
-import { verifyTransaction } from "@/lib/paystack/client";
-import { sendPaymentConfirmationEmail } from "@/lib/arkesel/client";
-import { z } from "zod";
-import { format, addMonths } from "date-fns";
-
-const prisma = new PrismaClient();
-
-const schema = z.object({ reference: z.string().min(1) });
+import { prisma } from "@/lib/prisma/client";
+import { verifyPayment } from "@/lib/paystack/client";
+import { sendPaymentConfirmationEmail, sendSiteDeployedEmail } from "@/lib/arkesel/client";
+import { addDays } from "date-fns";
 
 export async function POST(req: Request) {
   try {
-    const supabase = createServerClient();
-    const { data: { session } } = await supabase.auth.getSession();
+    const { reference } = await req.json();
+    if (!reference) return NextResponse.json({ error: "Missing reference" }, { status: 400 });
 
-    if (!session) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
-
-    const body = await req.json() as unknown;
-    const parsed = schema.safeParse(body);
-    if (!parsed.success) {
-      return NextResponse.json({ error: "Invalid input" }, { status: 400 });
-    }
-
-    const { reference } = parsed.data;
-
-    // Check if already verified
-    const existing = await prisma.payment.findUnique({
+    const payment = await prisma.payment.findUnique({
       where: { paystackReference: reference },
+      include: { user: true, site: true },
     });
 
-    if (!existing) {
-      return NextResponse.json({ error: "Payment not found" }, { status: 404 });
-    }
-
-    if (existing.status === "SUCCESS") {
-      return NextResponse.json({ success: true, alreadyVerified: true });
-    }
+    if (!payment) return NextResponse.json({ error: "Payment not found" }, { status: 404 });
+    if (payment.status === "SUCCESS") return NextResponse.json({ success: true, alreadyVerified: true });
 
     // Verify with Paystack
-    const txn = await verifyTransaction(reference);
+    const paystackData = await verifyPayment(reference);
 
-    if (txn.status !== "success") {
-      await prisma.payment.update({
-        where: { paystackReference: reference },
-        data: { status: "FAILED" },
-      });
-      return NextResponse.json({ success: false, error: "Payment was not successful" }, { status: 400 });
+    if (paystackData.status !== "success") {
+      await prisma.payment.update({ where: { id: payment.id }, data: { status: "FAILED" } });
+      return NextResponse.json({ success: false, error: "Payment not successful" }, { status: 402 });
     }
 
     const now = new Date();
-    const periodStart = now;
-    const periodEnd = addMonths(now, 1);
+    const periodEnd = addDays(now, 30);
 
-    // Update payment
-    await prisma.payment.update({
-      where: { paystackReference: reference },
-      data: {
-        status: "SUCCESS",
-        paystackTransactionId: txn.id.toString(),
-        periodStart,
-        periodEnd,
-        metadata: txn as unknown as Record<string, unknown>,
-      },
-    });
-
-    // Activate/renew site
-    await prisma.site.update({
-      where: { id: existing.siteId },
-      data: {
-        subscriptionStart: periodStart,
-        subscriptionEnd: periodEnd,
-        lastPaymentAt: now,
-        renewalReminderSent7d: false,
-        renewalReminderSent3d: false,
-        renewalReminderSent1d: false,
-        renewalReminderSentExpired: false,
-        status: existing.paymentType === "RENEWAL" ? "DEPLOYED" : "BUILDING",
-      },
-    });
+    // Update payment + site in a transaction
+    await prisma.$transaction([
+      prisma.payment.update({
+        where: { id: payment.id },
+        data: {
+          status: "SUCCESS",
+          paystackTransactionId: String(paystackData.id),
+          periodStart: now,
+          periodEnd,
+        },
+      }),
+      prisma.site.update({
+        where: { id: payment.siteId },
+        data: {
+          subscriptionStart: now,
+          subscriptionEnd: periodEnd,
+          lastPaymentAt: now,
+          status: "BUILDING", // will be updated to DEPLOYED after deploy
+          // Reset reminder flags for renewals
+          reminderSent7d: false,
+          reminderSent3d: false,
+          reminderSent1d: false,
+          reminderSentExp: false,
+        },
+      }),
+    ]);
 
     // Send confirmation email
-    const user = await prisma.user.findUnique({ where: { id: session.user.id } });
-    const site = await prisma.site.findUnique({ where: { id: existing.siteId } });
+    sendPaymentConfirmationEmail(
+      payment.user.email,
+      payment.user.fullName,
+      payment.site.name,
+      payment.amountGhs,
+      periodEnd
+    ).catch(console.error);
 
-    if (user && site) {
-      await sendPaymentConfirmationEmail(
-        user.email,
-        user.fullName,
-        site.name,
-        existing.amountGhs,
-        reference,
-        format(periodEnd, "dd MMM yyyy")
-      );
-    }
+    // Trigger deployment (async — don't await)
+    fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/sites/${payment.siteId}/deploy`, {
+      method: "POST",
+      headers: { "x-internal-secret": process.env.CRON_SECRET || "" },
+    }).catch(console.error);
 
-    // Create in-app notification
-    await prisma.notification.create({
-      data: {
-        userId: existing.userId,
-        siteId: existing.siteId,
-        type: "SYSTEM",
-        title: "Payment confirmed",
-        message: `GHS ${existing.amountGhs} received for "${site?.name}". Your subscription is active until ${format(periodEnd, "dd MMM yyyy")}.`,
-        actionUrl: `/dashboard/sites/${existing.siteId}`,
-      },
-    });
-
-    return NextResponse.json({
-      success: true,
-      siteId: existing.siteId,
-      paymentType: existing.paymentType,
-    });
+    return NextResponse.json({ success: true, siteId: payment.siteId });
   } catch (error) {
     console.error("Payment verify error:", error);
     return NextResponse.json({ error: "Verification failed" }, { status: 500 });
-  } finally {
-    await prisma.$disconnect();
   }
 }
