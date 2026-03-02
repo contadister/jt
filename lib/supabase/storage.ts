@@ -1,73 +1,66 @@
 // lib/supabase/storage.ts
-import { createClient } from "@supabase/supabase-js";
+// All file uploads use Supabase Storage Buckets — free & integrated
+// Buckets to create in Supabase dashboard (all public read):
+//   site-assets | avatars | blog-images | product-images | menu-images
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-);
+import { createClient } from "./client";
 
-const BUCKET = process.env.SUPABASE_STORAGE_BUCKET ?? "josett-uploads";
+export type UploadBucket =
+  | "site-assets"
+  | "avatars"
+  | "blog-images"
+  | "product-images"
+  | "menu-images";
 
-export type UploadFolder = "avatars" | "sites" | "templates" | "products" | "blog" | "logos" | "favicons";
+const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/webp", "image/gif", "image/svg+xml"];
+const MAX_SIZE = 10 * 1024 * 1024; // 10MB
 
 export async function uploadFile(
-  file: File | Buffer,
-  folder: UploadFolder,
-  fileName: string
+  file: File,
+  bucket: UploadBucket,
+  path: string
 ): Promise<string> {
-  const name = typeof fileName === "string" ? fileName : `${Date.now()}.jpg`;
-  const path = `${folder}/${Date.now()}-${name}`;
+  if (!ALLOWED_TYPES.includes(file.type)) throw new Error("Invalid file type");
+  if (file.size > MAX_SIZE) throw new Error("File too large. Maximum 10MB.");
 
-  const { error } = await supabase.storage.from(BUCKET).upload(path, file, {
-    upsert: true,
-    contentType: file instanceof File ? file.type : "image/jpeg",
-  });
+  const supabase = createClient();
+  const sanitized = path.replace(/[^a-zA-Z0-9/_.-]/g, "-");
+
+  const { error } = await supabase.storage
+    .from(bucket)
+    .upload(sanitized, file, { upsert: true, contentType: file.type });
 
   if (error) throw new Error(`Upload failed: ${error.message}`);
 
-  const { data } = supabase.storage.from(BUCKET).getPublicUrl(path);
+  const { data } = supabase.storage.from(bucket).getPublicUrl(sanitized);
   return data.publicUrl;
 }
 
-export async function uploadFromBase64(
-  base64: string,
-  folder: UploadFolder,
-  fileName: string
-): Promise<string> {
-  const matches = base64.match(/^data:(.+);base64,(.+)$/);
-  if (!matches) throw new Error("Invalid base64 string");
-
-  const mimeType = matches[1];
-  const data = matches[2];
-  const buffer = Buffer.from(data, "base64");
-  const path = `${folder}/${Date.now()}-${fileName}`;
-
-  const { error } = await supabase.storage.from(BUCKET).upload(path, buffer, {
-    upsert: true,
-    contentType: mimeType,
-  });
-
-  if (error) throw new Error(`Upload failed: ${error.message}`);
-
-  const { data: urlData } = supabase.storage.from(BUCKET).getPublicUrl(path);
-  return urlData.publicUrl;
+export async function deleteFile(bucket: UploadBucket, path: string): Promise<void> {
+  const supabase = createClient();
+  await supabase.storage.from(bucket).remove([path]);
 }
 
-export async function deleteFile(url: string): Promise<void> {
-  const path = url.split(`${BUCKET}/`)[1];
-  if (!path) return;
-
-  const { error } = await supabase.storage.from(BUCKET).remove([path]);
-  if (error) console.error("Delete file error:", error.message);
+export async function uploadSiteAsset(file: File, siteId: string, filename: string) {
+  return uploadFile(file, "site-assets", `${siteId}/${filename}`);
 }
 
-export function getPublicUrl(path: string): string {
-  const { data } = supabase.storage.from(BUCKET).getPublicUrl(path);
-  return data.publicUrl;
+export async function uploadAvatar(file: File, userId: string) {
+  const ext = file.name.split(".").pop() || "jpg";
+  return uploadFile(file, "avatars", `${userId}/avatar.${ext}`);
 }
 
-export async function listFiles(folder: UploadFolder) {
-  const { data, error } = await supabase.storage.from(BUCKET).list(folder);
-  if (error) throw error;
-  return data;
+export async function uploadBlogImage(file: File, siteId: string, postId: string) {
+  const ext = file.name.split(".").pop() || "jpg";
+  return uploadFile(file, "blog-images", `${siteId}/${postId}/cover.${ext}`);
+}
+
+export async function uploadProductImage(file: File, siteId: string, productId: string, index: number) {
+  const ext = file.name.split(".").pop() || "jpg";
+  return uploadFile(file, "product-images", `${siteId}/${productId}/image-${index}.${ext}`);
+}
+
+export async function uploadMenuImage(file: File, siteId: string, itemId: string) {
+  const ext = file.name.split(".").pop() || "jpg";
+  return uploadFile(file, "menu-images", `${siteId}/${itemId}/photo.${ext}`);
 }
