@@ -1,0 +1,540 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                   String    @id @default(cuid())
+  email                String    @unique
+  fullName             String    @map("full_name")
+  avatarUrl            String?   @map("avatar_url")
+  phone                String?
+  role                 UserRole  @default(USER)
+  paystackCustomerCode String?   @map("paystack_customer_code")
+  emailVerified        Boolean   @default(false) @map("email_verified")
+  referralCode         String?   @unique @map("referral_code")
+  referredById         String?   @map("referred_by_id")
+  referralCreditsGhs   Int       @default(0) @map("referral_credits_ghs")
+  createdAt            DateTime  @default(now()) @map("created_at")
+  updatedAt            DateTime  @updatedAt @map("updated_at")
+
+  sites         Site[]
+  payments      Payment[]
+  notifications Notification[]
+  referredBy    User?          @relation("Referrals", fields: [referredById], references: [id])
+  referrals     User[]         @relation("Referrals")
+
+  @@map("users")
+}
+
+enum UserRole {
+  USER
+  ADMIN
+}
+
+model Site {
+  id          String     @id @default(cuid())
+  userId      String     @map("user_id")
+  name        String
+  description String?
+  slug        String     @unique
+  status      SiteStatus @default(BUILDING)
+  siteType    SiteType   @map("site_type")
+  builderJson Json?      @map("builder_json")
+  templateId  String?    @map("template_id")
+
+  githubRepoUrl        String?  @map("github_repo_url")
+  githubRepoName       String?  @map("github_repo_name")
+  vercelProjectId      String?  @map("vercel_project_id")
+  vercelDeploymentUrl  String?  @map("vercel_deployment_url")
+  vercelDomain         String?  @map("vercel_domain")
+  customDomain         String?  @map("custom_domain")
+  customDomainVerified Boolean  @default(false) @map("custom_domain_verified")
+  lastDeployedAt       DateTime? @map("last_deployed_at")
+
+  featureEcommerce          Boolean @default(false) @map("feature_ecommerce")
+  featureBlog               Boolean @default(false) @map("feature_blog")
+  featureBooking            Boolean @default(false) @map("feature_booking")
+  featureContactForm        Boolean @default(false) @map("feature_contact_form")
+  featureSeoTools           Boolean @default(false) @map("feature_seo_tools")
+  featureAnalytics          Boolean @default(false) @map("feature_analytics")
+  featureCustomDomain       Boolean @default(false) @map("feature_custom_domain")
+  featureGallery            Boolean @default(false) @map("feature_gallery")
+  featureRestaurantMenu     Boolean @default(false) @map("feature_restaurant_menu")
+  featureSocialLinks        Boolean @default(false) @map("feature_social_links")
+  featureNewsletter         Boolean @default(false) @map("feature_newsletter")
+  featurePasswordProtection Boolean @default(false) @map("feature_password_protection")
+  featureMultiplePages      Boolean @default(false) @map("feature_multiple_pages")
+  featureGoogleMaps         Boolean @default(false) @map("feature_google_maps")
+  featureVideoEmbed         Boolean @default(false) @map("feature_video_embed")
+  featureTestimonials       Boolean @default(false) @map("feature_testimonials")
+  featureCountdown          Boolean @default(false) @map("feature_countdown")
+  featureLiveChat           Boolean @default(false) @map("feature_live_chat")
+  featureWhatsappButton     Boolean @default(false) @map("feature_whatsapp_button")
+  featurePushNotifications  Boolean @default(false) @map("feature_push_notifications")
+  featureHeatmaps           Boolean @default(false) @map("feature_heatmaps")
+  featureMultiLanguage      Boolean @default(false) @map("feature_multi_language")
+  featureSiteSearch         Boolean @default(false) @map("feature_site_search")
+  featureCoupons            Boolean @default(false) @map("feature_coupons")
+  featureProductReviews     Boolean @default(false) @map("feature_product_reviews")
+  featureDeliveryZones      Boolean @default(false) @map("feature_delivery_zones")
+  featureAdsEnabled         Boolean @default(false) @map("feature_ads_enabled")
+  featureAffiliate          Boolean @default(false) @map("feature_affiliate")
+  featureAbTesting          Boolean @default(false) @map("feature_ab_testing")
+  featureSocialAutoPost     Boolean @default(false) @map("feature_social_auto_post")
+  featureEventTicketing     Boolean @default(false) @map("feature_event_ticketing")
+  featureLinkInBio          Boolean @default(false) @map("feature_link_in_bio")
+
+  monthlyPriceGhs   Int     @default(100) @map("monthly_price_ghs")
+  adSupportedTier   Boolean @default(false) @map("ad_supported_tier")
+  subscriptionStart DateTime? @map("subscription_start")
+  subscriptionEnd   DateTime? @map("subscription_end")
+  lastPaymentAt     DateTime? @map("last_payment_at")
+
+  reminderSent7d  Boolean @default(false) @map("reminder_sent_7d")
+  reminderSent3d  Boolean @default(false) @map("reminder_sent_3d")
+  reminderSent1d  Boolean @default(false) @map("reminder_sent_1d")
+  reminderSentExp Boolean @default(false) @map("reminder_sent_exp")
+
+  userPaystackPublicKey          String? @map("user_paystack_public_key")
+  userPaystackSecretKeyEncrypted String? @map("user_paystack_secret_key_encrypted")
+
+  seoTitle       String? @map("seo_title")
+  seoDescription String? @map("seo_description")
+  seoKeywords    String? @map("seo_keywords")
+  seoOgImage     String? @map("seo_og_image")
+
+  adRevenueSharePercent Int   @default(60) @map("ad_revenue_share_percent")
+  adTotalEarningsGhs    Float @default(0) @map("ad_total_earnings_ghs")
+  adPendingPayoutGhs    Float @default(0) @map("ad_pending_payout_ghs")
+
+  primaryColor     String  @default("#6272f1") @map("primary_color")
+  secondaryColor   String  @default("#8b5cf6") @map("secondary_color")
+  fontFamily       String  @default("Inter") @map("font_family")
+  faviconUrl       String? @map("favicon_url")
+  logoUrl          String? @map("logo_url")
+  whatsappNumber   String? @map("whatsapp_number")
+  tawkToPropertyId String? @map("tawk_to_property_id")
+  totalVisits      Int     @default(0) @map("total_visits")
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  user                  User                   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  payments              Payment[]
+  formSubmissions       FormSubmission[]
+  products              Product[]
+  orders                Order[]
+  bookings              Booking[]
+  blogPosts             BlogPost[]
+  menuItems             MenuItem[]
+  services              Service[]
+  availability          Availability[]
+  notifications         Notification[]
+  analyticsEvents       AnalyticsEvent[]
+  newsletterSubscribers NewsletterSubscriber[]
+  coupons               Coupon[]
+  abTests               AbTest[]
+  adImpressions         AdImpression[]
+
+  @@index([userId])
+  @@index([slug])
+  @@index([status])
+  @@index([subscriptionEnd])
+  @@map("sites")
+}
+
+enum SiteStatus {
+  BUILDING
+  DEPLOYED
+  SUSPENDED
+  EXPIRED
+  CANCELLED
+}
+
+enum SiteType {
+  BUSINESS
+  PORTFOLIO
+  ECOMMERCE
+  BLOG
+  RESTAURANT
+  NGO
+  PERSONAL
+  LANDING
+  LINK_IN_BIO
+  EVENT
+}
+
+model Payment {
+  id                    String        @id @default(cuid())
+  userId                String        @map("user_id")
+  siteId                String        @map("site_id")
+  paystackReference     String        @unique @map("paystack_reference")
+  paystackTransactionId String?       @map("paystack_transaction_id")
+  amountGhs             Int           @map("amount_ghs")
+  status                PaymentStatus @default(PENDING)
+  paymentType           PaymentType   @default(NEW) @map("payment_type")
+  periodStart           DateTime?     @map("period_start")
+  periodEnd             DateTime?     @map("period_end")
+  metadata              Json?
+  createdAt             DateTime      @default(now()) @map("created_at")
+
+  user User @relation(fields: [userId], references: [id])
+  site Site @relation(fields: [siteId], references: [id])
+
+  @@index([userId])
+  @@index([siteId])
+  @@map("payments")
+}
+
+enum PaymentStatus {
+  PENDING
+  SUCCESS
+  FAILED
+  REFUNDED
+}
+
+enum PaymentType {
+  NEW
+  RENEWAL
+}
+
+model Template {
+  id              String   @id
+  name            String
+  description     String?
+  category        String
+  previewImageUrl String?  @map("preview_image_url")
+  previewUrl      String?  @map("preview_url")
+  builderJson     Json     @map("builder_json")
+  tags            String[]
+  isPremium       Boolean  @default(false) @map("is_premium")
+  isActive        Boolean  @default(true) @map("is_active")
+  useCount        Int      @default(0) @map("use_count")
+  createdAt       DateTime @default(now()) @map("created_at")
+
+  @@map("templates")
+}
+
+model FormSubmission {
+  id        String   @id @default(cuid())
+  siteId    String   @map("site_id")
+  formId    String   @map("form_id")
+  formName  String?  @map("form_name")
+  data      Json
+  ipAddress String?  @map("ip_address")
+  isRead    Boolean  @default(false) @map("is_read")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  site Site @relation(fields: [siteId], references: [id], onDelete: Cascade)
+
+  @@index([siteId])
+  @@map("form_submissions")
+}
+
+model Product {
+  id              String   @id @default(cuid())
+  siteId          String   @map("site_id")
+  name            String
+  description     String?
+  priceGhs        Float    @map("price_ghs")
+  comparePriceGhs Float?   @map("compare_price_ghs")
+  images          String[]
+  category        String?
+  tags            String[]
+  stockQuantity   Int      @default(0) @map("stock_quantity")
+  trackInventory  Boolean  @default(false) @map("track_inventory")
+  isAvailable     Boolean  @default(true) @map("is_available")
+  slug            String
+  weightKg        Float?   @map("weight_kg")
+  createdAt       DateTime @default(now()) @map("created_at")
+  updatedAt       DateTime @updatedAt @map("updated_at")
+
+  site       Site            @relation(fields: [siteId], references: [id], onDelete: Cascade)
+  orderItems OrderItem[]
+  reviews    ProductReview[]
+
+  @@unique([siteId, slug])
+  @@index([siteId])
+  @@map("products")
+}
+
+model ProductReview {
+  id           String   @id @default(cuid())
+  productId    String   @map("product_id")
+  customerName String   @map("customer_name")
+  rating       Int
+  comment      String?
+  isApproved   Boolean  @default(false) @map("is_approved")
+  createdAt    DateTime @default(now()) @map("created_at")
+
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@index([productId])
+  @@map("product_reviews")
+}
+
+model Order {
+  id                String      @id @default(cuid())
+  siteId            String      @map("site_id")
+  orderNumber       String      @unique @map("order_number")
+  customerName      String      @map("customer_name")
+  customerEmail     String      @map("customer_email")
+  customerPhone     String?     @map("customer_phone")
+  customerAddress   Json?       @map("customer_address")
+  subtotalGhs       Float       @map("subtotal_ghs")
+  deliveryFeeGhs    Float       @default(0) @map("delivery_fee_ghs")
+  discountGhs       Float       @default(0) @map("discount_ghs")
+  totalGhs          Float       @map("total_ghs")
+  status            OrderStatus @default(PENDING)
+  paystackReference String?     @map("paystack_reference")
+  couponCode        String?     @map("coupon_code")
+  notes             String?
+  createdAt         DateTime    @default(now()) @map("created_at")
+  updatedAt         DateTime    @updatedAt @map("updated_at")
+
+  site       Site        @relation(fields: [siteId], references: [id])
+  orderItems OrderItem[]
+
+  @@index([siteId])
+  @@map("orders")
+}
+
+enum OrderStatus {
+  PENDING
+  PAID
+  PROCESSING
+  SHIPPED
+  DELIVERED
+  CANCELLED
+  REFUNDED
+}
+
+model OrderItem {
+  id        String  @id @default(cuid())
+  orderId   String  @map("order_id")
+  productId String? @map("product_id")
+  name      String
+  price     Float
+  quantity  Int
+  imageUrl  String? @map("image_url")
+
+  order   Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  product Product? @relation(fields: [productId], references: [id])
+
+  @@map("order_items")
+}
+
+model Coupon {
+  id            String    @id @default(cuid())
+  siteId        String    @map("site_id")
+  code          String
+  discountType  String    @map("discount_type")
+  discountValue Float     @map("discount_value")
+  minOrderGhs   Float?    @map("min_order_ghs")
+  maxUsageCount Int?      @map("max_usage_count")
+  usageCount    Int       @default(0) @map("usage_count")
+  expiresAt     DateTime? @map("expires_at")
+  isActive      Boolean   @default(true) @map("is_active")
+  createdAt     DateTime  @default(now()) @map("created_at")
+
+  site Site @relation(fields: [siteId], references: [id], onDelete: Cascade)
+
+  @@unique([siteId, code])
+  @@map("coupons")
+}
+
+model Booking {
+  id              String        @id @default(cuid())
+  siteId          String        @map("site_id")
+  serviceId       String?       @map("service_id")
+  serviceName     String        @map("service_name")
+  clientName      String        @map("client_name")
+  clientEmail     String        @map("client_email")
+  clientPhone     String?       @map("client_phone")
+  bookingDate     DateTime      @map("booking_date") @db.Date
+  bookingTime     String        @map("booking_time")
+  durationMinutes Int           @default(60) @map("duration_minutes")
+  status          BookingStatus @default(PENDING)
+  notes           String?
+  priceGhs        Float?        @map("price_ghs")
+  createdAt       DateTime      @default(now()) @map("created_at")
+
+  site Site @relation(fields: [siteId], references: [id], onDelete: Cascade)
+
+  @@index([siteId])
+  @@map("bookings")
+}
+
+enum BookingStatus {
+  PENDING
+  CONFIRMED
+  CANCELLED
+  COMPLETED
+}
+
+model Service {
+  id              String   @id @default(cuid())
+  siteId          String   @map("site_id")
+  name            String
+  description     String?
+  durationMinutes Int      @default(60) @map("duration_minutes")
+  priceGhs        Float?   @map("price_ghs")
+  isActive        Boolean  @default(true) @map("is_active")
+  createdAt       DateTime @default(now()) @map("created_at")
+
+  site Site @relation(fields: [siteId], references: [id], onDelete: Cascade)
+
+  @@map("services")
+}
+
+model Availability {
+  id          String  @id @default(cuid())
+  siteId      String  @map("site_id")
+  dayOfWeek   Int     @map("day_of_week")
+  startTime   String  @map("start_time")
+  endTime     String  @map("end_time")
+  isAvailable Boolean @default(true) @map("is_available")
+
+  site Site @relation(fields: [siteId], references: [id], onDelete: Cascade)
+
+  @@map("availability")
+}
+
+model BlogPost {
+  id             String    @id @default(cuid())
+  siteId         String    @map("site_id")
+  title          String
+  slug           String
+  content        Json
+  excerpt        String?
+  coverImage     String?   @map("cover_image")
+  authorName     String?   @map("author_name")
+  authorAvatar   String?   @map("author_avatar")
+  isPublished    Boolean   @default(false) @map("is_published")
+  publishedAt    DateTime? @map("published_at")
+  tags           String[]
+  seoTitle       String?   @map("seo_title")
+  seoDescription String?   @map("seo_description")
+  viewCount      Int       @default(0) @map("view_count")
+  createdAt      DateTime  @default(now()) @map("created_at")
+  updatedAt      DateTime  @updatedAt @map("updated_at")
+
+  site Site @relation(fields: [siteId], references: [id], onDelete: Cascade)
+
+  @@unique([siteId, slug])
+  @@index([siteId])
+  @@map("blog_posts")
+}
+
+model MenuItem {
+  id          String   @id @default(cuid())
+  siteId      String   @map("site_id")
+  category    String
+  name        String
+  description String?
+  priceGhs    Float    @map("price_ghs")
+  imageUrl    String?  @map("image_url")
+  isAvailable Boolean  @default(true) @map("is_available")
+  isFeatured  Boolean  @default(false) @map("is_featured")
+  dietaryTags String[] @map("dietary_tags")
+  sortOrder   Int      @default(0) @map("sort_order")
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  site Site @relation(fields: [siteId], references: [id], onDelete: Cascade)
+
+  @@index([siteId])
+  @@map("menu_items")
+}
+
+model NewsletterSubscriber {
+  id          String   @id @default(cuid())
+  siteId      String   @map("site_id")
+  email       String
+  name        String?
+  isConfirmed Boolean  @default(false) @map("is_confirmed")
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  site Site @relation(fields: [siteId], references: [id], onDelete: Cascade)
+
+  @@unique([siteId, email])
+  @@map("newsletter_subscribers")
+}
+
+model Notification {
+  id        String   @id @default(cuid())
+  userId    String   @map("user_id")
+  siteId    String?  @map("site_id")
+  type      String
+  title     String
+  message   String
+  isRead    Boolean  @default(false) @map("is_read")
+  actionUrl String?  @map("action_url")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  user User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  site Site? @relation(fields: [siteId], references: [id], onDelete: SetNull)
+
+  @@index([userId])
+  @@map("notifications")
+}
+
+model AnalyticsEvent {
+  id        String   @id @default(cuid())
+  siteId    String   @map("site_id")
+  eventType String   @map("event_type")
+  pagePath  String?  @map("page_path")
+  referrer  String?
+  country   String?
+  city      String?
+  device    String?
+  browser   String?
+  sessionId String?  @map("session_id")
+  metadata  Json?
+  createdAt DateTime @default(now()) @map("created_at")
+
+  site Site @relation(fields: [siteId], references: [id], onDelete: Cascade)
+
+  @@index([siteId])
+  @@index([createdAt])
+  @@map("analytics_events")
+}
+
+model AbTest {
+  id                  String   @id @default(cuid())
+  siteId              String   @map("site_id")
+  name                String
+  description         String?
+  variantAJson        Json     @map("variant_a_json")
+  variantBJson        Json     @map("variant_b_json")
+  variantAViews       Int      @default(0) @map("variant_a_views")
+  variantBViews       Int      @default(0) @map("variant_b_views")
+  variantAConversions Int      @default(0) @map("variant_a_conversions")
+  variantBConversions Int      @default(0) @map("variant_b_conversions")
+  isActive            Boolean  @default(true) @map("is_active")
+  createdAt           DateTime @default(now()) @map("created_at")
+
+  site Site @relation(fields: [siteId], references: [id], onDelete: Cascade)
+
+  @@map("ab_tests")
+}
+
+model AdImpression {
+  id          String   @id @default(cuid())
+  siteId      String   @map("site_id")
+  adSlot      String   @map("ad_slot")
+  impressions Int      @default(0)
+  clicks      Int      @default(0)
+  revenueGhs  Float    @default(0) @map("revenue_ghs")
+  date        DateTime @db.Date
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  site Site @relation(fields: [siteId], references: [id], onDelete: Cascade)
+
+  @@index([siteId])
+  @@map("ad_impressions")
+}

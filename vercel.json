@@ -1,0 +1,39 @@
+{
+  "crons": [
+    {
+      "path": "/api/cron/check-renewals",
+      "schedule": "0 8 * * *"
+    },
+    {
+      "path": "/api/cron/check-domains",
+      "schedule": "0 */2 * * *"
+    },
+    {
+      "path": "/api/cron/process-ad-revenue",
+      "schedule": "0 0 1 * *"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=()"
+        }
+      ]
+    }
+  ]
+}
