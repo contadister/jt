@@ -20,7 +20,7 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Missing file or path" }, { status: 400 });
     }
 
-    const url = await uploadFile(file, bucket, path);
+    const url = await uploadFile(bucket, path, file);
     return NextResponse.json({ url });
   } catch (error) {
     const msg = error instanceof Error ? error.message : "Upload failed";
