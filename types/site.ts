@@ -102,10 +102,13 @@ export interface SiteSettings {
 }
 
 export interface GlobalStyles {
-  bodyBackground: string;
-  textColor: string;
-  headingFont: string;
-  bodyFont: string;
+  bodyBackground?: string;
+  textColor?: string;
+  headingFont?: string;
+  bodyFont?: string;
+  primaryColor?: string;
+  secondaryColor?: string;
+  fontFamily?: string;
 }
 
 export interface BuilderPage {
