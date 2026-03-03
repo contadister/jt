@@ -183,7 +183,7 @@ export default function NewSitePage() {
   } as unknown as FormState);
 
   const features = Object.fromEntries(
-    FEATURES.map((f) => [f.key, (form as Record<string, unknown>)[f.key] as boolean])
+    FEATURES.map((f) => [f.key, (form as unknown as Record<string, unknown>)[f.key] as boolean])
   );
   const price = calculatePrice(features);
   const breakdown = getPriceBreakdown(features);
@@ -364,7 +364,7 @@ export default function NewSitePage() {
     const freeFeatures = FEATURES.filter((f) => f.price === 0);
 
     function FeatureToggle({ feat }: { feat: typeof FEATURES[0] }) {
-      const active = !!(form as Record<string, unknown>)[feat.key];
+      const active = !!(form as unknown as Record<string, unknown>)[feat.key];
       const Icon = feat.icon;
       return (
         <button
@@ -408,18 +408,18 @@ export default function NewSitePage() {
 
         {/* Ad-supported toggle */}
         <button
-          onClick={() => updateForm("featureAdsEnabled", !(form as Record<string, unknown>).featureAdsEnabled)}
+          onClick={() => updateForm("featureAdsEnabled", !(form as unknown as Record<string, unknown>).featureAdsEnabled)}
           className={`w-full p-4 rounded-xl border-2 text-left transition-all ${
-            (form as Record<string, unknown>).featureAdsEnabled
+            (form as unknown as Record<string, unknown>).featureAdsEnabled
               ? "border-amber-400 bg-amber-50 dark:bg-amber-950/20"
               : "border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900"
           }`}
         >
           <div className="flex items-start gap-3">
             <div className={`w-5 h-5 rounded border-2 flex items-center justify-center mt-0.5 transition-colors ${
-              (form as Record<string, unknown>).featureAdsEnabled ? "border-amber-500 bg-amber-500" : "border-slate-300"
+              (form as unknown as Record<string, unknown>).featureAdsEnabled ? "border-amber-500 bg-amber-500" : "border-slate-300"
             }`}>
-              {(form as Record<string, unknown>).featureAdsEnabled && <Check size={11} className="text-white" strokeWidth={3} />}
+              {(form as unknown as Record<string, unknown>).featureAdsEnabled && <Check size={11} className="text-white" strokeWidth={3} />}
             </div>
             <div>
               <div className="font-bold text-slate-900 dark:text-white text-sm flex items-center gap-2">
@@ -455,9 +455,9 @@ export default function NewSitePage() {
           siteType: form.siteType,
           templateId: form.templateId,
           ...Object.fromEntries(
-            FEATURES.map((f) => [f.key, (form as Record<string, unknown>)[f.key]])
+            FEATURES.map((f) => [f.key, (form as unknown as Record<string, unknown>)[f.key]])
           ),
-          featureAdsEnabled: (form as Record<string, unknown>).featureAdsEnabled,
+          featureAdsEnabled: (form as unknown as Record<string, unknown>).featureAdsEnabled,
           monthlyPriceGhs: price,
         }),
       });
@@ -510,7 +510,7 @@ export default function NewSitePage() {
                 <span className="font-medium text-slate-900 dark:text-white">+GHS {item.price}</span>
               </div>
             ))}
-            {(form as Record<string, unknown>).featureAdsEnabled && (
+            {(form as unknown as Record<string, unknown>).featureAdsEnabled && (
               <div className="flex justify-between text-sm">
                 <span className="text-amber-600 dark:text-amber-400">Ad-Supported Discount</span>
                 <span className="font-medium text-amber-600 dark:text-amber-400">-GHS 30</span>
