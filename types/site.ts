@@ -109,6 +109,7 @@ export interface GlobalStyles {
 }
 
 export interface BuilderPage {
+  isHomePage?: boolean;
   id: string;
   name: string;
   slug: string;
