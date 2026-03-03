@@ -93,6 +93,12 @@ export interface SiteSettings {
   secondaryColor: string;
   fontFamily: string;
   siteName: string;
+  seoDescription?: string;
+  seoTitle?: string;
+  seoKeywords?: string;
+  seoOgImage?: string;
+  whatsappNumber?: string;
+  tawkToPropertyId?: string;
 }
 
 export interface GlobalStyles {
