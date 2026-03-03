@@ -1,13 +1,16 @@
 // app/api/sites/[siteId]/deploy/route.ts
 import { NextResponse } from "next/server";
 import { createServerClient } from "@/lib/supabase/server";
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "@/lib/prisma/client";
 import { createSiteRepo, pushFilesToRepo } from "@/lib/github/client";
-import { createVercelProject, triggerDeployment, getVercelDomain, addDomainToProject } from "@/lib/vercel/client";
+import {
+  createVercelProject,
+  triggerDeployment,
+  getVercelDomain,
+  addDomainToProject,
+} from "@/lib/vercel/client";
 import { generateSiteCode } from "@/lib/builder/code-generator";
 import { sendSiteDeployedEmail } from "@/lib/arkesel/client";
-
-const prisma = new PrismaClient();
 
 export async function POST(
   _req: Request,
@@ -15,7 +18,9 @@ export async function POST(
 ) {
   try {
     const supabase = createServerClient();
-    const { data: { session } } = await supabase.auth.getSession();
+    const {
+      data: { session },
+    } = await supabase.auth.getSession();
 
     if (!session) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -31,10 +36,13 @@ export async function POST(
     }
 
     if (!site.builderJson) {
-      return NextResponse.json({ error: "Site has no content" }, { status: 400 });
+      return NextResponse.json(
+        { error: "Site has no content yet" },
+        { status: 400 }
+      );
     }
 
-    // 1. Generate site code
+    // 1. Generate site code from builder JSON
     const files = generateSiteCode(
       site.builderJson as unknown as Parameters<typeof generateSiteCode>[0],
       {
@@ -57,7 +65,7 @@ export async function POST(
           featureEventTicketing: site.featureEventTicketing,
           featureSiteSearch: site.featureSiteSearch,
         },
-        adsEnabled: site.adsEnabled,
+        adsEnabled: site.featureAdsEnabled,        // ← correct field name
         userPaystackKey: site.userPaystackPublicKey ?? undefined,
         primaryColor: site.primaryColor,
         secondaryColor: site.secondaryColor,
@@ -67,12 +75,12 @@ export async function POST(
 
     let githubRepoName = site.githubRepoName;
     let vercelProjectId = site.vercelProjectId;
+    const projectName = `josett-${site.slug}`;
 
     // 2. Create GitHub repo (first deploy only)
     if (!githubRepoName) {
       const repo = await createSiteRepo(site.id, site.name);
       githubRepoName = repo.repoName;
-
       await prisma.site.update({
         where: { id: site.id },
         data: { githubRepoUrl: repo.repoUrl, githubRepoName },
@@ -85,79 +93,72 @@ export async function POST(
     // 4. Create Vercel project (first deploy only)
     if (!vercelProjectId) {
       const project = await createVercelProject(
-        `josett-${site.slug}`,
-        process.env.GITHUB_ORG!,
-        githubRepoName
+        projectName,                   // projectName
+        githubRepoName,                // repoName
+        process.env.GITHUB_ORG!        // githubOrg
       );
       vercelProjectId = project.id;
     }
 
     // 5. Trigger deployment
-    const deployment = await triggerDeployment(
-      vercelProjectId,
-      githubRepoName,
-      process.env.GITHUB_ORG!
-    );
+    const deployment = await triggerDeployment(vercelProjectId);
 
-    // 6. Set up free Vercel domain
-    const vercelDomain = getVercelDomain(`josett-${site.slug}`);
-    try {
-      await addDomainToProject(vercelProjectId, vercelDomain);
-    } catch {
-      // Domain might already exist, that's fine
+    // 6. Get the auto-assigned Vercel domain
+    let vercelDomain = site.vercelDomain;
+    if (!vercelDomain) {
+      vercelDomain = await getVercelDomain(vercelProjectId);  // ← async, awaited
     }
 
-    // 7. Handle custom domain
+    // 7. Handle custom domain if feature is enabled
     if (site.customDomain && site.featureCustomDomain) {
       try {
         await addDomainToProject(vercelProjectId, site.customDomain);
       } catch {
-        // Will retry when user verifies DNS
+        // DNS not propagated yet — check-domains cron will retry
       }
     }
 
-    // 8. Update site in database
-    const liveUrl = site.customDomain && site.customDomainVerified
-      ? `https://${site.customDomain}`
-      : `https://${vercelDomain}`;
+    // 8. Determine live URL
+    const liveUrl =
+      site.customDomain && site.customDomainVerified
+        ? `https://${site.customDomain}`
+        : vercelDomain
+        ? `https://${vercelDomain}`
+        : `https://${deployment.url}`;
 
+    // 9. Update site record
     await prisma.site.update({
       where: { id: site.id },
       data: {
         vercelProjectId,
         vercelDeploymentUrl: `https://${deployment.url}`,
-        vercelDomain,
+        vercelDomain: vercelDomain ?? undefined,
         status: "DEPLOYED",
+        lastDeployedAt: new Date(),
       },
     });
 
-    // 9. Send deployment notification
-    if (site.user) {
-      await sendSiteDeployedEmail(
-        site.user.email,
-        site.user.fullName,
-        site.name,
-        liveUrl
-      );
-    }
+    // 10. Send deployed email
+    await sendSiteDeployedEmail(
+      site.user.email,
+      site.user.fullName,
+      site.name,
+      liveUrl
+    ).catch(console.error);
 
-    // 10. Create in-app notification
+    // 11. In-app notification
     await prisma.notification.create({
       data: {
         userId: site.userId,
         siteId: site.id,
         type: "DEPLOYED",
-        title: `"${site.name}" is live!`,
+        title: `${site.name} is live!`,
         message: `Your website is now live at ${liveUrl}`,
         actionUrl: liveUrl,
       },
     });
 
-    return NextResponse.json({
-      success: true,
-      url: liveUrl,
-      deploymentId: deployment.id,
-    });
+    return NextResponse.json({ success: true, url: liveUrl, deploymentId: deployment.id });
   } catch (error) {
     console.error("Deploy error:", error);
 
@@ -167,7 +168,5 @@ export async function POST(
     }).catch(() => undefined);
 
     return NextResponse.json({ error: "Deployment failed" }, { status: 500 });
-  } finally {
-    await prisma.$disconnect();
   }
 }
