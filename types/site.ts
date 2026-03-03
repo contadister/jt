@@ -121,6 +121,8 @@ export interface BuilderSection {
   type: string;
   elements: BuilderElement[];
   styles: SectionStyles;
+  isVisible?: boolean;
+  label?: string;
 }
 
 export interface SectionStyles {
@@ -169,7 +171,7 @@ export interface BuilderElement {
   type: ElementType;
   content: Record<string, unknown>;
   styles: ElementStyles;
-  isVisible: boolean;
+  isVisible?: boolean;
 }
 
 export interface ElementStyles {
