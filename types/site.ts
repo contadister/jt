@@ -112,10 +112,10 @@ export interface GlobalStyles {
 }
 
 export interface BuilderPage {
-  isHomePage?: boolean;
   id: string;
   name: string;
   slug: string;
+  isHomePage?: boolean;
   sections: BuilderSection[];
   seo: { title: string; description: string };
 }
@@ -123,19 +123,20 @@ export interface BuilderPage {
 export interface BuilderSection {
   id: string;
   type: string;
+  name?: string;
+  label?: string;
+  isVisible?: boolean;
   elements: BuilderElement[];
   styles: SectionStyles;
-  isVisible?: boolean;
-  label?: string;
 }
 
 export interface SectionStyles {
-  backgroundColor: string;
+  backgroundColor?: string;
   backgroundImage?: string;
-  paddingTop: number;
-  paddingBottom: number;
-  paddingLeft: number;
-  paddingRight: number;
+  paddingTop?: number;
+  paddingBottom?: number;
+  paddingLeft?: number;
+  paddingRight?: number;
   maxWidth?: string;
 }
 
@@ -176,6 +177,8 @@ export interface BuilderElement {
   content: Record<string, unknown>;
   styles: ElementStyles;
   isVisible?: boolean;
+  isLocked?: boolean;
+  mobileStyles?: Partial<ElementStyles>;
 }
 
 export interface ElementStyles {
