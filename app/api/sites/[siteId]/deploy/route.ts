@@ -36,7 +36,7 @@ export async function POST(
 
     // 1. Generate site code
     const files = generateSiteCode(
-      site.builderJson as Parameters<typeof generateSiteCode>[0],
+      site.builderJson as unknown as Parameters<typeof generateSiteCode>[0],
       {
         siteId: site.id,
         siteName: site.name,
