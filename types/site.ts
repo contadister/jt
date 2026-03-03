@@ -81,6 +81,7 @@ export interface Site extends SiteFeatureFlags {
 }
 
 export interface BuilderJSON {
+  version?: string;
   pages: BuilderPage[];
   globalStyles: GlobalStyles;
   siteSettings: SiteSettings;
