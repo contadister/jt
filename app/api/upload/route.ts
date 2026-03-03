@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { createServerClient } from "@/lib/supabase/server";
-import { uploadFile, type UploadBucket } from "@/lib/supabase/storage";
+import { uploadFile, type StorageBucket } from "@/lib/supabase/storage";
 
 export async function POST(req: Request) {
   try {
@@ -13,7 +13,7 @@ export async function POST(req: Request) {
 
     const formData = await req.formData();
     const file = formData.get("file") as File;
-    const bucket = (formData.get("bucket") as UploadBucket) || "site-assets";
+    const bucket = (formData.get("bucket") as StorageBucket) || "site-assets";
     const path = formData.get("path") as string;
 
     if (!file || !path) {
