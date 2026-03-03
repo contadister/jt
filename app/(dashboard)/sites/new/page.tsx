@@ -419,7 +419,7 @@ export default function NewSitePage() {
             <div className={`w-5 h-5 rounded border-2 flex items-center justify-center mt-0.5 transition-colors ${
               (form as unknown as Record<string, unknown>).featureAdsEnabled ? "border-amber-500 bg-amber-500" : "border-slate-300"
             }`}>
-              {(form as unknown as Record<string, unknown>).featureAdsEnabled && <Check size={11} className="text-white" strokeWidth={3} />}
+              {!!(form as unknown as Record<string, unknown>).featureAdsEnabled && <Check size={11} className="text-white" strokeWidth={3} />}
             </div>
             <div>
               <div className="font-bold text-slate-900 dark:text-white text-sm flex items-center gap-2">
@@ -510,7 +510,7 @@ export default function NewSitePage() {
                 <span className="font-medium text-slate-900 dark:text-white">+GHS {item.price}</span>
               </div>
             ))}
-            {(form as unknown as Record<string, unknown>).featureAdsEnabled && (
+            {!!(form as unknown as Record<string, unknown>).featureAdsEnabled && (
               <div className="flex justify-between text-sm">
                 <span className="text-amber-600 dark:text-amber-400">Ad-Supported Discount</span>
                 <span className="font-medium text-amber-600 dark:text-amber-400">-GHS 30</span>
