@@ -2,7 +2,7 @@
 "use client";
 
 import { useBuilderStore } from "@/store/builderStore";
-import { BuilderElement } from "@/types/builder";
+import { BuilderElement } from "@/types/builder"; 
 import { Trash2, Copy, Lock, GripVertical } from "lucide-react";
 
 interface ElementRendererProps {
