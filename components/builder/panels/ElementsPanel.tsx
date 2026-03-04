@@ -56,7 +56,7 @@ const ELEMENTS: ElementDef[] = [
   { type: "link-in-bio", label: "Link in Bio", icon: Link2, category: "Misc", defaultContent: { links: [] } },
 ];
 
-const CATEGORIES = [...new Set(ELEMENTS.map((e) => e.category))];
+const CATEGORIES = Array.from(new Set(ELEMENTS.map((e) => e.category)));
 
 function DraggableElement({ element }: { element: ElementDef }) {
   const { attributes, listeners, setNodeRef, transform, isDragging } = useDraggable({
