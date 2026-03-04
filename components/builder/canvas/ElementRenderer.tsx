@@ -76,7 +76,7 @@ function ElementContent({ element, content }: { element: BuilderElement; content
       return <hr className="border-slate-200 my-2" style={{ borderColor: content.color as string }} />;
 
     case "spacer":
-      return <div style={{ height: `${content.height || 40}px` }} />;
+      return <div style={{ height: `${(content.height as number) || 40}px` }} />;
 
     case "hero":
       return (
@@ -173,7 +173,7 @@ function ElementContent({ element, content }: { element: BuilderElement; content
           </div>
           <div className="p-4">
             <p className="font-semibold text-slate-900">{content.name as string || "Product Name"}</p>
-            <p className="text-josett-600 font-bold">GHS {content.price || "0.00"}</p>
+            <p className="text-josett-600 font-bold">GHS {String(content.price ?? "0.00")}</p>
             <button className="mt-3 w-full bg-josett-600 text-white text-sm font-semibold py-2 rounded-lg">Add to Cart</button>
           </div>
         </div>
@@ -181,7 +181,7 @@ function ElementContent({ element, content }: { element: BuilderElement; content
 
     case "whatsapp-button":
       return (
-        <a href={`https://wa.me/${content.number}`} target="_blank" rel="noreferrer"
+        <a href={`https://wa.me/${content.number as string}`} target="_blank" rel="noreferrer"
           className="inline-flex items-center gap-2 bg-green-500 text-white font-semibold px-5 py-3 rounded-xl text-sm hover:bg-green-600 transition-colors">
           <span>💬</span> Chat on WhatsApp
         </a>
