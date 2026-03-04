@@ -74,7 +74,7 @@ export async function POST(
         data: {
           userId: session.user.id,
           siteId: site.id,
-          reference,
+          paystackReference: reference,
           amountGhs: DOMAIN_REGISTRATION_FEE_GHS,
           status: "PENDING",
           paymentType: "DOMAIN",
