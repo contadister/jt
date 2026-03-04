@@ -81,6 +81,7 @@ export interface Site extends SiteFeatureFlags {
 }
 
 export interface BuilderJSON {
+  version?: string;
   pages: BuilderPage[];
   globalStyles: GlobalStyles;
   siteSettings: SiteSettings;
@@ -93,19 +94,29 @@ export interface SiteSettings {
   secondaryColor: string;
   fontFamily: string;
   siteName: string;
+  seoDescription?: string;
+  seoTitle?: string;
+  seoKeywords?: string;
+  seoOgImage?: string;
+  whatsappNumber?: string;
+  tawkToPropertyId?: string;
 }
 
 export interface GlobalStyles {
-  bodyBackground: string;
-  textColor: string;
-  headingFont: string;
-  bodyFont: string;
+  bodyBackground?: string;
+  textColor?: string;
+  headingFont?: string;
+  bodyFont?: string;
+  primaryColor?: string;
+  secondaryColor?: string;
+  fontFamily?: string;
 }
 
 export interface BuilderPage {
   id: string;
   name: string;
   slug: string;
+  isHomePage?: boolean;
   sections: BuilderSection[];
   seo: { title: string; description: string };
 }
@@ -113,17 +124,20 @@ export interface BuilderPage {
 export interface BuilderSection {
   id: string;
   type: string;
+  name?: string;
+  label?: string;
+  isVisible?: boolean;
   elements: BuilderElement[];
   styles: SectionStyles;
 }
 
 export interface SectionStyles {
-  backgroundColor: string;
+  backgroundColor?: string;
   backgroundImage?: string;
-  paddingTop: number;
-  paddingBottom: number;
-  paddingLeft: number;
-  paddingRight: number;
+  paddingTop?: number;
+  paddingBottom?: number;
+  paddingLeft?: number;
+  paddingRight?: number;
   maxWidth?: string;
 }
 
@@ -163,7 +177,9 @@ export interface BuilderElement {
   type: ElementType;
   content: Record<string, unknown>;
   styles: ElementStyles;
-  isVisible: boolean;
+  isVisible?: boolean;
+  isLocked?: boolean;
+  mobileStyles?: Partial<ElementStyles>;
 }
 
 export interface ElementStyles {

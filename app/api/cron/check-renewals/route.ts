@@ -1,164 +1,88 @@
 // app/api/cron/check-renewals/route.ts
+// Primary caller: Vercel cron (daily at 8am, configured in vercel.json)
+// Optional backup: add to cron-job.org at 8pm UTC for a second daily pass
+//
+// cron-job.org setup (optional 2nd run):
+//   URL:     https://josett.com/api/cron/check-renewals
+//   Method:  GET
+//   Header:  Authorization: Bearer <CRON_SECRET>
+//   Schedule: Every day at 20:00
+
 import { NextResponse } from "next/server";
-import { PrismaClient } from "@prisma/client";
+import { validateCronRequest, unauthorizedResponse } from "@/lib/cron/auth";
+import { prisma } from "@/lib/prisma/client";
 import {
   sendRenewalReminderEmail,
-  sendRenewalReminderSMS,
   sendSiteExpiredEmail,
 } from "@/lib/arkesel/client";
+import Vercel from "@/lib/vercel/client";
 
-const prisma = new PrismaClient();
+export const maxDuration = 60;
 
-function addDays(date: Date, days: number): Date {
-  const result = new Date(date);
-  result.setDate(result.getDate() + days);
-  return result;
-}
+export async function GET(req: Request) {
+  if (!validateCronRequest(req)) return unauthorizedResponse();
 
-function isSameDay(d1: Date, d2: Date): boolean {
-  return (
-    d1.getFullYear() === d2.getFullYear() &&
-    d1.getMonth() === d2.getMonth() &&
-    d1.getDate() === d2.getDate()
-  );
-}
-
-export async function GET() {
   const now = new Date();
+  const results = {
+    reminders7d: 0,
+    reminders3d: 0,
+    reminders1d: 0,
+    suspended: 0,
+    errors: 0,
+  };
 
   try {
-    const activeSites = await prisma.site.findMany({
-      where: { status: "DEPLOYED" },
-      include: { user: true },
+    const sites = await prisma.site.findMany({
+      where: {
+        status: { in: ["DEPLOYED", "SUSPENDED"] },
+        subscriptionEnd: { not: null },
+      },
+      include: { user: { select: { email: true, fullName: true } } },
     });
 
-    let processed = 0;
+    for (const site of sites) {
+      try {
+        if (!site.subscriptionEnd) continue;
 
-    for (const site of activeSites) {
-      if (!site.subscriptionEnd || !site.user) continue;
+        const daysLeft = Math.ceil(
+          (site.subscriptionEnd.getTime() - now.getTime()) / 86400000
+        );
+        const renewUrl = `${process.env.NEXT_PUBLIC_APP_URL}/sites/${site.id}/billing`;
 
-      const end = new Date(site.subscriptionEnd);
-      const in7 = addDays(now, 7);
-      const in3 = addDays(now, 3);
-      const in1 = addDays(now, 1);
+        if (daysLeft <= 7 && daysLeft > 3 && !site.reminderSent7d) {
+          await sendRenewalReminderEmail(site.user.email, site.user.fullName, site.name, daysLeft, site.monthlyPriceGhs, renewUrl);
+          await prisma.site.update({ where: { id: site.id }, data: { reminderSent7d: true } });
+          results.reminders7d++;
+        }
 
-      const renewUrl = `${process.env.NEXT_PUBLIC_APP_URL}/dashboard/sites/${site.id}/billing`;
+        if (daysLeft <= 3 && daysLeft > 1 && !site.reminderSent3d) {
+          await sendRenewalReminderEmail(site.user.email, site.user.fullName, site.name, daysLeft, site.monthlyPriceGhs, renewUrl);
+          await prisma.site.update({ where: { id: site.id }, data: { reminderSent3d: true } });
+          results.reminders3d++;
+        }
 
-      // 7-day reminder
-      if (!site.renewalReminderSent7d && isSameDay(end, in7)) {
-        await Promise.allSettled([
-          sendRenewalReminderEmail(site.user.email, site.user.fullName, site.name, 7, renewUrl, site.discountedPriceGhs ?? site.monthlyPriceGhs),
-          site.user.phone && site.user.notifySms
-            ? sendRenewalReminderSMS(site.user.phone, site.name, 7)
-            : Promise.resolve(),
-        ]);
-        await prisma.site.update({ where: { id: site.id }, data: { renewalReminderSent7d: true } });
-        await createNotification(site.userId, site.id, "RENEWAL_7D", site.name, 7, renewUrl);
-        processed++;
-      }
+        if (daysLeft <= 1 && daysLeft > 0 && !site.reminderSent1d) {
+          await sendRenewalReminderEmail(site.user.email, site.user.fullName, site.name, daysLeft, site.monthlyPriceGhs, renewUrl);
+          await prisma.site.update({ where: { id: site.id }, data: { reminderSent1d: true } });
+          results.reminders1d++;
+        }
 
-      // 3-day reminder
-      if (!site.renewalReminderSent3d && isSameDay(end, in3)) {
-        await Promise.allSettled([
-          sendRenewalReminderEmail(site.user.email, site.user.fullName, site.name, 3, renewUrl, site.discountedPriceGhs ?? site.monthlyPriceGhs),
-          site.user.phone && site.user.notifySms
-            ? sendRenewalReminderSMS(site.user.phone, site.name, 3)
-            : Promise.resolve(),
-        ]);
-        await prisma.site.update({ where: { id: site.id }, data: { renewalReminderSent3d: true } });
-        await createNotification(site.userId, site.id, "RENEWAL_3D", site.name, 3, renewUrl);
-        processed++;
-      }
-
-      // 1-day reminder
-      if (!site.renewalReminderSent1d && isSameDay(end, in1)) {
-        await Promise.allSettled([
-          sendRenewalReminderEmail(site.user.email, site.user.fullName, site.name, 1, renewUrl, site.discountedPriceGhs ?? site.monthlyPriceGhs),
-          site.user.phone && site.user.notifySms
-            ? sendRenewalReminderSMS(site.user.phone, site.name, 1)
-            : Promise.resolve(),
-        ]);
-        await prisma.site.update({ where: { id: site.id }, data: { renewalReminderSent1d: true } });
-        await createNotification(site.userId, site.id, "RENEWAL_1D", site.name, 1, renewUrl);
-        processed++;
-      }
-
-      // Expired
-      if (end < now && !site.renewalReminderSentExpired) {
-        await prisma.site.update({
-          where: { id: site.id },
-          data: { status: "EXPIRED", renewalReminderSentExpired: true },
-        });
-
-        await Promise.allSettled([
-          sendSiteExpiredEmail(site.user.email, site.user.fullName, site.name),
-          site.user.phone && site.user.notifySms
-            ? sendRenewalReminderSMS(site.user.phone, site.name, 0)
-            : Promise.resolve(),
-        ]);
-
-        await createNotification(site.userId, site.id, "EXPIRED", site.name, 0, renewUrl);
-        processed++;
+        if (daysLeft <= 0 && site.status === "DEPLOYED") {
+          if (site.vercelProjectId) await Vercel.suspendProject(site.vercelProjectId).catch(console.error);
+          await prisma.site.update({ where: { id: site.id }, data: { status: "SUSPENDED", reminderSentExp: true } });
+          await sendSiteExpiredEmail(site.user.email, site.user.fullName, site.name, renewUrl).catch(console.error);
+          results.suspended++;
+        }
+      } catch (e) {
+        console.error(`Site ${site.id} error:`, e);
+        results.errors++;
       }
     }
 
-    // Clean up data for sites expired more than 30 days ago
-    const thirtyDaysAgo = addDays(now, -30);
-    await prisma.analyticsEvent.deleteMany({
-      where: {
-        site: { status: "EXPIRED", subscriptionEnd: { lt: thirtyDaysAgo } },
-      },
-    });
-
-    return NextResponse.json({ success: true, processed, checked: activeSites.length });
+    console.log("Renewal check complete:", results);
+    return NextResponse.json({ ok: true, ...results });
   } catch (error) {
-    console.error("Cron job error:", error);
-    return NextResponse.json({ success: false, error: "Cron failed" }, { status: 500 });
-  } finally {
-    await prisma.$disconnect();
+    console.error("check-renewals cron error:", error);
+    return NextResponse.json({ error: "Cron failed" }, { status: 500 });
   }
-}
-
-async function createNotification(
-  userId: string,
-  siteId: string,
-  type: "RENEWAL_7D" | "RENEWAL_3D" | "RENEWAL_1D" | "EXPIRED",
-  siteName: string,
-  daysLeft: number,
-  actionUrl: string
-) {
-  const messages: Record<string, { title: string; message: string }> = {
-    RENEWAL_7D: {
-      title: `"${siteName}" expires in 7 days`,
-      message: `Your website "${siteName}" subscription expires in 7 days. Renew now to keep it live.`,
-    },
-    RENEWAL_3D: {
-      title: `"${siteName}" expires in 3 days`,
-      message: `Urgent: Your website "${siteName}" expires in 3 days. Renew now!`,
-    },
-    RENEWAL_1D: {
-      title: `"${siteName}" expires TOMORROW`,
-      message: `Last chance! Your website "${siteName}" expires tomorrow. Renew immediately.`,
-    },
-    EXPIRED: {
-      title: `"${siteName}" has gone offline`,
-      message: `Your website "${siteName}" subscription has expired. Renew within 30 days to restore your site.`,
-    },
-  };
-
-  const msg = messages[type];
-  if (!msg) return;
-
-  void daysLeft;
-
-  await prisma.notification.create({
-    data: {
-      userId,
-      siteId,
-      type,
-      title: msg.title,
-      message: msg.message,
-      actionUrl,
-    },
-  });
 }
