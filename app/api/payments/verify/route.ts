@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma/client";
 import { verifyPayment } from "@/lib/paystack/client";
-import { sendPaymentConfirmationEmail, sendSiteDeployedEmail } from "@/lib/arkesel/client";
+import { sendPaymentConfirmationEmail, sendSiteDeployedEmail } from "@/lib/resend/client";
 import { addDays } from "date-fns";
 
 export async function POST(req: Request) {

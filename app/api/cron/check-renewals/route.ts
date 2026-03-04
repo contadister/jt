@@ -14,7 +14,7 @@ import { prisma } from "@/lib/prisma/client";
 import {
   sendRenewalReminderEmail,
   sendSiteExpiredEmail,
-} from "@/lib/arkesel/client";
+} from "@/lib/resend/client";
 import Vercel from "@/lib/vercel/client";
 
 export const maxDuration = 60;

@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma/client";
-import { sendWelcomeEmail } from "@/lib/arkesel/client";
+import { sendWelcomeEmail } from "@/lib/resend/client";
+import { sendWelcomeSms } from "@/lib/hubtel/client";
 
 function generateReferralCode(): string {
   const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
@@ -62,19 +63,20 @@ export async function POST(req: Request) {
       },
     });
 
-    // Welcome email - fire and forget
-    sendWelcomeEmail(email, fullName).catch(() => undefined);
-
     // Welcome notification
     await prisma.notification.create({
       data: {
         userId: user.id,
-        type: "welcome",
+        type: "SYSTEM",
         title: "Welcome to Josett!",
         message: "Your account is ready. Create your first website now.",
-        actionUrl: "/dashboard/sites/new",
+        actionUrl: "/sites/new",
       },
     });
+
+    // Fire-and-forget comms
+    sendWelcomeEmail(email, fullName).catch(() => undefined);
+    if (phone) sendWelcomeSms(phone, fullName).catch(() => undefined);
 
     return NextResponse.json({ user });
   } catch (err) {
