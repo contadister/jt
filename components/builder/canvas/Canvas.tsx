@@ -7,6 +7,7 @@ import {
 } from "@dnd-kit/core";
 import { SortableContext, verticalListSortingStrategy } from "@dnd-kit/sortable";
 import { useBuilderStore } from "@/store/builderStore";
+import type { BuilderPage } from "@/types/builder";
 import { SortableSection } from "./SortableSection";
 import { Plus } from "lucide-react";
 
@@ -21,7 +22,7 @@ export function BuilderCanvas() {
     useSensor(KeyboardSensor)
   );
 
-  const page = builderJson.pages.find((p) => p.id === selectedPageId);
+  const page = builderJson.pages.find((p: BuilderPage) => p.id === selectedPageId);
 
   const handleDragEnd = useCallback((event: DragEndEvent) => {
     const { active, over } = event;
