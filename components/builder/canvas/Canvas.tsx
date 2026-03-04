@@ -7,11 +7,7 @@ import {
 } from "@dnd-kit/core";
 import { SortableContext, verticalListSortingStrategy } from "@dnd-kit/sortable";
 import { useBuilderStore } from "@/store/builderStore";
-<<<<<<< HEAD
 import type { BuilderPage } from "@/types/site";
-=======
-import type { BuilderPage } from "@/types/builder";
->>>>>>> da386bdbf69859f1be8c716cb03c8bcc7a12c7e1
 import { SortableSection } from "./SortableSection";
 import { Plus } from "lucide-react";
 
