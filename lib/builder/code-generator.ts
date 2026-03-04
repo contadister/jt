@@ -1,5 +1,5 @@
 // lib/builder/code-generator.ts
-import type { BuilderJSON } from "@/types/builder";
+import type { BuilderJSON } from "@/lib/types/builder";
 
 export interface SiteConfig {
   siteId: string;
