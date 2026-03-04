@@ -1,7 +1,8 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import { useBuilderStore } from "@/store/builderStore";
-import { BuilderElement } from "@/types/builder";
+import { BuilderElement } from "@/types/site";
 import { Trash2, Copy, Lock, GripVertical } from "lucide-react";
 
 interface ElementRendererProps {

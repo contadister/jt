@@ -1,7 +1,7 @@
 "use client";
 
 import { useBuilderStore } from "@/store/builderStore";
-import { BuilderElement } from "@/types/builder";
+import { BuilderElement } from "@/types/site";
 
 interface ContentEditorProps {
   element: BuilderElement;

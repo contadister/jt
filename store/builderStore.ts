@@ -9,7 +9,7 @@ import type {
   BuilderElement,
   ElementStyles,
   SectionStyles,
-} from "@/types/builder";
+} from "@/types/site";
 
 const DEFAULT_BUILDER_JSON: BuilderJSON = {
   version: "1.0",
