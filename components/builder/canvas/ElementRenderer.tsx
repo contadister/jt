@@ -114,7 +114,7 @@ function ElementContent({ element, content }: { element: BuilderElement; content
             <a href="#" className="hover:text-josett-600">About</a>
             <a href="#" className="hover:text-josett-600">Contact</a>
           </div>
-          {content.ctaText && (
+          {!!content.ctaText && (
             <button className="bg-josett-600 text-white text-sm font-semibold px-4 py-2 rounded-lg">{content.ctaText as string}</button>
           )}
         </nav>
