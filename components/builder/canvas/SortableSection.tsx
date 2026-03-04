@@ -5,7 +5,7 @@ import { CSS } from "@dnd-kit/utilities";
 import { useDroppable } from "@dnd-kit/core";
 import { useBuilderStore } from "@/store/builderStore";
 import { ElementRenderer } from "./ElementRenderer";
-import { BuilderSection } from "@/types/site";
+import { BuilderSection } from "@/lib/types/builder";
 import { GripVertical, Trash2, Copy, Plus, Eye, EyeOff } from "lucide-react";
 
 export function SortableSection({ section }: { section: BuilderSection }) {
