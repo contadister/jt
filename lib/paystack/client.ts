@@ -69,3 +69,25 @@ export function verifyWebhookSignature(body: string, signature: string): boolean
 }
 
 import crypto from "crypto";
+
+// Alias used by domain payment flow
+export async function initializePaystackTransaction(params: {
+  email: string;
+  amount: number;
+  reference: string;
+  metadata?: Record<string, unknown>;
+  callback_url?: string;
+}): Promise<InitializePaymentResult> {
+  return paystackRequest<InitializePaymentResult>(
+    "/transaction/initialize",
+    "POST",
+    {
+      email: params.email,
+      amount: params.amount,
+      reference: params.reference,
+      currency: "GHS",
+      callback_url: params.callback_url || `${process.env.NEXT_PUBLIC_APP_URL}/payment/verify`,
+      metadata: params.metadata,
+    }
+  );
+}

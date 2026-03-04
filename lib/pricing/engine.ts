@@ -7,7 +7,7 @@ export const FEATURE_PRICES: Record<string, number> = {
   feature_contact_form: 10,
   feature_seo_tools: 20,
   feature_analytics: 15,
-  feature_custom_domain: 25,
+  feature_custom_domain: 0,   // Domain registration is GHS 200 one-time, separate from monthly
   feature_gallery: 10,
   feature_restaurant_menu: 20,
   feature_social_links: 0,
