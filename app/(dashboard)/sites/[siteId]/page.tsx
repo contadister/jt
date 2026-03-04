@@ -8,6 +8,7 @@ import {
   Globe, Edit3, Settings, ExternalLink, Rocket, Eye,
   Clock, AlertTriangle, CheckCircle2, Loader2, BarChart2,
   RefreshCw, Calendar, CreditCard, ArrowLeft,
+  ShoppingCart, BookOpen, CalendarDays, Mail, Newspaper,
 } from "lucide-react";
 
 interface SiteData {
@@ -132,10 +133,15 @@ export default function SiteDashboardPage() {
           <h2 className="font-bold text-slate-900 dark:text-white mb-4">Quick Actions</h2>
           <div className="grid grid-cols-2 gap-3">
             {[
-              { label: "Edit Site", desc: "Open visual builder", href: `/sites/${siteId}/builder`, icon: Edit3, color: "bg-josett-50 dark:bg-josett-950/30 text-josett-600 dark:text-josett-400" },
-              { label: "Settings", desc: "Domain, SEO, danger zone", href: `/sites/${siteId}/settings`, icon: Settings, color: "bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-400" },
-              { label: "Analytics", desc: "Visit stats & traffic", href: `/sites/${siteId}/analytics`, icon: BarChart2, color: "bg-blue-50 dark:bg-blue-950/30 text-blue-600 dark:text-blue-400" },
-              { label: "Renew", desc: `GHS ${site.monthlyPriceGhs}/month`, href: `/sites/${siteId}/renew`, icon: RefreshCw, color: "bg-green-50 dark:bg-green-950/30 text-green-600 dark:text-green-400" },
+              { label: "Edit Site",   desc: "Open visual builder",      href: `/sites/${siteId}/builder`,    icon: Edit3,         color: "bg-josett-50 dark:bg-josett-950/30 text-josett-600 dark:text-josett-400" },
+              { label: "Analytics",   desc: "Visit stats & traffic",    href: `/sites/${siteId}/analytics`,  icon: BarChart2,     color: "bg-blue-50 dark:bg-blue-950/30 text-blue-600 dark:text-blue-400" },
+              { label: "Store",       desc: "Products & orders",        href: `/sites/${siteId}/store`,      icon: ShoppingCart,  color: "bg-orange-50 dark:bg-orange-950/30 text-orange-600 dark:text-orange-400" },
+              { label: "Blog",        desc: "Posts & content",          href: `/sites/${siteId}/blog`,       icon: BookOpen,      color: "bg-green-50 dark:bg-green-950/30 text-green-600 dark:text-green-400" },
+              { label: "Bookings",    desc: "Appointments",             href: `/sites/${siteId}/bookings`,   icon: CalendarDays,  color: "bg-purple-50 dark:bg-purple-950/30 text-purple-600 dark:text-purple-400" },
+              { label: "Forms",       desc: "Contact submissions",      href: `/sites/${siteId}/forms`,      icon: Mail,          color: "bg-pink-50 dark:bg-pink-950/30 text-pink-600 dark:text-pink-400" },
+              { label: "Newsletter",  desc: "Subscribers",              href: `/sites/${siteId}/newsletter`, icon: Newspaper,     color: "bg-cyan-50 dark:bg-cyan-950/30 text-cyan-600 dark:text-cyan-400" },
+              { label: "Settings",    desc: "Domain, SEO, danger zone", href: `/sites/${siteId}/settings`,   icon: Settings,      color: "bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-400" },
+              { label: "Renew",       desc: `GHS ${site.monthlyPriceGhs}/month`, href: `/sites/${siteId}/renew`, icon: RefreshCw, color: "bg-emerald-50 dark:bg-emerald-950/30 text-emerald-600 dark:text-emerald-400" },
             ].map(({ label, desc, href, icon: Icon, color }) => (
               <Link key={label} href={href}
                 className="flex items-center gap-3 p-4 rounded-xl border border-slate-100 dark:border-slate-800 hover:border-josett-200 dark:hover:border-josett-800 transition-all group">

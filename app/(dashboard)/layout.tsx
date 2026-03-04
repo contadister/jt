@@ -15,6 +15,7 @@ import {
   X,
   ChevronRight,
   CreditCard,
+  Shield,
   User,
   Sparkles,
   ExternalLink,
@@ -69,6 +70,7 @@ export default function DashboardLayout({
   const [userName, setUserName] = useState("");
   const [userEmail, setUserEmail] = useState("");
   const [unreadCount, setUnreadCount] = useState(0);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
     supabase.auth.getUser().then(({ data: { user } }) => {
@@ -80,6 +82,8 @@ export default function DashboardLayout({
       setUserName(
         user.user_metadata?.full_name || user.email?.split("@")[0] || "User"
       );
+      // Check admin role
+      fetch("/api/admin/stats").then((r) => { if (r.ok) setIsAdmin(true); }).catch(() => {});
     });
   }, [supabase.auth, router]);
 
@@ -121,6 +125,9 @@ export default function DashboardLayout({
         {navItems.map((item) => (
           <NavLink key={item.href} {...item} onClick={onClose} />
         ))}
+        {isAdmin && (
+          <NavLink href="/admin" icon={Shield} label="Admin" onClick={onClose} />
+        )}
       </nav>
 
       {/* User section */}

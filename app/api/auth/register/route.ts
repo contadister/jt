@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma/client";
-import { sendWelcomeEmail } from "@/lib/resend/client";
-import { sendWelcomeSms } from "@/lib/hubtel/client";
+import { sendWelcomeEmail } from "@/lib/nalo/client";
+import { sendWelcomeSms } from "@/lib/nalo/client";
 
 function generateReferralCode(): string {
   const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";

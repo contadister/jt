@@ -10,7 +10,7 @@ import {
   addDomainToProject,
 } from "@/lib/vercel/client";
 import { generateSiteCode } from "@/lib/builder/code-generator";
-import { sendSiteDeployedEmail } from "@/lib/arkesel/client";
+import { sendSiteDeployedEmail } from "@/lib/nalo/client";
 
 export async function POST(
   _req: Request,

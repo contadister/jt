@@ -1,0 +1,60 @@
+export const dynamic = "force-dynamic";
+
+import { NextResponse } from "next/server";
+import { createServerClient } from "@/lib/supabase/server";
+import { prisma } from "@/lib/prisma/client";
+
+async function assertAdmin(supabase: ReturnType<typeof createServerClient>) {
+  const { data: { session } } = await supabase.auth.getSession();
+  if (!session) return null;
+  const user = await prisma.user.findUnique({ where: { id: session.user.id }, select: { role: true } });
+  return user?.role === "ADMIN" ? session : null;
+}
+
+export async function GET(req: Request) {
+  const supabase = createServerClient();
+  if (!await assertAdmin(supabase)) return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+
+  const url = new URL(req.url);
+  const search = url.searchParams.get("search") || "";
+  const status = url.searchParams.get("status") || "";
+  const page = parseInt(url.searchParams.get("page") || "1");
+  const limit = 20;
+
+  const where: Record<string, unknown> = {};
+  if (status) where.status = status;
+  if (search) {
+    where.OR = [
+      { name: { contains: search, mode: "insensitive" } },
+      { slug: { contains: search, mode: "insensitive" } },
+      { user: { email: { contains: search, mode: "insensitive" } } },
+    ];
+  }
+
+  const [sites, total] = await Promise.all([
+    prisma.site.findMany({
+      where,
+      include: { user: { select: { email: true, fullName: true } } },
+      orderBy: { createdAt: "desc" },
+      skip: (page - 1) * limit,
+      take: limit,
+    }),
+    prisma.site.count({ where }),
+  ]);
+
+  return NextResponse.json({ sites, total, page, pages: Math.ceil(total / limit) });
+}
+
+export async function PATCH(req: Request) {
+  const supabase = createServerClient();
+  if (!await assertAdmin(supabase)) return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+
+  const { siteId, status } = await req.json();
+  const validStatuses = ["BUILDING", "DEPLOYED", "SUSPENDED", "EXPIRED", "CANCELLED"];
+  if (!siteId || !validStatuses.includes(status)) {
+    return NextResponse.json({ error: "Invalid" }, { status: 400 });
+  }
+
+  const site = await prisma.site.update({ where: { id: siteId }, data: { status } });
+  return NextResponse.json({ site });
+}

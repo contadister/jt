@@ -56,7 +56,7 @@ export async function GET(req: Request) {
           results.activated++;
 
           // Notify user their domain is live
-          // (import sendEmail from arkesel if you want a notification here)
+          // sendEmail from "@/lib/nalo/client" is available here
           console.log(`✅ Domain verified for site ${site.id}: ${site.customDomain}`);
         }
       } catch (siteError) {
