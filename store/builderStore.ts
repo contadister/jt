@@ -1,7 +1,7 @@
 // store/builderStore.ts
 import { create } from "zustand";
 import { subscribeWithSelector } from "zustand/middleware";
-import { v4 as uuidv4 } from "uuid";
+
 import type {
   BuilderJSON,
   BuilderPage,
@@ -15,7 +15,7 @@ const DEFAULT_BUILDER_JSON: BuilderJSON = {
   version: "1.0",
   pages: [
     {
-      id: uuidv4(),
+      id: crypto.randomUUID(),
       name: "Home",
       slug: "/",
       isHomePage: true,
@@ -137,7 +137,7 @@ export const useBuilderStore = create<BuilderStore>()(
 
     addPage: (name, slug) => {
       const newPage: BuilderPage = {
-        id: uuidv4(),
+        id: crypto.randomUUID(),
         name,
         slug,
         sections: [],
@@ -193,7 +193,7 @@ export const useBuilderStore = create<BuilderStore>()(
       if (!page) return;
       const newPage: BuilderPage = {
         ...deepClone(page),
-        id: uuidv4(),
+        id: crypto.randomUUID(),
         name: `${page.name} (Copy)`,
         slug: `${page.slug}-copy`,
         isHomePage: false,
@@ -211,7 +211,7 @@ export const useBuilderStore = create<BuilderStore>()(
 
     addSection: (pageId, sectionType = "blank") => {
       const newSection: BuilderSection = {
-        id: uuidv4(),
+        id: crypto.randomUUID(),
         name: sectionType,
         type: sectionType,
         elements: [],
@@ -306,10 +306,10 @@ export const useBuilderStore = create<BuilderStore>()(
             if (idx === -1) return p;
             const newSection: BuilderSection = {
               ...deepClone(p.sections[idx]),
-              id: uuidv4(),
+              id: crypto.randomUUID(),
               elements: deepClone(p.sections[idx].elements).map((el: BuilderElement) => ({
                 ...el,
-                id: uuidv4(),
+                id: crypto.randomUUID(),
               })),
             };
             const sections = [...p.sections];
@@ -327,7 +327,7 @@ export const useBuilderStore = create<BuilderStore>()(
     selectSection: (id) => set({ selectedSectionId: id, selectedElementId: null }),
 
     addElement: (sectionId, element) => {
-      const id = uuidv4();
+      const id = crypto.randomUUID();
       const newElement: BuilderElement = { ...element, id };
       set((state) => ({
         builderJson: {
@@ -513,7 +513,7 @@ export const useBuilderStore = create<BuilderStore>()(
             sections: p.sections.map((s) => {
               const idx = s.elements.findIndex((el) => el.id === elementId);
               if (idx === -1) return s;
-              const newEl: BuilderElement = { ...deepClone(element), id: uuidv4() };
+              const newEl: BuilderElement = { ...deepClone(element), id: crypto.randomUUID() };
               const elements = [...s.elements];
               elements.splice(idx + 1, 0, newEl);
               return { ...s, elements };
