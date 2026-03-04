@@ -13,7 +13,6 @@ interface ElementRendererProps {
   element: BuilderElement;
   sectionId: string;
 }
-
  
 export function ElementRenderer({ element, sectionId }: ElementRendererProps) {
   const { selectedElementId, selectElement, deleteElement, duplicateElement } = useBuilderStore();
