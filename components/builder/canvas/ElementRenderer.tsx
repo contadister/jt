@@ -2,7 +2,11 @@
 "use client";
 
 import { useBuilderStore } from "@/store/builderStore";
+<<<<<<< HEAD
 import { BuilderElement } from "@/types/site";
+=======
+import { BuilderElement } from "@/types/builder"; 
+>>>>>>> da386bdbf69859f1be8c716cb03c8bcc7a12c7e1
 import { Trash2, Copy, Lock, GripVertical } from "lucide-react";
 
 interface ElementRendererProps {
@@ -10,6 +14,7 @@ interface ElementRendererProps {
   sectionId: string;
 }
 
+ 
 export function ElementRenderer({ element, sectionId }: ElementRendererProps) {
   const { selectedElementId, selectElement, deleteElement, duplicateElement } = useBuilderStore();
   const isSelected = selectedElementId === element.id;
