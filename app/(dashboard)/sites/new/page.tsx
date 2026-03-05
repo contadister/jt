@@ -145,6 +145,15 @@ const FEATURES = [
 
 const STEPS = ["Details", "Type", "Template", "Features", "Payment"];
 
+const TEMPLATE_PREVIEWS = [
+  { id: "blank", name: "Blank Canvas", desc: "Start from scratch", color: "from-slate-700 to-slate-900", emoji: "⬜" },
+  { id: "minimal-business", name: "Minimal Business", desc: "Clean & modern", color: "from-slate-800 to-josett-900", emoji: "🏢" },
+  { id: "creative-portfolio", name: "Creative Portfolio", desc: "Bold & expressive", color: "from-purple-900 to-pink-900", emoji: "🎨" },
+  { id: "food-restaurant", name: "Food & Restaurant", desc: "Warm & inviting", color: "from-orange-800 to-red-900", emoji: "🍽️" },
+  { id: "online-store", name: "Online Store", desc: "Clean & conversion-focused", color: "from-emerald-800 to-teal-900", emoji: "🛍️" },
+  { id: "tech-blog", name: "Tech Blog", desc: "Minimal & readable", color: "from-blue-900 to-indigo-900", emoji: "✍️" },
+];
+
 function slugify(name: string) {
   return name
     .toLowerCase()
@@ -387,19 +396,6 @@ function NewSitePageInner() {
     setSlugAvailable(available);
     setCheckingSlug(false);
   }
-
-
-
-  // ── Step 3: Template ────────────────────────────────────────────────────
-  const TEMPLATE_PREVIEWS = [
-    { id: "blank", name: "Blank Canvas", desc: "Start from scratch", color: "from-slate-700 to-slate-900", emoji: "⬜" },
-    { id: "minimal-business", name: "Minimal Business", desc: "Clean & modern", color: "from-slate-800 to-josett-900", emoji: "🏢" },
-    { id: "creative-portfolio", name: "Creative Portfolio", desc: "Bold & expressive", color: "from-purple-900 to-pink-900", emoji: "🎨" },
-    { id: "food-restaurant", name: "Food & Restaurant", desc: "Warm & inviting", color: "from-orange-800 to-red-900", emoji: "🍽️" },
-    { id: "online-store", name: "Online Store", desc: "Clean & conversion-focused", color: "from-emerald-800 to-teal-900", emoji: "🛍️" },
-    { id: "tech-blog", name: "Tech Blog", desc: "Minimal & readable", color: "from-blue-900 to-indigo-900", emoji: "✍️" },
-  ];
-
 
 
 
