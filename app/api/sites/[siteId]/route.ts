@@ -39,7 +39,7 @@ export async function PATCH(
     const allowed = [
       "name", "description", "seoTitle", "seoDescription", "seoKeywords",
       "seoOgImage", "primaryColor", "secondaryColor", "fontFamily",
-      "whatsappNumber", "tawkToPropertyId", "customDomain",
+      "whatsappNumber", "tawkToPropertyId", "customDomain", "builderJson",
     ];
     const data: Record<string, unknown> = {};
     for (const key of allowed) {

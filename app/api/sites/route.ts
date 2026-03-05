@@ -9,7 +9,7 @@ const CreateSiteSchema = z.object({
   description: z.string().max(200).optional(),
   siteType: z.enum(["BUSINESS","PORTFOLIO","ECOMMERCE","BLOG","RESTAURANT","NGO","PERSONAL","LANDING","LINK_IN_BIO","EVENT"]),
   templateId: z.string().default("blank"),
-  monthlyPriceGhs: z.number().min(100).max(400),
+  monthlyPriceGhs: z.number().min(100).max(500),
   featureEcommerce: z.boolean().default(false),
   featureBlog: z.boolean().default(false),
   featureBooking: z.boolean().default(false),

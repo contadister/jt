@@ -39,7 +39,7 @@ import {
   Rss,
   CheckCircle2,
 } from "lucide-react";
-import { calculatePrice, getPriceBreakdown, FEATURE_PRICES } from "@/lib/pricing/engine";
+import { calculatePrice, getPriceBreakdown, CUSTOM_DOMAIN_YEARLY_GHS } from "@/lib/pricing/engine";
 
 // ── Step types ────────────────────────────────────────────────────────────────
 
@@ -109,24 +109,18 @@ const SITE_TYPES = [
 // ── Features ──────────────────────────────────────────────────────────────────
 
 const FEATURES = [
+  // Paid add-ons
   { key: "featureEcommerce", label: "E-commerce", icon: ShoppingBag, price: 50, desc: "Sell products, accept Paystack payments" },
   { key: "featureBlog", label: "Blog / News", icon: BookOpen, price: 20, desc: "Rich text editor, categories, SEO" },
   { key: "featureBooking", label: "Appointment Booking", icon: Calendar, price: 30, desc: "Clients book directly on your site" },
-  { key: "featureContactForm", label: "Contact Forms", icon: MessageSquare, price: 10, desc: "Get messages from visitors" },
-  { key: "featureSeoTools", label: "SEO Tools", icon: Search, price: 20, desc: "Rank higher on Google" },
-  { key: "featureAnalytics", label: "Analytics Dashboard", icon: BarChart3, price: 15, desc: "Track visits, sources, devices" },
-  { key: "featureCustomDomain", label: "Custom Domain", icon: Globe, price: 25, desc: "Connect your own domain" },
-  { key: "featureGallery", label: "Photo Gallery", icon: Image, price: 10, desc: "Showcase photos beautifully" },
-  { key: "featureRestaurantMenu", label: "Restaurant Menu", icon: UtensilsCrossed, price: 20, desc: "Menu with categories & dietary tags" },
-  { key: "featureNewsletter", label: "Newsletter", icon: Rss, price: 20, desc: "Collect emails, send campaigns" },
-  { key: "featurePasswordProtection", label: "Password Pages", icon: Lock, price: 15, desc: "Lock specific pages" },
-  { key: "featureMultiplePages", label: "Multiple Pages", icon: Layout, price: 20, desc: "About, Services, Contact, etc." },
-  { key: "featureGoogleMaps", label: "Google Maps", icon: Map, price: 5, desc: "Show your location" },
+  { key: "featureRestaurantMenu", label: "Restaurant Menu", icon: UtensilsCrossed, price: 15, desc: "Menu with categories & dietary tags" },
+  { key: "featureNewsletter", label: "Newsletter", icon: Rss, price: 15, desc: "Collect emails, send campaigns" },
+  { key: "featurePasswordProtection", label: "Password Pages", icon: Lock, price: 10, desc: "Lock specific pages" },
   { key: "featureVideoEmbed", label: "Video / Background", icon: Video, price: 10, desc: "YouTube, Vimeo, or upload" },
   { key: "featureLiveChat", label: "Live Chat Widget", icon: MessageSquare, price: 10, desc: "Chat with site visitors" },
   { key: "featurePushNotifications", label: "Push Notifications", icon: Bell, price: 15, desc: "Notify your visitors" },
   { key: "featureHeatmaps", label: "Heatmaps", icon: FlaskConical, price: 20, desc: "See where visitors click" },
-  { key: "featureMultiLanguage", label: "Multi-Language", icon: Languages, price: 25, desc: "Support multiple languages" },
+  { key: "featureMultiLanguage", label: "Multi-Language", icon: Languages, price: 20, desc: "Support multiple languages" },
   { key: "featureSiteSearch", label: "Site Search", icon: Search, price: 10, desc: "Search bar on your site" },
   { key: "featureCoupons", label: "Coupon Codes", icon: Tag, price: 10, desc: "Discount codes for your store" },
   { key: "featureProductReviews", label: "Product Reviews", icon: Star, price: 10, desc: "Customer ratings & reviews" },
@@ -134,9 +128,17 @@ const FEATURES = [
   { key: "featureAffiliate", label: "Affiliate Program", icon: Repeat2, price: 15, desc: "Referral tracking for your customers" },
   { key: "featureAbTesting", label: "A/B Testing", icon: FlaskConical, price: 20, desc: "Test two versions of a page" },
   { key: "featureSocialAutoPost", label: "Social Auto-Post", icon: Share2, price: 15, desc: "Auto-post to Facebook/Instagram" },
-  { key: "featureEventTicketing", label: "Event Ticketing", icon: Ticket, price: 25, desc: "Sell tickets to your events" },
-  { key: "featureCountdown", label: "Countdown Timer", icon: Clock, price: 5, desc: "Build hype for launches or sales" },
-  // Free features
+  { key: "featureEventTicketing", label: "Event Ticketing", icon: Ticket, price: 20, desc: "Sell tickets to your events" },
+  // Special: yearly charge, not monthly
+  { key: "featureCustomDomain", label: "Custom Domain", icon: Globe, price: 0, desc: "GHS 200/year — billed separately" },
+  // Free features (included in base)
+  { key: "featureContactForm", label: "Contact Forms", icon: MessageSquare, price: 0, desc: "Free" },
+  { key: "featureSeoTools", label: "SEO Tools", icon: Search, price: 0, desc: "Free" },
+  { key: "featureAnalytics", label: "Analytics", icon: BarChart3, price: 0, desc: "Free" },
+  { key: "featureGallery", label: "Photo Gallery", icon: Image, price: 0, desc: "Free" },
+  { key: "featureMultiplePages", label: "Multiple Pages", icon: Layout, price: 0, desc: "Free" },
+  { key: "featureGoogleMaps", label: "Google Maps", icon: Map, price: 0, desc: "Free" },
+  { key: "featureCountdown", label: "Countdown Timer", icon: Clock, price: 0, desc: "Free" },
   { key: "featureSocialLinks", label: "Social Links", icon: Share2, price: 0, desc: "Free" },
   { key: "featureTestimonials", label: "Testimonials", icon: Star, price: 0, desc: "Free" },
   { key: "featureWhatsappButton", label: "WhatsApp Button", icon: Smartphone, price: 0, desc: "Free" },
@@ -278,23 +280,48 @@ function FeatureToggle({ feat, form, updateForm }: { feat: typeof FEATURES[0]; f
       {active && <div className="absolute top-2 right-2 w-4 h-4 bg-josett-500 rounded-full flex items-center justify-center"><Check size={9} className="text-white" strokeWidth={3} /></div>}
       <Icon size={16} className={`mb-1.5 ${active ? "text-josett-600" : "text-slate-400"}`} />
       <div className={`text-xs font-bold leading-tight ${active ? "text-josett-700 dark:text-josett-300" : "text-slate-700 dark:text-slate-300"}`}>{feat.label}</div>
-      <div className="text-xs mt-0.5 font-semibold text-slate-400">{feat.price === 0 ? "Free" : `+GHS ${feat.price}`}</div>
+      <div className="text-xs mt-0.5 font-semibold text-slate-400">
+        {feat.key === "featureCustomDomain" ? "GHS 200/yr" : feat.price === 0 ? "Free" : `+GHS ${feat.price}/mo`}
+      </div>
     </button>
   );
 }
 
 function Step4({ form, updateForm }: StepProps) {
   const paidFeatures = FEATURES.filter((f) => f.price > 0);
-  const freeFeatures = FEATURES.filter((f) => f.price === 0);
+  const freeFeatures = FEATURES.filter((f) => f.price === 0 && f.key !== "featureCustomDomain");
   const adsEnabled = !!(form as unknown as Record<string, unknown>).featureAdsEnabled;
+  const domainFeat = FEATURES.find((f) => f.key === "featureCustomDomain")!;
+  const domainEnabled = !!(form as unknown as Record<string, unknown>).featureCustomDomain;
   return (
     <div className="space-y-5">
       <div>
-        <h3 className="text-sm font-bold text-slate-700 dark:text-slate-300 mb-3">Add-on Features</h3>
+        <h3 className="text-sm font-bold text-slate-700 dark:text-slate-300 mb-3">Monthly Add-ons</h3>
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">{paidFeatures.map((f) => <FeatureToggle key={f.key} feat={f} form={form} updateForm={updateForm} />)}</div>
       </div>
+
+      {/* Custom domain — yearly charge, shown separately */}
       <div>
-        <h3 className="text-sm font-bold text-slate-700 dark:text-slate-300 mb-3">Free Features</h3>
+        <h3 className="text-sm font-bold text-slate-700 dark:text-slate-300 mb-3">Yearly Add-on</h3>
+        <button onClick={() => updateForm("featureCustomDomain", !domainEnabled)}
+          className={`w-full p-4 rounded-xl border-2 text-left transition-all ${domainEnabled ? "border-josett-500 bg-josett-50 dark:bg-josett-950/20" : "border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900"}`}>
+          <div className="flex items-start gap-3">
+            <div className={`w-5 h-5 rounded border-2 flex items-center justify-center mt-0.5 flex-shrink-0 transition-colors ${domainEnabled ? "border-josett-500 bg-josett-500" : "border-slate-300"}`}>
+              {domainEnabled && <Check size={11} className="text-white" strokeWidth={3} />}
+            </div>
+            <div>
+              <div className="font-bold text-slate-900 dark:text-white text-sm flex items-center gap-2">
+                Custom Domain
+                <span className="bg-blue-100 dark:bg-blue-950/40 text-blue-700 dark:text-blue-300 text-xs px-2 py-0.5 rounded-full font-semibold">GHS 200/year</span>
+              </div>
+              <div className="text-xs text-slate-500 mt-1">Connect your own .com, .gh or any domain. Billed once a year — not added to your monthly bill.</div>
+            </div>
+          </div>
+        </button>
+      </div>
+
+      <div>
+        <h3 className="text-sm font-bold text-slate-700 dark:text-slate-300 mb-3">Free Features (included)</h3>
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">{freeFeatures.map((f) => <FeatureToggle key={f.key} feat={f} form={form} updateForm={updateForm} />)}</div>
       </div>
       <button onClick={() => updateForm("featureAdsEnabled", !adsEnabled)}
@@ -321,35 +348,52 @@ function Step5({ form, price, breakdown, loading, error, onPay }: {
   loading: boolean; error: string | null; onPay: () => void;
 }) {
   const adsEnabled = !!(form as unknown as Record<string, unknown>).featureAdsEnabled;
+  const hasCustomDomain = !!(form as unknown as Record<string, unknown>).featureCustomDomain;
   return (
     <div className="space-y-5">
       <div className="bg-slate-50 dark:bg-slate-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-800">
         <h3 className="font-bold text-slate-900 dark:text-white mb-4">Order Summary</h3>
         <div className="space-y-2 mb-4">
-          <div className="flex justify-between text-sm"><span className="text-slate-600 dark:text-slate-400">Base website</span><span className="font-medium">GHS 100</span></div>
+          <div className="flex justify-between text-sm">
+            <span className="text-slate-600 dark:text-slate-400">Base website</span>
+            <span className="font-medium text-slate-900 dark:text-white">GHS 100/mo</span>
+          </div>
           {breakdown.items.slice(1).map((item) => (
             <div key={item.key} className="flex justify-between text-sm">
               <span className="text-slate-600 dark:text-slate-400">{item.label}</span>
-              <span className="font-medium">+GHS {item.price}</span>
+              <span className="font-medium text-slate-900 dark:text-white">+GHS {item.price}/mo</span>
             </div>
           ))}
-          {adsEnabled && <div className="flex justify-between text-sm"><span className="text-amber-600">Ad Discount</span><span className="font-medium text-amber-600">-GHS 30</span></div>}
+          {adsEnabled && (
+            <div className="flex justify-between text-sm">
+              <span className="text-amber-600 dark:text-amber-400">Ad-Supported Discount</span>
+              <span className="font-medium text-amber-600 dark:text-amber-400">-GHS 30/mo</span>
+            </div>
+          )}
         </div>
-        <div className="border-t pt-4 flex items-center justify-between">
-          <span className="font-bold text-slate-900 dark:text-white">Total per month</span>
+        <div className="border-t border-slate-200 dark:border-slate-700 pt-4 flex items-center justify-between">
+          <span className="font-bold text-slate-900 dark:text-white">Monthly total</span>
           <span className="text-3xl font-black text-josett-600 dark:text-josett-400">GHS {price}</span>
         </div>
-        <p className="text-xs text-slate-400 mt-2">One month subscription. Renew manually. Cancel any time.</p>
+        {hasCustomDomain && (
+          <div className="mt-3 pt-3 border-t border-slate-200 dark:border-slate-700 flex items-center justify-between text-sm">
+            <span className="text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
+              <Globe size={13} /> Custom Domain (yearly, billed separately)
+            </span>
+            <span className="font-semibold text-slate-700 dark:text-slate-300">GHS 200/yr</span>
+          </div>
+        )}
+        <p className="text-xs text-slate-400 mt-3">Today you pay <strong>GHS {price}</strong> for your first month. Renew manually each month.</p>
       </div>
       <div className="bg-josett-50 dark:bg-josett-950/20 border border-josett-200 dark:border-josett-800 rounded-xl p-4 space-y-2">
-        <div className="flex gap-2 text-sm text-josett-700 dark:text-josett-300"><CheckCircle2 size={16} className="flex-shrink-0 mt-0.5" /><span>Site: <strong>{form.name}</strong> ({form.slug}.vercel.app)</span></div>
+        <div className="flex gap-2 text-sm text-josett-700 dark:text-josett-300"><CheckCircle2 size={16} className="flex-shrink-0 mt-0.5" /><span>Site: <strong>{form.name}</strong> — {form.slug}.vercel.app</span></div>
         <div className="flex gap-2 text-sm text-josett-700 dark:text-josett-300"><CheckCircle2 size={16} className="flex-shrink-0 mt-0.5" /><span>Auto-deployed within 60 seconds of payment</span></div>
-        <div className="flex gap-2 text-sm text-josett-700 dark:text-josett-300"><CheckCircle2 size={16} className="flex-shrink-0 mt-0.5" /><span>Secure payment via Paystack. GHS accepted.</span></div>
+        <div className="flex gap-2 text-sm text-josett-700 dark:text-josett-300"><CheckCircle2 size={16} className="flex-shrink-0 mt-0.5" /><span>Secure payment via Paystack — GHS accepted</span></div>
       </div>
-      {error && <div className="bg-red-50 border border-red-200 text-red-700 rounded-xl px-4 py-3 text-sm">{error}</div>}
+      {error && <div className="bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-800 text-red-700 dark:text-red-400 rounded-xl px-4 py-3 text-sm">{error}</div>}
       <button onClick={onPay} disabled={loading}
-        className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-josett-600 to-purple-600 hover:opacity-90 disabled:opacity-60 text-white font-bold py-4 rounded-xl text-lg transition-all shadow-xl">
-        {loading ? <><Loader2 size={20} className="animate-spin" />Processing...</> : <>Pay GHS {price} via Paystack <ArrowRight size={20} /></>}
+        className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-josett-600 to-purple-600 hover:opacity-90 disabled:opacity-60 text-white font-bold py-4 rounded-xl text-lg transition-all shadow-xl shadow-josett-500/30">
+        {loading ? <><Loader2 size={20} className="animate-spin" />Processing...</> : <>Pay GHS {price} · Paystack <ArrowRight size={20} /></>}
       </button>
     </div>
   );
@@ -381,8 +425,9 @@ function NewSitePageInner() {
   const features = Object.fromEntries(
     FEATURES.map((f) => [f.key, (form as unknown as Record<string, unknown>)[f.key] as boolean])
   );
-  const price = calculatePrice(features);
-  const breakdown = getPriceBreakdown(features);
+  const adSupported = !!(form as unknown as Record<string, unknown>).featureAdsEnabled;
+  const price = calculatePrice(features, adSupported);
+  const breakdown = getPriceBreakdown(features, adSupported);
 
   function updateForm(key: string, value: unknown) {
     setForm((prev) => ({ ...prev, [key]: value }));

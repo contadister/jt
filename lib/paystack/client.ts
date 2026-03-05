@@ -70,10 +70,10 @@ export function verifyWebhookSignature(body: string, signature: string): boolean
 
 import crypto from "crypto";
 
-// Alias used by domain payment flow
+// Alias used by domain payment flow — amount passed in GHS, converted to pesewas
 export async function initializePaystackTransaction(params: {
   email: string;
-  amount: number;
+  amount: number; // in GHS
   reference: string;
   metadata?: Record<string, unknown>;
   callback_url?: string;
@@ -83,7 +83,7 @@ export async function initializePaystackTransaction(params: {
     "POST",
     {
       email: params.email,
-      amount: params.amount,
+      amount: params.amount * 100, // convert GHS → pesewas
       reference: params.reference,
       currency: "GHS",
       callback_url: params.callback_url || `${process.env.NEXT_PUBLIC_APP_URL}/payment/verify`,

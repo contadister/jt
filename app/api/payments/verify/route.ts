@@ -15,7 +15,7 @@ export async function POST(req: Request) {
     });
 
     if (!payment) return NextResponse.json({ error: "Payment not found" }, { status: 404 });
-    if (payment.status === "SUCCESS") return NextResponse.json({ success: true, alreadyVerified: true });
+    if (payment.status === "SUCCESS") return NextResponse.json({ success: true, alreadyVerified: true, siteId: payment.siteId });
 
     // Verify with Paystack
     const paystackData = await verifyPayment(reference);

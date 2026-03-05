@@ -1,75 +1,80 @@
 // lib/pricing/engine.ts
+// All keys use camelCase to match Prisma schema & form state
+
 export const FEATURE_PRICES: Record<string, number> = {
   base: 100,
-  feature_blog: 20,
-  feature_ecommerce: 50,
-  feature_booking: 30,
-  feature_contact_form: 10,
-  feature_seo_tools: 20,
-  feature_analytics: 15,
-  feature_custom_domain: 0,   // Domain registration is GHS 200 one-time, separate from monthly
-  feature_gallery: 10,
-  feature_restaurant_menu: 20,
-  feature_social_links: 0,
-  feature_newsletter: 20,
-  feature_password_protection: 15,
-  feature_multiple_pages: 20,
-  feature_google_maps: 5,
-  feature_video_embed: 10,
-  feature_testimonials: 0,
-  feature_countdown: 5,
-  feature_live_chat: 10,
-  feature_whatsapp_button: 0,
-  feature_push_notifications: 15,
-  feature_heatmaps: 20,
-  feature_multi_language: 25,
-  feature_site_search: 10,
-  feature_coupons: 10,
-  feature_product_reviews: 10,
-  feature_delivery_zones: 10,
-  feature_affiliate: 15,
-  feature_ab_testing: 20,
-  feature_social_auto_post: 15,
-  feature_event_ticketing: 25,
-  feature_link_in_bio: 0,
+  featureBlog: 20,
+  featureEcommerce: 50,
+  featureBooking: 30,
+  featureContactForm: 0,       // FREE
+  featureSeoTools: 0,          // FREE
+  featureAnalytics: 0,         // FREE
+  featureCustomDomain: 0,      // Yearly charge (GHS 200/yr), NOT monthly
+  featureGallery: 0,           // FREE
+  featureRestaurantMenu: 15,
+  featureSocialLinks: 0,       // FREE
+  featureNewsletter: 15,
+  featurePasswordProtection: 10,
+  featureMultiplePages: 0,     // FREE
+  featureGoogleMaps: 0,        // FREE
+  featureVideoEmbed: 10,
+  featureTestimonials: 0,      // FREE
+  featureCountdown: 0,         // FREE
+  featureLiveChat: 10,
+  featureWhatsappButton: 0,    // FREE
+  featurePushNotifications: 15,
+  featureHeatmaps: 20,
+  featureMultiLanguage: 20,
+  featureSiteSearch: 10,
+  featureCoupons: 10,
+  featureProductReviews: 10,
+  featureDeliveryZones: 10,
+  featureAffiliate: 15,
+  featureAbTesting: 20,
+  featureSocialAutoPost: 15,
+  featureEventTicketing: 20,
+  featureLinkInBio: 0,         // FREE
 };
 
 export const FEATURE_LABELS: Record<string, string> = {
-  feature_blog: "Blog / News",
-  feature_ecommerce: "E-commerce & Payments",
-  feature_booking: "Appointment Booking",
-  feature_contact_form: "Contact Forms",
-  feature_seo_tools: "SEO Tools",
-  feature_analytics: "Analytics Dashboard",
-  feature_custom_domain: "Custom Domain",
-  feature_gallery: "Photo Gallery",
-  feature_restaurant_menu: "Restaurant Menu",
-  feature_social_links: "Social Links (Free)",
-  feature_newsletter: "Newsletter System",
-  feature_password_protection: "Password-Protected Pages",
-  feature_multiple_pages: "Multiple Pages",
-  feature_google_maps: "Google Maps Embed",
-  feature_video_embed: "Video / Background Video",
-  feature_testimonials: "Testimonials (Free)",
-  feature_countdown: "Countdown Timer",
-  feature_live_chat: "Live Chat Widget",
-  feature_whatsapp_button: "WhatsApp Button (Free)",
-  feature_push_notifications: "Push Notifications",
-  feature_heatmaps: "Visitor Heatmaps",
-  feature_multi_language: "Multi-Language Support",
-  feature_site_search: "Site Search",
-  feature_coupons: "Coupon / Discount Codes",
-  feature_product_reviews: "Product Reviews",
-  feature_delivery_zones: "Delivery Zones",
-  feature_affiliate: "Affiliate / Referral Program",
-  feature_ab_testing: "A/B Testing",
-  feature_social_auto_post: "Social Media Auto-Post",
-  feature_event_ticketing: "Event Ticketing",
-  feature_link_in_bio: "Link in Bio (Free)",
+  featureBlog: "Blog / News",
+  featureEcommerce: "E-commerce & Payments",
+  featureBooking: "Appointment Booking",
+  featureContactForm: "Contact Forms",
+  featureSeoTools: "SEO Tools",
+  featureAnalytics: "Analytics Dashboard",
+  featureCustomDomain: "Custom Domain",
+  featureGallery: "Photo Gallery",
+  featureRestaurantMenu: "Restaurant Menu",
+  featureSocialLinks: "Social Links",
+  featureNewsletter: "Newsletter System",
+  featurePasswordProtection: "Password-Protected Pages",
+  featureMultiplePages: "Multiple Pages",
+  featureGoogleMaps: "Google Maps",
+  featureVideoEmbed: "Video Embed",
+  featureTestimonials: "Testimonials",
+  featureCountdown: "Countdown Timer",
+  featureLiveChat: "Live Chat Widget",
+  featureWhatsappButton: "WhatsApp Button",
+  featurePushNotifications: "Push Notifications",
+  featureHeatmaps: "Visitor Heatmaps",
+  featureMultiLanguage: "Multi-Language",
+  featureSiteSearch: "Site Search",
+  featureCoupons: "Coupon Codes",
+  featureProductReviews: "Product Reviews",
+  featureDeliveryZones: "Delivery Zones",
+  featureAffiliate: "Affiliate Program",
+  featureAbTesting: "A/B Testing",
+  featureSocialAutoPost: "Social Auto-Post",
+  featureEventTicketing: "Event Ticketing",
+  featureLinkInBio: "Link in Bio",
 };
 
+// Custom domain is a one-time yearly charge, separate from monthly billing
+export const CUSTOM_DOMAIN_YEARLY_GHS = 200;
+
 export const PRICE_MIN = 100;
-export const PRICE_MAX = 400;
+export const PRICE_MAX = 500;
 export const AD_SUPPORTED_DISCOUNT = 30;
 
 export type SiteFeatures = Record<string, boolean | undefined>;
@@ -103,7 +108,13 @@ export function getPriceBreakdown(features: SiteFeatures, adSupported = false): 
     { key: "base", label: "Base Website", price: FEATURE_PRICES.base },
   ];
   for (const [key, enabled] of Object.entries(features)) {
-    if (enabled && FEATURE_PRICES[key] !== undefined && FEATURE_PRICES[key] > 0 && FEATURE_LABELS[key]) {
+    if (
+      enabled &&
+      FEATURE_PRICES[key] !== undefined &&
+      FEATURE_PRICES[key] > 0 &&
+      FEATURE_LABELS[key] &&
+      key !== "featureCustomDomain" // handled separately as yearly charge
+    ) {
       items.push({ key, label: FEATURE_LABELS[key], price: FEATURE_PRICES[key] });
     }
   }

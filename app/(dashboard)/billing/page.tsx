@@ -104,7 +104,7 @@ export default function BillingPage() {
                         <ExternalLink size={14} />
                       </Link>
                       {!site.adSupportedTier && (
-                        <Link href={`/api/payments/initialize?siteId=${site.id}&type=renewal`}
+                        <Link href={`/sites/${site.id}/renew`}
                           className={`flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 rounded-xl transition-all ${
                             isExpired || isExpiring
                               ? "bg-josett-600 text-white hover:bg-josett-500"
