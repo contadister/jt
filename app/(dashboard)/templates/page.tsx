@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Loader2, ArrowLeft, Check } from "lucide-react";
 
@@ -9,7 +9,7 @@ interface TemplateCard {
   siteType: string; thumbnail: string; primaryColor: string; featured?: boolean;
 }
 
-export default function TemplatesPage() {
+function TemplatesPageInner() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const siteId = searchParams.get("siteId");
@@ -99,5 +99,13 @@ export default function TemplatesPage() {
         </div>
       )}
     </div>
+  );
+}
+
+export default function TemplatesPage() {
+  return (
+    <Suspense fallback={<div className="flex items-center justify-center h-64"><div className="animate-spin w-8 h-8 border-4 border-josett-500 border-t-transparent rounded-full" /></div>}>
+      <TemplatesPageInner />
+    </Suspense>
   );
 }

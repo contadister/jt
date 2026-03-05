@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -160,7 +160,7 @@ const defaultFeatures = Object.fromEntries(
 
 // ── Main component ────────────────────────────────────────────────────────────
 
-export default function NewSitePage() {
+function NewSitePageInner() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [step, setStep] = useState(0);
@@ -665,5 +665,13 @@ export default function NewSitePage() {
         </div>
       )}
     </div>
+  );
+}
+
+export default function NewSitePage() {
+  return (
+    <Suspense fallback={<div className="flex items-center justify-center h-64"><div className="animate-spin w-8 h-8 border-4 border-josett-500 border-t-transparent rounded-full" /></div>}>
+      <NewSitePageInner />
+    </Suspense>
   );
 }
