@@ -6,51 +6,54 @@ import { sendNewFormSubmissionEmail } from "@/lib/nalo/client";
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const { siteId, name, email, phone, message, source, ...extra } = body;
+    const { siteId, formId, formName, ...fields } = body;
 
-    if (!siteId || !email) {
-      return NextResponse.json({ error: "siteId and email are required" }, { status: 400 });
+    if (!siteId) {
+      return NextResponse.json({ error: "siteId is required" }, { status: 400 });
     }
 
     const site = await prisma.site.findUnique({
       where: { id: siteId },
-      include: { user: { select: { email: true, fullName: true, phone: true } } },
+      include: { user: { select: { email: true, fullName: true } } },
     });
     if (!site) return NextResponse.json({ error: "Site not found" }, { status: 404 });
 
-    // Store submission
+    const ipAddress =
+      req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+      req.headers.get("x-real-ip") ||
+      null;
+
     const submission = await prisma.formSubmission.create({
       data: {
         siteId,
-        name: name || email,
-        email,
-        phone: phone || null,
-        message: message || null,
-        source: source || null,
-        data: { name, email, phone, message, ...extra },
-        isRead: false,
+        formId:   formId   || "contact",
+        formName: formName || "Contact Form",
+        data:     fields,
+        ipAddress,
+        isRead:   false,
       },
     });
 
-    // Notify site owner via email
+    // Notify site owner via email (fire-and-forget)
     const dashUrl = `${process.env.NEXT_PUBLIC_APP_URL}/sites/${siteId}/forms`;
     sendNewFormSubmissionEmail(
       site.user.email,
       site.user.fullName,
       site.name,
-      source || "Contact Form",
-      { name, email, phone, message, ...extra },
+      formName || "Contact Form",
+      fields,
       dashUrl
     ).catch(() => undefined);
 
-    // In-app notification for site owner
+    // In-app notification
+    const senderName = (fields.name as string) || (fields.email as string) || "Someone";
     await prisma.notification.create({
       data: {
-        userId: site.userId,
+        userId:    site.userId,
         siteId,
-        type: "NEW_FORM",
-        title: `New form submission on ${site.name}`,
-        message: `${name || email} submitted your contact form.`,
+        type:      "NEW_FORM",
+        title:     `New form submission on ${site.name}`,
+        message:   `${senderName} submitted your ${formName || "contact"} form.`,
         actionUrl: `/sites/${siteId}/forms`,
       },
     });

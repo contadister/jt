@@ -45,32 +45,31 @@ export default function AdminPage() {
 
   // Guard: only admins
   useEffect(() => {
+    const r = router;
     fetch("/api/admin/stats")
-      .then((r) => { if (r.status === 403) router.push("/dashboard"); return r.json(); })
+      .then((res) => { if (res.status === 403) r.push("/dashboard"); return res.json(); })
       .then((d) => { setStats(d); setLoading(false); })
-      .catch(() => router.push("/dashboard"));
-  }, []);
+      .catch(() => r.push("/dashboard"));
+  }, [router]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
+    const loadUsers = async () => {
+      const p = new URLSearchParams({ page: String(page), search });
+      const res = await fetch(`/api/admin/users?${p}`);
+      const d = await res.json();
+      setUsers(d.users || []);
+      setTotalPages(d.pages || 1);
+    };
+    const loadSites = async () => {
+      const p = new URLSearchParams({ page: String(page), search, status: statusFilter });
+      const res = await fetch(`/api/admin/sites?${p}`);
+      const d = await res.json();
+      setSites(d.sites || []);
+      setTotalPages(d.pages || 1);
+    };
     if (tab === "users") loadUsers();
     if (tab === "sites") loadSites();
   }, [tab, page, search, statusFilter]);
-
-  const loadUsers = async () => {
-    const params = new URLSearchParams({ page: String(page), search });
-    const res = await fetch(`/api/admin/users?${params}`);
-    const d = await res.json();
-    setUsers(d.users || []);
-    setTotalPages(d.pages || 1);
-  };
-
-  const loadSites = async () => {
-    const params = new URLSearchParams({ page: String(page), search, status: statusFilter });
-    const res = await fetch(`/api/admin/sites?${params}`);
-    const d = await res.json();
-    setSites(d.sites || []);
-    setTotalPages(d.pages || 1);
-  };
 
   const handleRoleChange = async (userId: string, role: string) => {
     await fetch("/api/admin/users", { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ userId, role }) });
