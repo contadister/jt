@@ -7,6 +7,7 @@ import { createClient } from "@/lib/supabase/client";
 import {
   LayoutDashboard,
   Globe,
+  Layout,
   Plus,
   Bell,
   Settings,
@@ -22,10 +23,11 @@ import {
 } from "lucide-react";
 
 const navItems = [
-  { label: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
-  { label: "My Sites", href: "/sites", icon: Globe },
-  { label: "Billing", href: "/billing", icon: CreditCard },
-  { label: "Account", href: "/account", icon: User },
+  { label: "Dashboard",  href: "/dashboard",  icon: LayoutDashboard },
+  { label: "My Sites",   href: "/sites",       icon: Globe },
+  { label: "Templates",  href: "/templates",   icon: Layout },
+  { label: "Billing",    href: "/billing",     icon: CreditCard },
+  { label: "Account",    href: "/account",     icon: User },
 ];
 
 function NavLink({

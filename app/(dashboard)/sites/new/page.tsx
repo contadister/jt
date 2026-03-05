@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useState, useEffect } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowRight,
@@ -162,6 +162,7 @@ const defaultFeatures = Object.fromEntries(
 
 export default function NewSitePage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [step, setStep] = useState(0);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -172,8 +173,8 @@ export default function NewSitePage() {
     name: "",
     slug: "",
     description: "",
-    siteType: "",
-    templateId: "blank",
+    siteType: (searchParams.get("type") as SiteType) || "",
+    templateId: searchParams.get("template") || "blank",
     ...defaultFeatures,
     featureSocialLinks: true, // free defaults
     featureTestimonials: true,

@@ -3,29 +3,22 @@ import { createMiddlewareClient } from "@supabase/auth-helpers-nextjs";
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
+const PROTECTED = ["/sites", "/account", "/billing", "/notifications", "/admin", "/dashboard"];
+
 export async function middleware(req: NextRequest) {
   const res = NextResponse.next();
   const supabase = createMiddlewareClient({ req, res });
-
-  const {
-    data: { session },
-  } = await supabase.auth.getSession();
-
+  const { data: { session } } = await supabase.auth.getSession();
   const { pathname } = req.nextUrl;
 
-  // Protect dashboard routes
-  if (pathname.startsWith("/dashboard") && !session) {
+  const isProtected = PROTECTED.some((p) => pathname === p || pathname.startsWith(p + "/"));
+
+  if (isProtected && !session) {
     const loginUrl = new URL("/login", req.url);
     loginUrl.searchParams.set("redirect", pathname);
     return NextResponse.redirect(loginUrl);
   }
 
-  // Protect admin routes
-  if (pathname.startsWith("/admin") && !session) {
-    return NextResponse.redirect(new URL("/login", req.url));
-  }
-
-  // Redirect logged-in users away from auth pages
   if (session && (pathname === "/login" || pathname === "/register")) {
     return NextResponse.redirect(new URL("/dashboard", req.url));
   }
@@ -35,8 +28,12 @@ export async function middleware(req: NextRequest) {
 
 export const config = {
   matcher: [
-    "/dashboard/:path*",
+    "/sites/:path*",
+    "/account/:path*",
+    "/billing/:path*",
+    "/notifications/:path*",
     "/admin/:path*",
+    "/dashboard/:path*",
     "/login",
     "/register",
   ],

@@ -53,7 +53,6 @@ export default function RegisterPage() {
   const [referralCode, setReferralCode] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [success, setSuccess] = useState(false);
 
   async function handleRegister(e: React.FormEvent) {
     e.preventDefault();
@@ -82,7 +81,7 @@ export default function RegisterPage() {
               full_name: fullName.trim(),
               phone: phone.trim(),
             },
-            emailRedirectTo: `${window.location.origin}/verify-email`,
+            // emailRedirectTo removed — email verification disabled until NALO is configured
           },
         });
 
@@ -115,7 +114,8 @@ export default function RegisterPage() {
         }),
       });
 
-      setSuccess(true);
+      // Skip email verification — go straight to dashboard
+      router.push("/dashboard");
     } catch {
       setError("Something went wrong. Please try again.");
     } finally {
@@ -133,45 +133,7 @@ export default function RegisterPage() {
     });
   }
 
-  if (success) {
-    return (
-      <div className="text-center">
-        <div className="w-20 h-20 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-6">
-          <Check size={36} className="text-green-600 dark:text-green-400" />
-        </div>
-        <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-3">
-          Check your inbox!
-        </h2>
-        <p className="text-slate-500 dark:text-slate-400 mb-6 leading-relaxed">
-          We sent a verification link to{" "}
-          <span className="font-semibold text-slate-700 dark:text-slate-300">
-            {email}
-          </span>
-          . Click it to activate your account and start building your website.
-        </p>
-        <div className="bg-josett-50 dark:bg-josett-950/20 border border-josett-200 dark:border-josett-800 rounded-xl p-4 text-left text-sm text-josett-700 dark:text-josett-300">
-          <p className="font-semibold mb-1">Did not receive it?</p>
-          <p>Check your spam folder, or{" "}
-            <button
-              onClick={() =>
-                supabase.auth.resend({ type: "signup", email })
-              }
-              className="underline font-medium"
-            >
-              click here to resend
-            </button>
-            .
-          </p>
-        </div>
-        <Link
-          href="/login"
-          className="inline-flex items-center gap-2 mt-6 text-josett-600 font-semibold hover:text-josett-700"
-        >
-          Back to Sign In
-        </Link>
-      </div>
-    );
-  }
+
 
   return (
     <div>

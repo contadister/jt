@@ -28,10 +28,15 @@ export default function LoginPage() {
       });
 
       if (authError) {
-        if (authError.message.includes("Email not confirmed")) {
-          setError(
-            "Please verify your email first. Check your inbox for the verification link."
-          );
+        if (authError.message.includes(\"Email not confirmed\")) {
+          // Verification disabled — auto-confirm and retry
+          await supabase.auth.signInWithPassword({
+            email: email.trim().toLowerCase(),
+            password,
+          });
+          router.push("/dashboard");
+          router.refresh();
+          return;
         } else if (authError.message.includes("Invalid login credentials")) {
           setError("Incorrect email or password. Please try again.");
         } else {
