@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, Suspense } from "react";
+import { useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -160,6 +160,192 @@ const defaultFeatures = Object.fromEntries(
 
 // ── Main component ────────────────────────────────────────────────────────────
 
+// ── Step components — defined at MODULE LEVEL (not inside parent) ─────────────
+// Defining components inside a render fn causes React to see new component types
+// on every render → unmounts on each keystroke → focus loss bug.
+
+interface StepProps { form: FormState; updateForm: (key: string, value: unknown) => void; }
+
+function Step1({ form, updateForm, slugAvailable, checkingSlug, checkSlug }: StepProps & {
+  slugAvailable: boolean | null; checkingSlug: boolean; checkSlug: (s: string) => void;
+}) {
+  return (
+    <div className="space-y-5">
+      <div>
+        <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1.5">Site Name *</label>
+        <input value={form.name}
+          onChange={(e) => {
+            const name = e.target.value;
+            updateForm("name", name);
+            const auto = slugify(name);
+            if (!form.slug || form.slug === slugify(form.name)) {
+              updateForm("slug", auto);
+              if (auto.length >= 3) checkSlug(auto);
+            }
+          }}
+          placeholder="My Awesome Business" maxLength={60}
+          className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-josett-500 transition-all"
+        />
+      </div>
+      <div>
+        <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1.5">Site URL (slug) *</label>
+        <div className="flex items-center rounded-xl border border-slate-200 dark:border-slate-700 overflow-hidden focus-within:ring-2 focus-within:ring-josett-500 bg-slate-50 dark:bg-slate-900">
+          <span className="px-3 py-3 bg-slate-100 dark:bg-slate-800 text-slate-400 text-sm border-r border-slate-200 dark:border-slate-700 whitespace-nowrap">josett.vercel.app/</span>
+          <input value={form.slug}
+            onChange={(e) => { const slug = slugify(e.target.value); updateForm("slug", slug); if (slug.length >= 3) checkSlug(slug); }}
+            placeholder="my-site"
+            className="flex-1 px-3 py-3 bg-transparent text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none text-sm"
+          />
+          {checkingSlug && <Loader2 size={16} className="mr-3 text-slate-400 animate-spin" />}
+          {!checkingSlug && slugAvailable === true && <Check size={16} className="mr-3 text-green-500" />}
+          {!checkingSlug && slugAvailable === false && <span className="mr-3 text-xs text-red-500 font-medium">Taken</span>}
+        </div>
+        {slugAvailable === false && <p className="text-xs text-red-500 mt-1">This URL is already taken.</p>}
+        {slugAvailable === true && <p className="text-xs text-green-600 mt-1">\u2713 This URL is available</p>}
+      </div>
+      <div>
+        <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1.5">
+          Description <span className="text-slate-400 font-normal">(optional)</span>
+        </label>
+        <textarea value={form.description} onChange={(e) => updateForm("description", e.target.value)}
+          placeholder="A short description of what your site is about..." rows={2} maxLength={200}
+          className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-josett-500 transition-all resize-none"
+        />
+      </div>
+    </div>
+  );
+}
+
+function Step2({ form, updateForm }: StepProps) {
+  return (
+    <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+      {SITE_TYPES.map((type) => {
+        const Icon = type.icon;
+        const active = form.siteType === type.value;
+        return (
+          <button key={type.value} onClick={() => updateForm("siteType", type.value)}
+            className={`relative p-4 rounded-2xl border-2 text-left transition-all ${active ? "border-josett-500 bg-josett-50 dark:bg-josett-950/20" : "border-slate-200 dark:border-slate-700 hover:border-josett-300 bg-white dark:bg-slate-900"}`}>
+            {active && <div className="absolute top-2.5 right-2.5 w-5 h-5 bg-josett-500 rounded-full flex items-center justify-center"><Check size={11} className="text-white" strokeWidth={3} /></div>}
+            <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${type.color} flex items-center justify-center mb-3`}><Icon size={20} className="text-white" /></div>
+            <div className="font-bold text-slate-900 dark:text-white text-sm">{type.label}</div>
+            <div className="text-xs text-slate-500 mt-0.5">{type.desc}</div>
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
+function Step3({ form, updateForm }: StepProps) {
+  return (
+    <div className="space-y-4">
+      <p className="text-sm text-slate-500">All templates are fully customizable in the builder.</p>
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+        {TEMPLATE_PREVIEWS.map((t) => {
+          const active = form.templateId === t.id;
+          return (
+            <button key={t.id} onClick={() => updateForm("templateId", t.id)}
+              className={`relative rounded-2xl border-2 overflow-hidden transition-all ${active ? "border-josett-500 shadow-lg shadow-josett-500/20" : "border-slate-200 dark:border-slate-700 hover:border-josett-300"}`}>
+              {active && <div className="absolute top-2 right-2 z-10 w-6 h-6 bg-josett-500 rounded-full flex items-center justify-center"><Check size={12} className="text-white" strokeWidth={3} /></div>}
+              <div className={`bg-gradient-to-br ${t.color} h-24 flex items-center justify-center`}><span className="text-4xl">{t.emoji}</span></div>
+              <div className="p-3 text-left bg-white dark:bg-slate-900">
+                <div className="font-bold text-slate-900 dark:text-white text-xs">{t.name}</div>
+                <div className="text-xs text-slate-400">{t.desc}</div>
+              </div>
+            </button>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+function FeatureToggle({ feat, form, updateForm }: { feat: typeof FEATURES[0]; form: FormState; updateForm: (k: string, v: unknown) => void }) {
+  const active = !!(form as unknown as Record<string, unknown>)[feat.key];
+  const Icon = feat.icon;
+  return (
+    <button onClick={() => updateForm(feat.key, !active)}
+      className={`relative p-3 rounded-xl border-2 text-left transition-all ${active ? "border-josett-500 bg-josett-50 dark:bg-josett-950/20" : "border-slate-200 dark:border-slate-700 hover:border-josett-300 bg-white dark:bg-slate-900"}`}>
+      {active && <div className="absolute top-2 right-2 w-4 h-4 bg-josett-500 rounded-full flex items-center justify-center"><Check size={9} className="text-white" strokeWidth={3} /></div>}
+      <Icon size={16} className={`mb-1.5 ${active ? "text-josett-600" : "text-slate-400"}`} />
+      <div className={`text-xs font-bold leading-tight ${active ? "text-josett-700 dark:text-josett-300" : "text-slate-700 dark:text-slate-300"}`}>{feat.label}</div>
+      <div className="text-xs mt-0.5 font-semibold text-slate-400">{feat.price === 0 ? "Free" : `+GHS ${feat.price}`}</div>
+    </button>
+  );
+}
+
+function Step4({ form, updateForm }: StepProps) {
+  const paidFeatures = FEATURES.filter((f) => f.price > 0);
+  const freeFeatures = FEATURES.filter((f) => f.price === 0);
+  const adsEnabled = !!(form as unknown as Record<string, unknown>).featureAdsEnabled;
+  return (
+    <div className="space-y-5">
+      <div>
+        <h3 className="text-sm font-bold text-slate-700 dark:text-slate-300 mb-3">Add-on Features</h3>
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">{paidFeatures.map((f) => <FeatureToggle key={f.key} feat={f} form={form} updateForm={updateForm} />)}</div>
+      </div>
+      <div>
+        <h3 className="text-sm font-bold text-slate-700 dark:text-slate-300 mb-3">Free Features</h3>
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">{freeFeatures.map((f) => <FeatureToggle key={f.key} feat={f} form={form} updateForm={updateForm} />)}</div>
+      </div>
+      <button onClick={() => updateForm("featureAdsEnabled", !adsEnabled)}
+        className={`w-full p-4 rounded-xl border-2 text-left transition-all ${adsEnabled ? "border-amber-400 bg-amber-50 dark:bg-amber-950/20" : "border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900"}`}>
+        <div className="flex items-start gap-3">
+          <div className={`w-5 h-5 rounded border-2 flex items-center justify-center mt-0.5 ${adsEnabled ? "border-amber-500 bg-amber-500" : "border-slate-300"}`}>
+            {adsEnabled && <Check size={11} className="text-white" strokeWidth={3} />}
+          </div>
+          <div>
+            <div className="font-bold text-slate-900 dark:text-white text-sm flex items-center gap-2">
+              Ad-Supported Tier
+              <span className="bg-amber-100 dark:bg-amber-950/40 text-amber-700 dark:text-amber-400 text-xs px-2 py-0.5 rounded-full font-semibold">Save GHS 30/month</span>
+            </div>
+            <div className="text-xs text-slate-500 mt-1">Allow Josett to show ads on your site and save GHS 30/month.</div>
+          </div>
+        </div>
+      </button>
+    </div>
+  );
+}
+
+function Step5({ form, price, breakdown, loading, error, onPay }: {
+  form: FormState; price: number; breakdown: ReturnType<typeof getPriceBreakdown>;
+  loading: boolean; error: string | null; onPay: () => void;
+}) {
+  const adsEnabled = !!(form as unknown as Record<string, unknown>).featureAdsEnabled;
+  return (
+    <div className="space-y-5">
+      <div className="bg-slate-50 dark:bg-slate-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-800">
+        <h3 className="font-bold text-slate-900 dark:text-white mb-4">Order Summary</h3>
+        <div className="space-y-2 mb-4">
+          <div className="flex justify-between text-sm"><span className="text-slate-600 dark:text-slate-400">Base website</span><span className="font-medium">GHS 100</span></div>
+          {breakdown.items.slice(1).map((item) => (
+            <div key={item.key} className="flex justify-between text-sm">
+              <span className="text-slate-600 dark:text-slate-400">{item.label}</span>
+              <span className="font-medium">+GHS {item.price}</span>
+            </div>
+          ))}
+          {adsEnabled && <div className="flex justify-between text-sm"><span className="text-amber-600">Ad Discount</span><span className="font-medium text-amber-600">-GHS 30</span></div>}
+        </div>
+        <div className="border-t pt-4 flex items-center justify-between">
+          <span className="font-bold text-slate-900 dark:text-white">Total per month</span>
+          <span className="text-3xl font-black text-josett-600 dark:text-josett-400">GHS {price}</span>
+        </div>
+        <p className="text-xs text-slate-400 mt-2">One month subscription. Renew manually. Cancel any time.</p>
+      </div>
+      <div className="bg-josett-50 dark:bg-josett-950/20 border border-josett-200 dark:border-josett-800 rounded-xl p-4 space-y-2">
+        <div className="flex gap-2 text-sm text-josett-700 dark:text-josett-300"><CheckCircle2 size={16} className="flex-shrink-0 mt-0.5" /><span>Site: <strong>{form.name}</strong> ({form.slug}.vercel.app)</span></div>
+        <div className="flex gap-2 text-sm text-josett-700 dark:text-josett-300"><CheckCircle2 size={16} className="flex-shrink-0 mt-0.5" /><span>Auto-deployed within 60 seconds of payment</span></div>
+        <div className="flex gap-2 text-sm text-josett-700 dark:text-josett-300"><CheckCircle2 size={16} className="flex-shrink-0 mt-0.5" /><span>Secure payment via Paystack. GHS accepted.</span></div>
+      </div>
+      {error && <div className="bg-red-50 border border-red-200 text-red-700 rounded-xl px-4 py-3 text-sm">{error}</div>}
+      <button onClick={onPay} disabled={loading}
+        className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-josett-600 to-purple-600 hover:opacity-90 disabled:opacity-60 text-white font-bold py-4 rounded-xl text-lg transition-all shadow-xl">
+        {loading ? <><Loader2 size={20} className="animate-spin" />Processing...</> : <>Pay GHS {price} via Paystack <ArrowRight size={20} /></>}
+      </button>
+    </div>
+  );
+}
+
 function NewSitePageInner() {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -202,115 +388,7 @@ function NewSitePageInner() {
     setCheckingSlug(false);
   }
 
-  // ── Step 1: Name & Slug ─────────────────────────────────────────────────
-  function Step1() {
-    return (
-      <div className="space-y-5">
-        <div>
-          <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1.5">
-            Site Name *
-          </label>
-          <input
-            value={form.name}
-            onChange={(e) => {
-              const name = e.target.value;
-              const auto = slugify(name);
-              updateForm("name", name);
-              if (!form.slug || form.slug === slugify(form.name)) {
-                updateForm("slug", auto);
-                if (auto.length >= 3) checkSlug(auto);
-              }
-            }}
-            placeholder="My Awesome Business"
-            maxLength={60}
-            className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-josett-500 transition-all"
-          />
-        </div>
 
-        <div>
-          <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1.5">
-            Site URL (slug) *
-          </label>
-          <div className="flex items-center rounded-xl border border-slate-200 dark:border-slate-700 overflow-hidden focus-within:ring-2 focus-within:ring-josett-500 bg-slate-50 dark:bg-slate-900">
-            <span className="px-3 py-3 bg-slate-100 dark:bg-slate-800 text-slate-400 text-sm border-r border-slate-200 dark:border-slate-700 whitespace-nowrap">
-              josett.vercel.app/
-            </span>
-            <input
-              value={form.slug}
-              onChange={(e) => {
-                const slug = slugify(e.target.value);
-                updateForm("slug", slug);
-                if (slug.length >= 3) checkSlug(slug);
-              }}
-              placeholder="my-site"
-              className="flex-1 px-3 py-3 bg-transparent text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none text-sm"
-            />
-            {checkingSlug && <Loader2 size={16} className="mr-3 text-slate-400 animate-spin" />}
-            {!checkingSlug && slugAvailable === true && (
-              <Check size={16} className="mr-3 text-green-500" />
-            )}
-            {!checkingSlug && slugAvailable === false && (
-              <span className="mr-3 text-xs text-red-500 font-medium">Taken</span>
-            )}
-          </div>
-          {slugAvailable === false && (
-            <p className="text-xs text-red-500 mt-1">This URL is already taken. Please choose another.</p>
-          )}
-          {slugAvailable === true && (
-            <p className="text-xs text-green-600 mt-1">✓ This URL is available</p>
-          )}
-        </div>
-
-        <div>
-          <label className="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1.5">
-            Description <span className="text-slate-400 font-normal">(optional)</span>
-          </label>
-          <textarea
-            value={form.description}
-            onChange={(e) => updateForm("description", e.target.value)}
-            placeholder="A short description of what your site is about..."
-            rows={2}
-            maxLength={200}
-            className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-josett-500 transition-all resize-none"
-          />
-        </div>
-      </div>
-    );
-  }
-
-  // ── Step 2: Site Type ───────────────────────────────────────────────────
-  function Step2() {
-    return (
-      <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-        {SITE_TYPES.map((type) => {
-          const Icon = type.icon;
-          const active = form.siteType === type.value;
-          return (
-            <button
-              key={type.value}
-              onClick={() => updateForm("siteType", type.value)}
-              className={`relative p-4 rounded-2xl border-2 text-left transition-all ${
-                active
-                  ? "border-josett-500 bg-josett-50 dark:bg-josett-950/20"
-                  : "border-slate-200 dark:border-slate-700 hover:border-josett-300 bg-white dark:bg-slate-900"
-              }`}
-            >
-              {active && (
-                <div className="absolute top-2.5 right-2.5 w-5 h-5 bg-josett-500 rounded-full flex items-center justify-center">
-                  <Check size={11} className="text-white" strokeWidth={3} />
-                </div>
-              )}
-              <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${type.color} flex items-center justify-center mb-3`}>
-                <Icon size={20} className="text-white" />
-              </div>
-              <div className="font-bold text-slate-900 dark:text-white text-sm">{type.label}</div>
-              <div className="text-xs text-slate-500 mt-0.5">{type.desc}</div>
-            </button>
-          );
-        })}
-      </div>
-    );
-  }
 
   // ── Step 3: Template ────────────────────────────────────────────────────
   const TEMPLATE_PREVIEWS = [
@@ -322,122 +400,8 @@ function NewSitePageInner() {
     { id: "tech-blog", name: "Tech Blog", desc: "Minimal & readable", color: "from-blue-900 to-indigo-900", emoji: "✍️" },
   ];
 
-  function Step3() {
-    return (
-      <div className="space-y-4">
-        <p className="text-sm text-slate-500">All templates are fully customizable in the builder.</p>
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-          {TEMPLATE_PREVIEWS.map((t) => {
-            const active = form.templateId === t.id;
-            return (
-              <button
-                key={t.id}
-                onClick={() => updateForm("templateId", t.id)}
-                className={`relative rounded-2xl border-2 overflow-hidden transition-all ${
-                  active
-                    ? "border-josett-500 shadow-lg shadow-josett-500/20"
-                    : "border-slate-200 dark:border-slate-700 hover:border-josett-300"
-                }`}
-              >
-                {active && (
-                  <div className="absolute top-2 right-2 z-10 w-6 h-6 bg-josett-500 rounded-full flex items-center justify-center">
-                    <Check size={12} className="text-white" strokeWidth={3} />
-                  </div>
-                )}
-                <div className={`bg-gradient-to-br ${t.color} h-24 flex items-center justify-center`}>
-                  <span className="text-4xl">{t.emoji}</span>
-                </div>
-                <div className="p-3 text-left bg-white dark:bg-slate-900">
-                  <div className="font-bold text-slate-900 dark:text-white text-xs">{t.name}</div>
-                  <div className="text-xs text-slate-400">{t.desc}</div>
-                </div>
-              </button>
-            );
-          })}
-        </div>
-      </div>
-    );
-  }
 
-  // ── Step 4: Features ────────────────────────────────────────────────────
-  function Step4() {
-    const paidFeatures = FEATURES.filter((f) => f.price > 0);
-    const freeFeatures = FEATURES.filter((f) => f.price === 0);
 
-    function FeatureToggle({ feat }: { feat: typeof FEATURES[0] }) {
-      const active = !!(form as unknown as Record<string, unknown>)[feat.key];
-      const Icon = feat.icon;
-      return (
-        <button
-          onClick={() => updateForm(feat.key, !active)}
-          className={`relative p-3 rounded-xl border-2 text-left transition-all ${
-            active
-              ? "border-josett-500 bg-josett-50 dark:bg-josett-950/20"
-              : "border-slate-200 dark:border-slate-700 hover:border-josett-300 bg-white dark:bg-slate-900"
-          }`}
-        >
-          {active && (
-            <div className="absolute top-2 right-2 w-4 h-4 bg-josett-500 rounded-full flex items-center justify-center">
-              <Check size={9} className="text-white" strokeWidth={3} />
-            </div>
-          )}
-          <Icon size={16} className={`mb-1.5 ${active ? "text-josett-600" : "text-slate-400"}`} />
-          <div className={`text-xs font-bold leading-tight ${active ? "text-josett-700 dark:text-josett-300" : "text-slate-700 dark:text-slate-300"}`}>
-            {feat.label}
-          </div>
-          <div className="text-xs mt-0.5 font-semibold text-slate-400">
-            {feat.price === 0 ? "Free" : `+GHS ${feat.price}`}
-          </div>
-        </button>
-      );
-    }
-
-    return (
-      <div className="space-y-5">
-        <div>
-          <h3 className="text-sm font-bold text-slate-700 dark:text-slate-300 mb-3">Add-on Features</h3>
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-            {paidFeatures.map((f) => <FeatureToggle key={f.key} feat={f} />)}
-          </div>
-        </div>
-        <div>
-          <h3 className="text-sm font-bold text-slate-700 dark:text-slate-300 mb-3">Free Features</h3>
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-            {freeFeatures.map((f) => <FeatureToggle key={f.key} feat={f} />)}
-          </div>
-        </div>
-
-        {/* Ad-supported toggle */}
-        <button
-          onClick={() => updateForm("featureAdsEnabled", !(form as unknown as Record<string, unknown>).featureAdsEnabled)}
-          className={`w-full p-4 rounded-xl border-2 text-left transition-all ${
-            (form as unknown as Record<string, unknown>).featureAdsEnabled
-              ? "border-amber-400 bg-amber-50 dark:bg-amber-950/20"
-              : "border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900"
-          }`}
-        >
-          <div className="flex items-start gap-3">
-            <div className={`w-5 h-5 rounded border-2 flex items-center justify-center mt-0.5 transition-colors ${
-              (form as unknown as Record<string, unknown>).featureAdsEnabled ? "border-amber-500 bg-amber-500" : "border-slate-300"
-            }`}>
-              {!!(form as unknown as Record<string, unknown>).featureAdsEnabled && <Check size={11} className="text-white" strokeWidth={3} />}
-            </div>
-            <div>
-              <div className="font-bold text-slate-900 dark:text-white text-sm flex items-center gap-2">
-                💰 Ad-Supported Tier
-                <span className="bg-amber-100 dark:bg-amber-950/40 text-amber-700 dark:text-amber-400 text-xs px-2 py-0.5 rounded-full font-semibold">
-                  Save GHS 30/month
-                </span>
-              </div>
-              <div className="text-xs text-slate-500 mt-1">
-                Allow Josett to display relevant ads on your site. You save GHS 30 on your monthly bill.
-              </div>
-            </div>
-          </div>
-        </button>
-      </div>
-    );
-  }
 
   // ── Step 5: Payment ─────────────────────────────────────────────────────
   async function handlePay() {
@@ -494,77 +458,7 @@ function NewSitePageInner() {
     }
   }
 
-  function Step5() {
-    return (
-      <div className="space-y-5">
-        <div className="bg-slate-50 dark:bg-slate-900 rounded-2xl p-5 border border-slate-200 dark:border-slate-800">
-          <h3 className="font-bold text-slate-900 dark:text-white mb-4">Order Summary</h3>
 
-          <div className="space-y-2 mb-4">
-            <div className="flex justify-between text-sm">
-              <span className="text-slate-600 dark:text-slate-400">Base website</span>
-              <span className="font-medium text-slate-900 dark:text-white">GHS 100</span>
-            </div>
-            {breakdown.items.slice(1).map((item) => (
-              <div key={item.key} className="flex justify-between text-sm">
-                <span className="text-slate-600 dark:text-slate-400">{item.label}</span>
-                <span className="font-medium text-slate-900 dark:text-white">+GHS {item.price}</span>
-              </div>
-            ))}
-            {!!(form as unknown as Record<string, unknown>).featureAdsEnabled && (
-              <div className="flex justify-between text-sm">
-                <span className="text-amber-600 dark:text-amber-400">Ad-Supported Discount</span>
-                <span className="font-medium text-amber-600 dark:text-amber-400">-GHS 30</span>
-              </div>
-            )}
-          </div>
-
-          <div className="border-t border-slate-200 dark:border-slate-700 pt-4 flex items-center justify-between">
-            <span className="font-bold text-slate-900 dark:text-white">Total per month</span>
-            <span className="text-3xl font-black text-josett-600 dark:text-josett-400">
-              GHS {price}
-            </span>
-          </div>
-          <p className="text-xs text-slate-400 mt-2">
-            One month subscription. Renew manually each month. Cancel any time.
-          </p>
-        </div>
-
-        <div className="bg-josett-50 dark:bg-josett-950/20 border border-josett-200 dark:border-josett-800 rounded-xl p-4 space-y-2">
-          <div className="flex gap-2 text-sm text-josett-700 dark:text-josett-300">
-            <CheckCircle2 size={16} className="flex-shrink-0 mt-0.5" />
-            <span>Site: <strong>{form.name}</strong> ({form.slug}.vercel.app)</span>
-          </div>
-          <div className="flex gap-2 text-sm text-josett-700 dark:text-josett-300">
-            <CheckCircle2 size={16} className="flex-shrink-0 mt-0.5" />
-            <span>Auto-deployed to Vercel within 60 seconds of payment</span>
-          </div>
-          <div className="flex gap-2 text-sm text-josett-700 dark:text-josett-300">
-            <CheckCircle2 size={16} className="flex-shrink-0 mt-0.5" />
-            <span>Secure payment via Paystack. GHS accepted.</span>
-          </div>
-        </div>
-
-        {error && (
-          <div className="bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-800 text-red-700 dark:text-red-400 rounded-xl px-4 py-3 text-sm">
-            {error}
-          </div>
-        )}
-
-        <button
-          onClick={handlePay}
-          disabled={loading}
-          className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-josett-600 to-purple-600 hover:from-josett-700 hover:to-purple-700 disabled:opacity-60 text-white font-bold py-4 rounded-xl text-lg transition-all hover:scale-[1.02] shadow-xl shadow-josett-500/30"
-        >
-          {loading ? (
-            <><Loader2 size={20} className="animate-spin" />Processing...</>
-          ) : (
-            <>Pay GHS {price} via Paystack <ArrowRight size={20} /></>
-          )}
-        </button>
-      </div>
-    );
-  }
 
   // ── Validation ──────────────────────────────────────────────────────────
   function canAdvance() {
@@ -575,7 +469,7 @@ function NewSitePageInner() {
     return false;
   }
 
-  const stepComponents = [<Step1 key={0} />, <Step2 key={1} />, <Step3 key={2} />, <Step4 key={3} />, <Step5 key={4} />];
+
   const stepDescriptions = [
     "What's your site called?",
     "What type of site do you need?",
@@ -637,7 +531,11 @@ function NewSitePageInner() {
             exit={{ opacity: 0, x: -20 }}
             transition={{ duration: 0.2 }}
           >
-            {stepComponents[step]}
+            {step === 0 && <Step1 form={form} updateForm={updateForm} slugAvailable={slugAvailable} checkingSlug={checkingSlug} checkSlug={checkSlug} />}
+            {step === 1 && <Step2 form={form} updateForm={updateForm} />}
+            {step === 2 && <Step3 form={form} updateForm={updateForm} />}
+            {step === 3 && <Step4 form={form} updateForm={updateForm} />}
+            {step === 4 && <Step5 form={form} price={price} breakdown={breakdown} loading={loading} error={error} onPay={handlePay} />}
           </motion.div>
         </AnimatePresence>
       </div>
