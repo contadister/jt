@@ -7,7 +7,7 @@ import { ArrowLeft, Newspaper, Download, Trash2, Loader2 } from "lucide-react";
 import { format } from "date-fns";
 
 interface Subscriber {
-  id: string; email: string; name: string | null; isActive: boolean; createdAt: string;
+  id: string; email: string; name: string | null; isConfirmed: boolean; createdAt: string;
 }
 
 export default function NewsletterPage() {
@@ -38,7 +38,7 @@ export default function NewsletterPage() {
     a.href = url; a.download = "subscribers.csv"; a.click();
   };
 
-  const active = subscribers.filter((s) => s.isActive).length;
+  const active = subscribers.filter((s) => s.isConfirmed).length;
 
   return (
     <div className="max-w-3xl mx-auto p-6">
@@ -80,8 +80,8 @@ export default function NewsletterPage() {
                   <td className="px-4 py-3 text-sm font-medium text-slate-900 dark:text-white">{sub.email}</td>
                   <td className="px-4 py-3 text-sm text-slate-500">{sub.name || "—"}</td>
                   <td className="px-4 py-3">
-                    <span className={`text-xs font-semibold px-2 py-1 rounded-full ${sub.isActive ? "bg-green-100 text-green-700 dark:bg-green-950/40 dark:text-green-400" : "bg-slate-100 text-slate-500 dark:bg-slate-800"}`}>
-                      {sub.isActive ? "Active" : "Unsubscribed"}
+                    <span className={`text-xs font-semibold px-2 py-1 rounded-full ${sub.isConfirmed ? "bg-green-100 text-green-700 dark:bg-green-950/40 dark:text-green-400" : "bg-slate-100 text-slate-500 dark:bg-slate-800"}`}>
+                      {sub.isConfirmed ? "Active" : "Unsubscribed"}
                     </span>
                   </td>
                   <td className="px-4 py-3 text-xs text-slate-400">{format(new Date(sub.createdAt), "MMM d, yyyy")}</td>

@@ -15,8 +15,8 @@ export async function POST(req: Request) {
     // Upsert — re-subscribing reactivates
     await prisma.newsletterSubscriber.upsert({
       where: { siteId_email: { siteId, email: email.toLowerCase() } },
-      create: { siteId, email: email.toLowerCase(), name: name || null, isActive: true },
-      update: { isActive: true, name: name || undefined },
+      create: { siteId, email: email.toLowerCase(), name: name || null, isConfirmed: true },
+      update: { isConfirmed: true, name: name || undefined },
     });
 
     return NextResponse.json({ success: true });
@@ -35,7 +35,7 @@ export async function GET(req: Request) {
 
   await prisma.newsletterSubscriber.updateMany({
     where: { siteId, email: email.toLowerCase() },
-    data: { isActive: false },
+    data: { isConfirmed: false },
   });
 
   return new Response("<html><body style='font-family:sans-serif;text-align:center;padding:80px'><h2>You've been unsubscribed.</h2><p>You won't receive further emails.</p></body></html>", {
