@@ -52,7 +52,7 @@ export async function POST(req: Request) {
       if (!product) throw new Error(`Product ${item.productId} not found`);
       const lineTotal = product.priceGhs * item.quantity;
       totalGhs += lineTotal;
-      return { productId: product.id, name: product.name, quantity: item.quantity, priceGhs: product.priceGhs, totalGhs: lineTotal };
+      return { productId: product.id, name: product.name, quantity: item.quantity, price: product.priceGhs };
     });
 
     const orderNumber = `ORD-${Date.now().toString(36).toUpperCase()}`;
@@ -63,7 +63,8 @@ export async function POST(req: Request) {
         customerName: customerName || customerEmail,
         customerEmail,
         customerPhone: customerPhone || null,
-        shippingAddress: shippingAddress || null,
+        customerAddress: shippingAddress || undefined,
+        subtotalGhs: totalGhs,
         totalGhs,
         status: "PENDING",
         orderItems: { create: orderItems },
