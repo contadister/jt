@@ -19,6 +19,6 @@ export async function GET(req: Request) {
 
   return NextResponse.json({
     templates: templates.map(({ builderJson: _bj, ...rest }) => rest),
-    categories: [...new Set(TEMPLATES.map((t) => t.category))],
+    categories: Array.from(new Set(TEMPLATES.map((t) => t.category))),
   });
 }
