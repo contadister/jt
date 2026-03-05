@@ -8,7 +8,7 @@ import type {
   BuilderSection,
   BuilderElement,
   SiteSettings,
-} from "@/types/builder";
+} from "@/lib/types/builder";
 
 // ── Section renderer ──────────────────────────────────────────
 

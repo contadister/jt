@@ -1,7 +1,7 @@
 // lib/templates/index.ts
 // Pre-built site templates for Josett
 
-import type { BuilderJSON } from "@/types/builder";
+import type { BuilderJSON } from "@/lib/types/builder";
 
 export interface Template {
   id: string;

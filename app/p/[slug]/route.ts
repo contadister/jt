@@ -5,7 +5,7 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma/client";
 import { buildPageHtml } from "@/lib/renderer";
-import type { BuilderJSON } from "@/types/builder";
+import type { BuilderJSON } from "@/lib/types/builder";
 
 export const dynamic = "force-dynamic";
 
