@@ -64,7 +64,7 @@ async function handler(req: Request, { params }: Context) {
     });
   }
 
-  const html = buildPageHtml(page, builderJson, site.id);
+  const html = buildPageHtml(page, builderJson, site.id, site.adSupportedTier ?? false);
 
   return new NextResponse(html, {
     headers: {

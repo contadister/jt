@@ -473,7 +473,7 @@ function escAttr(str: string): string {
 
 // ── Full page HTML wrapper ────────────────────────────────────
 
-export function buildPageHtml(page: BuilderPage, builderJson: BuilderJSON, siteId: string): string {
+export function buildPageHtml(page: BuilderPage, builderJson: BuilderJSON, siteId: string, adSupportedTier = false): string {
   const s = builderJson.siteSettings;
   const g = builderJson.globalStyles || {};
 
@@ -487,6 +487,17 @@ export function buildPageHtml(page: BuilderPage, builderJson: BuilderJSON, siteI
   const bgColor = g.bodyBackground || "#ffffff";
   const textColor = g.textColor || "#1e293b";
 
+  const publisherId = process.env.NEXT_PUBLIC_ADSENSE_PUBLISHER_ID || "";
+  const adScript = adSupportedTier && publisherId
+    ? `<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${publisherId}" crossorigin="anonymous"></script>`
+    : "";
+  const adBanner = adSupportedTier && publisherId
+    ? `<div style="width:100%;text-align:center;padding:8px 0;background:#f8fafc;">
+  <ins class="adsbygoogle" style="display:block" data-ad-client="${publisherId}" data-ad-slot="auto" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>`
+    : "";
+
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -495,6 +506,7 @@ export function buildPageHtml(page: BuilderPage, builderJson: BuilderJSON, siteI
   <title>${escHtml(page.seo?.title || s.seoTitle || s.siteName)}</title>
   ${page.seo?.description ? `<meta name="description" content="${escAttr(page.seo.description)}" />` : s.seoDescription ? `<meta name="description" content="${escAttr(s.seoDescription)}" />` : ""}
   ${s.favicon ? `<link rel="icon" href="${escAttr(s.favicon)}" />` : ""}
+  ${adScript}
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     body{font-family:${fontFamily};background:${bgColor};color:${textColor};line-height:1.6}
@@ -506,7 +518,9 @@ export function buildPageHtml(page: BuilderPage, builderJson: BuilderJSON, siteI
   ${fontFamily.includes("Inter") ? `<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">` : ""}
 </head>
 <body>
+${adBanner}
 ${sectionsHtml}
+${adBanner}
 </body>
 </html>`;
 }

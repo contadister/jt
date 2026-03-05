@@ -22,7 +22,11 @@ export async function POST(req: Request, { params }: { params: { siteId: string 
   if (!site) return NextResponse.json({ error: "Not found" }, { status: 404 });
 
   const body = await req.json();
-  const slug = body.title.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "") + "-" + Date.now();
+  // Use provided slug or auto-generate from title
+  const baseSlug = (body.slug || body.title)
+    .toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "");
+  const slug = baseSlug + "-" + Date.now();
+
   const post = await prisma.blogPost.create({
     data: {
       siteId: site.id,
@@ -32,7 +36,11 @@ export async function POST(req: Request, { params }: { params: { siteId: string 
       excerpt: body.excerpt || null,
       coverImage: body.coverImage || null,
       tags: body.tags || [],
-      isPublished: false,
+      authorName: body.authorName || null,
+      seoTitle: body.seoTitle || null,
+      seoDescription: body.seoDescription || null,
+      isPublished: body.isPublished || false,
+      publishedAt: body.isPublished ? new Date() : null,
     },
   });
   return NextResponse.json({ post });

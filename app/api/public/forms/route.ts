@@ -1,10 +1,15 @@
 // Public API — no auth required. Called from deployed user sites.
 import { NextResponse } from "next/server";
+import { rateLimit } from "@/lib/rate-limit";
 import { prisma } from "@/lib/prisma/client";
 import { sendNewFormSubmissionEmail } from "@/lib/nalo/client";
 
 export async function POST(req: Request) {
   try {
+    const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
+    const rl = rateLimit(ip, { limit: 10, windowMs: 60_000 });
+    if (!rl.ok) return NextResponse.json({ error: "Too many requests. Please try again later." }, { status: 429 });
+
     const body = await req.json();
     const { siteId, formId, formName, ...fields } = body;
 

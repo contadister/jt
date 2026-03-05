@@ -8,7 +8,6 @@ import { initializePaystackTransaction } from "@/lib/paystack/client";
 import { nanoid } from "nanoid";
 
 const DOMAIN_REGISTRATION_FEE_GHS = 200;
-const DOMAIN_REGISTRATION_FEE_KOBO = DOMAIN_REGISTRATION_FEE_GHS * 100;
 
 // GET - check domain verification status
 export async function GET(
@@ -83,7 +82,7 @@ export async function POST(
 
       const result = await initializePaystackTransaction({
         email: site.user.email,
-        amount: DOMAIN_REGISTRATION_FEE_KOBO,
+        amount: DOMAIN_REGISTRATION_FEE_GHS,  // initializePaystackTransaction multiplies ×100 internally
         reference,
         metadata: { siteId: site.id, domain, type: "domain_registration" },
         callback_url: `${process.env.NEXT_PUBLIC_APP_URL}/payment/verify?type=domain&siteId=${site.id}`,

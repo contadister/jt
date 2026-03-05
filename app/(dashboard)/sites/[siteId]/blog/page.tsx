@@ -75,10 +75,10 @@ export default function BlogPage() {
           <h1 className="text-xl font-black text-slate-900 dark:text-white">Blog</h1>
           <p className="text-slate-500 text-sm">{posts.length} posts</p>
         </div>
-        <button onClick={() => setShowForm(true)}
+        <Link href={`/sites/${siteId}/blog/new`}
           className="flex items-center gap-2 bg-josett-600 text-white font-bold px-4 py-2 rounded-xl text-sm hover:bg-josett-500 transition-all">
           <Plus size={14} /> New Post
-        </button>
+        </Link>
       </div>
 
       {showForm && (
@@ -162,6 +162,9 @@ export default function BlogPage() {
                 </div>
               </div>
               <div className="flex items-center gap-2 flex-shrink-0">
+                <Link href={`/sites/${siteId}/blog/${post.id}`} className="text-slate-400 hover:text-josett-500 p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" title="Edit">
+                  <Edit3 size={15} />
+                </Link>
                 <button onClick={() => handleTogglePublish(post)} className="text-slate-400 hover:text-josett-500 p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
                   {post.isPublished ? <EyeOff size={15} /> : <Eye size={15} />}
                 </button>

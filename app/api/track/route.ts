@@ -1,8 +1,12 @@
 import { NextResponse } from "next/server";
+import { rateLimit } from "@/lib/rate-limit";
 import { prisma } from "@/lib/prisma/client";
 
 export async function POST(req: Request) {
   try {
+    const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
+    const rl = rateLimit(ip, { limit: 60, windowMs: 60_000 });
+    if (!rl.ok) return NextResponse.json({ ok: false }, { status: 429 });
     const body = await req.json();
     const { siteId, eventType, pagePath, referrer, sessionId } = body;
 

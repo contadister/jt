@@ -1,18 +1,27 @@
 // Public API — no auth required. Called from deployed user sites.
 import { NextResponse } from "next/server";
+import { rateLimit } from "@/lib/rate-limit";
 import { prisma } from "@/lib/prisma/client";
 
 export async function GET(req: Request) {
   const url = new URL(req.url);
   const siteId = url.searchParams.get("siteId");
+  const siteSlug = url.searchParams.get("siteSlug") || (url.searchParams.get("useSiteSlug") === "true" ? siteId : null);
   const category = url.searchParams.get("category");
   const search = url.searchParams.get("search");
 
   if (!siteId) return NextResponse.json({ error: "siteId required" }, { status: 400 });
 
+  // Resolve slug → id if needed
+  let resolvedSiteId = siteId;
+  if (siteSlug) {
+    const site = await prisma.site.findUnique({ where: { slug: siteId }, select: { id: true } });
+    if (site) resolvedSiteId = site.id;
+  }
+
   const products = await prisma.product.findMany({
     where: {
-      siteId,
+      siteId: resolvedSiteId,
       isAvailable: true,
       ...(category ? { category } : {}),
       ...(search ? { name: { contains: search, mode: "insensitive" as const } } : {}),
@@ -30,20 +39,24 @@ export async function GET(req: Request) {
 // Create order from public site
 export async function POST(req: Request) {
   try {
+    const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
+    const rl = rateLimit(ip, { limit: 30, windowMs: 60_000 });
+    if (!rl.ok) return NextResponse.json({ error: "Too many requests. Please try again later." }, { status: 429 });
+
     const { siteId, items, customerName, customerEmail, customerPhone, shippingAddress } = await req.json();
     if (!siteId || !items?.length || !customerEmail) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
     }
 
-    const site = await prisma.site.findUnique({
-      where: { id: siteId },
+    const site = await prisma.site.findFirst({
+      where: { OR: [{ id: siteId }, { slug: siteId }] },
       include: { user: { select: { email: true, fullName: true } } },
     });
     if (!site) return NextResponse.json({ error: "Site not found" }, { status: 404 });
 
     // Fetch product prices server-side (never trust client prices)
     const productIds = items.map((i: { productId: string }) => i.productId);
-    const products = await prisma.product.findMany({ where: { id: { in: productIds }, siteId } });
+    const products = await prisma.product.findMany({ where: { id: { in: productIds }, siteId: site.id } });
     const productMap = Object.fromEntries(products.map((p) => [p.id, p]));
 
     let totalGhs = 0;
@@ -58,7 +71,7 @@ export async function POST(req: Request) {
     const orderNumber = `ORD-${Date.now().toString(36).toUpperCase()}`;
     const order = await prisma.order.create({
       data: {
-        siteId,
+        siteId: site.id,
         orderNumber,
         customerName: customerName || customerEmail,
         customerEmail,
@@ -72,17 +85,17 @@ export async function POST(req: Request) {
       include: { orderItems: true },
     });
 
-    // Notify owner
-    const dashUrl = `${process.env.NEXT_PUBLIC_APP_URL}/sites/${siteId}/store`;
+    // Notify owner (fire-and-forget)
+    const dashUrl = `${process.env.NEXT_PUBLIC_APP_URL}/sites/${site.id}/store`;
     const { sendNewOrderEmail } = await import("@/lib/nalo/client");
     sendNewOrderEmail(site.user.email, site.user.fullName, site.name, order.orderNumber, customerName || customerEmail, totalGhs, dashUrl).catch(() => undefined);
 
     await prisma.notification.create({
       data: {
-        userId: site.userId, siteId, type: "NEW_ORDER",
+        userId: site.userId, siteId: site.id, type: "NEW_ORDER",
         title: `New order on ${site.name}`,
         message: `Order #${orderNumber} from ${customerName || customerEmail} — GHS ${totalGhs}`,
-        actionUrl: `/sites/${siteId}/store`,
+        actionUrl: `/sites/${site.id}/store`,
       },
     });
 
