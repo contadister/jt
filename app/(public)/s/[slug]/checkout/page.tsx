@@ -32,12 +32,20 @@ function CheckoutInner() {
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("all");
 
+  const addToCart = useCallback((product: Product) => {
+    setCart(prev => {
+      const ex = prev.find(i => i.product.id === product.id);
+      if (ex) return prev.map(i => i.product.id === product.id ? { ...i, quantity: i.quantity + 1 } : i);
+      return [...prev, { product, quantity: 1 }];
+    });
+  }, []);
+
   useEffect(() => {
     fetch(`/api/public/site?slug=${siteSlug}`)
       .then(r => r.json())
       .then(d => setSite(d.site))
       .catch(() => {});
-    
+
     fetch(`/api/public/products?siteId=${siteSlug}&useSiteSlug=true`)
       .then(r => r.json())
       .then(d => {
@@ -49,15 +57,7 @@ function CheckoutInner() {
         }
         setLoading(false);
       });
-  }, [siteSlug, preselect]);
-
-  const addToCart = useCallback((product: Product) => {
-    setCart(prev => {
-      const ex = prev.find(i => i.product.id === product.id);
-      if (ex) return prev.map(i => i.product.id === product.id ? { ...i, quantity: i.quantity + 1 } : i);
-      return [...prev, { product, quantity: 1 }];
-    });
-  }, []);
+  }, [siteSlug, preselect, addToCart]);
 
   const removeFromCart = (productId: string) => setCart(prev => prev.filter(i => i.product.id !== productId));
   const updateQty = (productId: string, delta: number) => {

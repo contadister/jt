@@ -26,7 +26,7 @@ export function rateLimit(
 // Clean up stale entries every 5 minutes to avoid memory leaks
 setInterval(() => {
   const now = Date.now();
-  for (const [key, val] of store.entries()) {
+  store.forEach((val, key) => {
     if (now > val.resetAt) store.delete(key);
-  }
+  });
 }, 5 * 60_000);
