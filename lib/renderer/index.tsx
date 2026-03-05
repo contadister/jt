@@ -8,7 +8,20 @@ import type {
   BuilderSection,
   BuilderElement,
 } from "@/lib/types/builder";
-import type { SiteSettings } from "@/types/site";
+
+// Inlined here since types/site.ts may not be in the repo
+interface SiteSettings {
+  siteName: string;
+  primaryColor: string;
+  secondaryColor?: string;
+  fontFamily?: string;
+  logo?: string;
+  favicon?: string;
+  seoTitle?: string;
+  seoDescription?: string;
+  seoOgImage?: string;
+  whatsappNumber?: string;
+}
 
 // ── Section renderer ──────────────────────────────────────────
 
