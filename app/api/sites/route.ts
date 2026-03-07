@@ -1,9 +1,10 @@
 import { NextResponse } from "next/server";
-import { createServerClient } from "@/lib/supabase/server";
 import { prisma } from "@/lib/prisma/client";
 import { SiteType } from "@prisma/client";
-import { ensureUser } from "@/lib/auth/ensureUser";
+import { getAuthUser } from "@/lib/auth/getAuthUser";
 import { z } from "zod";
+
+const VALID_SITE_TYPES = Object.values(SiteType);
 
 const CreateSiteSchema = z.object({
   name: z.string().min(2).max(60),
@@ -48,21 +49,11 @@ const CreateSiteSchema = z.object({
 
 export async function GET(req: Request) {
   try {
-    const authHeader = req.headers.get("authorization") || "";
-    const token = authHeader.startsWith("Bearer ") ? authHeader.slice(7) : null;
-    const supabase = createServerClient();
-    let userId: string | null = null;
-    if (token) {
-      const { data: { user } } = await supabase.auth.getUser(token);
-      userId = user?.id ?? null;
-    } else {
-      const { data: { session } } = await supabase.auth.getSession();
-      userId = session?.user?.id ?? null;
-    }
-    if (!userId) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    const user = await getAuthUser(req);
+    if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
     const sites = await prisma.site.findMany({
-      where: { userId: userId },
+      where: { userId: user.id },
       orderBy: { updatedAt: "desc" },
       select: {
         id: true, name: true, slug: true, status: true, siteType: true,
@@ -80,31 +71,14 @@ export async function GET(req: Request) {
     });
   } catch (error) {
     console.error("GET /api/sites error:", error);
-    return NextResponse.json({ error: "Server error" }, { status: 500 });
+    return NextResponse.json({ error: "Server error", detail: String(error) }, { status: 500 });
   }
 }
 
 export async function POST(req: Request) {
   try {
-    // Accept Bearer token (sent by client) or fall back to cookie session
-    const authHeader = req.headers.get("authorization") || "";
-    const token = authHeader.startsWith("Bearer ") ? authHeader.slice(7) : null;
-    const supabase = createServerClient();
-    let userId: string | null = null;
-    if (token) {
-      const { data: { user } } = await supabase.auth.getUser(token);
-      userId = user?.id ?? null;
-    } else {
-      const { data: { session } } = await supabase.auth.getSession();
-      userId = session?.user?.id ?? null;
-    }
-    if (!userId) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-
-    // Ensure the Supabase user exists in Prisma before creating site
-    const supabaseUser = token
-      ? (await supabase.auth.getUser(token)).data.user
-      : (await supabase.auth.getSession()).data.session?.user;
-    if (supabaseUser) await ensureUser(supabaseUser);
+    const user = await getAuthUser(req);
+    if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
     const body = await req.json();
     const parsed = CreateSiteSchema.safeParse(body);
@@ -112,17 +86,55 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: parsed.error.issues[0].message }, { status: 400 });
     }
 
-    // Check slug uniqueness
     const existing = await prisma.site.findUnique({ where: { slug: parsed.data.slug } });
     if (existing) return NextResponse.json({ error: "This URL is already taken" }, { status: 409 });
 
+    // Map siteType string to valid Prisma enum, default to BUSINESS
+    const siteType = (VALID_SITE_TYPES.includes(parsed.data.siteType as SiteType)
+      ? parsed.data.siteType
+      : "BUSINESS") as SiteType;
+
     const site = await prisma.site.create({
       data: {
-        userId: userId,
-        ...parsed.data,
-        siteType: (Object.values(SiteType).includes(parsed.data.siteType as SiteType)
-          ? parsed.data.siteType
-          : "BUSINESS") as SiteType,
+        userId: user.id,
+        name: parsed.data.name,
+        slug: parsed.data.slug,
+        description: parsed.data.description,
+        siteType,
+        templateId: parsed.data.templateId,
+        monthlyPriceGhs: parsed.data.monthlyPriceGhs,
+        featureEcommerce: parsed.data.featureEcommerce,
+        featureBlog: parsed.data.featureBlog,
+        featureBooking: parsed.data.featureBooking,
+        featureContactForm: parsed.data.featureContactForm,
+        featureSeoTools: parsed.data.featureSeoTools,
+        featureAnalytics: parsed.data.featureAnalytics,
+        featureCustomDomain: parsed.data.featureCustomDomain,
+        featureGallery: parsed.data.featureGallery,
+        featureRestaurantMenu: parsed.data.featureRestaurantMenu,
+        featureSocialLinks: parsed.data.featureSocialLinks,
+        featureNewsletter: parsed.data.featureNewsletter,
+        featurePasswordProtection: parsed.data.featurePasswordProtection,
+        featureMultiplePages: parsed.data.featureMultiplePages,
+        featureGoogleMaps: parsed.data.featureGoogleMaps,
+        featureVideoEmbed: parsed.data.featureVideoEmbed,
+        featureTestimonials: parsed.data.featureTestimonials,
+        featureCountdown: parsed.data.featureCountdown,
+        featureLiveChat: parsed.data.featureLiveChat,
+        featureWhatsappButton: parsed.data.featureWhatsappButton,
+        featurePushNotifications: parsed.data.featurePushNotifications,
+        featureHeatmaps: parsed.data.featureHeatmaps,
+        featureMultiLanguage: parsed.data.featureMultiLanguage,
+        featureSiteSearch: parsed.data.featureSiteSearch,
+        featureCoupons: parsed.data.featureCoupons,
+        featureProductReviews: parsed.data.featureProductReviews,
+        featureDeliveryZones: parsed.data.featureDeliveryZones,
+        featureAffiliate: parsed.data.featureAffiliate,
+        featureAbTesting: parsed.data.featureAbTesting,
+        featureSocialAutoPost: parsed.data.featureSocialAutoPost,
+        featureEventTicketing: parsed.data.featureEventTicketing,
+        featureLinkInBio: parsed.data.featureLinkInBio,
+        featureAdsEnabled: parsed.data.featureAdsEnabled,
         status: "BUILDING",
       },
     });
@@ -130,6 +142,6 @@ export async function POST(req: Request) {
     return NextResponse.json({ site }, { status: 201 });
   } catch (error) {
     console.error("POST /api/sites error:", error);
-    return NextResponse.json({ error: "Server error" }, { status: 500 });
+    return NextResponse.json({ error: "Server error", detail: String(error) }, { status: 500 });
   }
 }
