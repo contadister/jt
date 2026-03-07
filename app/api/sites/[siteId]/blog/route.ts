@@ -5,7 +5,7 @@ import { prisma } from "@/lib/prisma/client";
 import { requireUser } from "@/lib/auth/requireUser";
 import { requireSite } from "@/lib/auth/requireSite";
 
-export async function GET(_req: Request, { params }: { params: { siteId: string } }) {
+export async function GET(req: Request, { params }: { params: { siteId: string } }) {
   const user = await requireUser(req);  const site = await prisma.site.findFirst({ where: { id: params.siteId, userId: user.prismaId } });
   if (!site) return NextResponse.json({ error: "Not found" }, { status: 404 });
   const posts = await prisma.blogPost.findMany({ where: { siteId: site.id }, orderBy: { createdAt: "desc" } });

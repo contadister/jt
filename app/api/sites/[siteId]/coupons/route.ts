@@ -9,7 +9,7 @@ async function getAuthedSite(siteId: string, userId: string) {
   return prisma.site.findFirst({ where: { id: siteId, userId } });
 }
 
-export async function GET(_req: Request, { params }: { params: { siteId: string } }) {
+export async function GET(req: Request, { params }: { params: { siteId: string } }) {
   const user = await requireUser(req);
   const site = await getAuthedSite(params.siteId, user.prismaId);
   if (!site) return NextResponse.json({ error: "Not found" }, { status: 404 });

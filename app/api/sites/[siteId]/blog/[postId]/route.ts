@@ -9,7 +9,7 @@ async function getAuthedSite(siteId: string, userId: string) {
   return prisma.site.findFirst({ where: { id: siteId, userId } });
 }
 
-export async function GET(_req: Request, { params }: { params: { siteId: string; postId: string } }) {
+export async function GET(req: Request, { params }: { params: { siteId: string; postId: string } }) {
   const user = await requireUser(req);  const site = await getAuthedSite(params.siteId, user.prismaId);
   if (!site) return NextResponse.json({ error: "Not found" }, { status: 404 });
   const post = await prisma.blogPost.findFirst({ where: { id: params.postId, siteId: site.id } });
@@ -33,7 +33,7 @@ export async function PATCH(req: Request, { params }: { params: { siteId: string
   return NextResponse.json({ success: true, post });
 }
 
-export async function DELETE(_req: Request, { params }: { params: { siteId: string; postId: string } }) {
+export async function DELETE(req: Request, { params }: { params: { siteId: string; postId: string } }) {
   const user = await requireUser(req);  const site = await getAuthedSite(params.siteId, user.prismaId);
   if (!site) return NextResponse.json({ error: "Not found" }, { status: 404 });
   await prisma.blogPost.deleteMany({ where: { id: params.postId, siteId: site.id } });

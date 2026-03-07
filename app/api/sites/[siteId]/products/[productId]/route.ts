@@ -20,7 +20,7 @@ export async function PATCH(req: Request, { params }: { params: { siteId: string
   return NextResponse.json({ product: updated });
 }
 
-export async function DELETE(_req: Request, { params }: { params: { siteId: string; productId: string } }) {
+export async function DELETE(req: Request, { params }: { params: { siteId: string; productId: string } }) {
   const user = await requireUser(req);
   const site = await prisma.site.findFirst({ where: { id: params.siteId, userId: user.prismaId } });
   if (!site) return NextResponse.json({ error: "Not found" }, { status: 404 });

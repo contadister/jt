@@ -6,7 +6,7 @@ import { requireUser } from "@/lib/auth/requireUser";
 import { requireSite } from "@/lib/auth/requireSite";
 
 export async function GET(
-  _req: Request,
+  req: Request,
   { params }: { params: { siteId: string } }
 ) {
   try {
@@ -56,7 +56,7 @@ export async function PATCH(
 }
 
 export async function DELETE(
-  _req: Request,
+  req: Request,
   { params }: { params: { siteId: string } }
 ) {
   try {

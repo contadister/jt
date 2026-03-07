@@ -17,7 +17,7 @@ export async function PATCH(req: Request, { params }: { params: { siteId: string
   return NextResponse.json({ success: true });
 }
 
-export async function DELETE(_req: Request, { params }: { params: { siteId: string; formId: string } }) {
+export async function DELETE(req: Request, { params }: { params: { siteId: string; formId: string } }) {
   const user = await requireUser(req);  const site = await getSite(params.siteId, user.prismaId);
   if (!site) return NextResponse.json({ error: "Not found" }, { status: 404 });
   await prisma.formSubmission.deleteMany({ where: { id: params.formId, siteId: site.id } });

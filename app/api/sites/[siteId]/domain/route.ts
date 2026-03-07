@@ -12,7 +12,7 @@ const DOMAIN_REGISTRATION_FEE_GHS = 200;
 
 // GET - check domain verification status
 export async function GET(
-  _req: Request,
+  req: Request,
   { params }: { params: { siteId: string } }
 ) {
   try {
