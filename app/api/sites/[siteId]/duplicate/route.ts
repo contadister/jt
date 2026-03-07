@@ -7,6 +7,8 @@ import { requireSite } from "@/lib/auth/requireSite";
 
 export async function POST(req: Request, { params }: { params: { siteId: string } }) {
   const user = await requireUser(req);
+  if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+
   const original = await prisma.site.findFirst({
     where: { id: params.siteId, userId: user.prismaId },
   });

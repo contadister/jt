@@ -11,6 +11,8 @@ async function getAuthedSite(siteId: string, userId: string) {
 
 export async function GET(req: Request, { params }: { params: { siteId: string } }) {
   const user = await requireUser(req);
+  if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+
   const site = await getAuthedSite(params.siteId, user.prismaId);
   if (!site) return NextResponse.json({ error: "Not found" }, { status: 404 });
 
@@ -24,6 +26,8 @@ export async function GET(req: Request, { params }: { params: { siteId: string }
 
 export async function POST(req: Request, { params }: { params: { siteId: string } }) {
   const user = await requireUser(req);
+  if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+
   const site = await getAuthedSite(params.siteId, user.prismaId);
   if (!site) return NextResponse.json({ error: "Not found" }, { status: 404 });
 
@@ -64,6 +68,8 @@ export async function POST(req: Request, { params }: { params: { siteId: string 
 
 export async function PATCH(req: Request, { params }: { params: { siteId: string } }) {
   const user = await requireUser(req);
+  if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+
   const site = await getAuthedSite(params.siteId, user.prismaId);
   if (!site) return NextResponse.json({ error: "Not found" }, { status: 404 });
 
@@ -80,6 +86,8 @@ export async function PATCH(req: Request, { params }: { params: { siteId: string
 
 export async function DELETE(req: Request, { params }: { params: { siteId: string } }) {
   const user = await requireUser(req);
+  if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+
   const site = await getAuthedSite(params.siteId, user.prismaId);
   if (!site) return NextResponse.json({ error: "Not found" }, { status: 404 });
 

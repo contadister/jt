@@ -7,6 +7,8 @@ import { requireSite } from "@/lib/auth/requireSite";
 
 export async function PATCH(req: Request, { params }: { params: { siteId: string; productId: string } }) {
   const user = await requireUser(req);
+  if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+
   const site = await prisma.site.findFirst({ where: { id: params.siteId, userId: user.prismaId } });
   if (!site) return NextResponse.json({ error: "Not found" }, { status: 404 });
 
@@ -22,6 +24,8 @@ export async function PATCH(req: Request, { params }: { params: { siteId: string
 
 export async function DELETE(req: Request, { params }: { params: { siteId: string; productId: string } }) {
   const user = await requireUser(req);
+  if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+
   const site = await prisma.site.findFirst({ where: { id: params.siteId, userId: user.prismaId } });
   if (!site) return NextResponse.json({ error: "Not found" }, { status: 404 });
 

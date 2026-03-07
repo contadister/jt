@@ -50,6 +50,8 @@ const CreateSiteSchema = z.object({
 export async function GET(req: Request) {
   try {
     const user = await requireUser(req);
+  if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+
     const sites = await prisma.site.findMany({
       where: { userId: user.prismaId },
       orderBy: { updatedAt: "desc" },
@@ -76,6 +78,8 @@ export async function GET(req: Request) {
 export async function POST(req: Request) {
   try {
     const user = await requireUser(req);
+  if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+
     const body = await req.json();
     const parsed = CreateSiteSchema.safeParse(body);
     if (!parsed.success) {
