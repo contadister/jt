@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { createServerClient } from "@/lib/supabase/server";
 import { prisma } from "@/lib/prisma/client";
+import { SiteType } from "@prisma/client";
 import { z } from "zod";
 
 const CreateSiteSchema = z.object({
@@ -112,6 +113,9 @@ export async function POST(req: Request) {
       data: {
         userId: userId,
         ...parsed.data,
+        siteType: (Object.values(SiteType).includes(parsed.data.siteType as SiteType)
+          ? parsed.data.siteType
+          : "BUSINESS") as SiteType,
         status: "BUILDING",
       },
     });
