@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { createServerClient } from "@/lib/supabase/server";
 import { prisma } from "@/lib/prisma/client";
 import { SiteType } from "@prisma/client";
+import { ensureUser } from "@/lib/auth/ensureUser";
 import { z } from "zod";
 
 const CreateSiteSchema = z.object({
@@ -98,6 +99,12 @@ export async function POST(req: Request) {
       userId = session?.user?.id ?? null;
     }
     if (!userId) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+
+    // Ensure the Supabase user exists in Prisma before creating site
+    const supabaseUser = token
+      ? (await supabase.auth.getUser(token)).data.user
+      : (await supabase.auth.getSession()).data.session?.user;
+    if (supabaseUser) await ensureUser(supabaseUser);
 
     const body = await req.json();
     const parsed = CreateSiteSchema.safeParse(body);

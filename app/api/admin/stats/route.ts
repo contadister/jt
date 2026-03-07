@@ -3,6 +3,7 @@ export const dynamic = "force-dynamic";
 import { NextResponse } from "next/server";
 import { createServerClient } from "@/lib/supabase/server";
 import { prisma } from "@/lib/prisma/client";
+import { ensureUser } from "@/lib/auth/ensureUser";
 import { subDays } from "date-fns";
 
 async function assertAdmin(req: Request) {
@@ -22,6 +23,13 @@ async function assertAdmin(req: Request) {
   }
 
   if (!userId) return null;
+
+  // Upsert Supabase user into Prisma so role check works
+  const supabaseUser = token
+    ? (await createServerClient().auth.getUser(token)).data.user
+    : (await createServerClient().auth.getSession()).data.session?.user;
+  if (supabaseUser) await ensureUser(supabaseUser);
+
   const user = await prisma.user.findUnique({ where: { id: userId }, select: { role: true } });
   return user?.role === "ADMIN" ? userId : null;
 }
