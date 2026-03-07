@@ -1270,18 +1270,7 @@ export const TEMPLATES: Template[] = [
     }
   },
 
-];
-
-export function getTemplateById(id: string): Template | undefined {
-  return TEMPLATES.find((t) => t.id === id);
-}
-
-export function getTemplatesByCategory(category: string): Template[] {
-  return TEMPLATES.filter((t) => t.category === category);
-}
-// ── Additional templates appended ────────────────────────────
-
-  {
+{
     id: "travel-agency",
     name: "Travel Agency",
     description: "Eye-catching template for travel agencies, tour operators and holiday planners",
@@ -1574,5 +1563,12 @@ export function getTemplatesByCategory(category: string): Template[] {
       }]
     }
   },
-
 ];
+
+export function getTemplateById(id: string): Template | undefined {
+  return TEMPLATES.find((t) => t.id === id);
+}
+
+export function getTemplatesByCategory(category: string): Template[] {
+  return TEMPLATES.filter((t) => t.category === category);
+}
