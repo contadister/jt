@@ -11,7 +11,7 @@ export interface Template {
   name: string;
   description: string;
   category: string;
-  siteType: string;
+  siteType?: string;
   thumbnail: string; // emoji placeholder until real thumbnails
   primaryColor: string;
   secondaryColor: string;
