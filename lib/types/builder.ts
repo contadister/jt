@@ -1,4 +1,4 @@
-// Re-exported from site.ts for convenience
+// Re-exports from types/site.ts — path alias for @/lib/types/builder
 export type {
   BuilderJSON,
   BuilderPage,
@@ -7,4 +7,4 @@ export type {
   ElementType,
   ElementStyles,
   SectionStyles,
-} from "./site";
+} from "@/types/site";

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useBuilderStore } from "@/store/builderStore";
 import { BuilderTopBar } from "./TopBar";
 import { LeftPanel } from "./panels/LeftPanel";
@@ -30,7 +30,7 @@ export function BuilderShell({ siteId, siteName }: BuilderShellProps) {
   const [rightCollapsed, setRightCollapsed] = useState(false);
   const [showShortcuts, setShowShortcuts] = useState(false);
 
-  const saveNow = async () => {
+  const saveNow = useCallback(async () => {
     try {
       await fetch(`/api/sites/${siteId}/save`, {
         method: "POST",
@@ -38,7 +38,7 @@ export function BuilderShell({ siteId, siteName }: BuilderShellProps) {
         body: JSON.stringify({ builderJson }),
       });
     } catch { /* silent */ }
-  };
+  }, [siteId, builderJson]);
 
   // Global keyboard shortcuts
   useEffect(() => {
