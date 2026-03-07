@@ -1,15 +1,11 @@
 import { NextResponse } from "next/server";
-import { createServerClient } from "@/lib/supabase/server";
+import { requireUser } from "@/lib/auth/requireUser";
 import { uploadFile, type StorageBucket } from "@/lib/supabase/storage";
 
 export async function POST(req: Request) {
   try {
-    // Auth check
-    const supabase = createServerClient();
-    const { data: { session } } = await supabase.auth.getSession();
-    if (!session) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
+    const user = await requireUser(req);
+    if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
     const formData = await req.formData();
     const file = formData.get("file") as File;
