@@ -5,14 +5,13 @@ import { requireUser } from "@/lib/auth/requireUser";
 import { prisma } from "@/lib/prisma/client";
 import { addDays } from "date-fns";
 
-export async function GET() {
+export async function GET(req: Request) {
   const user = await requireUser(req);
   if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  try {
-    
 
+  try {
     const sites = await prisma.site.findMany({
-      where: { userId },
+      where: { userId: user.prismaId },
       orderBy: { updatedAt: "desc" },
       select: {
         id: true,
