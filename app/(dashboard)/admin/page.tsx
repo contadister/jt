@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { Users, Globe, TrendingUp, DollarSign, Search, Shield, Ban, CheckCircle2, Loader2, RefreshCw, ChevronLeft, ChevronRight } from "lucide-react";
 import { format } from "date-fns";
 
@@ -43,10 +44,25 @@ export default function AdminPage() {
   const [totalPages, setTotalPages] = useState(1);
   const [statusFilter, setStatusFilter] = useState("");
 
+  const supabase = createClientComponentClient();
+
+  const authFetch = async (url: string, options: RequestInit = {}) => {
+    const { data: { session } } = await supabase.auth.getSession();
+    const token = session?.access_token;
+    return fetch(url, {
+      ...options,
+      headers: {
+        ...(options.headers || {}),
+        ...(token ? { Authorization: `Bearer ${token}` } : {}),
+        "Content-Type": "application/json",
+      },
+    });
+  };
+
   // Guard: only admins
   useEffect(() => {
     const r = router;
-    fetch("/api/admin/stats")
+    authFetch("/api/admin/stats")
       .then((res) => { if (res.status === 403) r.push("/dashboard"); return res.json(); })
       .then((d) => { setStats(d); setLoading(false); })
       .catch(() => r.push("/dashboard"));
@@ -55,29 +71,29 @@ export default function AdminPage() {
   useEffect(() => {
     const loadUsers = async () => {
       const p = new URLSearchParams({ page: String(page), search });
-      const res = await fetch(`/api/admin/users?${p}`);
+      const res = await authFetch(`/api/admin/users?${p}`);
       const d = await res.json();
       setUsers(d.users || []);
       setTotalPages(d.pages || 1);
     };
     const loadSites = async () => {
       const p = new URLSearchParams({ page: String(page), search, status: statusFilter });
-      const res = await fetch(`/api/admin/sites?${p}`);
+      const res = await authFetch(`/api/admin/sites?${p}`);
       const d = await res.json();
       setSites(d.sites || []);
       setTotalPages(d.pages || 1);
     };
     if (tab === "users") loadUsers();
     if (tab === "sites") loadSites();
-  }, [tab, page, search, statusFilter]);
+  }, [tab, page, search, statusFilter]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleRoleChange = async (userId: string, role: string) => {
-    await fetch("/api/admin/users", { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ userId, role }) });
+    await authFetch("/api/admin/users", { method: "PATCH", body: JSON.stringify({ userId, role }) });
     setUsers((u) => u.map((x) => x.id === userId ? { ...x, role } : x));
   };
 
   const handleSiteStatus = async (siteId: string, status: string) => {
-    await fetch("/api/admin/sites", { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ siteId, status }) });
+    await authFetch("/api/admin/sites", { method: "PATCH", body: JSON.stringify({ siteId, status }) });
     setSites((s) => s.map((x) => x.id === siteId ? { ...x, status } : x));
   };
 

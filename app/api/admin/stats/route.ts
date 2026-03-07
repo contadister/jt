@@ -5,17 +5,30 @@ import { createServerClient } from "@/lib/supabase/server";
 import { prisma } from "@/lib/prisma/client";
 import { subDays } from "date-fns";
 
-async function assertAdmin(supabase: ReturnType<typeof createServerClient>) {
-  const { data: { session } } = await supabase.auth.getSession();
-  if (!session) return null;
-  const user = await prisma.user.findUnique({ where: { id: session.user.id }, select: { role: true } });
-  return user?.role === "ADMIN" ? session : null;
+async function assertAdmin(req: Request) {
+  // Try Bearer token first (sent by client), fall back to cookie session
+  const authHeader = req.headers.get("authorization") || "";
+  const token = authHeader.startsWith("Bearer ") ? authHeader.slice(7) : null;
+
+  let userId: string | null = null;
+  if (token) {
+    const supabase = createServerClient();
+    const { data: { user } } = await supabase.auth.getUser(token);
+    userId = user?.id ?? null;
+  } else {
+    const supabase = createServerClient();
+    const { data: { session } } = await supabase.auth.getSession();
+    userId = session?.user?.id ?? null;
+  }
+
+  if (!userId) return null;
+  const user = await prisma.user.findUnique({ where: { id: userId }, select: { role: true } });
+  return user?.role === "ADMIN" ? userId : null;
 }
 
-export async function GET() {
-  const supabase = createServerClient();
-  const session = await assertAdmin(supabase);
-  if (!session) return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+export async function GET(req: Request) {
+  const adminId = await assertAdmin(req);
+  if (!adminId) return NextResponse.json({ error: "Forbidden" }, { status: 403 });
 
   const since30d = subDays(new Date(), 30);
 

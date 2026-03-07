@@ -1,5 +1,7 @@
 "use client";
 
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+
 import { useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
@@ -402,6 +404,7 @@ function Step5({ form, price, breakdown, loading, error, onPay }: {
 function NewSitePageInner() {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const supabase = createClientComponentClient();
   const [step, setStep] = useState(0);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -451,9 +454,14 @@ function NewSitePageInner() {
 
     try {
       // 1. Create the site record first
+      const { data: { session } } = await supabase.auth.getSession();
+      const token = session?.access_token;
       const createRes = await fetch("/api/sites", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          ...(token ? { Authorization: `Bearer ${token}` } : {}),
+        },
         body: JSON.stringify({
           name: form.name,
           slug: form.slug,

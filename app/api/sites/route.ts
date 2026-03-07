@@ -7,7 +7,7 @@ const CreateSiteSchema = z.object({
   name: z.string().min(2).max(60),
   slug: z.string().min(3).max(50).regex(/^[a-z0-9-]+$/),
   description: z.string().max(200).optional(),
-  siteType: z.enum(["BUSINESS","PORTFOLIO","ECOMMERCE","BLOG","RESTAURANT","NGO","PERSONAL","LANDING","LINK_IN_BIO","EVENT"]),
+  siteType: z.string().min(1),
   templateId: z.string().default("blank"),
   monthlyPriceGhs: z.number().min(100).max(500),
   featureEcommerce: z.boolean().default(false),
@@ -44,14 +44,23 @@ const CreateSiteSchema = z.object({
   featureAdsEnabled: z.boolean().default(false),
 });
 
-export async function GET() {
+export async function GET(req: Request) {
   try {
+    const authHeader = req.headers.get("authorization") || "";
+    const token = authHeader.startsWith("Bearer ") ? authHeader.slice(7) : null;
     const supabase = createServerClient();
-    const { data: { session } } = await supabase.auth.getSession();
-    if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    let userId: string | null = null;
+    if (token) {
+      const { data: { user } } = await supabase.auth.getUser(token);
+      userId = user?.id ?? null;
+    } else {
+      const { data: { session } } = await supabase.auth.getSession();
+      userId = session?.user?.id ?? null;
+    }
+    if (!userId) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
     const sites = await prisma.site.findMany({
-      where: { userId: session.user.id },
+      where: { userId: userId },
       orderBy: { updatedAt: "desc" },
       select: {
         id: true, name: true, slug: true, status: true, siteType: true,
@@ -75,9 +84,19 @@ export async function GET() {
 
 export async function POST(req: Request) {
   try {
+    // Accept Bearer token (sent by client) or fall back to cookie session
+    const authHeader = req.headers.get("authorization") || "";
+    const token = authHeader.startsWith("Bearer ") ? authHeader.slice(7) : null;
     const supabase = createServerClient();
-    const { data: { session } } = await supabase.auth.getSession();
-    if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    let userId: string | null = null;
+    if (token) {
+      const { data: { user } } = await supabase.auth.getUser(token);
+      userId = user?.id ?? null;
+    } else {
+      const { data: { session } } = await supabase.auth.getSession();
+      userId = session?.user?.id ?? null;
+    }
+    if (!userId) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
     const body = await req.json();
     const parsed = CreateSiteSchema.safeParse(body);
@@ -91,7 +110,7 @@ export async function POST(req: Request) {
 
     const site = await prisma.site.create({
       data: {
-        userId: session.user.id,
+        userId: userId,
         ...parsed.data,
         status: "BUILDING",
       },
