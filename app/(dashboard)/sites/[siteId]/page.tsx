@@ -7,8 +7,8 @@ import { format, differenceInDays } from "date-fns";
 import {
   Globe, Edit3, Settings, ExternalLink, Rocket, Eye,
   Clock, AlertTriangle, CheckCircle2, Loader2, BarChart2,
-  RefreshCw, Calendar, CreditCard, ArrowLeft,
-  ShoppingCart, BookOpen, CalendarDays, Mail, Newspaper,
+  RefreshCw, Calendar, CreditCard, ArrowLeft, Copy,
+  ShoppingCart, BookOpen, CalendarDays, Mail, Newspaper, Tag,
 } from "lucide-react";
 
 interface SiteData {
@@ -25,6 +25,7 @@ export default function SiteDashboardPage() {
   const [site, setSite] = useState<SiteData | null>(null);
   const [loading, setLoading] = useState(true);
   const [deploying, setDeploying] = useState(false);
+  const [duplicating, setDuplicating] = useState(false);
 
   useEffect(() => {
     fetch(`/api/sites/${siteId}`)
@@ -38,6 +39,15 @@ export default function SiteDashboardPage() {
     await fetch(`/api/sites/${siteId}/deploy`, { method: "POST" });
     setDeploying(false);
     setSite((s) => s ? { ...s, status: "DEPLOYED" } : s);
+  };
+
+  const handleDuplicate = async () => {
+    if (!confirm("Duplicate this site? A copy will be added to your dashboard.")) return;
+    setDuplicating(true);
+    const res = await fetch(`/api/sites/${siteId}/duplicate`, { method: "POST" });
+    const data = await res.json();
+    setDuplicating(false);
+    if (data.siteId) router.push(`/sites/${data.siteId}`);
   };
 
   if (loading) {
@@ -86,6 +96,11 @@ export default function SiteDashboardPage() {
               <ExternalLink size={14} /> Visit
             </a>
           )}
+          <button onClick={handleDuplicate} disabled={duplicating}
+            className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700 px-3 py-2 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 transition-all disabled:opacity-50"
+            title="Duplicate site">
+            {duplicating ? <Loader2 size={14} className="animate-spin" /> : <Copy size={14} />}
+          </button>
           <Link href={`/sites/${siteId}/builder`}
             className="flex items-center gap-2 text-sm font-bold bg-josett-600 text-white px-4 py-2 rounded-xl hover:bg-josett-500 transition-all">
             <Edit3 size={14} /> Edit Site
@@ -137,6 +152,7 @@ export default function SiteDashboardPage() {
               { label: "Analytics",   desc: "Visit stats & traffic",    href: `/sites/${siteId}/analytics`,  icon: BarChart2,     color: "bg-blue-50 dark:bg-blue-950/30 text-blue-600 dark:text-blue-400" },
               { label: "Store",       desc: "Products & orders",        href: `/sites/${siteId}/store`,      icon: ShoppingCart,  color: "bg-orange-50 dark:bg-orange-950/30 text-orange-600 dark:text-orange-400" },
               { label: "Blog",        desc: "Posts & content",          href: `/sites/${siteId}/blog`,       icon: BookOpen,      color: "bg-green-50 dark:bg-green-950/30 text-green-600 dark:text-green-400" },
+              { label: "Coupons",     desc: "Discount codes",            href: `/sites/${siteId}/coupons`,    icon: Tag,           color: "bg-pink-50 dark:bg-pink-950/30 text-pink-600 dark:text-pink-400" },
               { label: "Bookings",    desc: "Appointments",             href: `/sites/${siteId}/bookings`,   icon: CalendarDays,  color: "bg-purple-50 dark:bg-purple-950/30 text-purple-600 dark:text-purple-400" },
               { label: "Forms",       desc: "Contact submissions",      href: `/sites/${siteId}/forms`,      icon: Mail,          color: "bg-pink-50 dark:bg-pink-950/30 text-pink-600 dark:text-pink-400" },
               { label: "Newsletter",  desc: "Subscribers",              href: `/sites/${siteId}/newsletter`, icon: Newspaper,     color: "bg-cyan-50 dark:bg-cyan-950/30 text-cyan-600 dark:text-cyan-400" },

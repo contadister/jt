@@ -13,6 +13,12 @@ import {
   ArrowRight,
   ExternalLink,
   Zap,
+  CheckCircle2,
+  Circle,
+  BookOpen,
+  Layout,
+  Rocket,
+  Sparkles,
 } from "lucide-react";
 
 interface DashboardData {
@@ -316,6 +322,61 @@ export default function DashboardPage() {
             </Link>
           </div>
         )}
+      </div>
+
+      {/* Quick Start Checklist (only for users with no live sites) */}
+      {data && data.activeSites === 0 && (
+        <div className="bg-gradient-to-br from-josett-50 to-purple-50 dark:from-josett-950/20 dark:to-purple-950/20 border border-josett-100 dark:border-josett-900/40 rounded-2xl p-6">
+          <div className="flex items-center gap-3 mb-5">
+            <div className="w-8 h-8 bg-josett-500 rounded-lg flex items-center justify-center">
+              <Sparkles size={16} className="text-white" />
+            </div>
+            <div>
+              <h2 className="font-bold text-slate-900 dark:text-white text-sm">Getting Started</h2>
+              <p className="text-xs text-slate-500">Complete these steps to launch your first site</p>
+            </div>
+          </div>
+          <div className="space-y-3">
+            {[
+              { done: (data?.totalSites ?? 0) > 0, icon: Globe, label: "Create your first site", href: "/sites/new", cta: "Create Now" },
+              { done: false, icon: Layout, label: "Pick a template and customise it", href: "/templates", cta: "Browse Templates" },
+              { done: false, icon: BookOpen, label: "Add your content — text, images, pages", href: "/sites", cta: "Open Builder" },
+              { done: false, icon: Rocket, label: "Deploy your site and go live!", href: "/sites", cta: "Deploy" },
+            ].map(({ done, icon: Icon, label, href, cta }) => (
+              <div key={label} className={`flex items-center gap-3 p-3 rounded-xl transition-all ${done ? "opacity-60" : "hover:bg-white/60 dark:hover:bg-white/5"}`}>
+                {done
+                  ? <CheckCircle2 size={20} className="text-green-500 flex-shrink-0" />
+                  : <Circle size={20} className="text-slate-300 dark:text-slate-600 flex-shrink-0" />}
+                <Icon size={16} className="text-josett-500 flex-shrink-0" />
+                <span className={`flex-1 text-sm font-medium ${done ? "line-through text-slate-400" : "text-slate-700 dark:text-slate-300"}`}>{label}</span>
+                {!done && (
+                  <Link href={href} className="text-xs font-bold text-josett-600 hover:text-josett-700 whitespace-nowrap flex items-center gap-1">
+                    {cta} <ArrowRight size={12} />
+                  </Link>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Resources row */}
+      <div>
+        <h2 className="text-base font-bold text-slate-900 dark:text-white mb-4">Resources</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          {[
+            { icon: "📚", title: "Template Library", desc: "Browse 40+ ready-made templates for every industry", href: "/templates" },
+            { icon: "🎨", title: "Builder Guide", desc: "Learn how to use the drag-and-drop website builder", href: "#" },
+            { icon: "💬", title: "Get Help", desc: "Chat with support or browse FAQs", href: "#" },
+          ].map(({ icon, title, desc, href }) => (
+            <Link key={title} href={href}
+              className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-slate-800 p-5 hover:shadow-md hover:border-josett-200 dark:hover:border-josett-900/60 transition-all group">
+              <div className="text-2xl mb-3">{icon}</div>
+              <h3 className="font-bold text-slate-900 dark:text-white text-sm mb-1 group-hover:text-josett-600 transition-colors">{title}</h3>
+              <p className="text-xs text-slate-500 leading-relaxed">{desc}</p>
+            </Link>
+          ))}
+        </div>
       </div>
     </div>
   );
