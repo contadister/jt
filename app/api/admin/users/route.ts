@@ -7,8 +7,9 @@ import { getAuthUser } from "@/lib/auth/getAuthUser";
 async function requireAdmin(req: Request) {
   const user = await getAuthUser(req);
   if (!user) return null;
-  const dbUser = await prisma.user.findUnique({ where: { id: user.prismaId }, select: { role: true } });
-  return dbUser?.role === "ADMIN" ? user : null;
+  // Check ADMIN_EMAIL env var — no DB lookup needed
+  const adminEmail = process.env.ADMIN_EMAIL ?? "";
+  return (adminEmail && user.email === adminEmail) ? user : null;
 }
 
 export async function GET(req: Request) {

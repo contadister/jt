@@ -1,17 +1,14 @@
 export const dynamic = "force-dynamic";
 
 import { NextResponse } from "next/server";
-import { createRouteHandlerClient } from "@supabase/auth-helpers-nextjs";
-import { cookies } from "next/headers";
 import { prisma } from "@/lib/prisma/client";
+import { requireUser } from "@/lib/auth/requireUser";
+import { requireSite } from "@/lib/auth/requireSite";
 
 export async function POST(req: Request, { params }: { params: { siteId: string } }) {
-  const supabase = createRouteHandlerClient({ cookies });
-  const { data: { user } } = await supabase.auth.getUser();
-  if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-
+  const user = await requireUser(req);
   const original = await prisma.site.findFirst({
-    where: { id: params.siteId, userId: user.id },
+    where: { id: params.siteId, userId: user.prismaId },
   });
   if (!original) return NextResponse.json({ error: "Not found" }, { status: 404 });
 
@@ -19,7 +16,7 @@ export async function POST(req: Request, { params }: { params: { siteId: string 
 
   const duplicate = await prisma.site.create({
     data: {
-      userId: user.id,
+      userId: user.prismaId,
       name: `${original.name} (Copy)`,
       slug: newSlug,
       siteType: original.siteType,

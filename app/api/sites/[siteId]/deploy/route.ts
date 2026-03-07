@@ -1,7 +1,8 @@
 // app/api/sites/[siteId]/deploy/route.ts
 import { NextResponse } from "next/server";
-import { createServerClient } from "@/lib/supabase/server";
 import { prisma } from "@/lib/prisma/client";
+import { requireUser } from "@/lib/auth/requireUser";
+import { requireSite } from "@/lib/auth/requireSite";
 import { createSiteRepo, pushFilesToRepo } from "@/lib/github/client";
 import {
   createVercelProject,
@@ -17,7 +18,6 @@ export async function POST(
   { params }: { params: { siteId: string } }
 ) {
   try {
-    const supabase = createServerClient();
     const {
       data: { session },
     } = await supabase.auth.getSession();
@@ -27,7 +27,7 @@ export async function POST(
     }
 
     const site = await prisma.site.findFirst({
-      where: { id: params.siteId, userId: session.user.id },
+      where: { id: params.siteId, userId: user.prismaId },
       include: { user: true },
     });
 

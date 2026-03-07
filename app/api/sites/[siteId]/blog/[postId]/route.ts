@@ -1,18 +1,16 @@
 export const dynamic = "force-dynamic";
 
 import { NextResponse } from "next/server";
-import { createServerClient } from "@/lib/supabase/server";
 import { prisma } from "@/lib/prisma/client";
+import { requireUser } from "@/lib/auth/requireUser";
+import { requireSite } from "@/lib/auth/requireSite";
 
 async function getAuthedSite(siteId: string, userId: string) {
   return prisma.site.findFirst({ where: { id: siteId, userId } });
 }
 
 export async function GET(_req: Request, { params }: { params: { siteId: string; postId: string } }) {
-  const supabase = createServerClient();
-  const { data: { session } } = await supabase.auth.getSession();
-  if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  const site = await getAuthedSite(params.siteId, session.user.id);
+  const user = await requireUser(req);  const site = await getAuthedSite(params.siteId, user.prismaId);
   if (!site) return NextResponse.json({ error: "Not found" }, { status: 404 });
   const post = await prisma.blogPost.findFirst({ where: { id: params.postId, siteId: site.id } });
   if (!post) return NextResponse.json({ error: "Post not found" }, { status: 404 });
@@ -20,10 +18,7 @@ export async function GET(_req: Request, { params }: { params: { siteId: string;
 }
 
 export async function PATCH(req: Request, { params }: { params: { siteId: string; postId: string } }) {
-  const supabase = createServerClient();
-  const { data: { session } } = await supabase.auth.getSession();
-  if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  const site = await getAuthedSite(params.siteId, session.user.id);
+  const user = await requireUser(req);  const site = await getAuthedSite(params.siteId, user.prismaId);
   if (!site) return NextResponse.json({ error: "Not found" }, { status: 404 });
 
   const body = await req.json();
@@ -39,10 +34,7 @@ export async function PATCH(req: Request, { params }: { params: { siteId: string
 }
 
 export async function DELETE(_req: Request, { params }: { params: { siteId: string; postId: string } }) {
-  const supabase = createServerClient();
-  const { data: { session } } = await supabase.auth.getSession();
-  if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  const site = await getAuthedSite(params.siteId, session.user.id);
+  const user = await requireUser(req);  const site = await getAuthedSite(params.siteId, user.prismaId);
   if (!site) return NextResponse.json({ error: "Not found" }, { status: 404 });
   await prisma.blogPost.deleteMany({ where: { id: params.postId, siteId: site.id } });
   return NextResponse.json({ success: true });

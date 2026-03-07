@@ -1,17 +1,15 @@
 export const dynamic = "force-dynamic";
 
 import { NextResponse } from "next/server";
-import { createServerClient } from "@/lib/supabase/server";
+import { requireUser } from "@/lib/auth/requireUser";
 import { prisma } from "@/lib/prisma/client";
 import { addDays } from "date-fns";
 
 export async function GET() {
+  const user = await requireUser(req);
+  if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   try {
-    const supabase = createServerClient();
-    const { data: { session } } = await supabase.auth.getSession();
-    if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-
-    const userId = session.user.id;
+    
 
     const sites = await prisma.site.findMany({
       where: { userId },

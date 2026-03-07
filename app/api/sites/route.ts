@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma/client";
 import { SiteType } from "@prisma/client";
-import { getAuthUser } from "@/lib/auth/getAuthUser";
+import { requireUser } from "@/lib/auth/requireUser";
 import { z } from "zod";
 
 const VALID_SITE_TYPES = Object.values(SiteType);
@@ -49,9 +49,7 @@ const CreateSiteSchema = z.object({
 
 export async function GET(req: Request) {
   try {
-    const user = await getAuthUser(req);
-    if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-
+    const user = await requireUser(req);
     const sites = await prisma.site.findMany({
       where: { userId: user.prismaId },
       orderBy: { updatedAt: "desc" },
@@ -77,9 +75,7 @@ export async function GET(req: Request) {
 
 export async function POST(req: Request) {
   try {
-    const user = await getAuthUser(req);
-    if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-
+    const user = await requireUser(req);
     const body = await req.json();
     const parsed = CreateSiteSchema.safeParse(body);
     if (!parsed.success) {

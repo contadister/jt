@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
+import SessionKeepAlive from "@/components/auth/SessionKeepAlive";
+import { useTheme } from "next-themes";
 import {
   LayoutDashboard,
   Globe,
@@ -20,6 +22,7 @@ import {
   User,
   Sparkles,
   ExternalLink,
+  Moon,
 } from "lucide-react";
 
 const navItems = [
@@ -68,6 +71,9 @@ export default function DashboardLayout({
 }) {
   const router = useRouter();
   const supabase = createClient();
+  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [userName, setUserName] = useState("");
   const [userEmail, setUserEmail] = useState("");
@@ -86,6 +92,11 @@ export default function DashboardLayout({
       );
       // Check admin role
       fetch("/api/admin/stats").then((r) => { if (r.ok) setIsAdmin(true); }).catch(() => {});
+      // Fetch unread notification count
+      fetch("/api/notifications?unread=true&limit=1")
+        .then((r) => r.json())
+        .then((d) => { if (d.unreadCount !== undefined) setUnreadCount(d.unreadCount); })
+        .catch(() => {});
     });
   }, [supabase.auth, router]);
 
@@ -150,6 +161,17 @@ export default function DashboardLayout({
           )}
         </Link>
 
+        {mounted && (
+          <button
+            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+            className="flex w-full items-center justify-between px-3 py-2.5 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white transition-all"
+          >
+            <span className="flex items-center gap-3"><Moon size={16} /> Dark Mode</span>
+            <span className={`w-9 h-5 rounded-full transition-colors relative flex-shrink-0 ${theme === "dark" ? "bg-josett-600" : "bg-slate-200"}`}>
+              <span className={`absolute top-0.5 w-4 h-4 bg-white rounded-full shadow transition-transform ${theme === "dark" ? "translate-x-4" : "translate-x-0.5"}`} />
+            </span>
+          </button>
+        )}
         <div className="flex items-center gap-3 px-3 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800">
           <div className="w-8 h-8 rounded-full bg-gradient-to-br from-josett-400 to-purple-500 flex items-center justify-center text-white text-xs font-bold flex-shrink-0">
             {userName.charAt(0).toUpperCase()}
@@ -233,6 +255,7 @@ export default function DashboardLayout({
 
         {/* Page content */}
         <main className="flex-1 overflow-y-auto">
+          <SessionKeepAlive />
           {children}
         </main>
       </div>

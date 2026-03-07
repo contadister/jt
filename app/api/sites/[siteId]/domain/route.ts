@@ -1,8 +1,9 @@
 export const dynamic = "force-dynamic";
 
 import { NextResponse } from "next/server";
-import { createServerClient } from "@/lib/supabase/server";
 import { prisma } from "@/lib/prisma/client";
+import { requireUser } from "@/lib/auth/requireUser";
+import { requireSite } from "@/lib/auth/requireSite";
 import { addDomainToProject, getDomainStatus } from "@/lib/vercel/client";
 import { initializePaystackTransaction } from "@/lib/paystack/client";
 import { nanoid } from "nanoid";
@@ -15,12 +16,8 @@ export async function GET(
   { params }: { params: { siteId: string } }
 ) {
   try {
-    const supabase = createServerClient();
-    const { data: { session } } = await supabase.auth.getSession();
-    if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-
     const site = await prisma.site.findFirst({
-      where: { id: params.siteId, userId: session.user.id },
+      where: { id: params.siteId, userId: user.prismaId },
       select: { customDomain: true, customDomainVerified: true, vercelProjectId: true },
     });
     if (!site) return NextResponse.json({ error: "Not found" }, { status: 404 });
@@ -54,14 +51,10 @@ export async function POST(
   { params }: { params: { siteId: string } }
 ) {
   try {
-    const supabase = createServerClient();
-    const { data: { session } } = await supabase.auth.getSession();
-    if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-
     const { domain, action } = await req.json();
 
     const site = await prisma.site.findFirst({
-      where: { id: params.siteId, userId: session.user.id },
+      where: { id: params.siteId, userId: user.prismaId },
       include: { user: true },
     });
     if (!site) return NextResponse.json({ error: "Not found" }, { status: 404 });
@@ -71,7 +64,7 @@ export async function POST(
       const reference = `josett_domain_${nanoid(16)}`;
       await prisma.payment.create({
         data: {
-          userId: session.user.id,
+          userId: user.prismaId,
           siteId: site.id,
           paystackReference: reference,
           amountGhs: DOMAIN_REGISTRATION_FEE_GHS,

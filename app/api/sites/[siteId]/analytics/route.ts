@@ -1,8 +1,9 @@
 export const dynamic = "force-dynamic";
 
 import { NextResponse } from "next/server";
-import { createServerClient } from "@/lib/supabase/server";
 import { prisma } from "@/lib/prisma/client";
+import { requireUser } from "@/lib/auth/requireUser";
+import { requireSite } from "@/lib/auth/requireSite";
 import { subDays, format, eachDayOfInterval } from "date-fns";
 
 export async function GET(
@@ -10,16 +11,12 @@ export async function GET(
   { params }: { params: { siteId: string } }
 ) {
   try {
-    const supabase = createServerClient();
-    const { data: { session } } = await supabase.auth.getSession();
-    if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-
     const url = new URL(req.url);
     const days = parseInt(url.searchParams.get("days") || "30");
     const since = subDays(new Date(), days);
 
     const site = await prisma.site.findFirst({
-      where: { id: params.siteId, userId: session.user.id },
+      where: { id: params.siteId, userId: user.prismaId },
       select: { id: true, totalVisits: true },
     });
     if (!site) return NextResponse.json({ error: "Not found" }, { status: 404 });

@@ -1,20 +1,17 @@
 export const dynamic = "force-dynamic";
 
 import { NextResponse } from "next/server";
-import { createServerClient } from "@/lib/supabase/server";
 import { prisma } from "@/lib/prisma/client";
+import { requireUser } from "@/lib/auth/requireUser";
+import { requireSite } from "@/lib/auth/requireSite";
 
 export async function GET(
   _req: Request,
   { params }: { params: { siteId: string } }
 ) {
   try {
-    const supabase = createServerClient();
-    const { data: { session } } = await supabase.auth.getSession();
-    if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-
     const site = await prisma.site.findFirst({
-      where: { id: params.siteId, userId: session.user.id },
+      where: { id: params.siteId, userId: user.prismaId },
       include: { payments: { orderBy: { createdAt: "desc" }, take: 5 } },
     });
     if (!site) return NextResponse.json({ error: "Not found" }, { status: 404 });
@@ -31,15 +28,12 @@ export async function PATCH(
   { params }: { params: { siteId: string } }
 ) {
   try {
-    const supabase = createServerClient();
-    const { data: { session } } = await supabase.auth.getSession();
-    if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-
     const body = await req.json();
     const allowed = [
       "name", "description", "seoTitle", "seoDescription", "seoKeywords",
       "seoOgImage", "primaryColor", "secondaryColor", "fontFamily",
       "whatsappNumber", "tawkToPropertyId", "customDomain", "builderJson",
+      "faviconUrl", "logoUrl", "featurePasswordProtection", "featureLiveChat",
     ];
     const data: Record<string, unknown> = {};
     for (const key of allowed) {
@@ -47,7 +41,7 @@ export async function PATCH(
     }
 
     const site = await prisma.site.updateMany({
-      where: { id: params.siteId, userId: session.user.id },
+      where: { id: params.siteId, userId: user.prismaId },
       data,
     });
 
@@ -63,11 +57,7 @@ export async function DELETE(
   { params }: { params: { siteId: string } }
 ) {
   try {
-    const supabase = createServerClient();
-    const { data: { session } } = await supabase.auth.getSession();
-    if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-
-    await prisma.site.deleteMany({ where: { id: params.siteId, userId: session.user.id } });
+    await prisma.site.deleteMany({ where: { id: params.siteId, userId: user.prismaId } });
     return NextResponse.json({ success: true });
   } catch (e) {
     console.error(e);
