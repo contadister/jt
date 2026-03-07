@@ -1,7 +1,7 @@
 // lib/templates/index.ts
 // Pre-built site templates for Josett
 
-type AnyStyles = Record<string, string | number | boolean | null | undefined | AnyStyles | AnyStyles[]>;
+type AnyStyles = Record<string, unknown>;
 
 // Using a relaxed type for template definitions to avoid SectionStyles constraints
 type TemplateBuilderJSON = {
