@@ -30,7 +30,11 @@ export async function getAuthUser(req: Request): Promise<AuthUser | null> {
 
   if (!user) return null;
 
-  // Sync to Prisma (upsert)
-  await ensureUser(user);
+  // Sync to Prisma — wrapped in try/catch so auth errors don't crash routes
+  try {
+    await ensureUser(user);
+  } catch (e) {
+    console.error("ensureUser failed (non-fatal):", e);
+  }
   return user;
 }
