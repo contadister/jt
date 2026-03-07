@@ -15,6 +15,9 @@ export async function GET(
   req: Request,
   { params }: { params: { siteId: string } }
 ) {
+  const user = await requireUser(req);
+  if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+
   try {
     const site = await prisma.site.findFirst({
       where: { id: params.siteId, userId: user.prismaId },
