@@ -10,6 +10,12 @@ export async function GET(
   req: Request,
   { params }: { params: { siteId: string } }
 ) {
+  const user = await requireUser(req);
+  if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+
+  const user = await requireUser(req);
+  if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+
   try {
     const url = new URL(req.url);
     const days = parseInt(url.searchParams.get("days") || "30");

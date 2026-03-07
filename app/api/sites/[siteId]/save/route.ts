@@ -9,6 +9,12 @@ export async function POST(
   req: Request,
   { params }: { params: { siteId: string } }
 ) {
+  const user = await requireUser(req);
+  if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+
+  const user = await requireUser(req);
+  if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+
   try {
     const { builderJson } = await req.json();
     if (!builderJson) return NextResponse.json({ error: "Missing builderJson" }, { status: 400 });

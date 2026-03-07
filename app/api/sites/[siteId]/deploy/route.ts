@@ -14,18 +14,13 @@ import { generateSiteCode } from "@/lib/builder/code-generator";
 import { sendSiteDeployedEmail } from "@/lib/nalo/client";
 
 export async function POST(
-  _req: Request,
+  req: Request,
   { params }: { params: { siteId: string } }
 ) {
+  const user = await requireUser(req);
+  if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+
   try {
-    const {
-      data: { session },
-    } = await supabase.auth.getSession();
-
-    if (!session) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
-
     const site = await prisma.site.findFirst({
       where: { id: params.siteId, userId: user.prismaId },
       include: { user: true },
