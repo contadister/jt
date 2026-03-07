@@ -59,7 +59,8 @@ export function BuilderShell({ siteId, siteName }: BuilderShellProps) {
     };
     window.addEventListener("keydown", handleKey);
     return () => window.removeEventListener("keydown", handleKey);
-  }, [undo, redo, saveNow, siteId]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [undo, redo, saveNow, siteId, deleteElement, duplicateElement, selectedElementId]);
 
   const canvasWidth = previewMode === "mobile" ? "390px"
     : previewMode === "tablet" ? "768px"
