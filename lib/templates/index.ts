@@ -1,8 +1,7 @@
 // lib/templates/index.ts
 // Pre-built site templates for Josett
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-type AnyStyles = Record<string, any>;
+type AnyStyles = Record<string, string | number | boolean | null | undefined | AnyStyles | AnyStyles[]>;
 
 // Using a relaxed type for template definitions to avoid SectionStyles constraints
 type TemplateBuilderJSON = {
