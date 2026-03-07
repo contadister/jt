@@ -10,7 +10,9 @@ async function getAuthedSite(siteId: string, userId: string) {
 }
 
 export async function GET(req: Request, { params }: { params: { siteId: string; postId: string } }) {
-  const user = await requireUser(req);  const site = await getAuthedSite(params.siteId, user.prismaId);
+  const user = await requireUser(req);
+  if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  const site = await getAuthedSite(params.siteId, user.prismaId);
   if (!site) return NextResponse.json({ error: "Not found" }, { status: 404 });
   const post = await prisma.blogPost.findFirst({ where: { id: params.postId, siteId: site.id } });
   if (!post) return NextResponse.json({ error: "Post not found" }, { status: 404 });
@@ -18,7 +20,9 @@ export async function GET(req: Request, { params }: { params: { siteId: string; 
 }
 
 export async function PATCH(req: Request, { params }: { params: { siteId: string; postId: string } }) {
-  const user = await requireUser(req);  const site = await getAuthedSite(params.siteId, user.prismaId);
+  const user = await requireUser(req);
+  if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  const site = await getAuthedSite(params.siteId, user.prismaId);
   if (!site) return NextResponse.json({ error: "Not found" }, { status: 404 });
 
   const body = await req.json();
@@ -34,7 +38,9 @@ export async function PATCH(req: Request, { params }: { params: { siteId: string
 }
 
 export async function DELETE(req: Request, { params }: { params: { siteId: string; postId: string } }) {
-  const user = await requireUser(req);  const site = await getAuthedSite(params.siteId, user.prismaId);
+  const user = await requireUser(req);
+  if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  const site = await getAuthedSite(params.siteId, user.prismaId);
   if (!site) return NextResponse.json({ error: "Not found" }, { status: 404 });
   await prisma.blogPost.deleteMany({ where: { id: params.postId, siteId: site.id } });
   return NextResponse.json({ success: true });
