@@ -53,7 +53,7 @@ export async function GET(req: Request) {
     if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
     const sites = await prisma.site.findMany({
-      where: { userId: user.id },
+      where: { userId: user.prismaId },
       orderBy: { updatedAt: "desc" },
       select: {
         id: true, name: true, slug: true, status: true, siteType: true,
@@ -96,7 +96,7 @@ export async function POST(req: Request) {
 
     const site = await prisma.site.create({
       data: {
-        userId: user.id,
+        userId: user.prismaId,
         name: parsed.data.name,
         slug: parsed.data.slug,
         description: parsed.data.description,

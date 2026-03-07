@@ -1,14 +1,14 @@
 // lib/auth/getAuthUser.ts
-// Single function to get authenticated user from Bearer token or cookie session.
-// Returns null if not authenticated.
+// Returns the authenticated user's PRISMA ID (not Supabase UUID).
+// This is the ID to use for all prisma.user.findUnique / site.create / etc.
 
 import { createServerClient } from "@/lib/supabase/server";
 import { ensureUser } from "./ensureUser";
 
 export type AuthUser = {
-  id: string;
+  prismaId: string;       // Use this for all Prisma queries
+  supabaseId: string;     // The Supabase auth UUID
   email?: string;
-  user_metadata?: Record<string, unknown>;
 };
 
 export async function getAuthUser(req: Request): Promise<AuthUser | null> {
@@ -16,25 +16,25 @@ export async function getAuthUser(req: Request): Promise<AuthUser | null> {
   const token = authHeader.startsWith("Bearer ") ? authHeader.slice(7) : null;
   const supabase = createServerClient();
 
-  let user: AuthUser | null = null;
+  let supabaseUser: { id: string; email?: string; user_metadata?: Record<string, unknown> } | null = null;
 
   if (token) {
     const { data } = await supabase.auth.getUser(token);
-    if (data.user) user = data.user as AuthUser;
+    if (data.user) supabaseUser = data.user;
   }
 
-  if (!user) {
+  if (!supabaseUser) {
     const { data } = await supabase.auth.getSession();
-    if (data.session?.user) user = data.session.user as AuthUser;
+    if (data.session?.user) supabaseUser = data.session.user;
   }
 
-  if (!user) return null;
+  if (!supabaseUser) return null;
 
-  // Sync to Prisma — wrapped in try/catch so auth errors don't crash routes
   try {
-    await ensureUser(user);
+    const prismaId = await ensureUser(supabaseUser);
+    return { prismaId, supabaseId: supabaseUser.id, email: supabaseUser.email };
   } catch (e) {
-    console.error("ensureUser failed (non-fatal):", e);
+    console.error("[getAuthUser] ensureUser failed:", e);
+    return null;
   }
-  return user;
 }

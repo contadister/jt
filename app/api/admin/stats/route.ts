@@ -10,7 +10,7 @@ export async function GET(req: Request) {
     const user = await getAuthUser(req);
     if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-    const dbUser = await prisma.user.findUnique({ where: { id: user.id }, select: { role: true } });
+    const dbUser = await prisma.user.findUnique({ where: { id: user.prismaId }, select: { role: true } });
     if (dbUser?.role !== "ADMIN") return NextResponse.json({ error: "Forbidden" }, { status: 403 });
 
     const since30d = subDays(new Date(), 30);

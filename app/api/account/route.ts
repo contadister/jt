@@ -3,7 +3,6 @@ export const dynamic = "force-dynamic";
 import { NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 import { prisma } from "@/lib/prisma/client";
-import { ensureUser } from "@/lib/auth/ensureUser";
 
 // Use plain supabase-js to verify the Bearer token — avoids the cookie-refresh
 // issue with createRouteHandlerClient in Next.js App Router Route Handlers.
@@ -14,14 +13,26 @@ function getSupabase() {
   );
 }
 
-async function getUser(req: Request) {
+async function getUser(req: Request): Promise<{ supabaseId: string; prismaId: string; email: string } | null> {
   const auth = req.headers.get("authorization") ?? "";
   const token = auth.startsWith("Bearer ") ? auth.slice(7) : null;
   if (!token) return null;
   const supabase = getSupabase();
   const { data: { user }, error } = await supabase.auth.getUser(token);
-  if (error || !user) return null;
-  return user;
+  if (error || !user || !user.email) return null;
+
+  // Look up Prisma user by email (not by Supabase UUID — IDs may differ)
+  let prismaUser = await prisma.user.findUnique({ where: { email: user.email } });
+  if (!prismaUser) {
+    // First-ever login: create the Prisma row with the Supabase UUID
+    const fullName = String(
+      user.user_metadata?.full_name || user.user_metadata?.name || user.email.split("@")[0]
+    );
+    prismaUser = await prisma.user.create({
+      data: { id: user.id, email: user.email, fullName, emailVerified: true },
+    });
+  }
+  return { supabaseId: user.id, prismaId: prismaUser.id, email: user.email };
 }
 
 export async function GET(req: Request) {
@@ -29,12 +40,9 @@ export async function GET(req: Request) {
     const authUser = await getUser(req);
     if (!authUser) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-    // Ensure user exists in Prisma with the correct Supabase UUID
-    await ensureUser(authUser);
-
     const [user, paymentHistory] = await Promise.all([
       prisma.user.findUnique({
-        where: { id: authUser.id },
+        where: { id: authUser.prismaId },
         select: {
           id: true, email: true, fullName: true, avatarUrl: true, phone: true,
           role: true, referralCode: true, referralCreditsGhs: true,
@@ -43,7 +51,7 @@ export async function GET(req: Request) {
         },
       }),
       prisma.payment.findMany({
-        where: { userId: authUser.id, status: "SUCCESS" },
+        where: { userId: authUser.prismaId, status: "SUCCESS" },
         include: { site: { select: { name: true } } },
         orderBy: { createdAt: "desc" },
         take: 20,
@@ -63,14 +71,13 @@ export async function PATCH(req: Request) {
     const authUser = await getUser(req);
     if (!authUser) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-    await ensureUser(authUser);
     const body = await req.json();
     const data: Record<string, unknown> = {};
     if (body.fullName !== undefined) data.fullName = body.fullName || null;
     if (body.phone !== undefined) data.phone = body.phone || null;
     if (body.avatarUrl !== undefined) data.avatarUrl = body.avatarUrl || null;
 
-    await prisma.user.update({ where: { id: authUser.id }, data });
+    await prisma.user.update({ where: { id: authUser.prismaId }, data });
 
     if (body.fullName) {
       const supabase = getSupabase();

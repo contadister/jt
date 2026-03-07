@@ -7,7 +7,7 @@ import { getAuthUser } from "@/lib/auth/getAuthUser";
 async function requireAdmin(req: Request) {
   const user = await getAuthUser(req);
   if (!user) return null;
-  const dbUser = await prisma.user.findUnique({ where: { id: user.id }, select: { role: true } });
+  const dbUser = await prisma.user.findUnique({ where: { id: user.prismaId }, select: { role: true } });
   return dbUser?.role === "ADMIN" ? user : null;
 }
 
