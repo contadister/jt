@@ -194,7 +194,13 @@ export type ElementType =
   | "navigation"
   | "footer"
   | "whatsapp-button"
-  | "link-in-bio";
+  | "link-in-bio"
+  | "image-text"
+  | "feature-grid"
+  | "steps-process"
+  | "business-hours"
+  | "brand-logos"
+  | "image-compare";
 
 export interface BuilderElement {
   id: string;
