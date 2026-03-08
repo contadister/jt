@@ -19,6 +19,52 @@ export interface Template {
   builderJson: TemplateBuilderJSON;
 }
 
+export const TEMPLATE_METAS = [
+  { id: "business-classic", name: "Business Pro", description: "Clean professional layout for SMEs, agencies & service businesses.", category: "Business", thumbnail: "🏢" },
+  { id: "restaurant", name: "Restaurant & Chop Bar", description: "Showcase your menu, hours and location. Perfect for chop bars, restaurants & cafes.", category: "Food & Drink", thumbnail: "🍽️" },
+  { id: "portfolio", name: "Creative Portfolio", description: "Showcase your work as a designer, photographer, developer or creative.", category: "Portfolio", thumbnail: "🎨" },
+  { id: "shop", name: "Online Shop", description: "Sell products online with Paystack checkout. Perfect for fashion, electronics & more.", category: "E-commerce", thumbnail: "🛍️" },
+  { id: "ngo", name: "NGO / Nonprofit", description: "Raise awareness, collect donations and showcase your impact.", category: "NGO", thumbnail: "🤝" },
+  { id: "blog", name: "Personal Blog", description: "Share your ideas, stories and expertise with the world.", category: "Blog", thumbnail: "✍️" },
+  { id: "link-in-bio", name: "Link in Bio", description: "One link to share everything — socials, products, bookings and more.", category: "Social", thumbnail: "🔗" },
+  { id: "event", name: "Event Landing Page", description: "Promote conferences, concerts, workshops and events with ticket links.", category: "Event", thumbnail: "🎪" },
+  { id: "salon", name: "Salon & Beauty", description: "Elegant template for salons, spas, and beauty studios", category: "Beauty", thumbnail: "💅" },
+  { id: "church", name: "Church & Ministry", description: "Welcoming template for churches and faith-based organisations", category: "Religious", thumbnail: "⛪" },
+  { id: "school", name: "School & Education", description: "Professional template for schools, colleges, and tutoring centres", category: "Education", thumbnail: "🎓" },
+  { id: "real-estate", name: "Real Estate", description: "Professional template for property agents and real estate companies", category: "Property", thumbnail: "🏠" },
+  { id: "gym", name: "Gym & Fitness", description: "High-energy template for gyms, fitness studios, and personal trainers", category: "Health", thumbnail: "💪" },
+  { id: "medical", name: "Medical Clinic", description: "Clean, trustworthy template for clinics, hospitals and healthcare providers", category: "Healthcare", thumbnail: "🩺" },
+  { id: "photography", name: "Photography Portfolio", description: "Stunning visual portfolio for photographers and creative professionals", category: "Creative", thumbnail: "📷" },
+  { id: "hotel", name: "Hotel & Accommodation", description: "Elegant template for hotels, guesthouses and Airbnb properties", category: "Hospitality", thumbnail: "🏨" },
+  { id: "law-firm", name: "Law Firm", description: "Authoritative, professional template for lawyers and legal practices", category: "Professional", thumbnail: "⚖️" },
+  { id: "tech-startup", name: "Tech Startup / SaaS", description: "Modern, bold template for tech startups and software products", category: "Technology", thumbnail: "🚀" },
+  { id: "clothing-store", name: "Clothing & Fashion", description: "Trendy template for fashion boutiques and clothing stores", category: "Fashion", thumbnail: "👗" },
+  { id: "car-dealer", name: "Car Dealership", description: "Professional template for car dealers and auto sales", category: "Automotive", thumbnail: "🚗" },
+  { id: "cleaning", name: "Cleaning Service", description: "Fresh, clean template for cleaning and home services companies", category: "Services", thumbnail: "🧹" },
+  { id: "catering", name: "Catering & Food Delivery", description: "Appetising template for caterers, food vendors and delivery services", category: "Food & Drink", thumbnail: "🍱" },
+  { id: "barber", name: "Barbershop", description: "Sharp, masculine template for barbershops and grooming studios", category: "Beauty", thumbnail: "✂️" },
+  { id: "event-planner", name: "Event Planning", description: "Vibrant template for event planners, decorators and coordinators", category: "Events", thumbnail: "🎉" },
+  { id: "consultant", name: "Freelancer / Consultant", description: "Personal brand template for consultants, coaches and freelancers", category: "Personal", thumbnail: "💼" },
+  { id: "pharmacy", name: "Pharmacy", description: "Clean, trustworthy template for pharmacies and chemists", category: "Healthcare", thumbnail: "💊" },
+  { id: "logistics", name: "Logistics & Courier", description: "Professional template for courier, delivery and logistics companies", category: "Transport", thumbnail: "🚚" },
+  { id: "interior-design", name: "Interior Design", description: "Elegant template for interior designers and home decor studios", category: "Creative", thumbnail: "🛋️" },
+  { id: "printing", name: "Printing & Branding", description: "Template for print shops, branding and signage companies", category: "Business", thumbnail: "🖨️" },
+  { id: "security", name: "Security Company", description: "Authoritative template for security firms and private guard services", category: "Services", thumbnail: "🛡️" },
+  { id: "construction", name: "Construction & Building", description: "Solid, professional template for construction and contracting companies", category: "Business", thumbnail: "🏗️" },
+  { id: "tutoring", name: "Online Tutoring", description: "Bright, engaging template for tutors, coaches and online educators", category: "Education", thumbnail: "📚" },
+  { id: "spa-wellness", name: "Spa & Wellness", description: "Calming, luxurious template for spas, yoga studios and wellness centres", category: "Health", thumbnail: "🧘" },
+  { id: "gaming-cafe", name: "Gaming Café / Esports", description: "High-energy template for gaming cafés, esports arenas and gaming centres", category: "Entertainment", thumbnail: "🎮" },
+  { id: "beauty-cosmetics", name: "Beauty & Cosmetics", description: "Glamorous template for beauty brands, skincare lines and cosmetics shops", category: "Beauty", thumbnail: "💄" },
+  { id: "auto-workshop", name: "Auto Workshop", description: "Bold template for car repair shops, mechanics and auto service centres", category: "Automotive", thumbnail: "🔧" },
+  { id: "agriculture", name: "Agriculture & Farming", description: "Vibrant template for farms, agribusinesses and agricultural cooperatives", category: "Services", thumbnail: "🌾" },
+  { id: "childcare", name: "Childcare & Daycare", description: "Warm, colourful template for creches, daycares and nursery schools", category: "Education", thumbnail: "🧸" },
+  { id: "accounting-firm", name: "Accounting & Finance", description: "Professional template for accounting firms, auditors and financial advisors", category: "Professional", thumbnail: "📊" },
+  { id: "music-band", name: "Music Artist / Band", description: "Dynamic dark template for musicians, DJs, bands and music producers", category: "Creative", thumbnail: "🎵" },
+  { id: "vet-clinic", name: "Veterinary Clinic", description: "Friendly template for vet clinics, pet hospitals and animal care services", category: "Healthcare", thumbnail: "🐾" }
+] as const;
+
+export type TemplateMeta = (typeof TEMPLATE_METAS)[number];
+
 const BASE_SETTINGS = (name: string, primary: string) => ({
   siteName: name,
   primaryColor: primary,

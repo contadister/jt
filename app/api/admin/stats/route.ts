@@ -10,9 +10,11 @@ export async function GET(req: Request) {
     const user = await getAuthUser(req);
     if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-    // Admin access: must be the designated ADMIN_EMAIL env var
+    // Admin access: DB role=ADMIN OR matching ADMIN_EMAIL env var
     const adminEmail = process.env.ADMIN_EMAIL ?? "";
-    if (!adminEmail || user.email !== adminEmail) {
+    const dbUser = await prisma.user.findUnique({ where: { id: user.prismaId }, select: { role: true } });
+    const isAdmin = dbUser?.role === "ADMIN" || (adminEmail && user.email === adminEmail);
+    if (!isAdmin) {
       return NextResponse.json({ error: "Forbidden" }, { status: 403 });
     }
 

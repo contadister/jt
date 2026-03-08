@@ -42,7 +42,7 @@ import {
   CheckCircle2,
 } from "lucide-react";
 import { calculatePrice, getPriceBreakdown, CUSTOM_DOMAIN_YEARLY_GHS } from "@/lib/pricing/engine";
-import { TEMPLATES } from "@/lib/templates/index";
+import { TEMPLATE_METAS } from "@/lib/templates/index";
 
 // ── Step types ────────────────────────────────────────────────────────────────
 
@@ -276,9 +276,9 @@ const CATEGORY_COLORS: Record<string, string> = {
 
 const ALL_TEMPLATES = [
   { id: "blank", name: "Blank Canvas", description: "Start from scratch with a clean slate", category: "Starter", thumbnail: "⬜", uses: 1240 },
-  ...TEMPLATES.map((t) => {
+  ...TEMPLATE_METAS.map((t) => {
     // deterministic "use count" seeded from template ID chars
-    const seed = t.id.split("").reduce((a, c) => a + c.charCodeAt(0), 0);
+    const seed = t.id.split("").reduce((a: number, c: string) => a + c.charCodeAt(0), 0);
     const uses = 400 + (seed * 73) % 3600;
     return { ...t, uses };
   }),
