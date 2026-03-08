@@ -17,15 +17,27 @@ export async function POST(
   req: Request,
   { params }: { params: { siteId: string } }
 ) {
-  const user = await requireUser(req);
-  if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  // Accept either user auth OR internal secret (called from payment verify)
+  const internalSecret = req.headers.get("x-internal-secret");
+  const isInternal = internalSecret && internalSecret === process.env.CRON_SECRET;
 
-  try {
-    const site = await prisma.site.findFirst({
+  let site;
+  if (isInternal) {
+    // Internal call from payment verify — find site directly, no user check
+    site = await prisma.site.findFirst({
+      where: { id: params.siteId },
+      include: { user: true },
+    });
+  } else {
+    const user = await requireUser(req);
+    if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    site = await prisma.site.findFirst({
       where: { id: params.siteId, userId: user.prismaId },
       include: { user: true },
     });
+  }
 
+  try {
     if (!site) {
       return NextResponse.json({ error: "Site not found" }, { status: 404 });
     }

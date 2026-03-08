@@ -20,9 +20,18 @@ function VerifyContent() {
       setError("No payment reference found.");
       return;
     }
+    // Get token for auth - verify route is public but send token if available
+    const { createClient } = await import("@/lib/supabase/client");
+    const supabase = createClient();
+    const { data: { session } } = await supabase.auth.getSession();
+    const token = session?.access_token;
+
     fetch("/api/payments/verify", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        ...(token ? { Authorization: `Bearer ${token}` } : {}),
+      },
       body: JSON.stringify({ reference }),
     })
       .then((r) => r.json())
