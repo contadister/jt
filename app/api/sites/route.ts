@@ -102,7 +102,7 @@ export async function POST(req: Request) {
     const site = await prisma.site.create({
       data: {
         userId: user.prismaId,
-        builderJson: templateBuilderJson ?? undefined,
+        builderJson: templateBuilderJson ? (templateBuilderJson as unknown as import("@prisma/client").Prisma.InputJsonValue) : undefined,
         name: parsed.data.name,
         slug: parsed.data.slug,
         description: parsed.data.description,
