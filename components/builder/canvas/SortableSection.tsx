@@ -1,19 +1,35 @@
 "use client";
 
+import { useState } from "react";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { useDroppable } from "@dnd-kit/core";
 import { useBuilderStore } from "@/store/builderStore";
 import { ElementRenderer } from "./ElementRenderer";
 import { BuilderSection } from "@/lib/types/builder";
-import { GripVertical, Trash2, Copy, Plus, Eye, EyeOff } from "lucide-react";
+import { GripVertical, Trash2, Copy, Plus, Eye, EyeOff, ChevronUp, ChevronDown } from "lucide-react";
+import { SectionPicker } from "../SectionPicker";
 
 export function SortableSection({ section }: { section: BuilderSection }) {
   const {
     selectedSectionId, selectedElementId,
     selectSection, deleteSection, duplicateSection, addSection,
     updateSection, builderJson, selectedPageId,
+    reorderSections,
   } = useBuilderStore();
+
+  const [showPicker, setShowPicker] = useState(false);
+
+  function moveSectionUp() {
+    if (!page) return;
+    const idx = page.sections.findIndex((s) => s.id === section.id);
+    if (idx > 0) reorderSections(page.id, idx, idx - 1);
+  }
+  function moveSectionDown() {
+    if (!page) return;
+    const idx = page.sections.findIndex((s) => s.id === section.id);
+    if (idx < page.sections.length - 1) reorderSections(page.id, idx, idx + 1);
+  }
 
   const { attributes, listeners, setNodeRef: setSortRef, transform, transition, isDragging } = useSortable({
     id: `sortable-section-${section.id}`,
@@ -31,6 +47,7 @@ export function SortableSection({ section }: { section: BuilderSection }) {
   };
 
   return (
+    <>
     <div
       ref={(el) => { setSortRef(el); setDropRef(el); }}
       style={style}
@@ -54,7 +71,13 @@ export function SortableSection({ section }: { section: BuilderSection }) {
           <button onClick={(e) => { e.stopPropagation(); duplicateSection(section.id); }} className="hover:bg-josett-500 p-1 rounded">
             <Copy size={11} />
           </button>
-          <button onClick={(e) => { e.stopPropagation(); if (page) addSection(page.id); }} className="hover:bg-josett-500 p-1 rounded">
+          <button onClick={(e) => { e.stopPropagation(); moveSectionUp(); }} className="hover:bg-josett-500 p-1 rounded" title="Move up">
+            <ChevronUp size={11} />
+          </button>
+          <button onClick={(e) => { e.stopPropagation(); moveSectionDown(); }} className="hover:bg-josett-500 p-1 rounded" title="Move down">
+            <ChevronDown size={11} />
+          </button>
+          <button onClick={(e) => { e.stopPropagation(); setShowPicker(true); }} className="hover:bg-josett-500 p-1 rounded" title="Add section below">
             <Plus size={11} />
           </button>
           <button onClick={(e) => { e.stopPropagation(); deleteSection(section.id); }} className="hover:bg-red-500 p-1 rounded">
@@ -89,5 +112,10 @@ export function SortableSection({ section }: { section: BuilderSection }) {
         )}
       </div>
     </div>
+
+      {showPicker && page && (
+        <SectionPicker pageId={page.id} onClose={() => setShowPicker(false)} />
+      )}
+    </>
   );
 }

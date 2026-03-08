@@ -42,6 +42,7 @@ import {
   CheckCircle2,
 } from "lucide-react";
 import { calculatePrice, getPriceBreakdown, CUSTOM_DOMAIN_YEARLY_GHS } from "@/lib/pricing/engine";
+import { TEMPLATES } from "@/lib/templates/index";
 
 // ── Step types ────────────────────────────────────────────────────────────────
 
@@ -149,14 +150,7 @@ const FEATURES = [
 
 const STEPS = ["Details", "Type", "Template", "Features", "Payment"];
 
-const TEMPLATE_PREVIEWS = [
-  { id: "blank", name: "Blank Canvas", desc: "Start from scratch", color: "from-slate-700 to-slate-900", emoji: "⬜" },
-  { id: "minimal-business", name: "Minimal Business", desc: "Clean & modern", color: "from-slate-800 to-josett-900", emoji: "🏢" },
-  { id: "creative-portfolio", name: "Creative Portfolio", desc: "Bold & expressive", color: "from-purple-900 to-pink-900", emoji: "🎨" },
-  { id: "food-restaurant", name: "Food & Restaurant", desc: "Warm & inviting", color: "from-orange-800 to-red-900", emoji: "🍽️" },
-  { id: "online-store", name: "Online Store", desc: "Clean & conversion-focused", color: "from-emerald-800 to-teal-900", emoji: "🛍️" },
-  { id: "tech-blog", name: "Tech Blog", desc: "Minimal & readable", color: "from-blue-900 to-indigo-900", emoji: "✍️" },
-];
+
 
 function slugify(name: string) {
   return name
@@ -249,52 +243,147 @@ function Step2({ form, updateForm }: StepProps) {
   );
 }
 
-const TEMPLATE_STATS: Record<string, { uses: number; badge?: string }> = {
-  "blank": { uses: 1240 },
-  "minimal-business": { uses: 3847, badge: "🔥 Most Popular" },
-  "creative-portfolio": { uses: 2103, badge: "⭐ Top Rated" },
-  "food-restaurant": { uses: 1892 },
-  "online-store": { uses: 2456, badge: "💰 Best for Sales" },
-  "tech-blog": { uses: 987 },
+
+
+// ── Template category colors ─────────────────────────────────────────────────
+const CATEGORY_COLORS: Record<string, string> = {
+  Business: "from-blue-600 to-indigo-700",
+  "Food & Drink": "from-orange-500 to-red-600",
+  Portfolio: "from-purple-600 to-pink-600",
+  "E-commerce": "from-emerald-600 to-teal-600",
+  NGO: "from-rose-500 to-pink-600",
+  Blog: "from-indigo-500 to-blue-600",
+  Social: "from-cyan-500 to-blue-500",
+  Event: "from-fuchsia-600 to-purple-600",
+  Beauty: "from-pink-500 to-rose-600",
+  Religious: "from-amber-500 to-yellow-600",
+  Education: "from-green-500 to-emerald-600",
+  Property: "from-slate-600 to-slate-700",
+  Health: "from-teal-500 to-cyan-600",
+  Healthcare: "from-blue-400 to-cyan-500",
+  Creative: "from-violet-500 to-purple-600",
+  Hospitality: "from-amber-600 to-orange-600",
+  Professional: "from-slate-700 to-slate-800",
+  Technology: "from-blue-600 to-violet-600",
+  Fashion: "from-rose-400 to-pink-500",
+  Automotive: "from-slate-600 to-zinc-700",
+  Services: "from-green-600 to-teal-600",
+  Transport: "from-blue-700 to-indigo-800",
+  Events: "from-fuchsia-500 to-rose-500",
+  Personal: "from-amber-500 to-orange-500",
+  Entertainment: "from-violet-700 to-purple-800",
+};
+
+const ALL_TEMPLATES = [
+  { id: "blank", name: "Blank Canvas", description: "Start from scratch with a clean slate", category: "Starter", thumbnail: "⬜", uses: 1240 },
+  ...TEMPLATES.map((t) => {
+    // deterministic "use count" seeded from template ID chars
+    const seed = t.id.split("").reduce((a, c) => a + c.charCodeAt(0), 0);
+    const uses = 400 + (seed * 73) % 3600;
+    return { ...t, uses };
+  }),
+];
+
+const POPULAR_BADGE: Record<string, string> = {
+  "business-classic": "🔥 Most Popular",
+  shop: "💰 Best for Sales",
+  restaurant: "⭐ Top Rated",
+  portfolio: "🎨 Fan Favourite",
+  "tech-startup": "🚀 Trending",
+  salon: "💅 Staff Pick",
 };
 
 function Step3({ form, updateForm }: StepProps) {
+  const [search, setSearch] = useState("");
+  const [catFilter, setCatFilter] = useState("All");
+
+  const categories = ["All", ...Array.from(new Set(ALL_TEMPLATES.map((t) => t.category)))];
+  const filtered = ALL_TEMPLATES.filter((t) => {
+    const matchSearch = !search || t.name.toLowerCase().includes(search.toLowerCase()) || t.description.toLowerCase().includes(search.toLowerCase());
+    const matchCat = catFilter === "All" || t.category === catFilter;
+    return matchSearch && matchCat;
+  });
+
   return (
     <div className="space-y-4">
-      {/* Social proof bar */}
+      {/* Social proof */}
       <div className="flex items-center gap-2 bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-800 rounded-xl px-4 py-2.5">
         <span className="text-green-500 text-lg">👥</span>
         <p className="text-sm text-green-700 dark:text-green-400 font-medium">
-          <strong>247 people</strong> created a site with Josett this week
+          <strong>247 people</strong> created a site with Josett this week · <strong>41 templates</strong> to choose from
         </p>
       </div>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-        {TEMPLATE_PREVIEWS.map((t) => {
+      {/* Search */}
+      <div className="relative">
+        <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+        <input
+          value={search}
+          onChange={(e) => { setSearch(e.target.value); setCatFilter("All"); }}
+          placeholder="Search templates (e.g. restaurant, portfolio, shop...)"
+          className="w-full pl-8 pr-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-josett-500"
+        />
+      </div>
+
+      {/* Category pills */}
+      <div className="flex gap-2 overflow-x-auto pb-1 -mx-1 px-1">
+        {categories.map((cat) => (
+          <button
+            key={cat}
+            onClick={() => setCatFilter(cat)}
+            className={`flex-shrink-0 px-3 py-1.5 rounded-full text-xs font-semibold transition-all ${
+              catFilter === cat
+                ? "bg-josett-600 text-white"
+                : "bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200"
+            }`}
+          >
+            {cat}
+          </button>
+        ))}
+      </div>
+
+      {/* Template grid */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 max-h-80 overflow-y-auto pr-1">
+        {filtered.map((t) => {
           const active = form.templateId === t.id;
-          const stats = TEMPLATE_STATS[t.id] ?? { uses: 500 };
+          const badge = POPULAR_BADGE[t.id];
+          const bgColor = CATEGORY_COLORS[t.category] ?? "from-slate-700 to-slate-900";
           return (
             <button key={t.id} onClick={() => updateForm("templateId", t.id)}
-              className={`relative rounded-2xl border-2 overflow-hidden transition-all text-left ${active ? "border-josett-500 shadow-lg shadow-josett-500/20 scale-[1.02]" : "border-slate-200 dark:border-slate-700 hover:border-josett-300 hover:scale-[1.01]"}`}>
-              {stats.badge && (
-                <div className="absolute top-2 left-2 z-10 bg-black/70 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
-                  {stats.badge}
+              className={`relative rounded-2xl border-2 overflow-hidden transition-all text-left hover:scale-[1.02] ${
+                active ? "border-josett-500 shadow-lg shadow-josett-500/20 scale-[1.02]" : "border-slate-200 dark:border-slate-700 hover:border-josett-300"
+              }`}>
+              {badge && (
+                <div className="absolute top-2 left-2 z-10 bg-black/70 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full whitespace-nowrap">
+                  {badge}
                 </div>
               )}
-              {active && <div className="absolute top-2 right-2 z-10 w-6 h-6 bg-josett-500 rounded-full flex items-center justify-center"><Check size={12} className="text-white" strokeWidth={3} /></div>}
-              <div className={`bg-gradient-to-br ${t.color} h-24 flex items-center justify-center`}><span className="text-4xl">{t.emoji}</span></div>
-              <div className="p-3 bg-white dark:bg-slate-900">
-                <div className="font-bold text-slate-900 dark:text-white text-xs">{t.name}</div>
-                <div className="text-xs text-slate-400 mb-1.5">{t.desc}</div>
-                <div className="text-[10px] text-slate-400">
-                  Used by <span className="font-semibold text-slate-500">{stats.uses.toLocaleString()}+</span> businesses
+              {active && (
+                <div className="absolute top-2 right-2 z-10 w-5 h-5 bg-josett-500 rounded-full flex items-center justify-center">
+                  <Check size={11} className="text-white" strokeWidth={3} />
+                </div>
+              )}
+              <div className={`bg-gradient-to-br ${bgColor} h-20 flex items-center justify-center`}>
+                <span className="text-4xl">{t.thumbnail}</span>
+              </div>
+              <div className="p-2.5 bg-white dark:bg-slate-900">
+                <div className="font-bold text-slate-900 dark:text-white text-xs leading-tight">{t.name}</div>
+                <div className="text-[10px] text-slate-400 mt-0.5 line-clamp-1">{t.description}</div>
+                <div className="text-[10px] text-slate-400 mt-1">
+                  <span className="font-semibold text-slate-500">{((t as {uses?:number}).uses ?? 500).toLocaleString()}+</span> users
                 </div>
               </div>
             </button>
           );
         })}
+        {filtered.length === 0 && (
+          <div className="col-span-3 text-center py-8 text-slate-400">
+            <p className="text-2xl mb-2">🔍</p>
+            <p className="text-sm">No templates found for "{search}"</p>
+          </div>
+        )}
       </div>
-      <p className="text-xs text-slate-400 text-center">✏️ Every template is 100% customizable in the builder</p>
+      <p className="text-xs text-slate-400 text-center">✏️ Every template is fully customizable · Content is pre-filled, just edit what you need</p>
     </div>
   );
 }

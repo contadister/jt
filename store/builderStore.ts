@@ -37,7 +37,7 @@ const DEFAULT_BUILDER_JSON: BuilderJSON = {
 };
 
 type PreviewMode = "desktop" | "tablet" | "mobile";
-type ActivePanel = "elements" | "layers" | "pages" | "styles";
+type ActivePanel = "elements" | "ai" | "layers" | "pages" | "styles";
 
 interface BuilderStore {
   // ── State ────────────────────────────────
@@ -64,7 +64,7 @@ interface BuilderStore {
   duplicatePage: (pageId: string) => void;
 
   // ── Section Actions ───────────────────────
-  addSection: (pageId: string, sectionType?: string) => void;
+  addSection: (pageId: string, sectionType?: string) => string;
   deleteSection: (sectionId: string) => void;
   updateSection: (sectionId: string, updates: Partial<BuilderSection>) => void;
   updateSectionStyles: (sectionId: string, styles: Partial<SectionStyles>) => void;
@@ -230,6 +230,7 @@ export const useBuilderStore = create<BuilderStore>()(
         isDirty: true,
       }));
       get().pushHistory();
+      return newSection.id;
     },
 
     deleteSection: (sectionId) => {
