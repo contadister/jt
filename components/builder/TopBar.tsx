@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback } from "react";
+import { useCallback, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import { useBuilderStore } from "@/store/builderStore";
 import {
@@ -31,6 +31,28 @@ export function BuilderTopBar({
 
   const canUndo = historyIndex > 0;
   const canRedo = historyIndex < history.length - 1;
+
+  // Site completion score — motivational progress bar
+  const completion = useMemo(() => {
+    const pages = builderJson.pages ?? [];
+    const allSections = pages.flatMap((p) => p.sections ?? []);
+    const allElements = allSections.flatMap((s) => s.elements ?? []);
+
+    const checks = [
+      allSections.length >= 1,                          // Has at least 1 section
+      allSections.length >= 3,                          // Has 3+ sections
+      allElements.some((e) => e.type === "hero"),       // Has a hero
+      allElements.some((e) => ["form","contact"].includes(e.type)), // Has contact
+      allElements.some((e) => e.type === "navigation"), // Has nav
+      allElements.some((e) => e.type === "footer"),     // Has footer
+      (builderJson.siteSettings?.siteName ?? "") !== "My Website", // Named
+    ];
+    const score = Math.round((checks.filter(Boolean).length / checks.length) * 100);
+    return score;
+  }, [builderJson]);
+
+  const completionColor = completion < 40 ? "bg-rose-500" : completion < 70 ? "bg-amber-500" : "bg-emerald-500";
+  const completionLabel = completion < 40 ? "Just getting started" : completion < 70 ? "Coming together!" : completion < 100 ? "Almost there!" : "🎉 Looking great!";
 
   const handleSave = useCallback(async () => {
     if (isSaving) return;
@@ -82,10 +104,24 @@ export function BuilderTopBar({
         {leftCollapsed ? <PanelLeftOpen size={15} /> : <PanelLeftClose size={15} />}
       </button>
 
-      <span className="text-slate-300 text-sm font-semibold truncate max-w-[140px]">{siteName}</span>
+      <span className="text-slate-300 text-sm font-semibold truncate max-w-[120px]">{siteName}</span>
       {isDirty && <span className="w-1.5 h-1.5 rounded-full bg-amber-400 flex-shrink-0" title="Unsaved changes" />}
 
       <div className="flex-1" />
+
+      {/* Completion progress */}
+      <div className="hidden md:flex items-center gap-2 mr-1">
+        <div className="flex flex-col items-end gap-0.5">
+          <span className="text-[10px] text-slate-400 leading-none">{completionLabel}</span>
+          <div className="w-28 h-1.5 bg-slate-800 rounded-full overflow-hidden">
+            <div
+              className={`h-full rounded-full transition-all duration-500 ${completionColor}`}
+              style={{ width: `${completion}%` }}
+            />
+          </div>
+        </div>
+        <span className="text-xs font-bold text-slate-300 w-8 text-right">{completion}%</span>
+      </div>
 
       {/* Undo / Redo */}
       <button

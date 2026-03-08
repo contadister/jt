@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { TEMPLATES } from "@/lib/templates/index";
 import { prisma } from "@/lib/prisma/client";
 import { SiteType } from "@prisma/client";
 import { requireUser } from "@/lib/auth/requireUser";
@@ -94,9 +95,14 @@ export async function POST(req: Request) {
       ? parsed.data.siteType
       : "BUSINESS") as SiteType;
 
+    // Resolve template builderJson
+    const template = TEMPLATES.find((t) => t.id === parsed.data.templateId);
+    const templateBuilderJson = template?.builderJson ?? null;
+
     const site = await prisma.site.create({
       data: {
         userId: user.prismaId,
+        builderJson: templateBuilderJson ?? undefined,
         name: parsed.data.name,
         slug: parsed.data.slug,
         description: parsed.data.description,

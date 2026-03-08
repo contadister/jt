@@ -1,13 +1,18 @@
 "use client";
 
+import { useState } from "react";
 import { useBuilderStore } from "@/store/builderStore";
 import { ElementsPanel } from "./ElementsPanel";
 import { LayersPanel } from "./LayersPanel";
 import { PagesPanel } from "./PagesPanel";
 import { GlobalStylesPanel } from "./GlobalStylesPanel";
-import { Layers, Layout, FileText, Palette } from "lucide-react";
+import { Layers, Layout, FileText, Palette, Plus } from "lucide-react";
+import { SectionPicker } from "../SectionPicker";
+import { useState } from "react";
+import { useBuilderStore } from "@/store/builderStore";
 
 const TABS = [
+  { id: "add", label: "Add", icon: Plus },
   { id: "elements", label: "Elements", icon: Layout },
   { id: "layers", label: "Layers", icon: Layers },
   { id: "pages", label: "Pages", icon: FileText },
@@ -17,6 +22,9 @@ const TABS = [
 export function LeftPanel() {
   const { activePanel, setActivePanel } = useBuilderStore();
 
+  const { selectedPageId } = useBuilderStore();
+  const [showPicker, setShowPicker] = useState(false);
+
   return (
     <div className="h-full flex flex-col">
       {/* Tab bar */}
@@ -24,15 +32,20 @@ export function LeftPanel() {
         {TABS.map(({ id, label, icon: Icon }) => (
           <button
             key={id}
-            onClick={() => setActivePanel(id)}
+            onClick={() => {
+              if (id === "add") { setShowPicker(true); return; }
+              setActivePanel(id as "elements" | "layers" | "pages" | "styles");
+            }}
             className={`flex-1 flex flex-col items-center gap-1 py-2.5 text-xs font-medium transition-colors ${
-              activePanel === id
+              id === "add"
+                ? "text-indigo-400 hover:text-indigo-300 hover:bg-indigo-950/30"
+                : activePanel === id
                 ? "text-josett-400 border-b-2 border-josett-400"
                 : "text-slate-500 hover:text-slate-300"
             }`}
           >
             <Icon size={14} />
-            <span className="text-[10px]">{label}</span>
+            <span className="text-[10px]">{id === "add" ? "Add" : label}</span>
           </button>
         ))}
       </div>
@@ -44,6 +57,10 @@ export function LeftPanel() {
         {activePanel === "pages" && <PagesPanel />}
         {activePanel === "styles" && <GlobalStylesPanel />}
       </div>
+
+      {showPicker && (
+        <SectionPicker pageId={selectedPageId} onClose={() => setShowPicker(false)} />
+      )}
     </div>
   );
 }

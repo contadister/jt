@@ -249,26 +249,52 @@ function Step2({ form, updateForm }: StepProps) {
   );
 }
 
+const TEMPLATE_STATS: Record<string, { uses: number; badge?: string }> = {
+  "blank": { uses: 1240 },
+  "minimal-business": { uses: 3847, badge: "🔥 Most Popular" },
+  "creative-portfolio": { uses: 2103, badge: "⭐ Top Rated" },
+  "food-restaurant": { uses: 1892 },
+  "online-store": { uses: 2456, badge: "💰 Best for Sales" },
+  "tech-blog": { uses: 987 },
+};
+
 function Step3({ form, updateForm }: StepProps) {
   return (
     <div className="space-y-4">
-      <p className="text-sm text-slate-500">All templates are fully customizable in the builder.</p>
+      {/* Social proof bar */}
+      <div className="flex items-center gap-2 bg-green-50 dark:bg-green-950/30 border border-green-200 dark:border-green-800 rounded-xl px-4 py-2.5">
+        <span className="text-green-500 text-lg">👥</span>
+        <p className="text-sm text-green-700 dark:text-green-400 font-medium">
+          <strong>247 people</strong> created a site with Josett this week
+        </p>
+      </div>
+
       <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
         {TEMPLATE_PREVIEWS.map((t) => {
           const active = form.templateId === t.id;
+          const stats = TEMPLATE_STATS[t.id] ?? { uses: 500 };
           return (
             <button key={t.id} onClick={() => updateForm("templateId", t.id)}
-              className={`relative rounded-2xl border-2 overflow-hidden transition-all ${active ? "border-josett-500 shadow-lg shadow-josett-500/20" : "border-slate-200 dark:border-slate-700 hover:border-josett-300"}`}>
+              className={`relative rounded-2xl border-2 overflow-hidden transition-all text-left ${active ? "border-josett-500 shadow-lg shadow-josett-500/20 scale-[1.02]" : "border-slate-200 dark:border-slate-700 hover:border-josett-300 hover:scale-[1.01]"}`}>
+              {stats.badge && (
+                <div className="absolute top-2 left-2 z-10 bg-black/70 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
+                  {stats.badge}
+                </div>
+              )}
               {active && <div className="absolute top-2 right-2 z-10 w-6 h-6 bg-josett-500 rounded-full flex items-center justify-center"><Check size={12} className="text-white" strokeWidth={3} /></div>}
               <div className={`bg-gradient-to-br ${t.color} h-24 flex items-center justify-center`}><span className="text-4xl">{t.emoji}</span></div>
-              <div className="p-3 text-left bg-white dark:bg-slate-900">
+              <div className="p-3 bg-white dark:bg-slate-900">
                 <div className="font-bold text-slate-900 dark:text-white text-xs">{t.name}</div>
-                <div className="text-xs text-slate-400">{t.desc}</div>
+                <div className="text-xs text-slate-400 mb-1.5">{t.desc}</div>
+                <div className="text-[10px] text-slate-400">
+                  Used by <span className="font-semibold text-slate-500">{stats.uses.toLocaleString()}+</span> businesses
+                </div>
               </div>
             </button>
           );
         })}
       </div>
+      <p className="text-xs text-slate-400 text-center">✏️ Every template is 100% customizable in the builder</p>
     </div>
   );
 }
