@@ -8,8 +8,6 @@ import { PagesPanel } from "./PagesPanel";
 import { GlobalStylesPanel } from "./GlobalStylesPanel";
 import { Layers, Layout, FileText, Palette, Plus } from "lucide-react";
 import { SectionPicker } from "../SectionPicker";
-import { useState } from "react";
-import { useBuilderStore } from "@/store/builderStore";
 
 const TABS = [
   { id: "add", label: "Add", icon: Plus },
