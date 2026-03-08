@@ -3,6 +3,7 @@
 import { Suspense, useEffect, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { CheckCircle2, XCircle, Loader2 } from "lucide-react";
+import { createClient } from "@/lib/supabase/client";
 import Link from "next/link";
 
 function VerifyContent() {
@@ -20,22 +21,23 @@ function VerifyContent() {
       setError("No payment reference found.");
       return;
     }
-    // Get token for auth - verify route is public but send token if available
-    const { createClient } = await import("@/lib/supabase/client");
-    const supabase = createClient();
-    const { data: { session } } = await supabase.auth.getSession();
-    const token = session?.access_token;
 
-    fetch("/api/payments/verify", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        ...(token ? { Authorization: `Bearer ${token}` } : {}),
-      },
-      body: JSON.stringify({ reference }),
-    })
-      .then((r) => r.json())
-      .then((data) => {
+    const verify = async () => {
+      try {
+        const supabase = createClient();
+        const { data: { session } } = await supabase.auth.getSession();
+        const token = session?.access_token;
+
+        const res = await fetch("/api/payments/verify", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            ...(token ? { Authorization: `Bearer ${token}` } : {}),
+          },
+          body: JSON.stringify({ reference }),
+        });
+        const data = await res.json();
+
         if (data.success) {
           setStatus("success");
           setSiteId(data.siteId);
@@ -44,8 +46,13 @@ function VerifyContent() {
           setStatus("failed");
           setError(data.error || "Payment was not successful.");
         }
-      })
-      .catch(() => { setStatus("failed"); setError("Could not verify payment. Please contact support."); });
+      } catch {
+        setStatus("failed");
+        setError("Could not verify payment. Please contact support.");
+      }
+    };
+
+    verify();
   }, [reference, router]);
 
   return (
