@@ -273,7 +273,7 @@ function ElementContent({ element, content }: { element: BuilderElement; content
           <div className="space-y-5 max-w-lg mx-auto">
             {steps.map((step, i) => (
               <div key={i} className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-full flex items-center justify-center text-white font-black text-sm shrink-0" style={{ background: primaryColor }}>{step.number}</div>
+                <div className="w-10 h-10 rounded-full flex items-center justify-center text-white font-black text-sm shrink-0 bg-josett-600">{step.number}</div>
                 <div>
                   <p className="font-bold text-slate-800">{step.title}</p>
                   <p className="text-sm text-slate-500 mt-0.5">{step.desc}</p>
@@ -310,7 +310,7 @@ function ElementContent({ element, content }: { element: BuilderElement; content
           </div>
           <div className="relative rounded-xl overflow-hidden">
             {(content.afterImage as string) ? <img src={content.afterImage as string} alt="After" className="w-full h-36 object-cover" /> : <div className="w-full h-36 bg-slate-200 flex items-center justify-center text-slate-400 text-sm">After Image</div>}
-            <div className="absolute bottom-2 left-2 text-xs font-black text-white px-2 py-0.5 rounded-full" style={{ background: primaryColor }}>{content.afterLabel as string || "After"}</div>
+            <div className="absolute bottom-2 left-2 text-xs font-black text-white px-2 py-0.5 rounded-full" className="bg-josett-600">{content.afterLabel as string || "After"}</div>
           </div>
         </div>
       );
@@ -324,7 +324,7 @@ function ElementContent({ element, content }: { element: BuilderElement; content
             {hours.map((row, i) => (
               <div key={i} className="flex justify-between items-center px-4 py-2.5">
                 <span className="text-sm font-semibold text-slate-700">{row.day}</span>
-                <span className="text-sm font-bold" style={{ color: row.time.toLowerCase().includes("closed") ? "#ef4444" : primaryColor }}>{row.time}</span>
+                <span className="text-sm font-bold" style={{ color: row.time.toLowerCase().includes("closed") ? "#ef4444" : "#6272f1" }}>{row.time}</span>
               </div>
             ))}
           </div>
