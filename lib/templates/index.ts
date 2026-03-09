@@ -486,7 +486,7 @@ export const TEMPLATES: Template[] = [
               ]
             }
           }]
-        }]
+        },
           { id: "s-faq", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#fff9fb" }, elements: [
             { id: "fq-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "40px" }, content: { text: "Questions?", level: "h2" } },
             { id: "fq-el", type: "faq-accordion", isVisible: true, isLocked: false, styles: {}, content: { items: [
@@ -499,6 +499,7 @@ export const TEMPLATES: Template[] = [
           { id: "s-newsletter", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#ec4899" }, elements: [
             { id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { title: "Subscribe for exclusive content & updates", placeholder: "Enter your email", buttonLabel: "Subscribe" } }
           ] }
+        ]
       }]
     }
   },
