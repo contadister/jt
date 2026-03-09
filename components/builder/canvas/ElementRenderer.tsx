@@ -114,7 +114,7 @@ function ElementContent({ element, content }: { element: BuilderElement; content
             <a href="#" className="hover:text-josett-600">About</a>
             <a href="#" className="hover:text-josett-600">Contact</a>
           </div>
-          {!!content.ctaText && (
+          {!!(content.ctaText as string) && (
             <button className="bg-josett-600 text-white text-sm font-semibold px-4 py-2 rounded-lg">{content.ctaText as string}</button>
           )}
         </nav>
@@ -269,7 +269,7 @@ function ElementContent({ element, content }: { element: BuilderElement; content
       const steps = (content.steps as { number: string; title: string; desc: string }[]) || [];
       return (
         <div>
-          {content.heading && <h3 className="text-lg font-black text-slate-800 mb-6 text-center">{content.heading as string}</h3>}
+          {(content.heading as string) && <h3 className="text-lg font-black text-slate-800 mb-6 text-center">{content.heading as string}</h3>}
           <div className="space-y-5 max-w-lg mx-auto">
             {steps.map((step, i) => (
               <div key={i} className="flex items-start gap-4">
@@ -289,7 +289,7 @@ function ElementContent({ element, content }: { element: BuilderElement; content
       const logos = (content.logos as { name: string; url: string }[]) || [];
       return (
         <div className="text-center">
-          {content.heading && <p className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-5">{content.heading as string}</p>}
+          {(content.heading as string) && <p className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-5">{content.heading as string}</p>}
           <div className="flex flex-wrap gap-3 justify-center">
             {logos.map((l, i) => (
               <div key={i} className="px-5 py-3 border border-slate-200 rounded-xl bg-slate-50 text-sm font-bold text-slate-400">
@@ -319,7 +319,7 @@ function ElementContent({ element, content }: { element: BuilderElement; content
       const hours = (content.hours as { day: string; time: string }[]) || [];
       return (
         <div className="max-w-sm mx-auto">
-          {content.title && <h3 className="text-lg font-black text-slate-800 mb-4 text-center">{content.title as string}</h3>}
+          {(content.title as string) && <h3 className="text-lg font-black text-slate-800 mb-4 text-center">{content.title as string}</h3>}
           <div className="bg-slate-50 rounded-xl overflow-hidden divide-y divide-slate-100">
             {hours.map((row, i) => (
               <div key={i} className="flex justify-between items-center px-4 py-2.5">
