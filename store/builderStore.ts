@@ -37,7 +37,7 @@ const DEFAULT_BUILDER_JSON: BuilderJSON = {
 };
 
 type PreviewMode = "desktop" | "tablet" | "mobile";
-type ActivePanel = "elements" | "ai" | "layers" | "pages" | "styles";
+type ActivePanel = "elements" | "layers" | "pages" | "styles";
 
 interface BuilderStore {
   // ── State ────────────────────────────────

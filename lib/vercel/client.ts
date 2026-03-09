@@ -62,13 +62,24 @@ export async function addEnvToProject(
 // ── Deployments ───────────────────────────────────────────────────────────────
 
 export async function triggerDeployment(
-  projectId: string
+  projectId: string,
+  repoName?: string,
+  githubOrg?: string
 ): Promise<{ id: string; url: string }> {
-  return vercelRequest(`/v13/deployments${teamQuery()}`, "POST", {
+  const body: Record<string, unknown> = {
     name: projectId,
     project: projectId,
     target: "production",
-  });
+  };
+  // If we have git info, attach gitSource so Vercel deploys from latest commit
+  if (repoName && githubOrg) {
+    body.gitSource = {
+      type: "github",
+      repoId: `${githubOrg}/${repoName}`,
+      ref: "main",
+    };
+  }
+  return vercelRequest(`/v13/deployments${teamQuery()}`, "POST", body);
 }
 
 export async function getDeploymentStatus(deploymentId: string): Promise<{

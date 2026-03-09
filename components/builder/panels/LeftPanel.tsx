@@ -6,23 +6,19 @@ import { ElementsPanel } from "./ElementsPanel";
 import { LayersPanel } from "./LayersPanel";
 import { PagesPanel } from "./PagesPanel";
 import { GlobalStylesPanel } from "./GlobalStylesPanel";
-import { Layers, Layout, FileText, Palette, Plus, Sparkles } from "lucide-react";
+import { Layers, Layout, FileText, Palette, Plus } from "lucide-react";
 import { SectionPicker } from "../SectionPicker";
-import { AiWriterPanel } from "./AiWriterPanel";
 
 const TABS = [
-  { id: "add", label: "Add", icon: Plus },
-  { id: "elements", label: "Elements", icon: Layout },
-  { id: "ai", label: "AI", icon: Sparkles },
-  { id: "layers", label: "Layers", icon: Layers },
-  { id: "pages", label: "Pages", icon: FileText },
-  { id: "styles", label: "Styles", icon: Palette },
+  { id: "add",      label: "Add",    icon: Plus },
+  { id: "elements", label: "Blocks", icon: Layout },
+  { id: "layers",   label: "Layers", icon: Layers },
+  { id: "pages",    label: "Pages",  icon: FileText },
+  { id: "styles",   label: "Design", icon: Palette },
 ] as const;
 
 export function LeftPanel() {
-  const { activePanel, setActivePanel } = useBuilderStore();
-
-  const { selectedPageId } = useBuilderStore();
+  const { activePanel, setActivePanel, selectedPageId } = useBuilderStore();
   const [showPicker, setShowPicker] = useState(false);
 
   return (
@@ -34,18 +30,18 @@ export function LeftPanel() {
             key={id}
             onClick={() => {
               if (id === "add") { setShowPicker(true); return; }
-              setActivePanel(id as "elements" | "ai" | "layers" | "pages" | "styles");
+              setActivePanel(id as "elements" | "layers" | "pages" | "styles");
             }}
             className={`flex-1 flex flex-col items-center gap-1 py-2.5 text-xs font-medium transition-colors ${
               id === "add"
-                ? "text-indigo-400 hover:text-indigo-300 hover:bg-indigo-950/30"
+                ? "text-josett-400 hover:text-josett-300 hover:bg-josett-950/30"
                 : activePanel === id
                 ? "text-josett-400 border-b-2 border-josett-400"
                 : "text-slate-500 hover:text-slate-300"
             }`}
           >
             <Icon size={14} />
-            <span className="text-[10px]">{id === "add" ? "Add" : label}</span>
+            <span className="text-[10px]">{label}</span>
           </button>
         ))}
       </div>
@@ -53,7 +49,6 @@ export function LeftPanel() {
       {/* Panel content */}
       <div className="flex-1 overflow-y-auto">
         {activePanel === "elements" && <ElementsPanel />}
-        {activePanel === "ai" && <AiWriterPanel />}
         {activePanel === "layers" && <LayersPanel />}
         {activePanel === "pages" && <PagesPanel />}
         {activePanel === "styles" && <GlobalStylesPanel />}

@@ -161,12 +161,37 @@ export const TEMPLATES: Template[] = [
               }
             ]
           },
+          { id: "s-testimonial", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#f8fafc" }, elements: [
+            { id: "tm-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "32px" }, content: { text: "What Our Clients Say", level: "h2" } },
+            { id: "tm-el", type: "testimonial", isVisible: true, isLocked: false, styles: { maxWidth: "600px", margin: "0 auto", textAlign: "center" }, content: { quote: "Working with this team transformed our business. Professional, reliable and results-driven. I'd recommend them to any business owner.", author: "Ama Asante", role: "CEO, Asante Trading Co.", avatar: "" } }
+          ] },
+          { id: "s-faq", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#fff" }, elements: [
+            { id: "fq-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "40px" }, content: { text: "Frequently Asked Questions", level: "h2" } },
+            { id: "fq-el", type: "faq-accordion", isVisible: true, isLocked: false, styles: {}, content: { items: [
+              { q: "How quickly can you get started?", a: "We typically begin within 2 business days of your enquiry." },
+              { q: "Do you offer payment plans?", a: "Yes, we offer flexible payment plans tailored to your budget." },
+              { q: "What areas do you serve?", a: "We serve clients across Ghana and can work remotely with international clients." },
+              { q: "How do I get a quote?", a: "Simply fill in the contact form above or call us directly for a free consultation." }
+            ] } }
+          ] },
+          { id: "s-whatsapp", type: "section", isVisible: true, styles: { padding: "50px 40px", background: "#f0fdf4", textAlign: "center" }, elements: [
+            { id: "wa-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "8px" }, content: { text: "Chat With Us on WhatsApp", level: "h2" } },
+            { id: "wa-t", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#64748b", marginBottom: "24px" }, content: { text: "We typically reply within minutes." } },
+            { id: "wa-el", type: "whatsapp-button", isVisible: true, isLocked: false, styles: { display: "flex", justifyContent: "center" }, content: { number: "", message: "Hello! I found you online and I'd like to know more about your services.", label: "Chat With Us" } }
+          ] },
+{ id: "s-newsletter", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#6272f1" }, elements: [
+            { id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { title: "Get business tips & updates in your inbox", placeholder: "Enter your email address", buttonLabel: "Subscribe" } }
+          ] },
           {
             id: "footer", type: "footer", isVisible: true,
             styles: { backgroundColor: "#1e293b", paddingTop: 0, paddingBottom: 0 },
             elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: { color: "#94a3b8" }, content: { text: "© 2025 My Business. All rights reserved.", links: [{ label: "Privacy", href: "/privacy" }] } }]
           }
         ]
+
+          { id: "s-newsletter", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#ec4899" }, elements: [
+            { id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { title: "Subscribe for exclusive content & updates", placeholder: "Enter your email", buttonLabel: "Subscribe" } }
+          ] }
       }]
     }
   },
@@ -207,6 +232,23 @@ export const TEMPLATES: Template[] = [
             { id: "c-t", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center" }, content: { text: "📍 123 High Street, Accra · Open Mon-Sat 7am-10pm, Sun 9am-6pm · 📞 +233 24 000 0000" } },
             { id: "c-w", type: "whatsapp-button", isVisible: true, isLocked: false, styles: { display: "flex", justifyContent: "center", marginTop: "20px" }, content: { number: "233240000000", message: "Hello! I'd like to make a reservation.", label: "Reserve a Table" } }
           ]},
+
+          { id: "s-testimonial", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#f8fafc" }, elements: [
+            { id: "tm-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "32px" }, content: { text: "What Our Clients Say", level: "h2" } },
+            { id: "tm-el", type: "testimonial", isVisible: true, isLocked: false, styles: { maxWidth: "600px", margin: "0 auto", textAlign: "center" }, content: { quote: "The jollof rice here is unbelievable! Fresh ingredients, generous portions and friendly staff. My family's favourite spot!", author: "Kwame Mensah", role: "Regular Customer", avatar: "" } }
+          ] },
+          { id: "s-faq", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#fff" }, elements: [
+            { id: "fq-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "40px" }, content: { text: "Frequently Asked Questions", level: "h2" } },
+            { id: "fq-el", type: "faq-accordion", isVisible: true, isLocked: false, styles: {}, content: { items: [
+              { q: "Do you take reservations?", a: "Yes! WhatsApp or call us to reserve your table. Walk-ins are also welcome." },
+              { q: "Do you offer delivery?", a: "Yes, we deliver within 5km. Minimum order GHS 30." },
+              { q: "Do you cater for events?", a: "Yes! We offer full catering for weddings, funerals and corporate events. Call for a quote." },
+              { q: "Are there vegetarian options?", a: "Yes, we have a selection of vegetarian dishes. Just ask our staff." }
+            ] } }
+          ] },
+          { id: "s-newsletter", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#6272f1" }, elements: [
+            { id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { title: "Get our weekly specials & new menu items", placeholder: "Enter your email address", buttonLabel: "Subscribe" } }
+          ] },
           { id: "footer", type: "footer", isVisible: true, styles: { backgroundColor: "#1a0000" }, elements: [{ id: "f1", type: "footer", isVisible: true, isLocked: false, styles: { color: "#fca5a5" }, content: { text: "© 2025 Mama's Kitchen" } }] }
         ]
       }]
@@ -247,7 +289,23 @@ export const TEMPLATES: Template[] = [
           { id: "contact", type: "contact", isVisible: true, styles: { backgroundColor: "#0f0a1e", paddingTop: 80, paddingBottom: 80 }, elements: [
             { id: "c-h", type: "heading", isVisible: true, isLocked: false, styles: { color: "#fff", textAlign: "center", marginBottom: "40px" }, content: { text: "Let's Work Together", level: "h2" } },
             { id: "c-f", type: "form", isVisible: true, isLocked: false, styles: { maxWidth: "500px", margin: "0 auto" }, content: { formId: "contact", submitLabel: "Send Message", fields: [{ name: "name", label: "Name", type: "text", required: true }, { name: "email", label: "Email", type: "email", required: true }, { name: "project", label: "Project Description", type: "textarea", required: true }] } }
-          ]}
+          ]},
+          { id: "s-testimonial", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#1e1035" }, elements: [
+            { id: "tm-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "32px", color: "#fff" }, content: { text: "What Clients Say", level: "h2" } },
+            { id: "tm-el", type: "testimonial", isVisible: true, isLocked: false, styles: { maxWidth: "600px", margin: "0 auto", textAlign: "center" }, content: { quote: "Exceptional creative work. They delivered beyond our expectations and on time. Will definitely work together again!", author: "James Owusu", role: "Founder, Owusu Brands", avatar: "" } }
+          ] },
+          { id: "s-faq", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#0f0a1e" }, elements: [
+            { id: "fq-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "40px", color: "#fff" }, content: { text: "Frequently Asked Questions", level: "h2" } },
+            { id: "fq-el", type: "faq-accordion", isVisible: true, isLocked: false, styles: {}, content: { items: [
+              { q: "What's your turnaround time?", a: "Most projects are completed within 5–10 business days depending on scope." },
+              { q: "Do you work with international clients?", a: "Absolutely! I work with clients across Africa, Europe and North America." },
+              { q: "Do you offer revisions?", a: "Yes, every project includes 2 rounds of revisions at no extra cost." },
+              { q: "What file formats do you deliver?", a: "I deliver in all standard formats — AI, PSD, PDF, PNG, JPG, SVG and more." }
+            ] } }
+          ] },
+          { id: "s-newsletter", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#8b5cf6" }, elements: [
+            { id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { title: "Get design tips & portfolio updates", placeholder: "Enter your email address", buttonLabel: "Subscribe" } }
+          ] }
         ]
       }]
     }
@@ -275,6 +333,25 @@ export const TEMPLATES: Template[] = [
           { id: "nav", type: "nav", isVisible: true, styles: {}, elements: [{ id: "n1", type: "navigation", isVisible: true, isLocked: false, styles: {}, content: { links: [{ label: "Shop", href: "#products" }, { label: "About", href: "#about" }, { label: "Contact", href: "#contact" }] } }] },
           { id: "hero", type: "hero", isVisible: true, styles: {}, elements: [{ id: "h1", type: "hero", isVisible: true, isLocked: false, styles: {}, content: { title: "Shop the Best Products", subtitle: "Quality goods delivered to your door. Free delivery in Accra.", buttonLabel: "Shop Now", buttonHref: "#products" } }] },
           { id: "newsletter", type: "newsletter", isVisible: true, styles: { backgroundColor: "#f0fdf4", paddingTop: 60, paddingBottom: 60 }, elements: [{ id: "nl", type: "newsletter-signup", isVisible: true, isLocked: false, styles: {}, content: { title: "Get exclusive deals in your inbox", buttonLabel: "Subscribe" } }] },
+
+          { id: "s-testimonial", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#f8fafc" }, elements: [
+            { id: "tm-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "32px" }, content: { text: "What Our Clients Say", level: "h2" } },
+            { id: "tm-el", type: "testimonial", isVisible: true, isLocked: false, styles: { maxWidth: "600px", margin: "0 auto", textAlign: "center" }, content: { quote: "Fast delivery, quality products and great customer service. Will definitely shop again!", author: "Abena Osei", role: "Online Shopper", avatar: "" } }
+          ] },
+          { id: "s-faq", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#fff" }, elements: [
+            { id: "fq-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "40px" }, content: { text: "Frequently Asked Questions", level: "h2" } },
+            { id: "fq-el", type: "faq-accordion", isVisible: true, isLocked: false, styles: {}, content: { items: [
+              { q: "How long does delivery take?", a: "Accra deliveries take 1–2 days. Nationwide deliveries take 3–5 business days." },
+              { q: "What payment methods do you accept?", a: "We accept mobile money (MTN, Vodafone), card payments and bank transfer." },
+              { q: "Can I return a product?", a: "Yes! We accept returns within 7 days if the product is unused and in original packaging." },
+              { q: "Is my payment secure?", a: "All payments are secured by Paystack, Ghana's most trusted payment processor." }
+            ] } }
+          ] },
+          { id: "s-whatsapp", type: "section", isVisible: true, styles: { padding: "50px 40px", background: "#f0fdf4", textAlign: "center" }, elements: [
+            { id: "wa-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "8px" }, content: { text: "Chat With Us on WhatsApp", level: "h2" } },
+            { id: "wa-t", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#64748b", marginBottom: "24px" }, content: { text: "We typically reply within minutes." } },
+            { id: "wa-el", type: "whatsapp-button", isVisible: true, isLocked: false, styles: { display: "flex", justifyContent: "center" }, content: { number: "", message: "Hello! I'd like to place an order.", label: "Message Us to Order" } }
+          ] },
           { id: "footer", type: "footer", isVisible: true, styles: { backgroundColor: "#064e3b" }, elements: [{ id: "f1", type: "footer", isVisible: true, isLocked: false, styles: { color: "#6ee7b7" }, content: { text: "© 2025 My Shop. Secured by Paystack." } }] }
         ]
       }]
@@ -309,6 +386,28 @@ export const TEMPLATES: Template[] = [
             { id: "ct-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#fff", marginBottom: "16px" }, content: { text: "Your Support Changes Lives", level: "h2" } },
             { id: "ct-b", type: "button", isVisible: true, isLocked: false, styles: {}, content: { label: "Donate Today", href: "#donate", variant: "outline" } }
           ]},
+
+          { id: "s-testimonial", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#f8fafc" }, elements: [
+            { id: "tm-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "32px" }, content: { text: "What Our Clients Say", level: "h2" } },
+            { id: "tm-el", type: "testimonial", isVisible: true, isLocked: false, styles: { maxWidth: "600px", margin: "0 auto", textAlign: "center" }, content: { quote: "This organisation truly makes a difference. I've seen lives changed through their programmes. Proud to be part of this mission.", author: "Akosua Frimpong", role: "Community Volunteer", avatar: "" } }
+          ] },
+          { id: "s-faq", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#fff" }, elements: [
+            { id: "fq-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "40px" }, content: { text: "Frequently Asked Questions", level: "h2" } },
+            { id: "fq-el", type: "faq-accordion", isVisible: true, isLocked: false, styles: {}, content: { items: [
+              { q: "How do I donate?", a: "You can donate online via our secure payment page or via mobile money. All donations are receipted." },
+              { q: "Is my donation tax-deductible?", a: "Yes, we are a registered NGO and can provide documentation for tax purposes." },
+              { q: "How do I volunteer?", a: "Fill in the contact form and mention you'd like to volunteer. We'll get back to you within 48 hours." },
+              { q: "Where does my money go?", a: "100% of donations go directly to our programmes. Our admin costs are covered by grants." }
+            ] } }
+          ] },
+          { id: "s-whatsapp", type: "section", isVisible: true, styles: { padding: "50px 40px", background: "#f0fdf4", textAlign: "center" }, elements: [
+            { id: "wa-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "8px" }, content: { text: "Chat With Us on WhatsApp", level: "h2" } },
+            { id: "wa-t", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#64748b", marginBottom: "24px" }, content: { text: "We typically reply within minutes." } },
+            { id: "wa-el", type: "whatsapp-button", isVisible: true, isLocked: false, styles: { display: "flex", justifyContent: "center" }, content: { number: "", message: "Hello! I'd like to know more about your work and how I can support.", label: "Contact Our Team" } }
+          ] },
+          { id: "s-newsletter", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#6272f1" }, elements: [
+            { id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { title: "Stay updated on our impact & latest news", placeholder: "Enter your email address", buttonLabel: "Subscribe" } }
+          ] },
           { id: "footer", type: "footer", isVisible: true, styles: { backgroundColor: "#1c1917" }, elements: [{ id: "f1", type: "footer", isVisible: true, isLocked: false, styles: { color: "#a8a29e" }, content: { text: "© 2025 Our Organization. Registered NGO." } }] }
         ]
       }]
@@ -336,6 +435,20 @@ export const TEMPLATES: Template[] = [
           { id: "nav", type: "nav", isVisible: true, styles: {}, elements: [{ id: "n1", type: "navigation", isVisible: true, isLocked: false, styles: {}, content: { links: [{ label: "Home", href: "/" }, { label: "Blog", href: "#posts" }, { label: "About", href: "#about" }] } }] },
           { id: "hero", type: "hero", isVisible: true, styles: {}, elements: [{ id: "h1", type: "hero", isVisible: true, isLocked: false, styles: {}, content: { title: "Welcome to My Corner of the Internet", subtitle: "Thoughts on tech, life, and everything in between.", buttonLabel: "Read My Posts ↓", buttonHref: "#posts" } }] },
           { id: "newsletter", type: "newsletter", isVisible: true, styles: { backgroundColor: "#faf5ff", paddingTop: 60, paddingBottom: 60 }, elements: [{ id: "nl", type: "newsletter-signup", isVisible: true, isLocked: false, styles: {}, content: { title: "Never miss a new post", placeholder: "your@email.com", buttonLabel: "Subscribe" } }] },
+
+          { id: "s-testimonial", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#f8fafc" }, elements: [
+            { id: "tm-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "32px" }, content: { text: "What Our Clients Say", level: "h2" } },
+            { id: "tm-el", type: "testimonial", isVisible: true, isLocked: false, styles: { maxWidth: "600px", margin: "0 auto", textAlign: "center" }, content: { quote: "One of the best blogs I've come across. Insightful, authentic and always well-written. I look forward to every new post!", author: "Kofi Boateng", role: "Loyal Reader", avatar: "" } }
+          ] },
+          { id: "s-faq", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#fff" }, elements: [
+            { id: "fq-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "40px" }, content: { text: "Frequently Asked Questions", level: "h2" } },
+            { id: "fq-el", type: "faq-accordion", isVisible: true, isLocked: false, styles: {}, content: { items: [
+              { q: "How often do you post?", a: "I publish new content every week — usually on Tuesdays." },
+              { q: "Can I submit a guest post?", a: "Yes! I welcome guest contributions. Send me an email with your idea." },
+              { q: "How do I support the blog?", a: "Share my posts, subscribe to the newsletter, or buy me a coffee via the link below!" },
+              { q: "Can I republish your articles?", a: "Please contact me first. I'm open to syndication with proper attribution." }
+            ] } }
+          ] },
           { id: "footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "f1", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 My Blog. Written with ❤️ from Ghana." } }] }
         ]
       }]
@@ -378,6 +491,18 @@ export const TEMPLATES: Template[] = [
             }
           }]
         }]
+          { id: "s-faq", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#fff9fb" }, elements: [
+            { id: "fq-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "40px" }, content: { text: "Questions?", level: "h2" } },
+            { id: "fq-el", type: "faq-accordion", isVisible: true, isLocked: false, styles: {}, content: { items: [
+              { q: "How do I update my links?", a: "Just click any link in the builder and update the URL to point to your page." },
+              { q: "Can I add more links?", a: "Yes! In the builder you can add as many link buttons as you need." },
+              { q: "Can I sell products from here?", a: "Yes — add a button that links to your product or shop page." },
+              { q: "Can people contact me from here?", a: "Add a WhatsApp button or contact form from the builder's Add Sections menu." }
+            ] } }
+          ] },
+          { id: "s-newsletter", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#ec4899" }, elements: [
+            { id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { title: "Subscribe for exclusive content & updates", placeholder: "Enter your email", buttonLabel: "Subscribe" } }
+          ] }
       }]
     }
   },
@@ -409,6 +534,23 @@ export const TEMPLATES: Template[] = [
           { id: "speakers", type: "speakers", isVisible: true, styles: { backgroundColor: "#1c1917", paddingTop: 80, paddingBottom: 80 }, elements: [
             { id: "sp-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#fff", marginBottom: "40px" }, content: { text: "Speakers & Guests", level: "h2" } }
           ]},
+
+          { id: "s-testimonial", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#f8fafc" }, elements: [
+            { id: "tm-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "32px" }, content: { text: "What Our Clients Say", level: "h2" } },
+            { id: "tm-el", type: "testimonial", isVisible: true, isLocked: false, styles: { maxWidth: "600px", margin: "0 auto", textAlign: "center" }, content: { quote: "One of the best events I've attended! Perfectly organised, amazing speakers and great networking. Can't wait for next year!", author: "Sandra Ofori", role: "Previous Attendee", avatar: "" } }
+          ] },
+          { id: "s-faq", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#fff" }, elements: [
+            { id: "fq-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "40px" }, content: { text: "Frequently Asked Questions", level: "h2" } },
+            { id: "fq-el", type: "faq-accordion", isVisible: true, isLocked: false, styles: {}, content: { items: [
+              { q: "Where is the venue?", a: "The event will be held at the Accra International Conference Centre. Parking is available." },
+              { q: "What's included in the ticket?", a: "All tickets include access to all sessions, networking lunch and event materials." },
+              { q: "Can I transfer my ticket?", a: "Yes, tickets are transferable. Contact us at least 48 hours before the event." },
+              { q: "Is there a refund policy?", a: "Full refund up to 14 days before the event. 50% refund up to 7 days before." }
+            ] } }
+          ] },
+          { id: "s-newsletter", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#6272f1" }, elements: [
+            { id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { title: "Get event updates & early bird ticket alerts", placeholder: "Enter your email address", buttonLabel: "Subscribe" } }
+          ] },
           { id: "footer", type: "footer", isVisible: true, styles: { backgroundColor: "#0c0a09" }, elements: [{ id: "f1", type: "footer", isVisible: true, isLocked: false, styles: { color: "#a8a29e" }, content: { text: "© 2025 Event Name. All rights reserved." } }] }
         ]
       }]
@@ -444,6 +586,28 @@ export const TEMPLATES: Template[] = [
           { id: "s-contact", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#fff" }, elements: [
             { id: "ct-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "32px" }, content: { text: "Get In Touch", level: "h2" } },
             { id: "ct-f", type: "form", isVisible: true, isLocked: false, styles: { maxWidth: "500px", margin: "0 auto" }, content: { title: "", fields: [{ name: "name", label: "Full Name", type: "text", required: true }, { name: "email", label: "Email", type: "email", required: true }, { name: "phone", label: "Phone", type: "tel", required: false }, { name: "service", label: "Service Interested In", type: "text", required: false }, { name: "message", label: "Message", type: "textarea", required: false }], submitText: "Send Message" } }
+          ] },
+
+          { id: "s-testimonial", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#f8fafc" }, elements: [
+            { id: "tm-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "32px" }, content: { text: "What Our Clients Say", level: "h2" } },
+            { id: "tm-el", type: "testimonial", isVisible: true, isLocked: false, styles: { maxWidth: "600px", margin: "0 auto", textAlign: "center" }, content: { quote: "I won't go anywhere else! The staff are skilled, professional and the salon is always spotless. My hair has never looked better.", author: "Efua Quaye", role: "Regular Client", avatar: "" } }
+          ] },
+          { id: "s-faq", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#fff" }, elements: [
+            { id: "fq-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "40px" }, content: { text: "Frequently Asked Questions", level: "h2" } },
+            { id: "fq-el", type: "faq-accordion", isVisible: true, isLocked: false, styles: {}, content: { items: [
+              { q: "Do I need to book in advance?", a: "Booking is recommended, especially on weekends. Walk-ins are welcome subject to availability." },
+              { q: "How long do appointments take?", a: "Most services take 30 minutes to 2 hours. We'll give you an estimate when you book." },
+              { q: "Do you use quality products?", a: "Yes, we use only professional, hair-safe products from trusted brands." },
+              { q: "What's your cancellation policy?", a: "Please cancel at least 24 hours in advance so we can offer the slot to another client." }
+            ] } }
+          ] },
+          { id: "s-whatsapp", type: "section", isVisible: true, styles: { padding: "50px 40px", background: "#f0fdf4", textAlign: "center" }, elements: [
+            { id: "wa-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "8px" }, content: { text: "Chat With Us on WhatsApp", level: "h2" } },
+            { id: "wa-t", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#64748b", marginBottom: "24px" }, content: { text: "We typically reply within minutes." } },
+            { id: "wa-el", type: "whatsapp-button", isVisible: true, isLocked: false, styles: { display: "flex", justifyContent: "center" }, content: { number: "", message: "Hello! I'd like to book an appointment at the salon.", label: "Book an Appointment" } }
+          ] },
+          { id: "s-newsletter", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#6272f1" }, elements: [
+            { id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { title: "Get our latest offers & beauty tips", placeholder: "Enter your email address", buttonLabel: "Subscribe" } }
           ] },
           { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 Glam Studio. All rights reserved.", links: [] } }] }
         ]
@@ -485,6 +649,28 @@ export const TEMPLATES: Template[] = [
             { id: "ct-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "32px" }, content: { text: "Contact Us", level: "h2" } },
             { id: "ct-f", type: "form", isVisible: true, isLocked: false, styles: { maxWidth: "500px", margin: "0 auto" }, content: { title: "", fields: [{ name: "name", label: "Name", type: "text", required: true }, { name: "email", label: "Email", type: "email", required: true }, { name: "message", label: "Message", type: "textarea", required: true }], submitText: "Send Message" } }
           ] },
+
+          { id: "s-testimonial", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#f8fafc" }, elements: [
+            { id: "tm-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "32px" }, content: { text: "What Our Clients Say", level: "h2" } },
+            { id: "tm-el", type: "testimonial", isVisible: true, isLocked: false, styles: { maxWidth: "600px", margin: "0 auto", textAlign: "center" }, content: { quote: "This church feels like family. The worship, the sermons and the community have transformed my life. I'm grateful every day.", author: "Brother Emmanuel Asare", role: "Church Member, 10 years", avatar: "" } }
+          ] },
+          { id: "s-faq", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#fff" }, elements: [
+            { id: "fq-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "40px" }, content: { text: "Frequently Asked Questions", level: "h2" } },
+            { id: "fq-el", type: "faq-accordion", isVisible: true, isLocked: false, styles: {}, content: { items: [
+              { q: "What should I wear?", a: "Come as you are! We welcome everyone regardless of how they're dressed." },
+              { q: "Is there parking?", a: "Yes, we have ample parking available. Arrive early on Sundays." },
+              { q: "Are children welcome?", a: "Absolutely! We have a dedicated children's ministry running during all Sunday services." },
+              { q: "How can I get more involved?", a: "Talk to any of our pastors after the service or fill in the contact form — we'd love to have you!" }
+            ] } }
+          ] },
+          { id: "s-whatsapp", type: "section", isVisible: true, styles: { padding: "50px 40px", background: "#f0fdf4", textAlign: "center" }, elements: [
+            { id: "wa-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "8px" }, content: { text: "Chat With Us on WhatsApp", level: "h2" } },
+            { id: "wa-t", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#64748b", marginBottom: "24px" }, content: { text: "We typically reply within minutes." } },
+            { id: "wa-el", type: "whatsapp-button", isVisible: true, isLocked: false, styles: { display: "flex", justifyContent: "center" }, content: { number: "", message: "Hello! I'd like to know more about Grace Community Church.", label: "Contact the Church" } }
+          ] },
+          { id: "s-newsletter", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#6272f1" }, elements: [
+            { id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { title: "Get our weekly sermon notes & church updates", placeholder: "Enter your email address", buttonLabel: "Subscribe" } }
+          ] },
           { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 Grace Community Church. All are welcome.", links: [] } }] }
         ]
       }]
@@ -516,6 +702,28 @@ export const TEMPLATES: Template[] = [
           { id: "s-admissions", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#fff" }, elements: [
             { id: "ad-it", type: "image-text", isVisible: true, isLocked: false, styles: {}, content: { heading: "Admissions Open", body: "We accept applications year-round for all levels. Our admissions process is simple and welcoming. Contact us to schedule a visit or download our prospectus.", image: "", imageLeft: false } },
             { id: "ad-f", type: "form", isVisible: true, isLocked: false, styles: { maxWidth: "500px", margin: "24px auto 0" }, content: { title: "Enquire About Admission", fields: [{ name: "parent", label: "Parent Name", type: "text", required: true }, { name: "email", label: "Email", type: "email", required: true }, { name: "phone", label: "Phone", type: "tel", required: true }, { name: "level", label: "Level Applying For", type: "text", required: true }, { name: "message", label: "Additional Notes", type: "textarea", required: false }], submitText: "Submit Enquiry" } }
+          ] },
+
+          { id: "s-testimonial", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#f8fafc" }, elements: [
+            { id: "tm-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "32px" }, content: { text: "What Our Clients Say", level: "h2" } },
+            { id: "tm-el", type: "testimonial", isVisible: true, isLocked: false, styles: { maxWidth: "600px", margin: "0 auto", textAlign: "center" }, content: { quote: "My daughter has thrived since joining this school. The teachers are dedicated and the learning environment is exceptional. Highly recommended!", author: "Mr. Kwesi Adu", role: "Parent of Form 2 Student", avatar: "" } }
+          ] },
+          { id: "s-faq", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#fff" }, elements: [
+            { id: "fq-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "40px" }, content: { text: "Frequently Asked Questions", level: "h2" } },
+            { id: "fq-el", type: "faq-accordion", isVisible: true, isLocked: false, styles: {}, content: { items: [
+              { q: "What are the school fees?", a: "Fees vary by level. Please contact our admissions office for a detailed fee schedule." },
+              { q: "Do you offer scholarships?", a: "Yes, we offer merit-based scholarships for exceptional students. Enquire with admissions." },
+              { q: "Is there a school bus?", a: "Yes, we have school buses covering major routes. Contact us for the route schedule." },
+              { q: "What's the student-to-teacher ratio?", a: "We maintain a ratio of 25:1 to ensure every student gets individual attention." }
+            ] } }
+          ] },
+          { id: "s-whatsapp", type: "section", isVisible: true, styles: { padding: "50px 40px", background: "#f0fdf4", textAlign: "center" }, elements: [
+            { id: "wa-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "8px" }, content: { text: "Chat With Us on WhatsApp", level: "h2" } },
+            { id: "wa-t", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#64748b", marginBottom: "24px" }, content: { text: "We typically reply within minutes." } },
+            { id: "wa-el", type: "whatsapp-button", isVisible: true, isLocked: false, styles: { display: "flex", justifyContent: "center" }, content: { number: "", message: "Hello! I'd like to enquire about admission to your school.", label: "Contact Admissions" } }
+          ] },
+          { id: "s-newsletter", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#6272f1" }, elements: [
+            { id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { title: "Get school news, events & term dates", placeholder: "Enter your email address", buttonLabel: "Subscribe" } }
           ] },
           { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 Bright Futures Academy. Excellence in Education.", links: [] } }] }
         ]
@@ -554,6 +762,28 @@ export const TEMPLATES: Template[] = [
             { id: "ct-t", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "rgba(255,255,255,0.8)", marginBottom: "32px" }, content: { text: "Tell us what you're looking for and we'll find the perfect match." } },
             { id: "ct-f", type: "form", isVisible: true, isLocked: false, styles: { maxWidth: "500px", margin: "0 auto" }, content: { title: "", fields: [{ name: "name", label: "Full Name", type: "text", required: true }, { name: "email", label: "Email", type: "email", required: true }, { name: "phone", label: "Phone", type: "tel", required: true }, { name: "budget", label: "Budget (GHS)", type: "text", required: false }, { name: "message", label: "What are you looking for?", type: "textarea", required: true }], submitText: "Send Enquiry" } }
           ] },
+
+          { id: "s-testimonial", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#f8fafc" }, elements: [
+            { id: "tm-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "32px" }, content: { text: "What Our Clients Say", level: "h2" } },
+            { id: "tm-el", type: "testimonial", isVisible: true, isLocked: false, styles: { maxWidth: "600px", margin: "0 auto", textAlign: "center" }, content: { quote: "The team found us our dream home in just 3 weeks! Professional, patient and incredibly knowledgeable about the Accra market. 10/10!", author: "Mrs. Adwoa Dankwa", role: "Homebuyer, Accra", avatar: "" } }
+          ] },
+          { id: "s-faq", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#fff" }, elements: [
+            { id: "fq-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "40px" }, content: { text: "Frequently Asked Questions", level: "h2" } },
+            { id: "fq-el", type: "faq-accordion", isVisible: true, isLocked: false, styles: {}, content: { items: [
+              { q: "Do you charge a buyer's fee?", a: "No, buyers pay no fees. Our commission is paid by the seller." },
+              { q: "Can you help with mortgages?", a: "Yes, we work with several banks and can refer you to a mortgage advisor." },
+              { q: "How long does the process take?", a: "A typical purchase takes 4–8 weeks from viewing to completion." },
+              { q: "Do you handle legal paperwork?", a: "Yes, we work with trusted lawyers who handle all documentation from start to finish." }
+            ] } }
+          ] },
+          { id: "s-whatsapp", type: "section", isVisible: true, styles: { padding: "50px 40px", background: "#f0fdf4", textAlign: "center" }, elements: [
+            { id: "wa-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "8px" }, content: { text: "Chat With Us on WhatsApp", level: "h2" } },
+            { id: "wa-t", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#64748b", marginBottom: "24px" }, content: { text: "We typically reply within minutes." } },
+            { id: "wa-el", type: "whatsapp-button", isVisible: true, isLocked: false, styles: { display: "flex", justifyContent: "center" }, content: { number: "", message: "Hello! I'm looking for a property and would like some assistance.", label: "Chat With an Agent" } }
+          ] },
+          { id: "s-newsletter", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#6272f1" }, elements: [
+            { id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { title: "Get new property listings & market updates", placeholder: "Enter your email address", buttonLabel: "Subscribe" } }
+          ] },
           { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 Prime Properties GH. Licensed Real Estate Agency.", links: [] } }] }
         ]
       }]
@@ -590,6 +820,28 @@ export const TEMPLATES: Template[] = [
             { id: "ct-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "32px", color: "#fff" }, content: { text: "Start Your Journey", level: "h2" } },
             { id: "ct-f", type: "form", isVisible: true, isLocked: false, styles: { maxWidth: "500px", margin: "0 auto" }, content: { title: "", fields: [{ name: "name", label: "Name", type: "text", required: true }, { name: "email", label: "Email", type: "email", required: true }, { name: "phone", label: "Phone", type: "tel", required: true }, { name: "goal", label: "Your Fitness Goal", type: "text", required: false }], submitText: "Claim Free Trial" } }
           ] },
+
+          { id: "s-testimonial", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#f8fafc" }, elements: [
+            { id: "tm-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "32px" }, content: { text: "What Our Clients Say", level: "h2" } },
+            { id: "tm-el", type: "testimonial", isVisible: true, isLocked: false, styles: { maxWidth: "600px", margin: "0 auto", textAlign: "center" }, content: { quote: "This gym changed my life. The trainers push you in the best way and the facilities are top-notch. I've lost 20kg and gained so much confidence!", author: "Nana Boateng", role: "Member for 2 Years", avatar: "" } }
+          ] },
+          { id: "s-faq", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#fff" }, elements: [
+            { id: "fq-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "40px" }, content: { text: "Frequently Asked Questions", level: "h2" } },
+            { id: "fq-el", type: "faq-accordion", isVisible: true, isLocked: false, styles: {}, content: { items: [
+              { q: "Can I try before I join?", a: "Yes! We offer a free 3-day trial. Come in with your ID to get started." },
+              { q: "Are there class timetables?", a: "Yes, check our schedule board or download our timetable PDF from reception." },
+              { q: "Do you offer personal training?", a: "Yes, we have certified personal trainers available for 1-on-1 sessions at an extra cost." },
+              { q: "Is there a joining fee?", a: "No joining fee during our current promotion. Just pay the monthly membership." }
+            ] } }
+          ] },
+          { id: "s-whatsapp", type: "section", isVisible: true, styles: { padding: "50px 40px", background: "#f0fdf4", textAlign: "center" }, elements: [
+            { id: "wa-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "8px" }, content: { text: "Chat With Us on WhatsApp", level: "h2" } },
+            { id: "wa-t", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#64748b", marginBottom: "24px" }, content: { text: "We typically reply within minutes." } },
+            { id: "wa-el", type: "whatsapp-button", isVisible: true, isLocked: false, styles: { display: "flex", justifyContent: "center" }, content: { number: "", message: "Hello! I'm interested in joining PowerFit Gym. Can I get more information?", label: "Talk to a Trainer" } }
+          ] },
+          { id: "s-newsletter", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#6272f1" }, elements: [
+            { id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { title: "Get workout tips, class updates & member offers", placeholder: "Enter your email address", buttonLabel: "Subscribe" } }
+          ] },
           { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: { color: "#94a3b8" }, content: { text: "© 2025 PowerFit Gym. Train Hard. Live Strong.", links: [] } }] }
         ]
       }]
@@ -625,6 +877,28 @@ export const TEMPLATES: Template[] = [
           { id: "s-map", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#fff" }, elements: [
             { id: "mp-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "24px" }, content: { text: "Find Us", level: "h2" } },
             { id: "mp-m", type: "map", isVisible: true, isLocked: false, styles: {}, content: { address: "Accra, Ghana", zoom: 14 } }
+          ] },
+
+          { id: "s-testimonial", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#f8fafc" }, elements: [
+            { id: "tm-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "32px" }, content: { text: "What Our Clients Say", level: "h2" } },
+            { id: "tm-el", type: "testimonial", isVisible: true, isLocked: false, styles: { maxWidth: "600px", margin: "0 auto", textAlign: "center" }, content: { quote: "The doctors here are thorough, compassionate and take time to explain everything. I always feel in good hands. Excellent care!", author: "Maame Esi Darko", role: "Patient", avatar: "" } }
+          ] },
+          { id: "s-faq", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#fff" }, elements: [
+            { id: "fq-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "40px" }, content: { text: "Frequently Asked Questions", level: "h2" } },
+            { id: "fq-el", type: "faq-accordion", isVisible: true, isLocked: false, styles: {}, content: { items: [
+              { q: "Do I need an appointment?", a: "Appointments are preferred but we do accept walk-in patients for emergencies." },
+              { q: "Do you accept health insurance?", a: "Yes, we accept most major health insurance plans. Contact us to confirm your provider." },
+              { q: "What are your consultation fees?", a: "General consultation starts from GHS 80. Specialist fees vary. Call for details." },
+              { q: "Do you have a pharmacy?", a: "Yes, we have an in-house pharmacy for your convenience." }
+            ] } }
+          ] },
+          { id: "s-whatsapp", type: "section", isVisible: true, styles: { padding: "50px 40px", background: "#f0fdf4", textAlign: "center" }, elements: [
+            { id: "wa-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "8px" }, content: { text: "Chat With Us on WhatsApp", level: "h2" } },
+            { id: "wa-t", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#64748b", marginBottom: "24px" }, content: { text: "We typically reply within minutes." } },
+            { id: "wa-el", type: "whatsapp-button", isVisible: true, isLocked: false, styles: { display: "flex", justifyContent: "center" }, content: { number: "", message: "Hello! I'd like to book an appointment at the clinic.", label: "Book an Appointment" } }
+          ] },
+          { id: "s-newsletter", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#6272f1" }, elements: [
+            { id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { title: "Get health tips & clinic news", placeholder: "Enter your email address", buttonLabel: "Subscribe" } }
           ] },
           { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 HealthCare Clinic. Caring for Ghana.", links: [] } }] }
         ]
@@ -671,6 +945,15 @@ export const TEMPLATES: Template[] = [
           ] },
           { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 Lens & Light Photography. Capturing Ghana's best moments.", links: [] } }] }
         ]
+          { id: "s-faq", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#fff" }, elements: [
+            { id: "fq-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "40px" }, content: { text: "Frequently Asked Questions", level: "h2" } },
+            { id: "fq-el", type: "faq-accordion", isVisible: true, isLocked: false, styles: {}, content: { items: [
+              { q: "What's your turnaround time?", a: "Most shoots are delivered within 5–7 business days. Rushed delivery available." },
+              { q: "Do you travel for shoots?", a: "Yes! I travel across Ghana and internationally for destination shoots." },
+              { q: "Do you offer video as well?", a: "Yes, I offer videography packages. Ask for combined photography + video pricing." },
+              { q: "What rights do I get to the images?", a: "You receive full commercial rights to all delivered images." }
+            ] } }
+          ] }
       }]
     }
   },
@@ -708,6 +991,28 @@ export const TEMPLATES: Template[] = [
             { id: "bk-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "32px", color: "#fff" }, content: { text: "Make a Reservation", level: "h2" } },
             { id: "bk-f", type: "form", isVisible: true, isLocked: false, styles: { maxWidth: "500px", margin: "0 auto" }, content: { title: "", fields: [{ name: "name", label: "Full Name", type: "text", required: true }, { name: "email", label: "Email", type: "email", required: true }, { name: "phone", label: "Phone", type: "tel", required: true }, { name: "checkin", label: "Check-in Date", type: "text", required: true }, { name: "checkout", label: "Check-out Date", type: "text", required: true }, { name: "guests", label: "Number of Guests", type: "text", required: true }, { name: "room", label: "Room Type", type: "text", required: false }], submitText: "Request Booking" } }
           ] },
+
+          { id: "s-testimonial", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#f8fafc" }, elements: [
+            { id: "tm-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "32px" }, content: { text: "What Our Clients Say", level: "h2" } },
+            { id: "tm-el", type: "testimonial", isVisible: true, isLocked: false, styles: { maxWidth: "600px", margin: "0 auto", textAlign: "center" }, content: { quote: "Exceptional stay! The rooms are beautiful, staff are incredibly welcoming and the breakfast is outstanding. My go-to whenever I'm in Accra.", author: "Mr. David Owusu", role: "Business Traveller", avatar: "" } }
+          ] },
+          { id: "s-faq", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#fff" }, elements: [
+            { id: "fq-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "40px" }, content: { text: "Frequently Asked Questions", level: "h2" } },
+            { id: "fq-el", type: "faq-accordion", isVisible: true, isLocked: false, styles: {}, content: { items: [
+              { q: "What time is check-in/check-out?", a: "Check-in from 2pm, check-out by 12pm. Early/late options available on request." },
+              { q: "Is breakfast included?", a: "Breakfast is included in all room rates. Enjoy our daily buffet from 6:30am." },
+              { q: "Do you have airport transfers?", a: "Yes, we offer airport pickup and drop-off for a small fee. Book in advance." },
+              { q: "Is there free WiFi?", a: "Yes, complimentary high-speed WiFi is available throughout the property." }
+            ] } }
+          ] },
+          { id: "s-whatsapp", type: "section", isVisible: true, styles: { padding: "50px 40px", background: "#f0fdf4", textAlign: "center" }, elements: [
+            { id: "wa-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "8px" }, content: { text: "Chat With Us on WhatsApp", level: "h2" } },
+            { id: "wa-t", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#64748b", marginBottom: "24px" }, content: { text: "We typically reply within minutes." } },
+            { id: "wa-el", type: "whatsapp-button", isVisible: true, isLocked: false, styles: { display: "flex", justifyContent: "center" }, content: { number: "", message: "Hello! I'd like to enquire about a room reservation.", label: "Book a Room" } }
+          ] },
+          { id: "s-newsletter", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#6272f1" }, elements: [
+            { id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { title: "Get exclusive rates & special offers", placeholder: "Enter your email address", buttonLabel: "Subscribe" } }
+          ] },
           { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 The Grand Hotel Ghana. Luxury Hospitality.", links: [] } }] }
         ]
       }]
@@ -743,6 +1048,28 @@ export const TEMPLATES: Template[] = [
             { id: "ct-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "12px", color: "#fff" }, content: { text: "Get Legal Advice", level: "h2" } },
             { id: "ct-t", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "rgba(255,255,255,0.7)", marginBottom: "32px" }, content: { text: "Book a free 30-minute consultation with one of our attorneys." } },
             { id: "ct-f", type: "form", isVisible: true, isLocked: false, styles: { maxWidth: "500px", margin: "0 auto" }, content: { title: "", fields: [{ name: "name", label: "Full Name", type: "text", required: true }, { name: "email", label: "Email", type: "email", required: true }, { name: "phone", label: "Phone", type: "tel", required: true }, { name: "area", label: "Legal Issue (brief description)", type: "textarea", required: true }], submitText: "Request Consultation" } }
+          ] },
+
+          { id: "s-testimonial", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#f8fafc" }, elements: [
+            { id: "tm-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "32px" }, content: { text: "What Our Clients Say", level: "h2" } },
+            { id: "tm-el", type: "testimonial", isVisible: true, isLocked: false, styles: { maxWidth: "600px", margin: "0 auto", textAlign: "center" }, content: { quote: "Knowledgeable, professional and always available. They handled our contract dispute with expertise and achieved a great outcome. Highly recommend.", author: "Mr. Fiifi Mensah", role: "Corporate Client", avatar: "" } }
+          ] },
+          { id: "s-faq", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#fff" }, elements: [
+            { id: "fq-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "40px" }, content: { text: "Frequently Asked Questions", level: "h2" } },
+            { id: "fq-el", type: "faq-accordion", isVisible: true, isLocked: false, styles: {}, content: { items: [
+              { q: "Do you offer a free initial consultation?", a: "Yes, we offer a 30-minute free consultation for new clients. Book via our contact form." },
+              { q: "What areas of law do you practise?", a: "We specialise in corporate law, property law, family law, and commercial disputes." },
+              { q: "How are your fees structured?", a: "We offer hourly rates, fixed fees and retainer arrangements depending on the matter." },
+              { q: "Can you represent clients outside Ghana?", a: "Yes, we handle international arbitration and can collaborate with overseas counsel." }
+            ] } }
+          ] },
+          { id: "s-whatsapp", type: "section", isVisible: true, styles: { padding: "50px 40px", background: "#f0fdf4", textAlign: "center" }, elements: [
+            { id: "wa-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "8px" }, content: { text: "Chat With Us on WhatsApp", level: "h2" } },
+            { id: "wa-t", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#64748b", marginBottom: "24px" }, content: { text: "We typically reply within minutes." } },
+            { id: "wa-el", type: "whatsapp-button", isVisible: true, isLocked: false, styles: { display: "flex", justifyContent: "center" }, content: { number: "", message: "Hello! I have a legal matter I'd like to discuss with your firm.", label: "Speak to an Attorney" } }
+          ] },
+          { id: "s-newsletter", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#6272f1" }, elements: [
+            { id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { title: "Get legal tips & firm updates", placeholder: "Enter your email address", buttonLabel: "Subscribe" } }
           ] },
           { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 Agyei & Partners Legal. All rights reserved. Not legal advice.", links: [] } }] }
         ]
@@ -782,6 +1109,28 @@ export const TEMPLATES: Template[] = [
             { id: "cta-t", type: "text", isVisible: true, isLocked: false, styles: { color: "rgba(255,255,255,0.8)", textAlign: "center", marginBottom: "24px" }, content: { text: "Join 10,000+ businesses already growing with LaunchPad." } },
             { id: "cta-b", type: "button", isVisible: true, isLocked: false, styles: {}, content: { label: "Get Started Free", href: "#signup", variant: "outline" } }
           ] },
+
+          { id: "s-testimonial", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#f8fafc" }, elements: [
+            { id: "tm-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "32px" }, content: { text: "What Our Clients Say", level: "h2" } },
+            { id: "tm-el", type: "testimonial", isVisible: true, isLocked: false, styles: { maxWidth: "600px", margin: "0 auto", textAlign: "center" }, content: { quote: "Their platform saved us weeks of development time. The support team is fantastic and the product keeps getting better. Game-changer!", author: "Ama Asante-Frimpong", role: "Founder, Afri-Tech Solutions", avatar: "" } }
+          ] },
+          { id: "s-faq", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#fff" }, elements: [
+            { id: "fq-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "40px" }, content: { text: "Frequently Asked Questions", level: "h2" } },
+            { id: "fq-el", type: "faq-accordion", isVisible: true, isLocked: false, styles: {}, content: { items: [
+              { q: "Is there a free trial?", a: "Yes! All plans include a 14-day free trial. No credit card required." },
+              { q: "Can I cancel anytime?", a: "Yes, cancel anytime with no penalties. We believe in earning your business every month." },
+              { q: "Do you offer custom integrations?", a: "Yes, our API allows custom integrations. Our developer docs are publicly available." },
+              { q: "Where is my data stored?", a: "Your data is stored on secure, encrypted servers with 99.9% uptime guaranteed." }
+            ] } }
+          ] },
+          { id: "s-whatsapp", type: "section", isVisible: true, styles: { padding: "50px 40px", background: "#f0fdf4", textAlign: "center" }, elements: [
+            { id: "wa-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "8px" }, content: { text: "Chat With Us on WhatsApp", level: "h2" } },
+            { id: "wa-t", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#64748b", marginBottom: "24px" }, content: { text: "We typically reply within minutes." } },
+            { id: "wa-el", type: "whatsapp-button", isVisible: true, isLocked: false, styles: { display: "flex", justifyContent: "center" }, content: { number: "", message: "Hello! I'm interested in your platform and have a few questions.", label: "Chat With Our Team" } }
+          ] },
+          { id: "s-newsletter", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#6272f1" }, elements: [
+            { id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { title: "Get product updates & early access to new features", placeholder: "Enter your email address", buttonLabel: "Subscribe" } }
+          ] },
           { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 LaunchPad Technologies. Built with ❤️ in Ghana.", links: [{ label: "Privacy", href: "/privacy" }, { label: "Terms", href: "/terms" }] } }] }
         ]
       }]
@@ -814,6 +1163,20 @@ export const TEMPLATES: Template[] = [
           ] },
           { id: "s-whatsapp", type: "section", isVisible: true, styles: { padding: "20px 40px", background: "#fff" }, elements: [{ id: "wa-el", type: "whatsapp-button", isVisible: true, isLocked: false, styles: {}, content: { number: "233200000000", message: "Hi! I'd like to order from Kente & Co." } }] },
           { id: "s-newsletter", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#be185d" }, elements: [{ id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { title: "Get 10% Off Your First Order", placeholder: "Enter your email", buttonText: "Subscribe" } }] },
+
+          { id: "s-testimonial", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#f8fafc" }, elements: [
+            { id: "tm-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "32px" }, content: { text: "What Our Clients Say", level: "h2" } },
+            { id: "tm-el", type: "testimonial", isVisible: true, isLocked: false, styles: { maxWidth: "600px", margin: "0 auto", textAlign: "center" }, content: { quote: "Absolutely love the quality and style! My outfit arrived perfectly packed and looked exactly like the photos. Will definitely order again!", author: "Efua Asante", role: "Fashion Lover, Kumasi", avatar: "" } }
+          ] },
+          { id: "s-faq", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#fff" }, elements: [
+            { id: "fq-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "40px" }, content: { text: "Frequently Asked Questions", level: "h2" } },
+            { id: "fq-el", type: "faq-accordion", isVisible: true, isLocked: false, styles: {}, content: { items: [
+              { q: "Do you offer delivery nationwide?", a: "Yes! We deliver across Ghana. Accra delivery in 1–2 days, nationwide in 3–5 days." },
+              { q: "What sizes do you carry?", a: "We stock sizes XS to 3XL. Check each product page for the size guide." },
+              { q: "Can I return or exchange?", a: "Yes, returns and exchanges accepted within 7 days. Item must be unworn with tags." },
+              { q: "Do you accept custom orders?", a: "Yes! We do custom orders for events, uniforms and corporate wear. Contact us for pricing." }
+            ] } }
+          ] },
           { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 Kente & Co. African Fashion.", links: [] } }] }
         ]
       }]
@@ -849,6 +1212,28 @@ export const TEMPLATES: Template[] = [
             { id: "ct-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "32px", color: "#fff" }, content: { text: "Enquire About a Car", level: "h2" } },
             { id: "ct-f", type: "form", isVisible: true, isLocked: false, styles: { maxWidth: "500px", margin: "0 auto" }, content: { title: "", fields: [{ name: "name", label: "Name", type: "text", required: true }, { name: "email", label: "Email", type: "email", required: true }, { name: "phone", label: "Phone", type: "tel", required: true }, { name: "budget", label: "Budget (GHS)", type: "text", required: false }, { name: "message", label: "Car you're interested in", type: "textarea", required: true }], submitText: "Send Enquiry" } }
           ] },
+
+          { id: "s-testimonial", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#f8fafc" }, elements: [
+            { id: "tm-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "32px" }, content: { text: "What Our Clients Say", level: "h2" } },
+            { id: "tm-el", type: "testimonial", isVisible: true, isLocked: false, styles: { maxWidth: "600px", margin: "0 auto", textAlign: "center" }, content: { quote: "Bought my Toyota Corolla from here last year — best decision ever! Transparent pricing, no hidden fees and the paperwork was handled smoothly. Very professional.", author: "Mr. Yaw Darko", role: "Car Buyer", avatar: "" } }
+          ] },
+          { id: "s-faq", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#fff" }, elements: [
+            { id: "fq-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "40px" }, content: { text: "Frequently Asked Questions", level: "h2" } },
+            { id: "fq-el", type: "faq-accordion", isVisible: true, isLocked: false, styles: {}, content: { items: [
+              { q: "Do you offer financing?", a: "Yes, we work with leading banks to offer vehicle financing. Enquire for details." },
+              { q: "Do you accept trade-ins?", a: "Yes, we accept trade-ins and will give you a fair market valuation." },
+              { q: "Are all cars inspected?", a: "Yes, all vehicles undergo a full mechanical inspection before listing." },
+              { q: "Do you have foreign-used and brand-new cars?", a: "Yes, we stock brand new, foreign-used and Ghanaian-used vehicles across all budgets." }
+            ] } }
+          ] },
+          { id: "s-whatsapp", type: "section", isVisible: true, styles: { padding: "50px 40px", background: "#f0fdf4", textAlign: "center" }, elements: [
+            { id: "wa-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "8px" }, content: { text: "Chat With Us on WhatsApp", level: "h2" } },
+            { id: "wa-t", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#64748b", marginBottom: "24px" }, content: { text: "We typically reply within minutes." } },
+            { id: "wa-el", type: "whatsapp-button", isVisible: true, isLocked: false, styles: { display: "flex", justifyContent: "center" }, content: { number: "", message: "Hello! I'm interested in a car and would like more information.", label: "Enquire About a Car" } }
+          ] },
+          { id: "s-newsletter", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#6272f1" }, elements: [
+            { id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { title: "Get new stock alerts & special deals", placeholder: "Enter your email address", buttonLabel: "Subscribe" } }
+          ] },
           { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 Premier Auto GH. Drive with confidence.", links: [] } }] }
         ]
       }]
@@ -882,6 +1267,28 @@ export const TEMPLATES: Template[] = [
           { id: "s-book", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#fff" }, elements: [
             { id: "bk-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "32px" }, content: { text: "Book a Clean", level: "h2" } },
             { id: "bk-f", type: "form", isVisible: true, isLocked: false, styles: { maxWidth: "500px", margin: "0 auto" }, content: { title: "", fields: [{ name: "name", label: "Name", type: "text", required: true }, { name: "email", label: "Email", type: "email", required: true }, { name: "phone", label: "Phone", type: "tel", required: true }, { name: "address", label: "Property Address", type: "text", required: true }, { name: "type", label: "Type of Clean", type: "text", required: true }, { name: "date", label: "Preferred Date", type: "text", required: false }], submitText: "Request Booking" } }
+          ] },
+
+          { id: "s-testimonial", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#f8fafc" }, elements: [
+            { id: "tm-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "32px" }, content: { text: "What Our Clients Say", level: "h2" } },
+            { id: "tm-el", type: "testimonial", isVisible: true, isLocked: false, styles: { maxWidth: "600px", margin: "0 auto", textAlign: "center" }, content: { quote: "My house has never been cleaner! The team were professional, thorough and very respectful of our home. Will definitely use again. Highly recommend!", author: "Mrs. Patricia Asante", role: "Homeowner, East Legon", avatar: "" } }
+          ] },
+          { id: "s-faq", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#fff" }, elements: [
+            { id: "fq-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "40px" }, content: { text: "Frequently Asked Questions", level: "h2" } },
+            { id: "fq-el", type: "faq-accordion", isVisible: true, isLocked: false, styles: {}, content: { items: [
+              { q: "Do I need to be home during the clean?", a: "No, many clients give us a key or code. We are fully insured and trustworthy." },
+              { q: "What products do you use?", a: "We use eco-friendly, non-toxic cleaning products — safe for children and pets." },
+              { q: "How do I book?", a: "Fill in our contact form or send us a WhatsApp and we'll schedule at a convenient time." },
+              { q: "Do you offer regular contracts?", a: "Yes! We offer weekly, bi-weekly and monthly contracts at discounted rates." }
+            ] } }
+          ] },
+          { id: "s-whatsapp", type: "section", isVisible: true, styles: { padding: "50px 40px", background: "#f0fdf4", textAlign: "center" }, elements: [
+            { id: "wa-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "8px" }, content: { text: "Chat With Us on WhatsApp", level: "h2" } },
+            { id: "wa-t", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#64748b", marginBottom: "24px" }, content: { text: "We typically reply within minutes." } },
+            { id: "wa-el", type: "whatsapp-button", isVisible: true, isLocked: false, styles: { display: "flex", justifyContent: "center" }, content: { number: "", message: "Hello! I'd like to book a cleaning service.", label: "Book a Cleaning" } }
+          ] },
+          { id: "s-newsletter", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#6272f1" }, elements: [
+            { id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { title: "Get cleaning tips & special offers", placeholder: "Enter your email address", buttonLabel: "Subscribe" } }
           ] },
           { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 SparkleClean GH. We clean so you don't have to.", links: [] } }] }
         ]
@@ -918,6 +1325,23 @@ export const TEMPLATES: Template[] = [
             { id: "or-f", type: "form", isVisible: true, isLocked: false, styles: { maxWidth: "500px", margin: "0 auto" }, content: { title: "", fields: [{ name: "name", label: "Name", type: "text", required: true }, { name: "phone", label: "Phone / WhatsApp", type: "tel", required: true }, { name: "address", label: "Delivery Address", type: "text", required: true }, { name: "order", label: "What would you like to order?", type: "textarea", required: true }, { name: "time", label: "Delivery Time", type: "text", required: false }], submitText: "Send Order" } }
           ] },
           { id: "s-wa", type: "section", isVisible: true, styles: { padding: "20px 40px" }, elements: [{ id: "wa-el", type: "whatsapp-button", isVisible: true, isLocked: false, styles: {}, content: { number: "233200000000", message: "Hi! I'd like to place a food order." } }] },
+
+          { id: "s-testimonial", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#f8fafc" }, elements: [
+            { id: "tm-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "32px" }, content: { text: "What Our Clients Say", level: "h2" } },
+            { id: "tm-el", type: "testimonial", isVisible: true, isLocked: false, styles: { maxWidth: "600px", margin: "0 auto", textAlign: "center" }, content: { quote: "The food was absolutely amazing! Every dish was fresh, beautifully presented and the guests couldn't stop complimenting it. Will use for every event!", author: "Mrs. Adjoa Okyere", role: "Event Host", avatar: "" } }
+          ] },
+          { id: "s-faq", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#fff" }, elements: [
+            { id: "fq-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "40px" }, content: { text: "Frequently Asked Questions", level: "h2" } },
+            { id: "fq-el", type: "faq-accordion", isVisible: true, isLocked: false, styles: {}, content: { items: [
+              { q: "How far in advance should I book?", a: "We recommend booking at least 2 weeks in advance for events, 24hrs for regular orders." },
+              { q: "Do you cater for dietary requirements?", a: "Yes, we accommodate vegetarian, vegan, gluten-free and allergy-specific requests." },
+              { q: "What's included in your catering package?", a: "All packages include food, serving equipment, and a dedicated serving team." },
+              { q: "What's your minimum order?", a: "Minimum order for event catering is 20 guests. Food delivery minimum is GHS 50." }
+            ] } }
+          ] },
+          { id: "s-newsletter", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#6272f1" }, elements: [
+            { id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { title: "Get our weekly menu & special event packages", placeholder: "Enter your email address", buttonLabel: "Subscribe" } }
+          ] },
           { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 Mama's Kitchen. Cooked with love.", links: [] } }] }
         ]
       }]
@@ -952,6 +1376,28 @@ export const TEMPLATES: Template[] = [
           { id: "s-book", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#000" }, elements: [
             { id: "bk-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "32px", color: "#d4af37" }, content: { text: "Book Your Appointment", level: "h2" } },
             { id: "bk-f", type: "form", isVisible: true, isLocked: false, styles: { maxWidth: "480px", margin: "0 auto" }, content: { title: "", fields: [{ name: "name", label: "Name", type: "text", required: true }, { name: "phone", label: "Phone / WhatsApp", type: "tel", required: true }, { name: "service", label: "Service", type: "text", required: true }, { name: "date", label: "Preferred Date & Time", type: "text", required: true }], submitText: "Book Now" } }
+          ] },
+
+          { id: "s-testimonial", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#f8fafc" }, elements: [
+            { id: "tm-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "32px" }, content: { text: "What Our Clients Say", level: "h2" } },
+            { id: "tm-el", type: "testimonial", isVisible: true, isLocked: false, styles: { maxWidth: "600px", margin: "0 auto", textAlign: "center" }, content: { quote: "Best barbershop in the city! The cuts are always fresh, the staff are skilled and the vibe is great. I won't go anywhere else. 5 stars!", author: "Kwabena Osei", role: "Regular Client", avatar: "" } }
+          ] },
+          { id: "s-faq", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#fff" }, elements: [
+            { id: "fq-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "40px" }, content: { text: "Frequently Asked Questions", level: "h2" } },
+            { id: "fq-el", type: "faq-accordion", isVisible: true, isLocked: false, styles: {}, content: { items: [
+              { q: "Do I need an appointment?", a: "Walk-ins are welcome but booking ahead ensures minimum wait time." },
+              { q: "How long does a cut take?", a: "A standard haircut takes 20–40 minutes. Beards and special styles may take longer." },
+              { q: "What's your price range?", a: "Prices start from GHS 30 for a basic cut. Ask at the shop for our full price list." },
+              { q: "Do you do kids' cuts?", a: "Yes, we do kids' haircuts. We're great with children!" }
+            ] } }
+          ] },
+          { id: "s-whatsapp", type: "section", isVisible: true, styles: { padding: "50px 40px", background: "#f0fdf4", textAlign: "center" }, elements: [
+            { id: "wa-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "8px" }, content: { text: "Chat With Us on WhatsApp", level: "h2" } },
+            { id: "wa-t", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#64748b", marginBottom: "24px" }, content: { text: "We typically reply within minutes." } },
+            { id: "wa-el", type: "whatsapp-button", isVisible: true, isLocked: false, styles: { display: "flex", justifyContent: "center" }, content: { number: "", message: "Hello! I'd like to book a haircut appointment.", label: "Book a Cut" } }
+          ] },
+          { id: "s-newsletter", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#6272f1" }, elements: [
+            { id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { title: "Get our latest styles & special offers", placeholder: "Enter your email address", buttonLabel: "Subscribe" } }
           ] },
           { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: { color: "#94a3b8" }, content: { text: "© 2025 Kingcuts Barbershop. Stay sharp.", links: [] } }] }
         ]
@@ -995,6 +1441,24 @@ export const TEMPLATES: Template[] = [
             { id: "ct-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "32px", color: "#fff" }, content: { text: "Let's Plan Your Event", level: "h2" } },
             { id: "ct-f", type: "form", isVisible: true, isLocked: false, styles: { maxWidth: "500px", margin: "0 auto" }, content: { title: "", fields: [{ name: "name", label: "Name", type: "text", required: true }, { name: "email", label: "Email", type: "email", required: true }, { name: "phone", label: "Phone", type: "tel", required: true }, { name: "event", label: "Type of Event", type: "text", required: true }, { name: "date", label: "Event Date", type: "text", required: false }, { name: "guests", label: "Estimated Guests", type: "text", required: false }, { name: "message", label: "Tell us more", type: "textarea", required: false }], submitText: "Start Planning" } }
           ] },
+
+          { id: "s-faq", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#fff" }, elements: [
+            { id: "fq-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "40px" }, content: { text: "Frequently Asked Questions", level: "h2" } },
+            { id: "fq-el", type: "faq-accordion", isVisible: true, isLocked: false, styles: {}, content: { items: [
+              { q: "How far in advance should I book?", a: "We recommend 3–6 months for weddings, 1 month for smaller events." },
+              { q: "Do you handle décor too?", a: "Yes! We offer full-service packages including concept design, décor, catering coordination and more." },
+              { q: "What types of events do you specialise in?", a: "Weddings, corporate events, birthdays, funerals, baby showers and graduations." },
+              { q: "Do you travel outside Accra?", a: "Yes, we serve clients across Ghana and can travel internationally for destination events." }
+            ] } }
+          ] },
+          { id: "s-whatsapp", type: "section", isVisible: true, styles: { padding: "50px 40px", background: "#f0fdf4", textAlign: "center" }, elements: [
+            { id: "wa-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "8px" }, content: { text: "Chat With Us on WhatsApp", level: "h2" } },
+            { id: "wa-t", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#64748b", marginBottom: "24px" }, content: { text: "We typically reply within minutes." } },
+            { id: "wa-el", type: "whatsapp-button", isVisible: true, isLocked: false, styles: { display: "flex", justifyContent: "center" }, content: { number: "", message: "Hello! I'm looking for an event planner and would like to discuss my event.", label: "Plan Your Event" } }
+          ] },
+          { id: "s-newsletter", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#6272f1" }, elements: [
+            { id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { title: "Get event inspiration & planning tips", placeholder: "Enter your email address", buttonLabel: "Subscribe" } }
+          ] },
           { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 Celebrations by Adwoa. Every moment deserves to be magical.", links: [] } }] }
         ]
       }]
@@ -1034,6 +1498,24 @@ export const TEMPLATES: Template[] = [
             { id: "ct-t", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "rgba(255,255,255,0.8)", marginBottom: "32px" }, content: { text: "No pressure. Just a conversation about your business and where you want to go." } },
             { id: "ct-f", type: "form", isVisible: true, isLocked: false, styles: { maxWidth: "500px", margin: "0 auto" }, content: { title: "", fields: [{ name: "name", label: "Name", type: "text", required: true }, { name: "email", label: "Email", type: "email", required: true }, { name: "phone", label: "Phone", type: "tel", required: true }, { name: "business", label: "Your Business / Industry", type: "text", required: true }, { name: "challenge", label: "Your biggest challenge right now", type: "textarea", required: true }], submitText: "Book My Call" } }
           ] },
+
+          { id: "s-faq", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#fff" }, elements: [
+            { id: "fq-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "40px" }, content: { text: "Frequently Asked Questions", level: "h2" } },
+            { id: "fq-el", type: "faq-accordion", isVisible: true, isLocked: false, styles: {}, content: { items: [
+              { q: "How do we get started?", a: "Book a free 30-min discovery call via the form above. No commitment required." },
+              { q: "Do you work with small businesses?", a: "Yes! I work with businesses of all sizes — from startups to established enterprises." },
+              { q: "How do you charge?", a: "I offer project-based, retainer, and hourly rates depending on the engagement." },
+              { q: "Do you work remotely?", a: "Yes, I work with clients across Ghana and internationally via Zoom and email." }
+            ] } }
+          ] },
+          { id: "s-whatsapp", type: "section", isVisible: true, styles: { padding: "50px 40px", background: "#f0fdf4", textAlign: "center" }, elements: [
+            { id: "wa-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "8px" }, content: { text: "Chat With Us on WhatsApp", level: "h2" } },
+            { id: "wa-t", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#64748b", marginBottom: "24px" }, content: { text: "We typically reply within minutes." } },
+            { id: "wa-el", type: "whatsapp-button", isVisible: true, isLocked: false, styles: { display: "flex", justifyContent: "center" }, content: { number: "", message: "Hello! I'd like to book a free discovery call with you.", label: "Book a Free Call" } }
+          ] },
+          { id: "s-newsletter", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#6272f1" }, elements: [
+            { id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { title: "Get business strategy tips & insights", placeholder: "Enter your email address", buttonLabel: "Subscribe" } }
+          ] },
           { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 Kofi Mensah Consulting. Building Africa's next generation of great businesses.", links: [] } }] }
         ]
       }]
@@ -1065,6 +1547,23 @@ export const TEMPLATES: Template[] = [
             { id: "or-f", type: "form", isVisible: true, isLocked: false, styles: { maxWidth: "500px", margin: "0 auto" }, content: { title: "", fields: [{ name: "name", label: "Name", type: "text", required: true }, { name: "phone", label: "Phone / WhatsApp", type: "tel", required: true }, { name: "address", label: "Delivery Address", type: "text", required: true }, { name: "items", label: "Medicine(s) needed", type: "textarea", required: true }], submitText: "Place Order" } }
           ] },
           { id: "s-wa", type: "section", isVisible: true, styles: { padding: "20px 40px" }, elements: [{ id: "wa-el", type: "whatsapp-button", isVisible: true, isLocked: false, styles: {}, content: { number: "233200000000", message: "Hi! I need to order medicines." } }] },
+
+          { id: "s-testimonial", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#f8fafc" }, elements: [
+            { id: "tm-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "32px" }, content: { text: "What Our Clients Say", level: "h2" } },
+            { id: "tm-el", type: "testimonial", isVisible: true, isLocked: false, styles: { maxWidth: "600px", margin: "0 auto", textAlign: "center" }, content: { quote: "Always helpful, knowledgeable staff who take time to explain my medications. Prices are fair and they always have what I need in stock.", author: "Mr. Kofi Atiemo", role: "Regular Customer", avatar: "" } }
+          ] },
+          { id: "s-faq", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#fff" }, elements: [
+            { id: "fq-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "40px" }, content: { text: "Frequently Asked Questions", level: "h2" } },
+            { id: "fq-el", type: "faq-accordion", isVisible: true, isLocked: false, styles: {}, content: { items: [
+              { q: "Do you require a prescription?", a: "Prescription medicines require a valid prescription from a registered doctor." },
+              { q: "Do you deliver?", a: "Yes, we offer free delivery on orders above GHS 50 within 5km." },
+              { q: "Can I call in my order?", a: "Yes, call or WhatsApp us your medication list and we'll prepare it for pickup or delivery." },
+              { q: "Do you stock imported brands?", a: "Yes, we stock local and internationally recognised pharmaceutical brands." }
+            ] } }
+          ] },
+          { id: "s-newsletter", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#6272f1" }, elements: [
+            { id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { title: "Get health tips & pharmacy promotions", placeholder: "Enter your email address", buttonLabel: "Subscribe" } }
+          ] },
           { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 Vida Pharmacy. Your health, our priority.", links: [] } }] }
         ]
       }]
@@ -1092,6 +1591,28 @@ export const TEMPLATES: Template[] = [
           { id: "s-quote", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#ea580c" }, elements: [
             { id: "qt-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "32px", color: "#fff" }, content: { text: "Get an Instant Quote", level: "h2" } },
             { id: "qt-f", type: "form", isVisible: true, isLocked: false, styles: { maxWidth: "500px", margin: "0 auto" }, content: { title: "", fields: [{ name: "name", label: "Name", type: "text", required: true }, { name: "phone", label: "Phone", type: "tel", required: true }, { name: "pickup", label: "Pickup Location", type: "text", required: true }, { name: "delivery", label: "Delivery Location", type: "text", required: true }, { name: "item", label: "What are you sending?", type: "text", required: true }, { name: "weight", label: "Approximate Weight (kg)", type: "text", required: false }], submitText: "Get My Quote" } }
+          ] },
+
+          { id: "s-testimonial", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#f8fafc" }, elements: [
+            { id: "tm-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "32px" }, content: { text: "What Our Clients Say", level: "h2" } },
+            { id: "tm-el", type: "testimonial", isVisible: true, isLocked: false, styles: { maxWidth: "600px", margin: "0 auto", textAlign: "center" }, content: { quote: "Reliable, fast and always handles our packages with care. Our business depends on fast deliveries and they've never let us down.", author: "Ms. Ama Frimpong", role: "Business Owner, Kumasi", avatar: "" } }
+          ] },
+          { id: "s-faq", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#fff" }, elements: [
+            { id: "fq-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "40px" }, content: { text: "Frequently Asked Questions", level: "h2" } },
+            { id: "fq-el", type: "faq-accordion", isVisible: true, isLocked: false, styles: {}, content: { items: [
+              { q: "What areas do you cover?", a: "We cover all major cities in Ghana and offer express delivery to most regions." },
+              { q: "How do I track my delivery?", a: "You receive a tracking code via SMS/WhatsApp after booking. Track in real-time." },
+              { q: "What's the maximum package weight?", a: "Standard packages up to 50kg. Contact us for heavy freight and cargo." },
+              { q: "How do I book a pickup?", a: "Call, WhatsApp or fill in our online form and a driver will be assigned within the hour." }
+            ] } }
+          ] },
+          { id: "s-whatsapp", type: "section", isVisible: true, styles: { padding: "50px 40px", background: "#f0fdf4", textAlign: "center" }, elements: [
+            { id: "wa-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "8px" }, content: { text: "Chat With Us on WhatsApp", level: "h2" } },
+            { id: "wa-t", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#64748b", marginBottom: "24px" }, content: { text: "We typically reply within minutes." } },
+            { id: "wa-el", type: "whatsapp-button", isVisible: true, isLocked: false, styles: { display: "flex", justifyContent: "center" }, content: { number: "", message: "Hello! I'd like to arrange a pickup/delivery.", label: "Book a Pickup" } }
+          ] },
+          { id: "s-newsletter", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#6272f1" }, elements: [
+            { id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { title: "Get logistics tips & delivery promotions", placeholder: "Enter your email address", buttonLabel: "Subscribe" } }
           ] },
           { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 SwiftMove Logistics. Delivering trust, one package at a time.", links: [] } }] }
         ]
@@ -1126,6 +1647,24 @@ export const TEMPLATES: Template[] = [
             { id: "ct-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "32px", color: "#fff" }, content: { text: "Start Your Project", level: "h2" } },
             { id: "ct-f", type: "form", isVisible: true, isLocked: false, styles: { maxWidth: "500px", margin: "0 auto" }, content: { title: "", fields: [{ name: "name", label: "Name", type: "text", required: true }, { name: "email", label: "Email", type: "email", required: true }, { name: "phone", label: "Phone", type: "tel", required: true }, { name: "project", label: "Project Type (Home / Office / Other)", type: "text", required: true }, { name: "budget", label: "Budget Range (GHS)", type: "text", required: false }, { name: "message", label: "Tell us about your space", type: "textarea", required: false }], submitText: "Book Free Consultation" } }
           ] },
+
+          { id: "s-faq", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#fff" }, elements: [
+            { id: "fq-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "40px" }, content: { text: "Frequently Asked Questions", level: "h2" } },
+            { id: "fq-el", type: "faq-accordion", isVisible: true, isLocked: false, styles: {}, content: { items: [
+              { q: "How does the design process work?", a: "We start with a consultation to understand your vision, then provide concepts, and execute upon approval." },
+              { q: "How long does a project take?", a: "Small rooms take 2–4 weeks. Full home redesigns can take 2–3 months." },
+              { q: "Do you source the furniture too?", a: "Yes, we handle full procurement — furniture, décor, lighting and accessories." },
+              { q: "Do you work outside Accra?", a: "Yes, we travel across Ghana for the right projects. Travel costs apply." }
+            ] } }
+          ] },
+          { id: "s-whatsapp", type: "section", isVisible: true, styles: { padding: "50px 40px", background: "#f0fdf4", textAlign: "center" }, elements: [
+            { id: "wa-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "8px" }, content: { text: "Chat With Us on WhatsApp", level: "h2" } },
+            { id: "wa-t", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#64748b", marginBottom: "24px" }, content: { text: "We typically reply within minutes." } },
+            { id: "wa-el", type: "whatsapp-button", isVisible: true, isLocked: false, styles: { display: "flex", justifyContent: "center" }, content: { number: "", message: "Hello! I'd like to discuss an interior design project with you.", label: "Book a Consultation" } }
+          ] },
+          { id: "s-newsletter", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#6272f1" }, elements: [
+            { id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { title: "Get design inspiration & décor tips", placeholder: "Enter your email address", buttonLabel: "Subscribe" } }
+          ] },
           { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 Afia Interiors. Beautiful spaces, beautifully done.", links: [] } }] }
         ]
       }]
@@ -1158,6 +1697,23 @@ export const TEMPLATES: Template[] = [
             { id: "or-f", type: "form", isVisible: true, isLocked: false, styles: { maxWidth: "500px", margin: "0 auto" }, content: { title: "", fields: [{ name: "name", label: "Name / Company", type: "text", required: true }, { name: "phone", label: "Phone / WhatsApp", type: "tel", required: true }, { name: "product", label: "Product(s) needed", type: "text", required: true }, { name: "quantity", label: "Quantity", type: "text", required: true }, { name: "deadline", label: "Delivery Deadline", type: "text", required: false }], submitText: "Send Order" } }
           ] },
           { id: "s-wa", type: "section", isVisible: true, styles: { padding: "20px 40px" }, elements: [{ id: "wa-el", type: "whatsapp-button", isVisible: true, isLocked: false, styles: {}, content: { number: "233200000000", message: "Hi! I need a print quote." } }] },
+
+          { id: "s-testimonial", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#f8fafc" }, elements: [
+            { id: "tm-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "32px" }, content: { text: "What Our Clients Say", level: "h2" } },
+            { id: "tm-el", type: "testimonial", isVisible: true, isLocked: false, styles: { maxWidth: "600px", margin: "0 auto", textAlign: "center" }, content: { quote: "Fast turnaround, excellent print quality and very competitive prices. They printed our branded materials for our launch and it was perfect!", author: "Mr. Asante Boateng", role: "Business Owner", avatar: "" } }
+          ] },
+          { id: "s-faq", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#fff" }, elements: [
+            { id: "fq-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "40px" }, content: { text: "Frequently Asked Questions", level: "h2" } },
+            { id: "fq-el", type: "faq-accordion", isVisible: true, isLocked: false, styles: {}, content: { items: [
+              { q: "What file formats do you accept?", a: "We accept PDF, AI, PSD, PNG and JPG. PDF is preferred for print-ready files." },
+              { q: "How fast is turnaround?", a: "Standard orders: 2–3 days. Express orders: same day or next day (subject to capacity)." },
+              { q: "Do you offer design services?", a: "Yes! Our in-house designers can create artwork for an additional fee." },
+              { q: "What's the minimum order quantity?", a: "Minimum quantities vary by product. Business cards start from 50pcs. Contact us for details." }
+            ] } }
+          ] },
+          { id: "s-newsletter", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#6272f1" }, elements: [
+            { id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { title: "Get new product updates & special printing deals", placeholder: "Enter your email address", buttonLabel: "Subscribe" } }
+          ] },
           { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 PrintKing GH. Print it right.", links: [] } }] }
         ]
       }]
@@ -1185,6 +1741,28 @@ export const TEMPLATES: Template[] = [
           { id: "s-contact", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#1e293b" }, elements: [
             { id: "ct-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "32px", color: "#fff" }, content: { text: "Request a Security Assessment", level: "h2" } },
             { id: "ct-f", type: "form", isVisible: true, isLocked: false, styles: { maxWidth: "500px", margin: "0 auto" }, content: { title: "", fields: [{ name: "name", label: "Name / Company", type: "text", required: true }, { name: "phone", label: "Phone", type: "tel", required: true }, { name: "location", label: "Property Location", type: "text", required: true }, { name: "service", label: "Service Required", type: "text", required: true }, { name: "guards", label: "No. of Guards Needed", type: "text", required: false }], submitText: "Request Assessment" } }
+          ] },
+
+          { id: "s-testimonial", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#f8fafc" }, elements: [
+            { id: "tm-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "32px" }, content: { text: "What Our Clients Say", level: "h2" } },
+            { id: "tm-el", type: "testimonial", isVisible: true, isLocked: false, styles: { maxWidth: "600px", margin: "0 auto", textAlign: "center" }, content: { quote: "Very professional, disciplined guards who take their work seriously. Our premises have never been more secure. Worth every cedi!", author: "Mr. Edwin Asante", role: "Property Manager", avatar: "" } }
+          ] },
+          { id: "s-faq", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#fff" }, elements: [
+            { id: "fq-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "40px" }, content: { text: "Frequently Asked Questions", level: "h2" } },
+            { id: "fq-el", type: "faq-accordion", isVisible: true, isLocked: false, styles: {}, content: { items: [
+              { q: "Are your guards trained and licensed?", a: "All our security personnel are licensed by the Ghana Police Service and undergo rigorous training." },
+              { q: "Do you offer 24/7 coverage?", a: "Yes, we offer round-the-clock protection with shift rotations." },
+              { q: "What industries do you serve?", a: "Residential, commercial, events, construction sites, banks and government facilities." },
+              { q: "Do you have armed response?", a: "Yes, armed response units are available as part of our premium security packages." }
+            ] } }
+          ] },
+          { id: "s-whatsapp", type: "section", isVisible: true, styles: { padding: "50px 40px", background: "#f0fdf4", textAlign: "center" }, elements: [
+            { id: "wa-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "8px" }, content: { text: "Chat With Us on WhatsApp", level: "h2" } },
+            { id: "wa-t", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#64748b", marginBottom: "24px" }, content: { text: "We typically reply within minutes." } },
+            { id: "wa-el", type: "whatsapp-button", isVisible: true, isLocked: false, styles: { display: "flex", justifyContent: "center" }, content: { number: "", message: "Hello! I'd like to enquire about security services for my property/event.", label: "Request a Security Assessment" } }
+          ] },
+          { id: "s-newsletter", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#6272f1" }, elements: [
+            { id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { title: "Get security tips & company updates", placeholder: "Enter your email address", buttonLabel: "Subscribe" } }
           ] },
           { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: { color: "#94a3b8" }, content: { text: "© 2025 Guardian Shield Security. Protecting Ghana.", links: [] } }] }
         ]
@@ -1218,6 +1796,28 @@ export const TEMPLATES: Template[] = [
             { id: "ct-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "32px", color: "#fff" }, content: { text: "Get a Free Quote", level: "h2" } },
             { id: "ct-f", type: "form", isVisible: true, isLocked: false, styles: { maxWidth: "500px", margin: "0 auto" }, content: { title: "", fields: [{ name: "name", label: "Name / Company", type: "text", required: true }, { name: "phone", label: "Phone", type: "tel", required: true }, { name: "project", label: "Project Type", type: "text", required: true }, { name: "location", label: "Project Location", type: "text", required: true }, { name: "description", label: "Brief Description", type: "textarea", required: false }], submitText: "Request Quote" } }
           ] },
+
+          { id: "s-testimonial", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#f8fafc" }, elements: [
+            { id: "tm-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "32px" }, content: { text: "What Our Clients Say", level: "h2" } },
+            { id: "tm-el", type: "testimonial", isVisible: true, isLocked: false, styles: { maxWidth: "600px", margin: "0 auto", textAlign: "center" }, content: { quote: "They built our family home to the highest standard. Professional team, great communication throughout and finished on time. Couldn't be happier!", author: "Mr. Kweku Bonsu", role: "Homeowner", avatar: "" } }
+          ] },
+          { id: "s-faq", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#fff" }, elements: [
+            { id: "fq-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "40px" }, content: { text: "Frequently Asked Questions", level: "h2" } },
+            { id: "fq-el", type: "faq-accordion", isVisible: true, isLocked: false, styles: {}, content: { items: [
+              { q: "Do you provide a free estimate?", a: "Yes, we offer free site visits and cost estimates for all projects." },
+              { q: "How long does construction take?", a: "A standard 3-bedroom house takes 8–12 months. Timelines vary by project scope." },
+              { q: "Are you licensed?", a: "Yes, we are a licensed and insured contractor registered with Ghana's construction authority." },
+              { q: "Do you handle land searches and permits?", a: "Yes, we assist clients through the full process including planning permits." }
+            ] } }
+          ] },
+          { id: "s-whatsapp", type: "section", isVisible: true, styles: { padding: "50px 40px", background: "#f0fdf4", textAlign: "center" }, elements: [
+            { id: "wa-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "8px" }, content: { text: "Chat With Us on WhatsApp", level: "h2" } },
+            { id: "wa-t", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#64748b", marginBottom: "24px" }, content: { text: "We typically reply within minutes." } },
+            { id: "wa-el", type: "whatsapp-button", isVisible: true, isLocked: false, styles: { display: "flex", justifyContent: "center" }, content: { number: "", message: "Hello! I'd like to discuss a construction project with your team.", label: "Get a Free Quote" } }
+          ] },
+          { id: "s-newsletter", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#6272f1" }, elements: [
+            { id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { title: "Get construction tips & project showcases", placeholder: "Enter your email address", buttonLabel: "Subscribe" } }
+          ] },
           { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 BuildRight Construction. Quality you can build on.", links: [] } }] }
         ]
       }]
@@ -1249,6 +1849,28 @@ export const TEMPLATES: Template[] = [
           { id: "s-book", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#7c3aed" }, elements: [
             { id: "bk-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "32px", color: "#fff" }, content: { text: "Book a Free Trial", level: "h2" } },
             { id: "bk-f", type: "form", isVisible: true, isLocked: false, styles: { maxWidth: "500px", margin: "0 auto" }, content: { title: "", fields: [{ name: "name", label: "Student Name", type: "text", required: true }, { name: "phone", label: "Parent/Guardian Phone", type: "tel", required: true }, { name: "grade", label: "Year / Grade Level", type: "text", required: true }, { name: "subject", label: "Subject(s) needed", type: "text", required: true }, { name: "mode", label: "Online or In-Person?", type: "text", required: false }], submitText: "Book My Free Trial" } }
+          ] },
+
+          { id: "s-testimonial", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#f8fafc" }, elements: [
+            { id: "tm-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "32px" }, content: { text: "What Our Clients Say", level: "h2" } },
+            { id: "tm-el", type: "testimonial", isVisible: true, isLocked: false, styles: { maxWidth: "600px", margin: "0 auto", textAlign: "center" }, content: { quote: "My son went from struggling to achieving A's in just 3 months! The tutor is patient, knowledgeable and knows how to make learning fun. Highly recommended!", author: "Mrs. Adwoa Acheampong", role: "Parent", avatar: "" } }
+          ] },
+          { id: "s-faq", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#fff" }, elements: [
+            { id: "fq-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "40px" }, content: { text: "Frequently Asked Questions", level: "h2" } },
+            { id: "fq-el", type: "faq-accordion", isVisible: true, isLocked: false, styles: {}, content: { items: [
+              { q: "Do you offer online tutoring?", a: "Yes! We tutor online via Zoom/Teams and in-person at your home or our centre." },
+              { q: "What subjects do you cover?", a: "Maths, Science, English, French, ICT and all BECE/WASSCE subjects." },
+              { q: "What ages do you teach?", a: "We teach from JHS 1 through to SHS 3 and university-level subjects." },
+              { q: "How much do sessions cost?", a: "Sessions start from GHS 50/hour. Group sessions are available at a discount." }
+            ] } }
+          ] },
+          { id: "s-whatsapp", type: "section", isVisible: true, styles: { padding: "50px 40px", background: "#f0fdf4", textAlign: "center" }, elements: [
+            { id: "wa-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "8px" }, content: { text: "Chat With Us on WhatsApp", level: "h2" } },
+            { id: "wa-t", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#64748b", marginBottom: "24px" }, content: { text: "We typically reply within minutes." } },
+            { id: "wa-el", type: "whatsapp-button", isVisible: true, isLocked: false, styles: { display: "flex", justifyContent: "center" }, content: { number: "", message: "Hello! I'd like to book a tutoring session for my child.", label: "Book a Session" } }
+          ] },
+          { id: "s-newsletter", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#6272f1" }, elements: [
+            { id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { title: "Get study tips, exam guides & session offers", placeholder: "Enter your email address", buttonLabel: "Subscribe" } }
           ] },
           { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 AceMind Tutoring. Every child can excel.", links: [] } }] }
         ]
@@ -1282,6 +1904,28 @@ export const TEMPLATES: Template[] = [
             { id: "bk-b", type: "booking-widget", isVisible: true, isLocked: false, styles: {}, content: { title: "", subtitle: "Choose your treatment and preferred time.", buttonText: "Book Now", buttonHref: "#book-form" } },
             { id: "bk-f", type: "form", isVisible: true, isLocked: false, styles: { maxWidth: "500px", margin: "20px auto 0" }, content: { title: "", fields: [{ name: "name", label: "Name", type: "text", required: true }, { name: "phone", label: "Phone", type: "tel", required: true }, { name: "treatment", label: "Treatment", type: "text", required: true }, { name: "date", label: "Preferred Date & Time", type: "text", required: true }], submitText: "Confirm Booking" } }
           ] },
+
+          { id: "s-testimonial", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#f8fafc" }, elements: [
+            { id: "tm-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "32px" }, content: { text: "What Our Clients Say", level: "h2" } },
+            { id: "tm-el", type: "testimonial", isVisible: true, isLocked: false, styles: { maxWidth: "600px", margin: "0 auto", textAlign: "center" }, content: { quote: "My go-to place for self-care! The massage therapists are exceptional and the ambiance is so calming. I leave feeling completely renewed every time.", author: "Maame Yaa Asante", role: "Regular Client", avatar: "" } }
+          ] },
+          { id: "s-faq", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#fff" }, elements: [
+            { id: "fq-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "40px" }, content: { text: "Frequently Asked Questions", level: "h2" } },
+            { id: "fq-el", type: "faq-accordion", isVisible: true, isLocked: false, styles: {}, content: { items: [
+              { q: "Do I need to book in advance?", a: "Booking is strongly recommended, especially for weekends. Call or WhatsApp us." },
+              { q: "What should I bring?", a: "Just yourself! We provide towels, robes and all products." },
+              { q: "Do you offer gift vouchers?", a: "Yes! Gift vouchers are available for all treatments — a perfect present." },
+              { q: "Are your products organic?", a: "Yes, we use certified organic, natural products in all our treatments." }
+            ] } }
+          ] },
+          { id: "s-whatsapp", type: "section", isVisible: true, styles: { padding: "50px 40px", background: "#f0fdf4", textAlign: "center" }, elements: [
+            { id: "wa-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "8px" }, content: { text: "Chat With Us on WhatsApp", level: "h2" } },
+            { id: "wa-t", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#64748b", marginBottom: "24px" }, content: { text: "We typically reply within minutes." } },
+            { id: "wa-el", type: "whatsapp-button", isVisible: true, isLocked: false, styles: { display: "flex", justifyContent: "center" }, content: { number: "", message: "Hello! I'd like to book a spa treatment.", label: "Book a Treatment" } }
+          ] },
+          { id: "s-newsletter", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#6272f1" }, elements: [
+            { id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { title: "Get wellness tips & exclusive spa deals", placeholder: "Enter your email address", buttonLabel: "Subscribe" } }
+          ] },
           { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 Serenity Spa & Wellness. Your peace awaits.", links: [] } }] }
         ]
       }]
@@ -1312,6 +1956,23 @@ export const TEMPLATES: Template[] = [
           { id: "s-book", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#1e1b4b" }, elements: [
             { id: "bk-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "32px", color: "#fff" }, content: { text: "Book a Station", level: "h2" } },
             { id: "bk-f", type: "form", isVisible: true, isLocked: false, styles: { maxWidth: "500px", margin: "0 auto" }, content: { title: "", fields: [{ name: "name", label: "Name", type: "text", required: true }, { name: "phone", label: "Phone / WhatsApp", type: "tel", required: true }, { name: "station", label: "Station Type (PC / PS5 / VR)", type: "text", required: true }, { name: "date", label: "Date & Time", type: "text", required: true }, { name: "duration", label: "Duration (hours)", type: "text", required: false }], submitText: "Reserve My Station" } }
+          ] },
+
+          { id: "s-testimonial", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#f8fafc" }, elements: [
+            { id: "tm-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "32px" }, content: { text: "What Our Clients Say", level: "h2" } },
+            { id: "tm-el", type: "testimonial", isVisible: true, isLocked: false, styles: { maxWidth: "600px", margin: "0 auto", textAlign: "center" }, content: { quote: "Best gaming café in Accra! Fast internet, top-tier PCs and great atmosphere. The staff really know their gaming. My squad comes here every weekend!", author: "Amos Darko", role: "Gaming Enthusiast", avatar: "" } }
+          ] },
+          { id: "s-faq", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#fff" }, elements: [
+            { id: "fq-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "40px" }, content: { text: "Frequently Asked Questions", level: "h2" } },
+            { id: "fq-el", type: "faq-accordion", isVisible: true, isLocked: false, styles: {}, content: { items: [
+              { q: "How much does an hour cost?", a: "GHS 10/hour for PC gaming. Console gaming from GHS 15/hour. VR from GHS 25/hour." },
+              { q: "Can I bring my own food?", a: "Yes, outside food is welcome. We also have snacks and drinks available." },
+              { q: "Do you host tournaments?", a: "Yes! We host weekly and monthly tournaments. Check our socials for the schedule." },
+              { q: "Is there a membership discount?", a: "Yes, our monthly membership gives you 20% off all sessions plus priority booking." }
+            ] } }
+          ] },
+          { id: "s-newsletter", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#6272f1" }, elements: [
+            { id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { title: "Get tournament schedules, new games & special offers", placeholder: "Enter your email address", buttonLabel: "Subscribe" } }
           ] },
           { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: { color: "#94a3b8" }, content: { text: "© 2025 GhanaGameZone. Play hard. Win harder.", links: [] } }] }
         ]
@@ -1391,6 +2052,19 @@ export const TEMPLATES: Template[] = [
             { id: "c-f", type: "form", isVisible: true, isLocked: false, styles: { maxWidth: "480px", margin: "0 auto" }, content: { title: "", fields: [{ name: "name", label: "Name", type: "text", required: true }, { name: "email", label: "Email", type: "email", required: true }, { name: "inquiry", label: "What are you looking for?", type: "textarea", required: true }], submitText: "Send Message" } }
           ] },
           { id: "s-wa", type: "section", isVisible: true, styles: { padding: "20px" }, elements: [{ id: "wa", type: "whatsapp-button", isVisible: true, isLocked: false, styles: {}, content: { number: "233200000000", message: "Hi! I'd like to order beauty products." } }] },
+
+          { id: "s-faq", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#fff" }, elements: [
+            { id: "fq-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "40px" }, content: { text: "Frequently Asked Questions", level: "h2" } },
+            { id: "fq-el", type: "faq-accordion", isVisible: true, isLocked: false, styles: {}, content: { items: [
+              { q: "Are your products suitable for African skin?", a: "Absolutely! All our products are specifically formulated for melanin-rich skin tones." },
+              { q: "Are your products natural?", a: "Yes, we use natural and ethically sourced ingredients. No harmful chemicals." },
+              { q: "Do you ship nationwide?", a: "Yes, we ship across Ghana. Free shipping on orders above GHS 200." },
+              { q: "Can I get a skin consultation?", a: "Yes! Book a free virtual skin consultation with our beauty specialist." }
+            ] } }
+          ] },
+          { id: "s-newsletter", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#6272f1" }, elements: [
+            { id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { title: "Get skincare tips, new launches & exclusive deals", placeholder: "Enter your email address", buttonLabel: "Subscribe" } }
+          ] },
           { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 Lumière Beauty. Celebrating African beauty.", links: [] } }] }
         ]
       }]
@@ -1424,6 +2098,23 @@ export const TEMPLATES: Template[] = [
             { id: "bk-f", type: "form", isVisible: true, isLocked: false, styles: { maxWidth: "540px", margin: "0 auto" }, content: { title: "", fields: [{ name: "name", label: "Your Name", type: "text", required: true }, { name: "phone", label: "Phone Number", type: "tel", required: true }, { name: "car", label: "Car Make & Model", type: "text", required: true }, { name: "issue", label: "Describe the issue", type: "textarea", required: true }, { name: "date", label: "Preferred Date", type: "text", required: false }], submitText: "Book Now" } }
           ] },
           { id: "s-wa", type: "section", isVisible: true, styles: { padding: "20px", background: "#0f172a" }, elements: [{ id: "wa", type: "whatsapp-button", isVisible: true, isLocked: false, styles: {}, content: { number: "233200000000", message: "Hi! I need to book a car service." } }] },
+
+          { id: "s-testimonial", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#f8fafc" }, elements: [
+            { id: "tm-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "32px" }, content: { text: "What Our Clients Say", level: "h2" } },
+            { id: "tm-el", type: "testimonial", isVisible: true, isLocked: false, styles: { maxWidth: "600px", margin: "0 auto", textAlign: "center" }, content: { quote: "Honest, skilled mechanics who don't try to oversell unnecessary repairs. My car runs like new and the price was very fair. This is my go-to workshop from now on!", author: "Mr. Kofi Atta", role: "Car Owner", avatar: "" } }
+          ] },
+          { id: "s-faq", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#fff" }, elements: [
+            { id: "fq-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "40px" }, content: { text: "Frequently Asked Questions", level: "h2" } },
+            { id: "fq-el", type: "faq-accordion", isVisible: true, isLocked: false, styles: {}, content: { items: [
+              { q: "Do I need to book?", a: "Booking is recommended for major services. Walk-ins are welcome for minor repairs." },
+              { q: "Do you offer a warranty on repairs?", a: "Yes, all repairs come with a 30-day workmanship warranty." },
+              { q: "What brands do you work on?", a: "We service all brands — Toyota, Kia, Hyundai, Mercedes, BMW, and local brands." },
+              { q: "Do you do roadside assistance?", a: "Yes, we offer emergency roadside assistance within Accra and surrounding areas." }
+            ] } }
+          ] },
+          { id: "s-newsletter", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#6272f1" }, elements: [
+            { id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { title: "Get car maintenance tips & workshop specials", placeholder: "Enter your email address", buttonLabel: "Subscribe" } }
+          ] },
           { id: "s-footer", type: "footer", isVisible: true, styles: { background: "#0f172a" }, elements: [{ id: "ft", type: "footer", isVisible: true, isLocked: false, styles: { color: "#94a3b8" }, content: { text: "© 2025 ProAuto Workshop. Quality you can trust.", links: [] } }] }
         ]
       }]
@@ -1460,6 +2151,23 @@ export const TEMPLATES: Template[] = [
             { id: "o-f", type: "form", isVisible: true, isLocked: false, styles: { maxWidth: "500px", margin: "0 auto" }, content: { title: "", fields: [{ name: "name", label: "Full Name", type: "text", required: true }, { name: "phone", label: "Phone / WhatsApp", type: "tel", required: true }, { name: "location", label: "Delivery Location", type: "text", required: true }, { name: "items", label: "What do you need? (items & quantities)", type: "textarea", required: true }], submitText: "Place Order" } }
           ] },
           { id: "s-wa", type: "section", isVisible: true, styles: { padding: "20px" }, elements: [{ id: "wa", type: "whatsapp-button", isVisible: true, isLocked: false, styles: {}, content: { number: "233200000000", message: "Hi GreenFields! I'd like to order fresh produce." } }] },
+
+          { id: "s-testimonial", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#f8fafc" }, elements: [
+            { id: "tm-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "32px" }, content: { text: "What Our Clients Say", level: "h2" } },
+            { id: "tm-el", type: "testimonial", isVisible: true, isLocked: false, styles: { maxWidth: "600px", margin: "0 auto", textAlign: "center" }, content: { quote: "Quality seeds, on-time delivery and knowledgeable staff who actually understand farming. My yields have improved significantly since working with this company.", author: "Mr. Emmanuel Owusu", role: "Farmer & Customer", avatar: "" } }
+          ] },
+          { id: "s-faq", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#fff" }, elements: [
+            { id: "fq-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "40px" }, content: { text: "Frequently Asked Questions", level: "h2" } },
+            { id: "fq-el", type: "faq-accordion", isVisible: true, isLocked: false, styles: {}, content: { items: [
+              { q: "Do you deliver farm inputs?", a: "Yes, we deliver seeds, fertilisers and equipment across Ghana." },
+              { q: "Can you help with farm planning?", a: "Yes, our agronomists provide free farm planning consultations for customers." },
+              { q: "Do you buy produce from farmers?", a: "Yes, we purchase produce directly from farms. Contact us for current prices." },
+              { q: "Do you train farmers?", a: "Yes, we run free training workshops on modern farming techniques throughout the year." }
+            ] } }
+          ] },
+          { id: "s-newsletter", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#6272f1" }, elements: [
+            { id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { title: "Get farming tips, market prices & company news", placeholder: "Enter your email address", buttonLabel: "Subscribe" } }
+          ] },
           { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 GreenFields Farm. Grown with love in Ghana.", links: [] } }] }
         ]
       }]
@@ -1499,6 +2207,19 @@ export const TEMPLATES: Template[] = [
             { id: "e-f", type: "form", isVisible: true, isLocked: false, styles: { maxWidth: "500px", margin: "0 auto" }, content: { title: "", fields: [{ name: "parentName", label: "Parent/Guardian Name", type: "text", required: true }, { name: "phone", label: "Phone Number", type: "tel", required: true }, { name: "childName", label: "Child's Name", type: "text", required: true }, { name: "age", label: "Child's Age", type: "text", required: true }, { name: "startDate", label: "Preferred Start Date", type: "text", required: false }], submitText: "Schedule Visit" } }
           ] },
           { id: "s-wa", type: "section", isVisible: true, styles: { padding: "20px" }, elements: [{ id: "wa", type: "whatsapp-button", isVisible: true, isLocked: false, styles: {}, content: { number: "233200000000", message: "Hello! I'd like to enroll my child at Little Stars." } }] },
+
+          { id: "s-faq", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#fff" }, elements: [
+            { id: "fq-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "40px" }, content: { text: "Frequently Asked Questions", level: "h2" } },
+            { id: "fq-el", type: "faq-accordion", isVisible: true, isLocked: false, styles: {}, content: { items: [
+              { q: "What are your opening hours?", a: "We open Monday–Friday, 6:30am–6:00pm to accommodate working parents." },
+              { q: "What age groups do you accept?", a: "We care for children from 3 months to 5 years in age-appropriate groups." },
+              { q: "What's the daily routine like?", a: "Each day is filled with structured play, learning activities, meals and rest time." },
+              { q: "How do I enrol my child?", a: "Fill in our enquiry form or call us to schedule a visit and meet the team." }
+            ] } }
+          ] },
+          { id: "s-newsletter", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#6272f1" }, elements: [
+            { id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { title: "Get parenting tips & centre updates", placeholder: "Enter your email address", buttonLabel: "Subscribe" } }
+          ] },
           { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 Little Stars Daycare. Nurturing the next generation.", links: [] } }] }
         ]
       }]
@@ -1535,6 +2256,28 @@ export const TEMPLATES: Template[] = [
           { id: "s-contact", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#eff6ff" }, elements: [
             { id: "c-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "32px" }, content: { text: "Free Initial Consultation", level: "h2" } },
             { id: "c-f", type: "form", isVisible: true, isLocked: false, styles: { maxWidth: "500px", margin: "0 auto" }, content: { title: "", fields: [{ name: "name", label: "Full Name", type: "text", required: true }, { name: "company", label: "Company Name", type: "text", required: false }, { name: "email", label: "Email", type: "email", required: true }, { name: "phone", label: "Phone", type: "tel", required: true }, { name: "service", label: "Service Needed", type: "text", required: false }], submitText: "Book Consultation" } }
+          ] },
+
+          { id: "s-testimonial", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#f8fafc" }, elements: [
+            { id: "tm-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "32px" }, content: { text: "What Our Clients Say", level: "h2" } },
+            { id: "tm-el", type: "testimonial", isVisible: true, isLocked: false, styles: { maxWidth: "600px", margin: "0 auto", textAlign: "center" }, content: { quote: "Professional, thorough and always ahead of deadlines. They've saved us significant money in tax planning and their financial advice is invaluable. Highly trusted.", author: "Mr. Charles Owusu-Mensah", role: "Business Owner", avatar: "" } }
+          ] },
+          { id: "s-faq", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#fff" }, elements: [
+            { id: "fq-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "40px" }, content: { text: "Frequently Asked Questions", level: "h2" } },
+            { id: "fq-el", type: "faq-accordion", isVisible: true, isLocked: false, styles: {}, content: { items: [
+              { q: "Do you work with small businesses?", a: "Yes, we serve sole traders, SMEs and large corporations across all industries." },
+              { q: "What accounting software do you use?", a: "We work with QuickBooks, Sage, Wave and Zoho Books, and can train your team." },
+              { q: "Do you handle tax filing?", a: "Yes, we handle all GRA filings including VAT, income tax, payroll and customs." },
+              { q: "How do your fees work?", a: "We offer monthly retainer, project-based and hourly fee arrangements." }
+            ] } }
+          ] },
+          { id: "s-whatsapp", type: "section", isVisible: true, styles: { padding: "50px 40px", background: "#f0fdf4", textAlign: "center" }, elements: [
+            { id: "wa-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "8px" }, content: { text: "Chat With Us on WhatsApp", level: "h2" } },
+            { id: "wa-t", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#64748b", marginBottom: "24px" }, content: { text: "We typically reply within minutes." } },
+            { id: "wa-el", type: "whatsapp-button", isVisible: true, isLocked: false, styles: { display: "flex", justifyContent: "center" }, content: { number: "", message: "Hello! I'd like to discuss accounting or tax services for my business.", label: "Book a Consultation" } }
+          ] },
+          { id: "s-newsletter", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#6272f1" }, elements: [
+            { id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { title: "Get tax tips & financial insights", placeholder: "Enter your email address", buttonLabel: "Subscribe" } }
           ] },
           { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 Mensah & Associates. Chartered Accountants & Business Advisors.", links: [] } }] }
         ]
@@ -1575,6 +2318,28 @@ export const TEMPLATES: Template[] = [
             { id: "bk-f", type: "form", isVisible: true, isLocked: false, styles: { maxWidth: "500px", margin: "0 auto" }, content: { title: "", fields: [{ name: "name", label: "Name / Organisation", type: "text", required: true }, { name: "email", label: "Email", type: "email", required: true }, { name: "type", label: "Type of booking (show / feature / production)", type: "text", required: true }, { name: "date", label: "Date / Timeframe", type: "text", required: false }, { name: "budget", label: "Budget Range", type: "text", required: false }], submitText: "Send Booking Request" } }
           ] },
           { id: "s-social", type: "section", isVisible: true, styles: { padding: "40px", background: "#09090b" }, elements: [{ id: "sl", type: "social-links", isVisible: true, isLocked: false, styles: {}, content: { links: [{ platform: "instagram", url: "#", label: "@kojobeat" }, { platform: "youtube", url: "#", label: "YouTube" }, { platform: "twitter", url: "#", label: "Twitter/X" }] } }] },
+
+          { id: "s-testimonial", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#f8fafc" }, elements: [
+            { id: "tm-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "32px" }, content: { text: "What Our Clients Say", level: "h2" } },
+            { id: "tm-el", type: "testimonial", isVisible: true, isLocked: false, styles: { maxWidth: "600px", margin: "0 auto", textAlign: "center" }, content: { quote: "Booked them for our corporate event and they absolutely brought the house down! The energy, the musicianship — everything was top class. Will book again!", author: "DJ Splash, Accra", role: "Event Organiser", avatar: "" } }
+          ] },
+          { id: "s-faq", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#fff" }, elements: [
+            { id: "fq-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "40px" }, content: { text: "Frequently Asked Questions", level: "h2" } },
+            { id: "fq-el", type: "faq-accordion", isVisible: true, isLocked: false, styles: {}, content: { items: [
+              { q: "How do I book you for an event?", a: "Fill in our contact form with your event date, location and type. We'll respond within 24hrs." },
+              { q: "What's your performance range?", a: "We perform across Ghana and are open to international bookings with reasonable travel arrangements." },
+              { q: "Do you do wedding performances?", a: "Yes, we specialise in weddings, corporate events, concerts and private parties." },
+              { q: "How much do you charge?", a: "Fees vary by event type and duration. Contact us for a custom quote." }
+            ] } }
+          ] },
+          { id: "s-whatsapp", type: "section", isVisible: true, styles: { padding: "50px 40px", background: "#f0fdf4", textAlign: "center" }, elements: [
+            { id: "wa-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "8px" }, content: { text: "Chat With Us on WhatsApp", level: "h2" } },
+            { id: "wa-t", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#64748b", marginBottom: "24px" }, content: { text: "We typically reply within minutes." } },
+            { id: "wa-el", type: "whatsapp-button", isVisible: true, isLocked: false, styles: { display: "flex", justifyContent: "center" }, content: { number: "", message: "Hello! I'd like to book your band/artist for an event.", label: "Book Us for Your Event" } }
+          ] },
+          { id: "s-newsletter", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#6272f1" }, elements: [
+            { id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { title: "Get new music, tour dates & exclusive content", placeholder: "Enter your email address", buttonLabel: "Subscribe" } }
+          ] },
           { id: "s-footer", type: "footer", isVisible: true, styles: { background: "#09090b" }, elements: [{ id: "ft", type: "footer", isVisible: true, isLocked: false, styles: { color: "#71717a" }, content: { text: "© 2025 Kojo Beat. All rights reserved.", links: [] } }] }
         ]
       }]
@@ -1607,6 +2372,23 @@ export const TEMPLATES: Template[] = [
             { id: "bk-f", type: "form", isVisible: true, isLocked: false, styles: { maxWidth: "500px", margin: "0 auto" }, content: { title: "", fields: [{ name: "ownerName", label: "Your Name", type: "text", required: true }, { name: "phone", label: "Phone Number", type: "tel", required: true }, { name: "petName", label: "Pet's Name & Species", type: "text", required: true }, { name: "concern", label: "Reason for Visit", type: "textarea", required: true }, { name: "date", label: "Preferred Date", type: "text", required: false }], submitText: "Book Appointment" } }
           ] },
           { id: "s-wa", type: "section", isVisible: true, styles: { padding: "20px" }, elements: [{ id: "wa", type: "whatsapp-button", isVisible: true, isLocked: false, styles: {}, content: { number: "233200000000", message: "Hello PawCare! I'd like to book a vet appointment." } }] },
+
+          { id: "s-testimonial", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#f8fafc" }, elements: [
+            { id: "tm-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "32px" }, content: { text: "What Our Clients Say", level: "h2" } },
+            { id: "tm-el", type: "testimonial", isVisible: true, isLocked: false, styles: { maxWidth: "600px", margin: "0 auto", textAlign: "center" }, content: { quote: "The vets here are so gentle and caring with my dog. They explain everything clearly and you can tell they genuinely love animals. Best vet clinic in the area!", author: "Ms. Akua Asante", role: "Pet Owner", avatar: "" } }
+          ] },
+          { id: "s-faq", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#fff" }, elements: [
+            { id: "fq-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "40px" }, content: { text: "Frequently Asked Questions", level: "h2" } },
+            { id: "fq-el", type: "faq-accordion", isVisible: true, isLocked: false, styles: {}, content: { items: [
+              { q: "Do I need an appointment?", a: "Appointments are preferred. We accept emergency walk-ins at all times." },
+              { q: "Do you do house visits?", a: "Yes, we offer home visits for pets that find travel stressful. Call for availability." },
+              { q: "What pets do you treat?", a: "We treat dogs, cats, birds, rabbits, and small animals. Exotic animals by arrangement." },
+              { q: "Do you offer vaccination packages?", a: "Yes, we have affordable puppy, kitten and adult vaccination packages." }
+            ] } }
+          ] },
+          { id: "s-newsletter", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#6272f1" }, elements: [
+            { id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { title: "Get pet care tips & clinic updates", placeholder: "Enter your email address", buttonLabel: "Subscribe" } }
+          ] },
           { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 PawCare Vet Clinic. Because every life matters.", links: [] } }] }
         ]
       }]
