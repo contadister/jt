@@ -310,7 +310,7 @@ function ElementContent({ element, content }: { element: BuilderElement; content
           </div>
           <div className="relative rounded-xl overflow-hidden">
             {(content.afterImage as string) ? <img src={content.afterImage as string} alt="After" className="w-full h-36 object-cover" /> : <div className="w-full h-36 bg-slate-200 flex items-center justify-center text-slate-400 text-sm">After Image</div>}
-            <div className="absolute bottom-2 left-2 text-xs font-black text-white px-2 py-0.5 rounded-full" className="bg-josett-600">{content.afterLabel as string || "After"}</div>
+            <div className="absolute bottom-2 left-2 text-xs font-black text-white px-2 py-0.5 rounded-full bg-josett-600">{content.afterLabel as string || "After"}</div>
           </div>
         </div>
       );
