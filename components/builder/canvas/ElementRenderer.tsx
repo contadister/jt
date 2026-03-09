@@ -132,11 +132,14 @@ function ElementContent({ element, content }: { element: BuilderElement; content
         <div className="bg-slate-50 rounded-xl p-5 border border-slate-200">
           <h3 className="font-bold text-slate-900 mb-4">{content.title as string || "Contact Us"}</h3>
           <div className="space-y-3">
-            {(content.fields as string[] || ["name", "email", "message"]).map((field) => (
-              field === "message"
-                ? <textarea key={field} placeholder={field.charAt(0).toUpperCase() + field.slice(1)} className="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm" rows={3} readOnly />
-                : <input key={field} placeholder={field.charAt(0).toUpperCase() + field.slice(1)} className="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm" readOnly />
-            ))}
+            {((content.fields as ({ name: string; label: string; type: string } | string)[] ) || [{ name: "name", label: "Name", type: "text" }, { name: "email", label: "Email", type: "email" }, { name: "message", label: "Message", type: "textarea" }]).map((field, i) => {
+              const label = typeof field === "string" ? field.charAt(0).toUpperCase() + field.slice(1) : field.label;
+              const type = typeof field === "string" ? field : field.type;
+              const key = typeof field === "string" ? field : (field.name || i);
+              return type === "textarea"
+                ? <textarea key={key} placeholder={label} className="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm" rows={3} readOnly />
+                : <input key={key} placeholder={label} className="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm" readOnly />;
+            })}
             <button className="w-full bg-josett-600 text-white font-semibold py-2.5 rounded-lg text-sm">{content.submitText as string || "Send"}</button>
           </div>
         </div>
@@ -261,6 +264,73 @@ function ElementContent({ element, content }: { element: BuilderElement; content
           ))}
         </div>
       );
+
+    case "steps-process": {
+      const steps = (content.steps as { number: string; title: string; desc: string }[]) || [];
+      return (
+        <div>
+          {content.heading && <h3 className="text-lg font-black text-slate-800 mb-6 text-center">{content.heading as string}</h3>}
+          <div className="space-y-5 max-w-lg mx-auto">
+            {steps.map((step, i) => (
+              <div key={i} className="flex items-start gap-4">
+                <div className="w-10 h-10 rounded-full flex items-center justify-center text-white font-black text-sm shrink-0" style={{ background: primaryColor }}>{step.number}</div>
+                <div>
+                  <p className="font-bold text-slate-800">{step.title}</p>
+                  <p className="text-sm text-slate-500 mt-0.5">{step.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      );
+    }
+
+    case "brand-logos": {
+      const logos = (content.logos as { name: string; url: string }[]) || [];
+      return (
+        <div className="text-center">
+          {content.heading && <p className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-5">{content.heading as string}</p>}
+          <div className="flex flex-wrap gap-3 justify-center">
+            {logos.map((l, i) => (
+              <div key={i} className="px-5 py-3 border border-slate-200 rounded-xl bg-slate-50 text-sm font-bold text-slate-400">
+                {l.url ? <img src={l.url} alt={l.name} className="h-8 max-w-[100px] object-contain opacity-60" /> : l.name}
+              </div>
+            ))}
+          </div>
+        </div>
+      );
+    }
+
+    case "image-compare":
+      return (
+        <div className="grid grid-cols-2 gap-3">
+          <div className="relative rounded-xl overflow-hidden">
+            {(content.beforeImage as string) ? <img src={content.beforeImage as string} alt="Before" className="w-full h-36 object-cover" /> : <div className="w-full h-36 bg-slate-200 flex items-center justify-center text-slate-400 text-sm">Before Image</div>}
+            <div className="absolute bottom-2 left-2 text-xs font-black bg-black/50 text-white px-2 py-0.5 rounded-full">{content.beforeLabel as string || "Before"}</div>
+          </div>
+          <div className="relative rounded-xl overflow-hidden">
+            {(content.afterImage as string) ? <img src={content.afterImage as string} alt="After" className="w-full h-36 object-cover" /> : <div className="w-full h-36 bg-slate-200 flex items-center justify-center text-slate-400 text-sm">After Image</div>}
+            <div className="absolute bottom-2 left-2 text-xs font-black text-white px-2 py-0.5 rounded-full" style={{ background: primaryColor }}>{content.afterLabel as string || "After"}</div>
+          </div>
+        </div>
+      );
+
+    case "business-hours": {
+      const hours = (content.hours as { day: string; time: string }[]) || [];
+      return (
+        <div className="max-w-sm mx-auto">
+          {content.title && <h3 className="text-lg font-black text-slate-800 mb-4 text-center">{content.title as string}</h3>}
+          <div className="bg-slate-50 rounded-xl overflow-hidden divide-y divide-slate-100">
+            {hours.map((row, i) => (
+              <div key={i} className="flex justify-between items-center px-4 py-2.5">
+                <span className="text-sm font-semibold text-slate-700">{row.day}</span>
+                <span className="text-sm font-bold" style={{ color: row.time.toLowerCase().includes("closed") ? "#ef4444" : primaryColor }}>{row.time}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      );
+    }
 
     default:
       return (
