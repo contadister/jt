@@ -297,7 +297,7 @@ export function ContentEditor({ element }: ContentEditorProps) {
     case "video":
       return (
         <>
-          <Field label="Video URL" hint="YouTube or Vimeo URL"><Input value={content.url as string || ""} onChange={(v) => set("url", v)} placeholder="https://youtube.com/watch?v=..." /></Field>
+          <Field label="Video URL (YouTube or Vimeo)"><Input value={content.url as string || ""} onChange={(v) => set("url", v)} placeholder="https://youtube.com/watch?v=..." /></Field>
           <Field label="Autoplay">
             <button onClick={() => set("autoplay", !content.autoplay)}
               className={`relative w-12 h-6 rounded-full transition-colors ${content.autoplay ? "bg-josett-600" : "bg-slate-600"}`}>
