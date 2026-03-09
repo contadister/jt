@@ -179,7 +179,7 @@ export const TEMPLATES: Template[] = [
             { id: "wa-t", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#64748b", marginBottom: "24px" }, content: { text: "We typically reply within minutes." } },
             { id: "wa-el", type: "whatsapp-button", isVisible: true, isLocked: false, styles: { display: "flex", justifyContent: "center" }, content: { number: "", message: "Hello! I found you online and I'd like to know more about your services.", label: "Chat With Us" } }
           ] },
-{ id: "s-newsletter", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#6272f1" }, elements: [
+          { id: "s-newsletter", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#6272f1" }, elements: [
             { id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { title: "Get business tips & updates in your inbox", placeholder: "Enter your email address", buttonLabel: "Subscribe" } }
           ] },
           {
@@ -188,10 +188,6 @@ export const TEMPLATES: Template[] = [
             elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: { color: "#94a3b8" }, content: { text: "© 2025 My Business. All rights reserved.", links: [{ label: "Privacy", href: "/privacy" }] } }]
           }
         ]
-
-          { id: "s-newsletter", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#ec4899" }, elements: [
-            { id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { title: "Subscribe for exclusive content & updates", placeholder: "Enter your email", buttonLabel: "Subscribe" } }
-          ] }
       }]
     }
   },
