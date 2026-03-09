@@ -224,7 +224,7 @@ const makeSections = (): SectionTemplate[] => [
     elements: [
       { type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "12px" }, content: { text: "Get In Touch", level: "h2" } },
       { type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#64748b", marginBottom: "40px" }, content: { text: "Have a question or ready to start? We'd love to hear from you." } },
-      { type: "form", isVisible: true, isLocked: false, styles: {}, content: { title: "", fields: ["name", "email", "message"], submitText: "Send Message" } },
+      { type: "form", isVisible: true, isLocked: false, styles: {}, content: { title: "", fields: [{ name: "name", label: "Full Name", type: "text", required: true }, { name: "email", label: "Email Address", type: "email", required: true }, { name: "message", label: "Message", type: "textarea", required: false }], submitText: "Send Message" } },
     ],
   },
   {
