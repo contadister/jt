@@ -170,7 +170,7 @@ export async function POST(req: Request) {
       userId: user.prismaId,
       name: businessName,
       slug,
-      siteType: (template.siteType as string) || "BUSINESS",
+      siteType: ((template.siteType as string) || "BUSINESS") as "BUSINESS" | "PORTFOLIO" | "ECOMMERCE" | "BLOG" | "RESTAURANT" | "NGO" | "PERSONAL" | "LANDING" | "LINK_IN_BIO" | "EVENT",
       primaryColor: primaryColor || template.primaryColor,
       secondaryColor: template.secondaryColor,
       builderJson: populatedJson as never,
