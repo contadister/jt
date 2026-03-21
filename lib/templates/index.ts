@@ -179,7 +179,7 @@ export const TEMPLATES: Template[] = [
             { id: "wa-t", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#64748b", marginBottom: "24px" }, content: { text: "We typically reply within minutes." } },
             { id: "wa-el", type: "whatsapp-button", isVisible: true, isLocked: false, styles: { display: "flex", justifyContent: "center" }, content: { number: "", message: "Hello! I found you online and I'd like to know more about your services.", label: "Chat With Us" } }
           ] },
-          { id: "s-newsletter", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#6272f1" }, elements: [
+{ id: "s-newsletter", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#6272f1" }, elements: [
             { id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { title: "Get business tips & updates in your inbox", placeholder: "Enter your email address", buttonLabel: "Subscribe" } }
           ] },
           {
@@ -188,6 +188,10 @@ export const TEMPLATES: Template[] = [
             elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: { color: "#94a3b8" }, content: { text: "© 2025 My Business. All rights reserved.", links: [{ label: "Privacy", href: "/privacy" }] } }]
           }
         ]
+
+          { id: "s-newsletter", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#ec4899" }, elements: [
+            { id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { title: "Subscribe for exclusive content & updates", placeholder: "Enter your email", buttonLabel: "Subscribe" } }
+          ] }
       }]
     }
   },
@@ -486,7 +490,7 @@ export const TEMPLATES: Template[] = [
               ]
             }
           }]
-        },
+        }]
           { id: "s-faq", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#fff9fb" }, elements: [
             { id: "fq-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "40px" }, content: { text: "Questions?", level: "h2" } },
             { id: "fq-el", type: "faq-accordion", isVisible: true, isLocked: false, styles: {}, content: { items: [
@@ -499,7 +503,6 @@ export const TEMPLATES: Template[] = [
           { id: "s-newsletter", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#ec4899" }, elements: [
             { id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { title: "Subscribe for exclusive content & updates", placeholder: "Enter your email", buttonLabel: "Subscribe" } }
           ] }
-        ]
       }]
     }
   },
@@ -940,6 +943,8 @@ export const TEMPLATES: Template[] = [
             { id: "ct-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "32px" }, content: { text: "Book a Shoot", level: "h2" } },
             { id: "ct-f", type: "form", isVisible: true, isLocked: false, styles: { maxWidth: "500px", margin: "0 auto" }, content: { title: "", fields: [{ name: "name", label: "Name", type: "text", required: true }, { name: "email", label: "Email", type: "email", required: true }, { name: "phone", label: "Phone", type: "tel", required: true }, { name: "type", label: "Type of Shoot", type: "text", required: true }, { name: "date", label: "Preferred Date", type: "text", required: false }, { name: "message", label: "Tell me more", type: "textarea", required: false }], submitText: "Send Enquiry" } }
           ] },
+          { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 Lens & Light Photography. Capturing Ghana's best moments.", links: [] } }] }
+        ]
           { id: "s-faq", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#fff" }, elements: [
             { id: "fq-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "40px" }, content: { text: "Frequently Asked Questions", level: "h2" } },
             { id: "fq-el", type: "faq-accordion", isVisible: true, isLocked: false, styles: {}, content: { items: [
@@ -948,9 +953,7 @@ export const TEMPLATES: Template[] = [
               { q: "Do you offer video as well?", a: "Yes, I offer videography packages. Ask for combined photography + video pricing." },
               { q: "What rights do I get to the images?", a: "You receive full commercial rights to all delivered images." }
             ] } }
-          ] },
-          { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 Lens & Light Photography. Capturing Ghana's best moments.", links: [] } }] }
-        ]
+          ] }
       }]
     }
   },
