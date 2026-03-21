@@ -60,7 +60,27 @@ export const TEMPLATE_METAS = [
   { id: "childcare", name: "Childcare & Daycare", description: "Warm, colourful template for creches, daycares and nursery schools", category: "Education", thumbnail: "🧸" },
   { id: "accounting-firm", name: "Accounting & Finance", description: "Professional template for accounting firms, auditors and financial advisors", category: "Professional", thumbnail: "📊" },
   { id: "music-band", name: "Music Artist / Band", description: "Dynamic dark template for musicians, DJs, bands and music producers", category: "Creative", thumbnail: "🎵" },
-  { id: "vet-clinic", name: "Veterinary Clinic", description: "Friendly template for vet clinics, pet hospitals and animal care services", category: "Healthcare", thumbnail: "🐾" }
+  { id: "vet-clinic", name: "Veterinary Clinic", description: "Friendly template for vet clinics, pet hospitals and animal care services", category: "Healthcare", thumbnail: "🐾" },
+  { id: "wedding-planner", name: "Wedding Planner", description: "Elegant template for wedding planners, coordinators and event designers", category: "Events", thumbnail: "💍" },
+  { id: "digital-agency", name: "Digital Marketing Agency", description: "Bold, modern template for agencies, studios and creative consultancies", category: "Business", thumbnail: "📈" },
+  { id: "personal-trainer", name: "Personal Trainer / Coach", description: "High-energy template for fitness coaches, PTs and wellness coaches", category: "Health", thumbnail: "🏆" },
+  { id: "travel-agency", name: "Travel Agency", description: "Vibrant template for travel agents, tour operators and holiday packages", category: "Services", thumbnail: "✈️" },
+  { id: "dental-clinic", name: "Dental Clinic", description: "Clean, professional template for dentists and dental practices", category: "Healthcare", thumbnail: "🦷" },
+  { id: "flower-shop", name: "Florist & Flower Shop", description: "Fresh, beautiful template for florists and flower delivery services", category: "Services", thumbnail: "🌸" },
+  { id: "podcast", name: "Podcast / YouTube Channel", description: "Dynamic template for podcasters, YouTubers and content creators", category: "Creative", thumbnail: "🎙️" },
+  { id: "online-academy", name: "Online Academy / Courses", description: "Professional template for online educators and course creators", category: "Education", thumbnail: "🎯" },
+  { id: "recruitment", name: "Recruitment Agency", description: "Professional template for staffing agencies and headhunters", category: "Professional", thumbnail: "🤝" },
+  { id: "insurance", name: "Insurance Broker", description: "Trustworthy template for insurance brokers and financial advisors", category: "Professional", thumbnail: "🛡️" },
+  { id: "supermarket", name: "Supermarket / Grocery Store", description: "Fresh, vibrant template for supermarkets and grocery stores", category: "E-commerce", thumbnail: "🛒" },
+  { id: "bakery", name: "Bakery & Pastry Shop", description: "Warm, delicious template for bakeries, cake shops and patisseries", category: "Food & Drink", thumbnail: "🎂" },
+  { id: "jewellery", name: "Jewellery Store", description: "Luxurious template for jewellers and accessories boutiques", category: "Fashion", thumbnail: "💎" },
+  { id: "physiotherapy", name: "Physiotherapy & Rehab", description: "Caring template for physiotherapists and rehabilitation centres", category: "Healthcare", thumbnail: "🏥" },
+  { id: "architecture", name: "Architecture Firm", description: "Sleek, minimal template for architects and design firms", category: "Creative", thumbnail: "🏗️" },
+  { id: "coworking", name: "Coworking Space", description: "Modern template for coworking spaces and business centres", category: "Business", thumbnail: "💼" },
+  { id: "car-wash", name: "Car Wash & Detailing", description: "Clean, bold template for car wash services and auto detailing", category: "Automotive", thumbnail: "🚿" },
+  { id: "language-school", name: "Language School", description: "Bright template for language institutes and tutoring centres", category: "Education", thumbnail: "🌍" },
+  { id: "rooftop-bar", name: "Bar / Nightclub", description: "Atmospheric dark template for bars, clubs and entertainment venues", category: "Food & Drink", thumbnail: "🍸" },
+  { id: "makeup-artist", name: "Makeup Artist / MUA", description: "Glamorous template for makeup artists and beauty professionals", category: "Beauty", thumbnail: "💋" },
 ] as const;
 
 export type TemplateMeta = (typeof TEMPLATE_METAS)[number];
@@ -188,10 +208,6 @@ export const TEMPLATES: Template[] = [
             elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: { color: "#94a3b8" }, content: { text: "© 2025 My Business. All rights reserved.", links: [{ label: "Privacy", href: "/privacy" }] } }]
           }
         ]
-
-          { id: "s-newsletter", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#ec4899" }, elements: [
-            { id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { title: "Subscribe for exclusive content & updates", placeholder: "Enter your email", buttonLabel: "Subscribe" } }
-          ] }
       }]
     }
   },
@@ -2394,6 +2410,1062 @@ export const TEMPLATES: Template[] = [
       }]
     }
   },
+  // ── Wedding Planner ──────────────────────────────────────
+  {
+    id: "wedding-planner",
+    name: "Wedding Planner",
+    description: "Elegant template for wedding planners, coordinators and event designers",
+    category: "Events",
+    thumbnail: "💍",
+    primaryColor: "#c4a882",
+    secondaryColor: "#fdf6ee",
+    builderJson: {
+      version: "1",
+      siteSettings: { siteName: "Ivory & Gold Events", primaryColor: "#c4a882", secondaryColor: "#fdf6ee", fontFamily: "Georgia, serif" },
+      globalStyles: { bodyBackground: "#fffdf9", textColor: "#2d2217" },
+      pages: [{ id: "home", name: "Home", slug: "/", isHomePage: true,
+        seo: { title: "Ivory & Gold Events – Luxury Wedding Planning in Ghana", description: "Creating unforgettable weddings with grace and elegance" },
+        sections: [
+          { id: "s-nav", type: "nav", isVisible: true, styles: { backgroundColor: "rgba(255,253,249,0.95)", paddingTop: 0, paddingBottom: 0 }, elements: [{ id: "n1", type: "navigation", isVisible: true, isLocked: false, styles: {}, content: { logo: "Ivory & Gold", links: [{ label: "Services", href: "#services" }, { label: "Gallery", href: "#gallery" }, { label: "Our Story", href: "#about" }, { label: "Packages", href: "#packages" }], ctaText: "Book Consultation" } }] },
+          { id: "s-hero", type: "hero", isVisible: true, styles: { background: "linear-gradient(135deg,#2d2217 0%,#6b4c2a 50%,#c4a882 100%)", paddingTop: 120, paddingBottom: 120 }, elements: [
+            { id: "h1", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#fdf6ee", fontSize: "clamp(2.5rem,6vw,4.5rem)", fontWeight: "300", letterSpacing: "0.05em" }, content: { text: "Your Perfect Day, Flawlessly Planned", level: "h1" } },
+            { id: "h2", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#e8d5b7", fontSize: "1.2rem", margin: "20px auto", maxWidth: "600px", lineHeight: "1.8" }, content: { text: "We craft bespoke weddings and celebrations that reflect your unique love story. Every detail, every moment, perfectly curated." } },
+            { id: "hb", type: "button", isVisible: true, isLocked: false, styles: { display: "flex", justifyContent: "center", marginTop: "40px" }, content: { text: "Begin Your Journey →", href: "#consultation", variant: "outline" } }
+          ] },
+          { id: "s-stats", type: "section", isVisible: true, styles: { backgroundColor: "#2d2217", paddingTop: 50, paddingBottom: 50 }, elements: [{ id: "st1", type: "stats-counter", isVisible: true, isLocked: false, styles: { color: "#fdf6ee" }, content: { stats: [{ number: "350+", label: "Weddings Planned" }, { number: "12yrs", label: "Experience" }, { number: "4.9★", label: "Average Rating" }, { number: "100%", label: "Satisfaction" }] } }] },
+          { id: "s-services", type: "section", isVisible: true, styles: { backgroundColor: "#fffdf9", paddingTop: 90, paddingBottom: 90 }, elements: [
+            { id: "sv-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "12px", color: "#2d2217" }, content: { text: "Our Services", level: "h2" } },
+            { id: "sv-t", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#8a7060", marginBottom: "50px" }, content: { text: "From intimate ceremonies to grand celebrations" } },
+            { id: "sv-f", type: "feature-grid", isVisible: true, isLocked: false, styles: {}, content: { heading: "", features: [
+              { icon: "💍", title: "Full Wedding Planning", desc: "End-to-end management from engagement to reception" },
+              { icon: "🌸", title: "Floral & Décor Design", desc: "Custom floral arrangements and venue decoration" },
+              { icon: "🎵", title: "Entertainment Booking", desc: "Live bands, DJs, photographers and videographers" },
+              { icon: "🍽️", title: "Catering Coordination", desc: "Menu design and catering partner management" },
+              { icon: "✈️", title: "Destination Weddings", desc: "Planning weddings anywhere in Ghana or abroad" },
+              { icon: "📋", title: "Day-of Coordination", desc: "Stress-free coordination on your special day" }
+            ] } }
+          ] },
+          { id: "s-about", type: "section", isVisible: true, styles: { backgroundColor: "#fdf6ee", paddingTop: 90, paddingBottom: 90 }, elements: [
+            { id: "ab1", type: "image-text", isVisible: true, isLocked: false, styles: {}, content: { heading: "Creating Magic for 12 Years", body: "Ivory & Gold Events was founded by Abena Asante, a passionate event designer who believes every love story deserves a breathtaking celebration. We have orchestrated over 350 weddings, from intimate garden ceremonies to grand ballroom events across Ghana.", image: "", imageLeft: true } }
+          ] },
+          { id: "s-packages", type: "section", isVisible: true, styles: { backgroundColor: "#fffdf9", paddingTop: 90, paddingBottom: 90 }, elements: [
+            { id: "pk-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "12px" }, content: { text: "Wedding Packages", level: "h2" } },
+            { id: "pk-t", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#8a7060", marginBottom: "50px" }, content: { text: "Tailored to your vision and budget" } },
+            { id: "pk-p", type: "pricing-table", isVisible: true, isLocked: false, styles: {}, content: { plans: [
+              { name: "Silver", price: "GHS 5,000", period: "", features: ["Day-of coordination", "Venue styling consultation", "Vendor recommendations", "Timeline creation"], cta: "Get Started" },
+              { name: "Gold", price: "GHS 12,000", period: "", features: ["Full planning (6 months)", "Décor & florals", "Catering coordination", "Entertainment booking", "Bridal suite setup"], cta: "Most Popular", highlighted: true },
+              { name: "Platinum", price: "Custom", period: "", features: ["12-month planning", "Luxury venue sourcing", "International vendors", "Honeymoon planning", "Dedicated planner"], cta: "Contact Us" }
+            ] } }
+          ] },
+          { id: "s-gallery", type: "section", isVisible: true, styles: { backgroundColor: "#2d2217", paddingTop: 80, paddingBottom: 80 }, elements: [
+            { id: "gl-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#fdf6ee", marginBottom: "40px" }, content: { text: "Our Work", level: "h2" } },
+            { id: "gl-g", type: "gallery", isVisible: true, isLocked: false, styles: {}, content: { images: [], columns: 3 } }
+          ] },
+          { id: "s-testimonial", type: "section", isVisible: true, styles: { backgroundColor: "#fdf6ee", paddingTop: 80, paddingBottom: 80 }, elements: [
+            { id: "tm-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "32px" }, content: { text: "Happy Couples", level: "h2" } },
+            { id: "tm-el", type: "testimonial", isVisible: true, isLocked: false, styles: { maxWidth: "650px", margin: "0 auto", textAlign: "center" }, content: { quote: "Our wedding was beyond what we ever imagined. Ivory & Gold turned our vision into reality — every detail was perfect. Our guests are still talking about it!", author: "Akosua & Emmanuel Mensah", role: "Married December 2024", avatar: "" } }
+          ] },
+          { id: "s-faq", type: "section", isVisible: true, styles: { backgroundColor: "#fffdf9", paddingTop: 80, paddingBottom: 80 }, elements: [
+            { id: "fq-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "40px" }, content: { text: "Questions & Answers", level: "h2" } },
+            { id: "fq-el", type: "faq-accordion", isVisible: true, isLocked: false, styles: {}, content: { items: [
+              { q: "How far in advance should we book?", a: "We recommend booking 6-12 months in advance, especially for Saturday dates which fill up quickly." },
+              { q: "Do you work within our budget?", a: "Yes! We work across all budgets and will tailor our services to what works best for you." },
+              { q: "Can we use our own vendors?", a: "Absolutely. We can work with your preferred vendors or recommend from our trusted network." },
+              { q: "Do you handle outdoor weddings?", a: "Yes, we specialise in outdoor, garden and beachside weddings across Ghana." }
+            ] } }
+          ] },
+          { id: "s-contact", type: "section", isVisible: true, styles: { backgroundColor: "#2d2217", paddingTop: 80, paddingBottom: 80 }, elements: [
+            { id: "ct-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#fdf6ee", marginBottom: "12px" }, content: { text: "Start Planning Your Dream Wedding", level: "h2" } },
+            { id: "ct-t", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#c4a882", marginBottom: "40px" }, content: { text: "Book a free 30-minute consultation with our lead planner." } },
+            { id: "ct-f", type: "form", isVisible: true, isLocked: false, styles: { maxWidth: "560px", margin: "0 auto" }, content: { title: "", fields: [{ name: "names", label: "Your Names", type: "text", required: true }, { name: "email", label: "Email Address", type: "email", required: true }, { name: "phone", label: "Phone / WhatsApp", type: "tel", required: true }, { name: "date", label: "Wedding Date (if set)", type: "text", required: false }, { name: "guests", label: "Estimated Guest Count", type: "text", required: false }, { name: "vision", label: "Describe your dream wedding", type: "textarea", required: false }], submitText: "Request Consultation" } }
+          ] },
+          { id: "s-whatsapp", type: "section", isVisible: true, styles: { backgroundColor: "#c4a882", paddingTop: 50, paddingBottom: 50 }, elements: [
+            { id: "wa-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#fff", marginBottom: "8px" }, content: { text: "Chat With Us on WhatsApp", level: "h2" } },
+            { id: "wa-el", type: "whatsapp-button", isVisible: true, isLocked: false, styles: { display: "flex", justifyContent: "center" }, content: { number: "", message: "Hello! I'd like to enquire about wedding planning services.", label: "Chat With Our Planner" } }
+          ] },
+          { id: "s-footer", type: "footer", isVisible: true, styles: { backgroundColor: "#1a0e08" }, elements: [{ id: "ft", type: "footer", isVisible: true, isLocked: false, styles: { color: "#8a7060" }, content: { text: "© 2025 Ivory & Gold Events. Crafting unforgettable moments.", links: [] } }] }
+        ]
+      }]
+    }
+  },
+
+  // ── Digital Marketing Agency ──────────────────────────────
+  {
+    id: "digital-agency",
+    name: "Digital Marketing Agency",
+    description: "Bold, modern template for agencies, studios and creative consultancies",
+    category: "Business",
+    thumbnail: "📈",
+    primaryColor: "#6272f1",
+    secondaryColor: "#f0f0ff",
+    builderJson: {
+      version: "1",
+      siteSettings: { siteName: "Apex Digital Agency", primaryColor: "#6272f1", secondaryColor: "#f0f0ff", fontFamily: "Inter, system-ui, sans-serif" },
+      globalStyles: { bodyBackground: "#050510", textColor: "#f1f5f9" },
+      pages: [{ id: "home", name: "Home", slug: "/", isHomePage: true,
+        seo: { title: "Apex Digital – Growth Marketing Agency Ghana", description: "We grow businesses with data-driven digital marketing" },
+        sections: [
+          { id: "s-nav", type: "nav", isVisible: true, styles: { backgroundColor: "rgba(5,5,16,0.95)", paddingTop: 0, paddingBottom: 0 }, elements: [{ id: "n1", type: "navigation", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { logo: "Apex Digital", links: [{ label: "Services", href: "#services" }, { label: "Results", href: "#results" }, { label: "Process", href: "#process" }, { label: "Pricing", href: "#pricing" }], ctaText: "Free Audit" } }] },
+          { id: "s-hero", type: "hero", isVisible: true, styles: { background: "linear-gradient(135deg,#050510 0%,#1a1a4e 50%,#6272f1 100%)", paddingTop: 120, paddingBottom: 100 }, elements: [
+            { id: "h1", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#fff", fontSize: "clamp(2.5rem,6vw,5rem)", fontWeight: "900", letterSpacing: "-0.02em", lineHeight: "1.1" }, content: { text: "We Don't Just Market. We Dominate.", level: "h1" } },
+            { id: "h2", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#94a3b8", fontSize: "1.2rem", margin: "24px auto", maxWidth: "650px", lineHeight: "1.8" }, content: { text: "Data-driven strategies that turn clicks into customers. We've generated over GHS 50M in revenue for Ghanaian businesses." } },
+            { id: "hb", type: "button", isVisible: true, isLocked: false, styles: { display: "flex", justifyContent: "center", marginTop: "40px" }, content: { text: "Get Your Free Marketing Audit →", href: "#audit", variant: "primary" } }
+          ] },
+          { id: "s-stats", type: "section", isVisible: true, styles: { backgroundColor: "#0d0d2b", paddingTop: 60, paddingBottom: 60 }, elements: [{ id: "st1", type: "stats-counter", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { stats: [{ number: "200+", label: "Clients Grown" }, { number: "GHS 50M+", label: "Revenue Generated" }, { number: "850%", label: "Average ROI" }, { number: "5yrs", label: "In Business" }] } }] },
+          { id: "s-services", type: "section", isVisible: true, styles: { backgroundColor: "#050510", paddingTop: 90, paddingBottom: 90 }, elements: [
+            { id: "sv-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#fff", marginBottom: "12px" }, content: { text: "What We Do", level: "h2" } },
+            { id: "sv-t", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#64748b", marginBottom: "50px" }, content: { text: "Full-service digital marketing that delivers measurable results" } },
+            { id: "sv-f", type: "feature-grid", isVisible: true, isLocked: false, styles: {}, content: { heading: "", features: [
+              { icon: "📱", title: "Social Media Marketing", desc: "Grow your following and convert fans into paying customers" },
+              { icon: "🎯", title: "Paid Advertising", desc: "Facebook, Google & TikTok ads with proven ROI" },
+              { icon: "🔍", title: "SEO & Content", desc: "Rank #1 on Google and drive organic traffic 24/7" },
+              { icon: "✉️", title: "Email Marketing", desc: "Automated campaigns that nurture and convert leads" },
+              { icon: "🎨", title: "Brand Identity", desc: "Logos, visuals and brand guidelines that stand out" },
+              { icon: "📊", title: "Analytics & Reporting", desc: "Real-time dashboards so you always know what's working" }
+            ] } }
+          ] },
+          { id: "s-process", type: "section", isVisible: true, styles: { backgroundColor: "#0d0d2b", paddingTop: 90, paddingBottom: 90 }, elements: [
+            { id: "pr-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#fff", marginBottom: "40px" }, content: { text: "Our Process", level: "h2" } },
+            { id: "pr-s", type: "steps-process", isVisible: true, isLocked: false, styles: {}, content: { heading: "", steps: [
+              { number: "1", title: "Discovery & Audit", desc: "We analyse your current marketing, competitors and growth opportunities" },
+              { number: "2", title: "Strategy Creation", desc: "We build a custom growth plan with clear KPIs and timelines" },
+              { number: "3", title: "Launch & Execute", desc: "Our team executes campaigns across all agreed channels" },
+              { number: "4", title: "Optimise & Scale", desc: "We continuously refine based on data to maximise your ROI" }
+            ] } }
+          ] },
+          { id: "s-pricing", type: "section", isVisible: true, styles: { backgroundColor: "#050510", paddingTop: 90, paddingBottom: 90 }, elements: [
+            { id: "pk-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#fff", marginBottom: "12px" }, content: { text: "Simple Pricing", level: "h2" } },
+            { id: "pk-t", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#64748b", marginBottom: "50px" }, content: { text: "No long-term contracts. Cancel anytime." } },
+            { id: "pk-p", type: "pricing-table", isVisible: true, isLocked: false, styles: {}, content: { plans: [
+              { name: "Starter", price: "GHS 1,500", period: "/month", features: ["2 social platforms", "8 posts/month", "Monthly report", "Email support"], cta: "Get Started" },
+              { name: "Growth", price: "GHS 3,500", period: "/month", features: ["4 platforms + Google Ads", "20 posts/month", "Weekly reports", "Dedicated account manager", "SEO included"], cta: "Most Popular", highlighted: true },
+              { name: "Scale", price: "GHS 7,500", period: "/month", features: ["All platforms + full stack", "Daily content", "Real-time dashboard", "CMO-level strategy", "PR & influencer marketing"], cta: "Scale Up" }
+            ] } }
+          ] },
+          { id: "s-testimonial", type: "section", isVisible: true, styles: { backgroundColor: "#0d0d2b", paddingTop: 80, paddingBottom: 80 }, elements: [
+            { id: "tm-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#fff", marginBottom: "32px" }, content: { text: "Client Results", level: "h2" } },
+            { id: "tm-el", type: "testimonial", isVisible: true, isLocked: false, styles: { maxWidth: "650px", margin: "0 auto", textAlign: "center" }, content: { quote: "In 6 months, Apex Digital tripled our online sales and reduced our cost-per-lead by 60%. Best investment we've made as a business. Absolute game changers.", author: "Kwame Asante", role: "CEO, Asante Retail Group", avatar: "" } }
+          ] },
+          { id: "s-faq", type: "section", isVisible: true, styles: { backgroundColor: "#050510", paddingTop: 80, paddingBottom: 80 }, elements: [
+            { id: "fq-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#fff", marginBottom: "40px" }, content: { text: "FAQs", level: "h2" } },
+            { id: "fq-el", type: "faq-accordion", isVisible: true, isLocked: false, styles: {}, content: { items: [
+              { q: "How soon will I see results?", a: "Most clients see measurable results within 30–60 days. SEO typically takes 3–6 months." },
+              { q: "Do you work with small businesses?", a: "Yes! We have packages starting from GHS 1,500/month designed for growing businesses." },
+              { q: "Can I cancel anytime?", a: "Yes. No long-term contracts. We earn your business every single month." },
+              { q: "What's included in the free audit?", a: "A full analysis of your social media, SEO, paid ads and competitor landscape — no cost, no obligation." }
+            ] } }
+          ] },
+          { id: "s-cta", type: "section", isVisible: true, styles: { background: "linear-gradient(135deg,#6272f1,#8b5cf6)", paddingTop: 90, paddingBottom: 90 }, elements: [
+            { id: "ct-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#fff", marginBottom: "16px" }, content: { text: "Ready to Grow? Get Your Free Audit", level: "h2" } },
+            { id: "ct-f", type: "form", isVisible: true, isLocked: false, styles: { maxWidth: "500px", margin: "0 auto" }, content: { title: "", fields: [{ name: "name", label: "Your Name", type: "text", required: true }, { name: "email", label: "Email Address", type: "email", required: true }, { name: "website", label: "Your Website URL", type: "text", required: false }, { name: "budget", label: "Monthly Marketing Budget", type: "text", required: false }], submitText: "Get My Free Audit" } }
+          ] },
+          { id: "s-footer", type: "footer", isVisible: true, styles: { backgroundColor: "#030308" }, elements: [{ id: "ft", type: "footer", isVisible: true, isLocked: false, styles: { color: "#475569" }, content: { text: "© 2025 Apex Digital Agency. We Grow Businesses.", links: [] } }] }
+        ]
+      }]
+    }
+  },
+
+  // ── Personal Trainer ──────────────────────────────────────
+  {
+    id: "personal-trainer",
+    name: "Personal Trainer / Coach",
+    description: "High-energy template for fitness coaches, PTs and wellness coaches",
+    category: "Health",
+    thumbnail: "🏆",
+    primaryColor: "#f97316",
+    secondaryColor: "#fff7ed",
+    builderJson: {
+      version: "1",
+      siteSettings: { siteName: "Coach Kofi Fitness", primaryColor: "#f97316", secondaryColor: "#fff7ed", fontFamily: "Inter, system-ui, sans-serif" },
+      globalStyles: { bodyBackground: "#09090b", textColor: "#f1f5f9" },
+      pages: [{ id: "home", name: "Home", slug: "/", isHomePage: true,
+        seo: { title: "Coach Kofi – Personal Trainer & Fitness Coach Ghana", description: "Transform your body and life with expert personal training" },
+        sections: [
+          { id: "s-nav", type: "nav", isVisible: true, styles: { backgroundColor: "rgba(9,9,11,0.95)", paddingTop: 0, paddingBottom: 0 }, elements: [{ id: "n1", type: "navigation", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { logo: "Coach Kofi", links: [{ label: "Programs", href: "#programs" }, { label: "Results", href: "#results" }, { label: "About", href: "#about" }, { label: "Pricing", href: "#pricing" }], ctaText: "Start Today" } }] },
+          { id: "s-hero", type: "hero", isVisible: true, styles: { background: "linear-gradient(135deg,#09090b 0%,#431407 50%,#f97316 100%)", paddingTop: 120, paddingBottom: 100 }, elements: [
+            { id: "h1", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#fff", fontSize: "clamp(2.5rem,6vw,5rem)", fontWeight: "900", lineHeight: "1.1" }, content: { text: "Transform Your Body. Transform Your Life.", level: "h1" } },
+            { id: "h2", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#94a3b8", fontSize: "1.15rem", margin: "24px auto", maxWidth: "600px", lineHeight: "1.8" }, content: { text: "Certified personal trainer with 8+ years helping people across Accra build the body and confidence they deserve." } },
+            { id: "hb", type: "button", isVisible: true, isLocked: false, styles: { display: "flex", justifyContent: "center", marginTop: "40px" }, content: { text: "Claim Your Free Fitness Assessment", href: "#contact", variant: "primary" } }
+          ] },
+          { id: "s-stats", type: "section", isVisible: true, styles: { backgroundColor: "#18181b", paddingTop: 60, paddingBottom: 60 }, elements: [{ id: "st1", type: "stats-counter", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { stats: [{ number: "500+", label: "Clients Transformed" }, { number: "8yrs", label: "Experience" }, { number: "30kg", label: "Avg Weight Lost" }, { number: "100%", label: "Commitment" }] } }] },
+          { id: "s-programs", type: "section", isVisible: true, styles: { backgroundColor: "#09090b", paddingTop: 90, paddingBottom: 90 }, elements: [
+            { id: "pg-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#fff", marginBottom: "12px" }, content: { text: "Training Programs", level: "h2" } },
+            { id: "pg-t", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#64748b", marginBottom: "50px" }, content: { text: "Designed for real people with real goals" } },
+            { id: "pg-f", type: "feature-grid", isVisible: true, isLocked: false, styles: {}, content: { heading: "", features: [
+              { icon: "💪", title: "Weight Loss & Toning", desc: "Proven fat-loss programs combining strength and cardio" },
+              { icon: "🏋️", title: "Strength Building", desc: "Build real functional strength from the ground up" },
+              { icon: "🧘", title: "Body Transformation", desc: "Complete lifestyle coaching for lasting change" },
+              { icon: "👥", title: "Group Training", desc: "High-energy group sessions — motivation in numbers" },
+              { icon: "🥗", title: "Nutrition Coaching", desc: "Meal plans tailored to Ghanaian foods and lifestyles" },
+              { icon: "📱", title: "Online Coaching", desc: "Work with me remotely with daily check-ins and video calls" }
+            ] } }
+          ] },
+          { id: "s-steps", type: "section", isVisible: true, styles: { backgroundColor: "#18181b", paddingTop: 80, paddingBottom: 80 }, elements: [
+            { id: "st-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#fff", marginBottom: "40px" }, content: { text: "How We Work Together", level: "h2" } },
+            { id: "st-s", type: "steps-process", isVisible: true, isLocked: false, styles: {}, content: { heading: "", steps: [
+              { number: "1", title: "Free Assessment", desc: "We assess your fitness level, goals and lifestyle in a no-obligation call" },
+              { number: "2", title: "Custom Plan", desc: "I build your personalised training and nutrition plan from scratch" },
+              { number: "3", title: "Train & Track", desc: "We train together (in-person or online) and track every milestone" },
+              { number: "4", title: "Achieve & Maintain", desc: "You hit your goal and I teach you how to maintain it for life" }
+            ] } }
+          ] },
+          { id: "s-pricing", type: "section", isVisible: true, styles: { backgroundColor: "#09090b", paddingTop: 90, paddingBottom: 90 }, elements: [
+            { id: "pk-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#fff", marginBottom: "12px" }, content: { text: "Investment in Yourself", level: "h2" } },
+            { id: "pk-t", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#64748b", marginBottom: "50px" }, content: { text: "Results-driven coaching packages" } },
+            { id: "pk-p", type: "pricing-table", isVisible: true, isLocked: false, styles: {}, content: { plans: [
+              { name: "Online", price: "GHS 400", period: "/month", features: ["Custom workout plan", "Nutrition guide", "Weekly check-ins via WhatsApp", "Exercise video library"], cta: "Start Online" },
+              { name: "In-Person", price: "GHS 800", period: "/month", features: ["3 sessions/week", "Personalised nutrition plan", "Progress tracking", "Body composition analysis", "24/7 WhatsApp support"], cta: "Train With Me", highlighted: true },
+              { name: "Elite", price: "GHS 1,500", period: "/month", features: ["Daily sessions", "Full meal prep guidance", "Supplement advice", "Gym partner privileges", "Monthly photo shoots"], cta: "Go Elite" }
+            ] } }
+          ] },
+          { id: "s-testimonial", type: "section", isVisible: true, styles: { backgroundColor: "#18181b", paddingTop: 80, paddingBottom: 80 }, elements: [
+            { id: "tm-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#fff", marginBottom: "32px" }, content: { text: "Real Results", level: "h2" } },
+            { id: "tm-el", type: "testimonial", isVisible: true, isLocked: false, styles: { maxWidth: "650px", margin: "0 auto", textAlign: "center" }, content: { quote: "I lost 28kg in 5 months working with Coach Kofi. More importantly, I gained my confidence back. He genuinely cares about every client and it shows. My life has completely changed.", author: "Abena Quartey", role: "Client — 28kg lost in 5 months", avatar: "" } }
+          ] },
+          { id: "s-faq", type: "section", isVisible: true, styles: { backgroundColor: "#09090b", paddingTop: 80, paddingBottom: 80 }, elements: [
+            { id: "fq-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#fff", marginBottom: "40px" }, content: { text: "Common Questions", level: "h2" } },
+            { id: "fq-el", type: "faq-accordion", isVisible: true, isLocked: false, styles: {}, content: { items: [
+              { q: "Do I need to be fit to start?", a: "Absolutely not! I train complete beginners to advanced athletes. We start where you are." },
+              { q: "Do you train women?", a: "Yes! 60% of my clients are women. I specialise in women's body transformation." },
+              { q: "Where do sessions take place?", a: "At my gym in East Legon, Accra, or at your home/gym. Online coaching is also available." },
+              { q: "How quickly will I see results?", a: "Most clients see visible changes in 4-6 weeks with consistent effort. Results vary by individual." }
+            ] } }
+          ] },
+          { id: "s-wa", type: "section", isVisible: true, styles: { background: "linear-gradient(135deg,#f97316,#ef4444)", paddingTop: 70, paddingBottom: 70 }, elements: [
+            { id: "wa-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#fff", marginBottom: "8px" }, content: { text: "Ready to Start? Message Me Now", level: "h2" } },
+            { id: "wa-t", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "rgba(255,255,255,0.85)", marginBottom: "24px" }, content: { text: "I reply within minutes. No commitment required." } },
+            { id: "wa-el", type: "whatsapp-button", isVisible: true, isLocked: false, styles: { display: "flex", justifyContent: "center" }, content: { number: "", message: "Hello Coach! I'm interested in your training programs. Can we chat?", label: "Message Coach Kofi" } }
+          ] },
+          { id: "s-footer", type: "footer", isVisible: true, styles: { backgroundColor: "#030305" }, elements: [{ id: "ft", type: "footer", isVisible: true, isLocked: false, styles: { color: "#475569" }, content: { text: "© 2025 Coach Kofi Fitness. Transform. Inspire. Win.", links: [] } }] }
+        ]
+      }]
+    }
+  },
+
+  // ── Bakery ────────────────────────────────────────────────
+  {
+    id: "bakery",
+    name: "Bakery & Pastry Shop",
+    description: "Warm, delicious template for bakeries, cake shops and patisseries",
+    category: "Food & Drink",
+    thumbnail: "🎂",
+    primaryColor: "#d97706",
+    secondaryColor: "#fffbeb",
+    builderJson: {
+      version: "1",
+      siteSettings: { siteName: "Sweet Crumbs Bakery", primaryColor: "#d97706", secondaryColor: "#fffbeb", fontFamily: "Georgia, serif" },
+      globalStyles: { bodyBackground: "#fffbeb", textColor: "#1c0a00" },
+      pages: [{ id: "home", name: "Home", slug: "/", isHomePage: true,
+        seo: { title: "Sweet Crumbs Bakery – Fresh Baked Daily", description: "Artisan cakes, pastries and breads baked fresh every day in Accra" },
+        sections: [
+          { id: "s-nav", type: "nav", isVisible: true, styles: { backgroundColor: "#fff8f0", paddingTop: 0, paddingBottom: 0 }, elements: [{ id: "n1", type: "navigation", isVisible: true, isLocked: false, styles: {}, content: { logo: "🎂 Sweet Crumbs", links: [{ label: "Menu", href: "#menu" }, { label: "Custom Cakes", href: "#custom" }, { label: "About", href: "#about" }, { label: "Order", href: "#order" }], ctaText: "Order Now" } }] },
+          { id: "s-hero", type: "hero", isVisible: true, styles: { background: "linear-gradient(135deg,#92400e 0%,#d97706 60%,#fbbf24 100%)", paddingTop: 100, paddingBottom: 100 }, elements: [
+            { id: "h1", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#fff", fontSize: "clamp(2.5rem,6vw,4.5rem)", fontWeight: "800" }, content: { text: "Baked with Love, Every Single Day", level: "h1" } },
+            { id: "h2", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "rgba(255,255,255,0.9)", fontSize: "1.2rem", margin: "20px auto", maxWidth: "600px", lineHeight: "1.8" }, content: { text: "Artisan breads, celebration cakes and pastries made from scratch using the finest ingredients. Baked fresh every morning in Accra." } },
+            { id: "hb", type: "button", isVisible: true, isLocked: false, styles: { display: "flex", gap: "12px", justifyContent: "center", marginTop: "36px" }, content: { text: "Order Your Cake", href: "#order", variant: "outline" } }
+          ] },
+          { id: "s-stats", type: "section", isVisible: true, styles: { backgroundColor: "#92400e", paddingTop: 50, paddingBottom: 50 }, elements: [{ id: "st1", type: "stats-counter", isVisible: true, isLocked: false, styles: { color: "#fef3c7" }, content: { stats: [{ number: "15+", label: "Years Baking" }, { number: "50+", label: "Daily Varieties" }, { number: "1,000+", label: "Cakes Made" }, { number: "100%", label: "Fresh Daily" }] } }] },
+          { id: "s-menu", type: "section", isVisible: true, styles: { backgroundColor: "#fffbeb", paddingTop: 90, paddingBottom: 90 }, elements: [
+            { id: "mn-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "12px" }, content: { text: "What We Bake", level: "h2" } },
+            { id: "mn-t", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#92400e", marginBottom: "50px" }, content: { text: "Made fresh every morning — no preservatives, ever" } },
+            { id: "mn-f", type: "feature-grid", isVisible: true, isLocked: false, styles: {}, content: { heading: "", features: [
+              { icon: "🎂", title: "Celebration Cakes", desc: "Birthdays, weddings, graduations — custom to your theme" },
+              { icon: "🥐", title: "Pastries & Croissants", desc: "Buttery, flaky pastries baked fresh every morning" },
+              { icon: "🍞", title: "Artisan Breads", desc: "Sourdough, whole wheat and specialty loaves daily" },
+              { icon: "🧁", title: "Cupcakes & Muffins", desc: "Dozens of flavours including Ghanaian-inspired varieties" },
+              { icon: "🍪", title: "Cookies & Biscuits", desc: "Perfect for gifting, events or just treating yourself" },
+              { icon: "📦", title: "Corporate Orders", desc: "Branded cookies and cakes for offices and events" }
+            ] } }
+          ] },
+          { id: "s-custom", type: "section", isVisible: true, styles: { backgroundColor: "#fef3c7", paddingTop: 80, paddingBottom: 80 }, elements: [
+            { id: "cs-it", type: "image-text", isVisible: true, isLocked: false, styles: {}, content: { heading: "Custom Celebration Cakes", body: "Tell us your vision and we'll bring it to life. From 3-tier wedding cakes to character birthday cakes for kids, our bakers are skilled in every style. We use premium ingredients and can accommodate dietary requirements including gluten-free and vegan options.", image: "", imageLeft: false } }
+          ] },
+          { id: "s-testimonial", type: "section", isVisible: true, styles: { backgroundColor: "#fffbeb", paddingTop: 80, paddingBottom: 80 }, elements: [
+            { id: "tm-el", type: "testimonial", isVisible: true, isLocked: false, styles: { maxWidth: "600px", margin: "0 auto", textAlign: "center" }, content: { quote: "My daughter's birthday cake was absolutely stunning! The whole family couldn't believe how beautiful and delicious it was. Sweet Crumbs has our cake order every year from now on!", author: "Maame Serwaa Boateng", role: "Loyal Customer", avatar: "" } }
+          ] },
+          { id: "s-faq", type: "section", isVisible: true, styles: { backgroundColor: "#fef3c7", paddingTop: 80, paddingBottom: 80 }, elements: [
+            { id: "fq-el", type: "faq-accordion", isVisible: true, isLocked: false, styles: {}, content: { items: [
+              { q: "How far in advance should I order a custom cake?", a: "We recommend at least 5-7 days for custom cakes. For wedding cakes, 4-6 weeks minimum." },
+              { q: "Do you deliver?", a: "Yes! We deliver within Accra for a small fee. Free delivery on orders above GHS 200." },
+              { q: "Do you make eggless or gluten-free cakes?", a: "Yes, we accommodate most dietary requirements. Please mention this when ordering." },
+              { q: "Can I visit the bakery?", a: "Yes! We welcome visitors Monday–Saturday 7am–6pm at our location in Osu, Accra." }
+            ] } }
+          ] },
+          { id: "s-order", type: "section", isVisible: true, styles: { backgroundColor: "#d97706", paddingTop: 80, paddingBottom: 80 }, elements: [
+            { id: "or-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#fff", marginBottom: "12px" }, content: { text: "Place Your Order", level: "h2" } },
+            { id: "or-f", type: "form", isVisible: true, isLocked: false, styles: { maxWidth: "540px", margin: "0 auto" }, content: { title: "", fields: [{ name: "name", label: "Your Name", type: "text", required: true }, { name: "phone", label: "Phone / WhatsApp", type: "tel", required: true }, { name: "item", label: "What would you like?", type: "text", required: true }, { name: "date", label: "Date Needed", type: "text", required: true }, { name: "details", label: "Special instructions or design notes", type: "textarea", required: false }], submitText: "Submit Order" } }
+          ] },
+          { id: "s-wa", type: "section", isVisible: true, styles: { backgroundColor: "#92400e", paddingTop: 50, paddingBottom: 50 }, elements: [
+            { id: "wa-el", type: "whatsapp-button", isVisible: true, isLocked: false, styles: { display: "flex", justifyContent: "center" }, content: { number: "", message: "Hello! I'd like to order from Sweet Crumbs Bakery.", label: "Order on WhatsApp" } }
+          ] },
+          { id: "s-footer", type: "footer", isVisible: true, styles: { backgroundColor: "#1c0a00" }, elements: [{ id: "ft", type: "footer", isVisible: true, isLocked: false, styles: { color: "#92400e" }, content: { text: "© 2025 Sweet Crumbs Bakery. Baked with love daily.", links: [] } }] }
+        ]
+      }]
+    }
+  },
+
+  // ── Online Academy ────────────────────────────────────────
+  {
+    id: "online-academy",
+    name: "Online Academy / Courses",
+    description: "Professional template for online educators and course creators",
+    category: "Education",
+    thumbnail: "🎯",
+    primaryColor: "#7c3aed",
+    secondaryColor: "#f5f3ff",
+    builderJson: {
+      version: "1",
+      siteSettings: { siteName: "EduVault Academy", primaryColor: "#7c3aed", secondaryColor: "#f5f3ff", fontFamily: "Inter, system-ui, sans-serif" },
+      globalStyles: { bodyBackground: "#fafafa", textColor: "#1e293b" },
+      pages: [{ id: "home", name: "Home", slug: "/", isHomePage: true,
+        seo: { title: "EduVault Academy – Learn Skills That Pay", description: "Professional online courses for Ghanaian learners and professionals" },
+        sections: [
+          { id: "s-nav", type: "nav", isVisible: true, styles: { backgroundColor: "#fff", paddingTop: 0, paddingBottom: 0 }, elements: [{ id: "n1", type: "navigation", isVisible: true, isLocked: false, styles: {}, content: { logo: "EduVault", links: [{ label: "Courses", href: "#courses" }, { label: "How It Works", href: "#how" }, { label: "Instructors", href: "#instructors" }, { label: "Pricing", href: "#pricing" }], ctaText: "Start Learning" } }] },
+          { id: "s-hero", type: "hero", isVisible: true, styles: { background: "linear-gradient(135deg,#2e1065 0%,#7c3aed 60%,#a78bfa 100%)", paddingTop: 110, paddingBottom: 100 }, elements: [
+            { id: "h1", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#fff", fontSize: "clamp(2.5rem,6vw,4.5rem)", fontWeight: "900", lineHeight: "1.1" }, content: { text: "Learn Skills That Actually Pay", level: "h1" } },
+            { id: "h2", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "rgba(255,255,255,0.85)", fontSize: "1.2rem", margin: "24px auto", maxWidth: "650px", lineHeight: "1.8" }, content: { text: "Practical, career-changing courses designed for Ghanaian learners. Learn at your own pace and get certified." } },
+            { id: "hb", type: "button", isVisible: true, isLocked: false, styles: { display: "flex", justifyContent: "center", gap: "12px", marginTop: "40px" }, content: { text: "Browse Courses →", href: "#courses", variant: "outline" } }
+          ] },
+          { id: "s-stats", type: "section", isVisible: true, styles: { backgroundColor: "#2e1065", paddingTop: 60, paddingBottom: 60 }, elements: [{ id: "st1", type: "stats-counter", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { stats: [{ number: "25,000+", label: "Students Enrolled" }, { number: "80+", label: "Courses Available" }, { number: "4.8★", label: "Average Rating" }, { number: "95%", label: "Completion Rate" }] } }] },
+          { id: "s-courses", type: "section", isVisible: true, styles: { backgroundColor: "#fafafa", paddingTop: 90, paddingBottom: 90 }, elements: [
+            { id: "cr-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "12px" }, content: { text: "Popular Courses", level: "h2" } },
+            { id: "cr-t", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#64748b", marginBottom: "50px" }, content: { text: "Career-focused skills for the modern African professional" } },
+            { id: "cr-f", type: "feature-grid", isVisible: true, isLocked: false, styles: {}, content: { heading: "", features: [
+              { icon: "💻", title: "Tech & Programming", desc: "Web development, Python, data science and cybersecurity" },
+              { icon: "📊", title: "Business & Finance", desc: "Accounting, entrepreneurship and financial modelling" },
+              { icon: "📱", title: "Digital Marketing", desc: "Social media, SEO, Google Ads and content creation" },
+              { icon: "🎨", title: "Design & Creative", desc: "Graphic design, video editing and UI/UX design" },
+              { icon: "📋", title: "Project Management", desc: "PMP, Agile, Scrum and team leadership" },
+              { icon: "🌍", title: "Languages", desc: "English proficiency, French and professional communication" }
+            ] } }
+          ] },
+          { id: "s-how", type: "section", isVisible: true, styles: { backgroundColor: "#f5f3ff", paddingTop: 80, paddingBottom: 80 }, elements: [
+            { id: "hw-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "40px" }, content: { text: "How It Works", level: "h2" } },
+            { id: "hw-s", type: "steps-process", isVisible: true, isLocked: false, styles: {}, content: { heading: "", steps: [
+              { number: "1", title: "Choose Your Course", desc: "Browse our library and pick the skill that will advance your career" },
+              { number: "2", title: "Learn at Your Pace", desc: "Access video lessons, resources and projects on any device, anytime" },
+              { number: "3", title: "Get Certified", desc: "Complete assignments and earn a verifiable digital certificate" },
+              { number: "4", title: "Land Opportunities", desc: "Join our alumni network and get job placement support" }
+            ] } }
+          ] },
+          { id: "s-pricing", type: "section", isVisible: true, styles: { backgroundColor: "#fafafa", paddingTop: 90, paddingBottom: 90 }, elements: [
+            { id: "pk-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "12px" }, content: { text: "Simple Pricing", level: "h2" } },
+            { id: "pk-t", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#64748b", marginBottom: "50px" }, content: { text: "Learn everything for one affordable price" } },
+            { id: "pk-p", type: "pricing-table", isVisible: true, isLocked: false, styles: {}, content: { plans: [
+              { name: "Free", price: "GHS 0", period: "", features: ["3 free courses", "Community access", "Course previews", "Basic certificate"], cta: "Start Free" },
+              { name: "Pro", price: "GHS 99", period: "/month", features: ["Unlimited courses", "HD video quality", "Downloadable resources", "Verified certificate", "1-on-1 tutor access"], cta: "Go Pro", highlighted: true },
+              { name: "Business", price: "GHS 499", period: "/month", features: ["Up to 20 team members", "All Pro features", "Custom learning paths", "Progress tracking", "Company certificate"], cta: "For Teams" }
+            ] } }
+          ] },
+          { id: "s-testimonial", type: "section", isVisible: true, styles: { backgroundColor: "#f5f3ff", paddingTop: 80, paddingBottom: 80 }, elements: [
+            { id: "tm-el", type: "testimonial", isVisible: true, isLocked: false, styles: { maxWidth: "650px", margin: "0 auto", textAlign: "center" }, content: { quote: "I completed the Web Development course and landed a job at a tech startup within 3 months! EduVault's practical approach made all the difference. Worth every pesewa.", author: "Ama Owusu-Acheampong", role: "Web Developer — Graduate 2024", avatar: "" } }
+          ] },
+          { id: "s-faq", type: "section", isVisible: true, styles: { backgroundColor: "#fafafa", paddingTop: 80, paddingBottom: 80 }, elements: [
+            { id: "fq-el", type: "faq-accordion", isVisible: true, isLocked: false, styles: {}, content: { items: [
+              { q: "Are the certificates internationally recognised?", a: "Our certificates are blockchain-verified and accepted by many employers across Africa and beyond." },
+              { q: "Can I learn at my own pace?", a: "Yes! All courses are self-paced. Once enrolled, you have lifetime access." },
+              { q: "What if I don't like a course?", a: "We offer a full refund within 7 days of enrollment, no questions asked." },
+              { q: "Do I need a fast internet connection?", a: "You can download lessons to watch offline. Perfect for areas with slow connectivity." }
+            ] } }
+          ] },
+          { id: "s-cta", type: "section", isVisible: true, styles: { background: "linear-gradient(135deg,#7c3aed,#2e1065)", paddingTop: 90, paddingBottom: 90 }, elements: [
+            { id: "ct-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#fff", marginBottom: "16px" }, content: { text: "Start Learning Today — It's Free", level: "h2" } },
+            { id: "ct-t", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "rgba(255,255,255,0.8)", marginBottom: "32px" }, content: { text: "Join 25,000+ learners building skills that matter." } },
+            { id: "ct-f", type: "form", isVisible: true, isLocked: false, styles: { maxWidth: "440px", margin: "0 auto" }, content: { title: "", fields: [{ name: "name", label: "Your Name", type: "text", required: true }, { name: "email", label: "Email Address", type: "email", required: true }], submitText: "Create Free Account" } }
+          ] },
+          { id: "s-footer", type: "footer", isVisible: true, styles: { backgroundColor: "#0f0720" }, elements: [{ id: "ft", type: "footer", isVisible: true, isLocked: false, styles: { color: "#6b21a8" }, content: { text: "© 2025 EduVault Academy. Learn. Grow. Succeed.", links: [] } }] }
+        ]
+      }]
+    }
+  },
+
+  // ── Architecture Firm ─────────────────────────────────────
+  {
+    id: "architecture",
+    name: "Architecture Firm",
+    description: "Sleek, minimal template for architects and design firms",
+    category: "Creative",
+    thumbnail: "🏗️",
+    primaryColor: "#1e293b",
+    secondaryColor: "#f8fafc",
+    builderJson: {
+      version: "1",
+      siteSettings: { siteName: "Form & Structure Architects", primaryColor: "#1e293b", secondaryColor: "#f8fafc", fontFamily: "Inter, system-ui, sans-serif" },
+      globalStyles: { bodyBackground: "#ffffff", textColor: "#0f172a" },
+      pages: [{ id: "home", name: "Home", slug: "/", isHomePage: true,
+        seo: { title: "Form & Structure – Architecture & Design Ghana", description: "Award-winning architecture and interior design firm based in Accra" },
+        sections: [
+          { id: "s-nav", type: "nav", isVisible: true, styles: { backgroundColor: "#fff", paddingTop: 0, paddingBottom: 0 }, elements: [{ id: "n1", type: "navigation", isVisible: true, isLocked: false, styles: {}, content: { logo: "F&S Architects", links: [{ label: "Projects", href: "#projects" }, { label: "Services", href: "#services" }, { label: "Studio", href: "#studio" }, { label: "Contact", href: "#contact" }], ctaText: "Start a Project" } }] },
+          { id: "s-hero", type: "hero", isVisible: true, styles: { backgroundColor: "#0f172a", paddingTop: 130, paddingBottom: 130 }, elements: [
+            { id: "h1", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#fff", fontSize: "clamp(2.5rem,6vw,5rem)", fontWeight: "200", letterSpacing: "0.1em" }, content: { text: "Architecture That Endures", level: "h1" } },
+            { id: "h2", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#94a3b8", fontSize: "1.1rem", margin: "24px auto", maxWidth: "600px", lineHeight: "2", letterSpacing: "0.05em" }, content: { text: "We design spaces that inspire, function beautifully and stand the test of time. From private residences to landmark commercial projects across Ghana." } },
+            { id: "hb", type: "button", isVisible: true, isLocked: false, styles: { display: "flex", justifyContent: "center", marginTop: "50px" }, content: { text: "View Our Portfolio", href: "#projects", variant: "outline" } }
+          ] },
+          { id: "s-stats", type: "section", isVisible: true, styles: { backgroundColor: "#f8fafc", paddingTop: 60, paddingBottom: 60 }, elements: [{ id: "st1", type: "stats-counter", isVisible: true, isLocked: false, styles: {}, content: { stats: [{ number: "120+", label: "Projects Completed" }, { number: "18yrs", label: "Experience" }, { number: "12", label: "Design Awards" }, { number: "98%", label: "Client Retention" }] } }] },
+          { id: "s-services", type: "section", isVisible: true, styles: { backgroundColor: "#fff", paddingTop: 90, paddingBottom: 90 }, elements: [
+            { id: "sv-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "12px" }, content: { text: "Our Disciplines", level: "h2" } },
+            { id: "sv-t", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#64748b", marginBottom: "50px" }, content: { text: "From concept to completion" } },
+            { id: "sv-f", type: "feature-grid", isVisible: true, isLocked: false, styles: {}, content: { heading: "", features: [
+              { icon: "🏢", title: "Commercial Architecture", desc: "Office complexes, retail spaces and hospitality buildings" },
+              { icon: "🏠", title: "Residential Design", desc: "Custom homes, estates and luxury villa projects" },
+              { icon: "🛋️", title: "Interior Architecture", desc: "Thoughtful spaces that balance beauty and function" },
+              { icon: "📐", title: "Urban Planning", desc: "Master planning for mixed-use and community developments" },
+              { icon: "📜", title: "Permitting & Approval", desc: "Navigating Ghana building codes and local authority approvals" },
+              { icon: "🔍", title: "Project Management", desc: "End-to-end oversight from ground-breaking to handover" }
+            ] } }
+          ] },
+          { id: "s-projects", type: "section", isVisible: true, styles: { backgroundColor: "#0f172a", paddingTop: 90, paddingBottom: 90 }, elements: [
+            { id: "pr-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#fff", marginBottom: "40px" }, content: { text: "Selected Projects", level: "h2" } },
+            { id: "pr-g", type: "gallery", isVisible: true, isLocked: false, styles: {}, content: { images: [], columns: 3 } }
+          ] },
+          { id: "s-studio", type: "section", isVisible: true, styles: { backgroundColor: "#f8fafc", paddingTop: 90, paddingBottom: 90 }, elements: [
+            { id: "ab1", type: "image-text", isVisible: true, isLocked: false, styles: {}, content: { heading: "The Studio", body: "Founded in 2006 by principal architect Emmanuel Asante-Mensah, Form & Structure has grown into one of Ghana's most respected design practices. Our team of 24 architects, designers and engineers brings diverse expertise to every project, guided by a shared belief that great architecture improves lives.", image: "", imageLeft: true } }
+          ] },
+          { id: "s-testimonial", type: "section", isVisible: true, styles: { backgroundColor: "#fff", paddingTop: 80, paddingBottom: 80 }, elements: [
+            { id: "tm-el", type: "testimonial", isVisible: true, isLocked: false, styles: { maxWidth: "650px", margin: "0 auto", textAlign: "center" }, content: { quote: "Form & Structure delivered a building that has become a landmark in our neighbourhood. The design is timeless, the functionality is perfect and the project was delivered on time and budget.", author: "Mr. Kweku Darko-Mensah", role: "CEO, Darko Real Estate Group", avatar: "" } }
+          ] },
+          { id: "s-faq", type: "section", isVisible: true, styles: { backgroundColor: "#f8fafc", paddingTop: 80, paddingBottom: 80 }, elements: [
+            { id: "fq-el", type: "faq-accordion", isVisible: true, isLocked: false, styles: {}, content: { items: [
+              { q: "How long does a typical project take?", a: "Residential designs take 3-6 months. Commercial projects typically take 6-18 months from concept to completion." },
+              { q: "Do you handle building permits?", a: "Yes, we manage all permitting, EPA approvals and local authority submissions on your behalf." },
+              { q: "Do you work outside Accra?", a: "Yes, we have completed projects in Kumasi, Takoradi, Cape Coast and internationally." },
+              { q: "What's the minimum project size?", a: "We work on projects of all sizes, from home extensions to large commercial developments." }
+            ] } }
+          ] },
+          { id: "s-contact", type: "section", isVisible: true, styles: { backgroundColor: "#0f172a", paddingTop: 90, paddingBottom: 90 }, elements: [
+            { id: "ct-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#fff", marginBottom: "40px" }, content: { text: "Start a Project", level: "h2" } },
+            { id: "ct-f", type: "form", isVisible: true, isLocked: false, styles: { maxWidth: "560px", margin: "0 auto" }, content: { title: "", fields: [{ name: "name", label: "Your Name", type: "text", required: true }, { name: "email", label: "Email", type: "email", required: true }, { name: "phone", label: "Phone", type: "tel", required: true }, { name: "type", label: "Project Type", type: "text", required: true }, { name: "location", label: "Project Location", type: "text", required: false }, { name: "brief", label: "Brief Description", type: "textarea", required: false }], submitText: "Submit Brief" } }
+          ] },
+          { id: "s-footer", type: "footer", isVisible: true, styles: { backgroundColor: "#020617" }, elements: [{ id: "ft", type: "footer", isVisible: true, isLocked: false, styles: { color: "#475569" }, content: { text: "© 2025 Form & Structure Architects. Designed in Ghana.", links: [] } }] }
+        ]
+      }]
+    }
+  },
+
+  // ── Dental Clinic ─────────────────────────────────────────
+  {
+    id: "dental-clinic",
+    name: "Dental Clinic",
+    description: "Clean, professional template for dentists and dental practices",
+    category: "Healthcare",
+    thumbnail: "🦷",
+    primaryColor: "#0ea5e9",
+    secondaryColor: "#f0f9ff",
+    builderJson: {
+      version: "1",
+      siteSettings: { siteName: "SmileCare Dental Clinic", primaryColor: "#0ea5e9", secondaryColor: "#f0f9ff", fontFamily: "Inter, system-ui, sans-serif" },
+      globalStyles: { bodyBackground: "#f0f9ff", textColor: "#0c4a6e" },
+      pages: [{ id: "home", name: "Home", slug: "/", isHomePage: true,
+        seo: { title: "SmileCare Dental – Your Smile Experts in Accra", description: "Modern, pain-free dental care for the whole family in Accra" },
+        sections: [
+          { id: "s-nav", type: "nav", isVisible: true, styles: { backgroundColor: "#fff", paddingTop: 0, paddingBottom: 0 }, elements: [{ id: "n1", type: "navigation", isVisible: true, isLocked: false, styles: {}, content: { logo: "SmileCare Dental", links: [{ label: "Services", href: "#services" }, { label: "Team", href: "#team" }, { label: "Patients", href: "#patients" }, { label: "Book", href: "#book" }], ctaText: "Book Appointment" } }] },
+          { id: "s-hero", type: "hero", isVisible: true, styles: { background: "linear-gradient(135deg,#0c4a6e 0%,#0ea5e9 60%,#7dd3fc 100%)", paddingTop: 100, paddingBottom: 100 }, elements: [
+            { id: "h1", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#fff", fontSize: "clamp(2.5rem,5vw,4rem)", fontWeight: "800" }, content: { text: "Your Perfect Smile Starts Here", level: "h1" } },
+            { id: "h2", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "rgba(255,255,255,0.9)", fontSize: "1.15rem", margin: "20px auto", maxWidth: "600px", lineHeight: "1.8" }, content: { text: "Modern, compassionate dental care using the latest technology. We make dentistry comfortable and pain-free for every patient." } },
+            { id: "hb", type: "button", isVisible: true, isLocked: false, styles: { display: "flex", justifyContent: "center", marginTop: "36px" }, content: { text: "Book Your Appointment Today", href: "#book", variant: "outline" } }
+          ] },
+          { id: "s-stats", type: "section", isVisible: true, styles: { backgroundColor: "#0c4a6e", paddingTop: 50, paddingBottom: 50 }, elements: [{ id: "st1", type: "stats-counter", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { stats: [{ number: "5,000+", label: "Happy Patients" }, { number: "15yrs", label: "Experience" }, { number: "6", label: "Specialist Dentists" }, { number: "4.9★", label: "Patient Rating" }] } }] },
+          { id: "s-services", type: "section", isVisible: true, styles: { backgroundColor: "#fff", paddingTop: 90, paddingBottom: 90 }, elements: [
+            { id: "sv-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "12px" }, content: { text: "Our Services", level: "h2" } },
+            { id: "sv-f", type: "feature-grid", isVisible: true, isLocked: false, styles: {}, content: { heading: "", features: [
+              { icon: "🦷", title: "General Dentistry", desc: "Checkups, fillings, cleanings and preventive care" },
+              { icon: "✨", title: "Teeth Whitening", desc: "Professional whitening for a brighter, confident smile" },
+              { icon: "🔧", title: "Dental Implants", desc: "Permanent tooth replacement that looks and feels natural" },
+              { icon: "😁", title: "Orthodontics", desc: "Braces and clear aligners to straighten your smile" },
+              { icon: "🛡️", title: "Gum Treatment", desc: "Diagnosis and treatment of gum disease" },
+              { icon: "👶", title: "Children's Dentistry", desc: "Gentle, fun dental care for kids of all ages" }
+            ] } }
+          ] },
+          { id: "s-about", type: "section", isVisible: true, styles: { backgroundColor: "#f0f9ff", paddingTop: 90, paddingBottom: 90 }, elements: [
+            { id: "ab1", type: "image-text", isVisible: true, isLocked: false, styles: {}, content: { heading: "Modern Care, Gentle Touch", body: "SmileCare Dental was founded in 2009 by Dr. Adwoa Mensah with a mission to bring world-class dental care to Accra. Our clinic is equipped with digital X-rays, laser technology and pain-free anaesthesia systems. We believe great dental health leads to great overall health.", image: "", imageLeft: false } }
+          ] },
+          { id: "s-testimonial", type: "section", isVisible: true, styles: { backgroundColor: "#fff", paddingTop: 80, paddingBottom: 80 }, elements: [
+            { id: "tm-el", type: "testimonial", isVisible: true, isLocked: false, styles: { maxWidth: "600px", margin: "0 auto", textAlign: "center" }, content: { quote: "I used to be terrified of the dentist until I came here. The team is so calm and gentle — I now look forward to my checkups! My smile transformation has given me so much confidence.", author: "Efua Asante-Boateng", role: "Patient for 5 years", avatar: "" } }
+          ] },
+          { id: "s-faq", type: "section", isVisible: true, styles: { backgroundColor: "#f0f9ff", paddingTop: 80, paddingBottom: 80 }, elements: [
+            { id: "fq-el", type: "faq-accordion", isVisible: true, isLocked: false, styles: {}, content: { items: [
+              { q: "Is dental treatment painful?", a: "We use modern anaesthesia and laser techniques to make treatment as comfortable as possible." },
+              { q: "Do you accept walk-ins?", a: "We prefer appointments but accept walk-ins for emergencies. Call us first if possible." },
+              { q: "How much does a checkup cost?", a: "A standard checkup and clean starts from GHS 150. Specialist treatments are quoted separately." },
+              { q: "Do you treat children?", a: "Yes! We have a dedicated children's dental suite designed to make kids feel safe and comfortable." }
+            ] } }
+          ] },
+          { id: "s-book", type: "section", isVisible: true, styles: { backgroundColor: "#0ea5e9", paddingTop: 80, paddingBottom: 80 }, elements: [
+            { id: "bk-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#fff", marginBottom: "40px" }, content: { text: "Book Your Appointment", level: "h2" } },
+            { id: "bk-f", type: "form", isVisible: true, isLocked: false, styles: { maxWidth: "560px", margin: "0 auto" }, content: { title: "", fields: [{ name: "name", label: "Full Name", type: "text", required: true }, { name: "phone", label: "Phone Number", type: "tel", required: true }, { name: "email", label: "Email", type: "email", required: false }, { name: "service", label: "Service Needed", type: "text", required: false }, { name: "date", label: "Preferred Date & Time", type: "text", required: false }], submitText: "Book Appointment" } }
+          ] },
+          { id: "s-wa", type: "section", isVisible: true, styles: { backgroundColor: "#0c4a6e", paddingTop: 50, paddingBottom: 50 }, elements: [
+            { id: "wa-el", type: "whatsapp-button", isVisible: true, isLocked: false, styles: { display: "flex", justifyContent: "center" }, content: { number: "", message: "Hello SmileCare! I'd like to book a dental appointment.", label: "Book on WhatsApp" } }
+          ] },
+          { id: "s-footer", type: "footer", isVisible: true, styles: { backgroundColor: "#082f49" }, elements: [{ id: "ft", type: "footer", isVisible: true, isLocked: false, styles: { color: "#7dd3fc" }, content: { text: "© 2025 SmileCare Dental Clinic. Your smile is our priority.", links: [] } }] }
+        ]
+      }]
+    }
+  },
+
+  // ── Makeup Artist ─────────────────────────────────────────
+  {
+    id: "makeup-artist",
+    name: "Makeup Artist / MUA",
+    description: "Glamorous template for makeup artists and beauty professionals",
+    category: "Beauty",
+    thumbnail: "💋",
+    primaryColor: "#be185d",
+    secondaryColor: "#fdf2f8",
+    builderJson: {
+      version: "1",
+      siteSettings: { siteName: "Glam by Ama", primaryColor: "#be185d", secondaryColor: "#fdf2f8", fontFamily: "Georgia, serif" },
+      globalStyles: { bodyBackground: "#fdf2f8", textColor: "#1a0010" },
+      pages: [{ id: "home", name: "Home", slug: "/", isHomePage: true,
+        seo: { title: "Glam by Ama – Professional Makeup Artist in Accra", description: "Bridal, event and editorial makeup services across Ghana" },
+        sections: [
+          { id: "s-nav", type: "nav", isVisible: true, styles: { backgroundColor: "rgba(253,242,248,0.95)", paddingTop: 0, paddingBottom: 0 }, elements: [{ id: "n1", type: "navigation", isVisible: true, isLocked: false, styles: {}, content: { logo: "Glam by Ama", links: [{ label: "Services", href: "#services" }, { label: "Portfolio", href: "#portfolio" }, { label: "Packages", href: "#packages" }, { label: "Book", href: "#book" }], ctaText: "Book Now" } }] },
+          { id: "s-hero", type: "hero", isVisible: true, styles: { background: "linear-gradient(135deg,#500724 0%,#be185d 60%,#f9a8d4 100%)", paddingTop: 110, paddingBottom: 100 }, elements: [
+            { id: "h1", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#fff", fontSize: "clamp(2.5rem,6vw,4.5rem)", fontWeight: "300", letterSpacing: "0.05em" }, content: { text: "Where Beauty Meets Artistry", level: "h1" } },
+            { id: "h2", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "rgba(255,255,255,0.9)", fontSize: "1.15rem", margin: "20px auto", maxWidth: "600px", lineHeight: "1.9" }, content: { text: "Professional makeup artist specialising in bridal, editorial and event glam. Because every woman deserves to feel breathtakingly beautiful." } },
+            { id: "hb", type: "button", isVisible: true, isLocked: false, styles: { display: "flex", justifyContent: "center", marginTop: "40px" }, content: { text: "Book Your Glam Session", href: "#book", variant: "outline" } }
+          ] },
+          { id: "s-stats", type: "section", isVisible: true, styles: { backgroundColor: "#500724", paddingTop: 50, paddingBottom: 50 }, elements: [{ id: "st1", type: "stats-counter", isVisible: true, isLocked: false, styles: { color: "#fce7f3" }, content: { stats: [{ number: "800+", label: "Clients Glammed" }, { number: "7yrs", label: "Professional Experience" }, { number: "200+", label: "Bridal Bookings" }, { number: "4.9★", label: "Rating" }] } }] },
+          { id: "s-services", type: "section", isVisible: true, styles: { backgroundColor: "#fff", paddingTop: 90, paddingBottom: 90 }, elements: [
+            { id: "sv-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "12px" }, content: { text: "My Services", level: "h2" } },
+            { id: "sv-f", type: "feature-grid", isVisible: true, isLocked: false, styles: {}, content: { heading: "", features: [
+              { icon: "👰", title: "Bridal Makeup", desc: "Your wedding day look — flawless, long-lasting and uniquely you" },
+              { icon: "✨", title: "Event & Party Glam", desc: "Graduations, parties, galas and special occasions" },
+              { icon: "📸", title: "Editorial & Shoots", desc: "Magazine, portfolio and commercial photography makeup" },
+              { icon: "🎬", title: "Film & TV Makeup", desc: "Movie sets, music videos and TV production" },
+              { icon: "💋", title: "Airbrush Makeup", desc: "Flawless, weightless coverage for all skin tones" },
+              { icon: "📚", title: "Makeup Masterclass", desc: "Learn professional makeup application techniques" }
+            ] } }
+          ] },
+          { id: "s-gallery", type: "section", isVisible: true, styles: { backgroundColor: "#fdf2f8", paddingTop: 90, paddingBottom: 90 }, elements: [
+            { id: "gl-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "40px" }, content: { text: "Portfolio", level: "h2" } },
+            { id: "gl-g", type: "gallery", isVisible: true, isLocked: false, styles: {}, content: { images: [], columns: 3 } }
+          ] },
+          { id: "s-packages", type: "section", isVisible: true, styles: { backgroundColor: "#fff", paddingTop: 90, paddingBottom: 90 }, elements: [
+            { id: "pk-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "50px" }, content: { text: "Bridal Packages", level: "h2" } },
+            { id: "pk-p", type: "pricing-table", isVisible: true, isLocked: false, styles: {}, content: { plans: [
+              { name: "Classic Bride", price: "GHS 600", period: "", features: ["Bridal makeup", "Lashes included", "Touch-up kit", "1hr session"], cta: "Book Now" },
+              { name: "Glam Bride", price: "GHS 1,200", period: "", features: ["Bride + 2 bridesmaids", "Trial session included", "Airbrush option", "All-day touch-ups", "Hairstyling coordination"], cta: "Most Booked", highlighted: true },
+              { name: "Full Bridal Suite", price: "GHS 2,500", period: "", features: ["Full bridal party", "Getting-ready photoshoot", "2 trial sessions", "All-day on-site service", "Reception refresh"], cta: "Enquire" }
+            ] } }
+          ] },
+          { id: "s-testimonial", type: "section", isVisible: true, styles: { backgroundColor: "#fdf2f8", paddingTop: 80, paddingBottom: 80 }, elements: [
+            { id: "tm-el", type: "testimonial", isVisible: true, isLocked: false, styles: { maxWidth: "600px", margin: "0 auto", textAlign: "center" }, content: { quote: "Ama is a true artist! She understood my vision perfectly and I felt like a queen on my wedding day. Every photo is stunning. I wouldn't trust anyone else with my face!", author: "Naomi Osei-Bonsu", role: "Bride — November 2024", avatar: "" } }
+          ] },
+          { id: "s-faq", type: "section", isVisible: true, styles: { backgroundColor: "#fff", paddingTop: 80, paddingBottom: 80 }, elements: [
+            { id: "fq-el", type: "faq-accordion", isVisible: true, isLocked: false, styles: {}, content: { items: [
+              { q: "Do you do a trial session?", a: "Yes! I highly recommend a trial 2-4 weeks before your event, especially for brides." },
+              { q: "Do you travel to my venue?", a: "Yes, I'm fully mobile across Greater Accra and beyond (travel fees may apply)." },
+              { q: "What skin tones do you work with?", a: "I specialise in all African skin tones and carry products from deep ebony to golden brown." },
+              { q: "How far in advance should I book?", a: "For weddings, book 3-6 months ahead. Regular events need at least 2 weeks notice." }
+            ] } }
+          ] },
+          { id: "s-book", type: "section", isVisible: true, styles: { backgroundColor: "#be185d", paddingTop: 80, paddingBottom: 80 }, elements: [
+            { id: "bk-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#fff", marginBottom: "40px" }, content: { text: "Book Your Session", level: "h2" } },
+            { id: "bk-f", type: "form", isVisible: true, isLocked: false, styles: { maxWidth: "520px", margin: "0 auto" }, content: { title: "", fields: [{ name: "name", label: "Your Name", type: "text", required: true }, { name: "phone", label: "WhatsApp Number", type: "tel", required: true }, { name: "event", label: "Type of Event", type: "text", required: true }, { name: "date", label: "Event Date", type: "text", required: true }, { name: "notes", label: "Look you're going for?", type: "textarea", required: false }], submitText: "Request Booking" } }
+          ] },
+          { id: "s-wa", type: "section", isVisible: true, styles: { backgroundColor: "#500724", paddingTop: 50, paddingBottom: 50 }, elements: [
+            { id: "wa-el", type: "whatsapp-button", isVisible: true, isLocked: false, styles: { display: "flex", justifyContent: "center" }, content: { number: "", message: "Hello Ama! I'd like to book a makeup session with you.", label: "Book via WhatsApp" } }
+          ] },
+          { id: "s-footer", type: "footer", isVisible: true, styles: { backgroundColor: "#1a0010" }, elements: [{ id: "ft", type: "footer", isVisible: true, isLocked: false, styles: { color: "#be185d" }, content: { text: "© 2025 Glam by Ama. Because you deserve to feel beautiful.", links: [] } }] }
+        ]
+      }]
+    }
+  },
+
+  // ── Rooftop Bar / Nightclub ───────────────────────────────
+  {
+    id: "rooftop-bar",
+    name: "Bar / Nightclub",
+    description: "Atmospheric dark template for bars, clubs and entertainment venues",
+    category: "Food & Drink",
+    thumbnail: "🍸",
+    primaryColor: "#f59e0b",
+    secondaryColor: "#fffbeb",
+    builderJson: {
+      version: "1",
+      siteSettings: { siteName: "Skyline Bar & Lounge", primaryColor: "#f59e0b", secondaryColor: "#fffbeb", fontFamily: "Inter, system-ui, sans-serif" },
+      globalStyles: { bodyBackground: "#050207", textColor: "#f8fafc" },
+      pages: [{ id: "home", name: "Home", slug: "/", isHomePage: true,
+        seo: { title: "Skyline Bar & Lounge – Accra's Finest Rooftop Experience", description: "Craft cocktails, stunning views and unforgettable nights in Accra" },
+        sections: [
+          { id: "s-nav", type: "nav", isVisible: true, styles: { backgroundColor: "rgba(5,2,7,0.95)", paddingTop: 0, paddingBottom: 0 }, elements: [{ id: "n1", type: "navigation", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { logo: "SKYLINE", links: [{ label: "Menu", href: "#menu" }, { label: "Events", href: "#events" }, { label: "Reserve", href: "#reserve" }, { label: "Gallery", href: "#gallery" }], ctaText: "Reserve Table" } }] },
+          { id: "s-hero", type: "hero", isVisible: true, styles: { background: "linear-gradient(180deg,#050207 0%,#1c0a3e 50%,#f59e0b22 100%)", paddingTop: 130, paddingBottom: 130 }, elements: [
+            { id: "h1", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#fff", fontSize: "clamp(3rem,7vw,6rem)", fontWeight: "900", letterSpacing: "0.1em" }, content: { text: "SKYLINE", level: "h1" } },
+            { id: "h2", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#f59e0b", fontSize: "1.1rem", margin: "16px auto", maxWidth: "600px", letterSpacing: "0.2em" }, content: { text: "ACCRA'S PREMIER ROOFTOP EXPERIENCE" } },
+            { id: "h3", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#94a3b8", fontSize: "1rem", margin: "16px auto 40px", maxWidth: "500px", lineHeight: "1.8" }, content: { text: "Craft cocktails, panoramic city views and an electric atmosphere — every night of the week." } },
+            { id: "hb", type: "button", isVisible: true, isLocked: false, styles: { display: "flex", justifyContent: "center" }, content: { text: "Reserve Your Table", href: "#reserve", variant: "primary" } }
+          ] },
+          { id: "s-stats", type: "section", isVisible: true, styles: { backgroundColor: "#0d0720", paddingTop: 50, paddingBottom: 50 }, elements: [{ id: "st1", type: "stats-counter", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { stats: [{ number: "12th", label: "Floor Views" }, { number: "80+", label: "Cocktails & Spirits" }, { number: "5,000+", label: "Happy Guests Monthly" }, { number: "Fri-Sun", label: "Live Music" }] } }] },
+          { id: "s-menu", type: "section", isVisible: true, styles: { backgroundColor: "#050207", paddingTop: 90, paddingBottom: 90 }, elements: [
+            { id: "mn-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#fff", marginBottom: "50px" }, content: { text: "What We Offer", level: "h2" } },
+            { id: "mn-f", type: "feature-grid", isVisible: true, isLocked: false, styles: {}, content: { heading: "", features: [
+              { icon: "🍸", title: "Craft Cocktails", desc: "Signature concoctions by our award-winning mixologists" },
+              { icon: "🥃", title: "Premium Spirits", desc: "An extensive selection of whiskies, rums and gins" },
+              { icon: "🍷", title: "Wine Collection", desc: "Curated Old and New World wines by the glass or bottle" },
+              { icon: "🍽️", title: "Tapas & Small Plates", desc: "Sharing plates designed to complement your drinks" },
+              { icon: "🎵", title: "Live Entertainment", desc: "Live bands, DJs and themed nights every weekend" },
+              { icon: "🎉", title: "Private Events", desc: "Exclusive venue hire for birthdays, corporates and launches" }
+            ] } }
+          ] },
+          { id: "s-gallery", type: "section", isVisible: true, styles: { backgroundColor: "#0d0720", paddingTop: 80, paddingBottom: 80 }, elements: [
+            { id: "gl-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#fff", marginBottom: "40px" }, content: { text: "The Atmosphere", level: "h2" } },
+            { id: "gl-g", type: "gallery", isVisible: true, isLocked: false, styles: {}, content: { images: [], columns: 3 } }
+          ] },
+          { id: "s-faq", type: "section", isVisible: true, styles: { backgroundColor: "#050207", paddingTop: 80, paddingBottom: 80 }, elements: [
+            { id: "fq-el", type: "faq-accordion", isVisible: true, isLocked: false, styles: {}, content: { items: [
+              { q: "What are your opening hours?", a: "We open Wednesday–Sunday from 5pm. Fridays and Saturdays until 3am." },
+              { q: "Is there a dress code?", a: "Smart casual. We reserve the right to refuse entry to inappropriately dressed guests." },
+              { q: "Can I book a table?", a: "Yes! Table reservations are strongly recommended on weekends. Book via our form or WhatsApp." },
+              { q: "Do you host private events?", a: "Yes, we have dedicated private sections available for exclusive hire. Contact us for packages." }
+            ] } }
+          ] },
+          { id: "s-reserve", type: "section", isVisible: true, styles: { backgroundColor: "#0d0720", paddingTop: 80, paddingBottom: 80 }, elements: [
+            { id: "rv-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#fff", marginBottom: "40px" }, content: { text: "Reserve Your Table", level: "h2" } },
+            { id: "rv-f", type: "form", isVisible: true, isLocked: false, styles: { maxWidth: "520px", margin: "0 auto" }, content: { title: "", fields: [{ name: "name", label: "Name", type: "text", required: true }, { name: "phone", label: "Phone / WhatsApp", type: "tel", required: true }, { name: "date", label: "Date & Time", type: "text", required: true }, { name: "guests", label: "Number of Guests", type: "text", required: true }, { name: "occasion", label: "Special Occasion?", type: "text", required: false }], submitText: "Reserve Now" } }
+          ] },
+          { id: "s-wa", type: "section", isVisible: true, styles: { background: "linear-gradient(135deg,#1c0a3e,#f59e0b22)", paddingTop: 60, paddingBottom: 60 }, elements: [
+            { id: "wa-el", type: "whatsapp-button", isVisible: true, isLocked: false, styles: { display: "flex", justifyContent: "center" }, content: { number: "", message: "Hi Skyline! I'd like to reserve a table.", label: "Reserve on WhatsApp" } }
+          ] },
+          { id: "s-footer", type: "footer", isVisible: true, styles: { backgroundColor: "#030105" }, elements: [{ id: "ft", type: "footer", isVisible: true, isLocked: false, styles: { color: "#f59e0b44" }, content: { text: "© 2025 Skyline Bar & Lounge. Accra's rooftop experience.", links: [] } }] }
+        ]
+      }]
+    }
+  },
+
+  // ── Travel Agency ─────────────────────────────────────────
+  {
+    id: "travel-agency",
+    name: "Travel Agency",
+    description: "Vibrant template for travel agents, tour operators and holiday packages",
+    category: "Services",
+    thumbnail: "✈️",
+    primaryColor: "#0891b2",
+    secondaryColor: "#ecfeff",
+    builderJson: {
+      version: "1",
+      siteSettings: { siteName: "Horizon Travel & Tours", primaryColor: "#0891b2", secondaryColor: "#ecfeff", fontFamily: "Inter, system-ui, sans-serif" },
+      globalStyles: { bodyBackground: "#f0fdff", textColor: "#083344" },
+      pages: [{ id: "home", name: "Home", slug: "/", isHomePage: true,
+        seo: { title: "Horizon Travel & Tours – Ghana's Premier Travel Agency", description: "Dream holidays, visa assistance and group tours across Africa and beyond" },
+        sections: [
+          { id: "s-nav", type: "nav", isVisible: true, styles: { backgroundColor: "#fff", paddingTop: 0, paddingBottom: 0 }, elements: [{ id: "n1", type: "navigation", isVisible: true, isLocked: false, styles: {}, content: { logo: "Horizon Travel", links: [{ label: "Packages", href: "#packages" }, { label: "Destinations", href: "#destinations" }, { label: "Visa Help", href: "#visa" }, { label: "Contact", href: "#contact" }], ctaText: "Get Quote" } }] },
+          { id: "s-hero", type: "hero", isVisible: true, styles: { background: "linear-gradient(135deg,#083344 0%,#0891b2 50%,#22d3ee 100%)", paddingTop: 110, paddingBottom: 100 }, elements: [
+            { id: "h1", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#fff", fontSize: "clamp(2.5rem,6vw,4.5rem)", fontWeight: "800" }, content: { text: "Your Dream Holiday Awaits", level: "h1" } },
+            { id: "h2", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "rgba(255,255,255,0.9)", fontSize: "1.2rem", margin: "20px auto", maxWidth: "600px", lineHeight: "1.8" }, content: { text: "Affordable holiday packages, visa assistance and unforgettable group tours across Africa, Europe, Dubai and beyond." } },
+            { id: "hb", type: "button", isVisible: true, isLocked: false, styles: { display: "flex", justifyContent: "center", marginTop: "40px" }, content: { text: "Get a Free Travel Quote", href: "#quote", variant: "outline" } }
+          ] },
+          { id: "s-stats", type: "section", isVisible: true, styles: { backgroundColor: "#083344", paddingTop: 50, paddingBottom: 50 }, elements: [{ id: "st1", type: "stats-counter", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { stats: [{ number: "5,000+", label: "Travellers Served" }, { number: "50+", label: "Destinations" }, { number: "10yrs", label: "Experience" }, { number: "4.8★", label: "Client Rating" }] } }] },
+          { id: "s-services", type: "section", isVisible: true, styles: { backgroundColor: "#fff", paddingTop: 90, paddingBottom: 90 }, elements: [
+            { id: "sv-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "12px" }, content: { text: "What We Offer", level: "h2" } },
+            { id: "sv-f", type: "feature-grid", isVisible: true, isLocked: false, styles: {}, content: { heading: "", features: [
+              { icon: "✈️", title: "Flight Bookings", desc: "Best fares on domestic and international flights" },
+              { icon: "🏨", title: "Hotel & Resort Packages", desc: "Handpicked accommodation from budget to luxury" },
+              { icon: "🌍", title: "African Safari & Tours", desc: "Wildlife safaris, beach getaways and cultural tours" },
+              { icon: "📋", title: "Visa Assistance", desc: "Schengen, UK, US and other visa applications handled" },
+              { icon: "👥", title: "Group Tours", desc: "Organised group travel with like-minded Ghanaians" },
+              { icon: "💑", title: "Honeymoon Packages", desc: "Romantic getaways designed for newlyweds" }
+            ] } }
+          ] },
+          { id: "s-destinations", type: "section", isVisible: true, styles: { backgroundColor: "#f0fdff", paddingTop: 90, paddingBottom: 90 }, elements: [
+            { id: "ds-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "12px" }, content: { text: "Popular Destinations", level: "h2" } },
+            { id: "ds-t", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#0891b2", marginBottom: "50px" }, content: { text: "📍 Dubai · London · Paris · New York · Nairobi · Cape Town · Zanzibar · Istanbul · Bangkok · Maldives" } },
+            { id: "ds-g", type: "gallery", isVisible: true, isLocked: false, styles: {}, content: { images: [], columns: 4 } }
+          ] },
+          { id: "s-testimonial", type: "section", isVisible: true, styles: { backgroundColor: "#fff", paddingTop: 80, paddingBottom: 80 }, elements: [
+            { id: "tm-el", type: "testimonial", isVisible: true, isLocked: false, styles: { maxWidth: "650px", margin: "0 auto", textAlign: "center" }, content: { quote: "My Dubai trip was absolutely magical! Everything was arranged seamlessly — flights, hotel, transfers and tours. Horizon Travel took care of everything and I just enjoyed the trip.", author: "Dr. Abena Frimpong", role: "Traveller — Dubai Package", avatar: "" } }
+          ] },
+          { id: "s-faq", type: "section", isVisible: true, styles: { backgroundColor: "#f0fdff", paddingTop: 80, paddingBottom: 80 }, elements: [
+            { id: "fq-el", type: "faq-accordion", isVisible: true, isLocked: false, styles: {}, content: { items: [
+              { q: "Do you help with visa applications?", a: "Yes! We assist with Schengen, UK, US, Canadian and other visa applications." },
+              { q: "What is included in your packages?", a: "Packages typically include flights, accommodation, airport transfers and select tours. Details vary per package." },
+              { q: "Can I travel solo or only in groups?", a: "Both! We arrange solo trips and have regular group tours that you can join." },
+              { q: "How do I pay?", a: "We accept mobile money, bank transfer and instalments are available for some packages." }
+            ] } }
+          ] },
+          { id: "s-quote", type: "section", isVisible: true, styles: { backgroundColor: "#0891b2", paddingTop: 80, paddingBottom: 80 }, elements: [
+            { id: "qt-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#fff", marginBottom: "40px" }, content: { text: "Get Your Free Travel Quote", level: "h2" } },
+            { id: "qt-f", type: "form", isVisible: true, isLocked: false, styles: { maxWidth: "560px", margin: "0 auto" }, content: { title: "", fields: [{ name: "name", label: "Full Name", type: "text", required: true }, { name: "phone", label: "Phone / WhatsApp", type: "tel", required: true }, { name: "destination", label: "Where would you like to go?", type: "text", required: true }, { name: "travelers", label: "Number of Travellers", type: "text", required: true }, { name: "dates", label: "Preferred Travel Dates", type: "text", required: false }, { name: "budget", label: "Budget (per person)", type: "text", required: false }], submitText: "Get My Free Quote" } }
+          ] },
+          { id: "s-wa", type: "section", isVisible: true, styles: { backgroundColor: "#083344", paddingTop: 50, paddingBottom: 50 }, elements: [
+            { id: "wa-el", type: "whatsapp-button", isVisible: true, isLocked: false, styles: { display: "flex", justifyContent: "center" }, content: { number: "", message: "Hello Horizon Travel! I'd like a travel quote.", label: "Chat With a Travel Agent" } }
+          ] },
+          { id: "s-footer", type: "footer", isVisible: true, styles: { backgroundColor: "#041c24" }, elements: [{ id: "ft", type: "footer", isVisible: true, isLocked: false, styles: { color: "#0891b2" }, content: { text: "© 2025 Horizon Travel & Tours. Explore More, Stress Less.", links: [] } }] }
+        ]
+      }]
+    }
+  },
+
+  // ── Jewellery Store ───────────────────────────────────────
+  {
+    id: "jewellery",
+    name: "Jewellery Store",
+    description: "Luxurious template for jewellers and accessories boutiques",
+    category: "Fashion",
+    thumbnail: "💎",
+    primaryColor: "#b45309",
+    secondaryColor: "#fffbeb",
+    builderJson: {
+      version: "1",
+      siteSettings: { siteName: "Aurum Jewellers", primaryColor: "#b45309", secondaryColor: "#fffbeb", fontFamily: "Georgia, serif" },
+      globalStyles: { bodyBackground: "#fffbeb", textColor: "#1c0a00" },
+      pages: [{ id: "home", name: "Home", slug: "/", isHomePage: true,
+        seo: { title: "Aurum Jewellers – Handcrafted Fine Jewellery in Ghana", description: "Exquisite gold, diamond and gemstone jewellery handcrafted in Accra" },
+        sections: [
+          { id: "s-nav", type: "nav", isVisible: true, styles: { backgroundColor: "rgba(255,251,235,0.95)", paddingTop: 0, paddingBottom: 0 }, elements: [{ id: "n1", type: "navigation", isVisible: true, isLocked: false, styles: {}, content: { logo: "AURUM", links: [{ label: "Collections", href: "#collections" }, { label: "Custom", href: "#custom" }, { label: "About", href: "#about" }, { label: "Visit Us", href: "#contact" }], ctaText: "Shop Now" } }] },
+          { id: "s-hero", type: "hero", isVisible: true, styles: { background: "linear-gradient(135deg,#1c0a00 0%,#78350f 50%,#b45309 100%)", paddingTop: 120, paddingBottom: 120 }, elements: [
+            { id: "h1", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#fef3c7", fontSize: "clamp(2.5rem,6vw,5rem)", fontWeight: "300", letterSpacing: "0.15em" }, content: { text: "CRAFTED FOR ETERNITY", level: "h1" } },
+            { id: "h2", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#fde68a", fontSize: "1.1rem", margin: "20px auto", maxWidth: "580px", lineHeight: "1.9", letterSpacing: "0.05em" }, content: { text: "Handcrafted fine jewellery in 18k and 22k gold, diamonds and precious gemstones. Every piece tells a story. Yours begins here." } },
+            { id: "hb", type: "button", isVisible: true, isLocked: false, styles: { display: "flex", justifyContent: "center", marginTop: "40px" }, content: { text: "Explore Collections", href: "#collections", variant: "outline" } }
+          ] },
+          { id: "s-stats", type: "section", isVisible: true, styles: { backgroundColor: "#78350f", paddingTop: 50, paddingBottom: 50 }, elements: [{ id: "st1", type: "stats-counter", isVisible: true, isLocked: false, styles: { color: "#fef3c7" }, content: { stats: [{ number: "25yrs", label: "Of Craftsmanship" }, { number: "3,000+", label: "Pieces Created" }, { number: "18k & 22k", label: "Gold Used" }, { number: "100%", label: "Handcrafted" }] } }] },
+          { id: "s-collections", type: "section", isVisible: true, styles: { backgroundColor: "#fffbeb", paddingTop: 90, paddingBottom: 90 }, elements: [
+            { id: "cl-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "12px" }, content: { text: "Our Collections", level: "h2" } },
+            { id: "cl-f", type: "feature-grid", isVisible: true, isLocked: false, styles: {}, content: { heading: "", features: [
+              { icon: "💍", title: "Engagement Rings", desc: "Timeless diamond and gemstone rings for your special moment" },
+              { icon: "📿", title: "Necklaces & Pendants", desc: "Gold chains, pendants and statement necklaces" },
+              { icon: "🌟", title: "Earrings", desc: "Studs, hoops and chandelier earrings for every occasion" },
+              { icon: "⌚", title: "Bracelets & Bangles", desc: "Gold and gemstone pieces from delicate to bold" },
+              { icon: "👑", title: "Bridal Sets", desc: "Matching wedding sets crafted to perfection" },
+              { icon: "🎁", title: "Custom Designs", desc: "Your vision brought to life by our master jewellers" }
+            ] } }
+          ] },
+          { id: "s-custom", type: "section", isVisible: true, styles: { backgroundColor: "#fef3c7", paddingTop: 90, paddingBottom: 90 }, elements: [
+            { id: "cs-it", type: "image-text", isVisible: true, isLocked: false, styles: {}, content: { heading: "Custom Jewellery Design", body: "Have a vision in your mind? Our master goldsmiths will bring it to life. We work with your design ideas, photos or sketches to craft a one-of-a-kind piece. Perfect for engagement rings, anniversaries and meaningful gifts. Consultation is free.", image: "", imageLeft: true } }
+          ] },
+          { id: "s-gallery", type: "section", isVisible: true, styles: { backgroundColor: "#1c0a00", paddingTop: 80, paddingBottom: 80 }, elements: [
+            { id: "gl-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#fef3c7", marginBottom: "40px" }, content: { text: "Featured Pieces", level: "h2" } },
+            { id: "gl-g", type: "gallery", isVisible: true, isLocked: false, styles: {}, content: { images: [], columns: 3 } }
+          ] },
+          { id: "s-testimonial", type: "section", isVisible: true, styles: { backgroundColor: "#fffbeb", paddingTop: 80, paddingBottom: 80 }, elements: [
+            { id: "tm-el", type: "testimonial", isVisible: true, isLocked: false, styles: { maxWidth: "600px", margin: "0 auto", textAlign: "center" }, content: { quote: "Aurum crafted my wife's engagement ring from scratch based on my description. It was beyond perfect — she cried when she saw it! Every detail was exactly as I imagined. True masters of their craft.", author: "Emmanuel Osei-Mensah", role: "Customer", avatar: "" } }
+          ] },
+          { id: "s-faq", type: "section", isVisible: true, styles: { backgroundColor: "#fef3c7", paddingTop: 80, paddingBottom: 80 }, elements: [
+            { id: "fq-el", type: "faq-accordion", isVisible: true, isLocked: false, styles: {}, content: { items: [
+              { q: "Do you use certified gold?", a: "Yes, all our pieces use certified 18k and 22k gold from verified Ghanaian sources." },
+              { q: "How long does custom jewellery take?", a: "Custom pieces typically take 2-4 weeks depending on complexity and design." },
+              { q: "Do you offer resizing?", a: "Yes, we offer free resizing within 30 days of purchase on all rings." },
+              { q: "Can I sell old gold jewellery to you?", a: "Yes, we buy old gold jewellery at fair market rates and can melt it into a new piece." }
+            ] } }
+          ] },
+          { id: "s-contact", type: "section", isVisible: true, styles: { backgroundColor: "#78350f", paddingTop: 80, paddingBottom: 80 }, elements: [
+            { id: "ct-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#fef3c7", marginBottom: "40px" }, content: { text: "Visit Our Showroom or Order Online", level: "h2" } },
+            { id: "ct-f", type: "form", isVisible: true, isLocked: false, styles: { maxWidth: "540px", margin: "0 auto" }, content: { title: "", fields: [{ name: "name", label: "Your Name", type: "text", required: true }, { name: "phone", label: "Phone / WhatsApp", type: "tel", required: true }, { name: "interest", label: "What are you looking for?", type: "text", required: true }, { name: "budget", label: "Approximate Budget (GHS)", type: "text", required: false }, { name: "message", label: "Any specific details?", type: "textarea", required: false }], submitText: "Send Enquiry" } }
+          ] },
+          { id: "s-wa", type: "section", isVisible: true, styles: { backgroundColor: "#1c0a00", paddingTop: 50, paddingBottom: 50 }, elements: [
+            { id: "wa-el", type: "whatsapp-button", isVisible: true, isLocked: false, styles: { display: "flex", justifyContent: "center" }, content: { number: "", message: "Hello Aurum! I'm interested in your jewellery.", label: "Chat With a Jeweller" } }
+          ] },
+          { id: "s-footer", type: "footer", isVisible: true, styles: { backgroundColor: "#0c0500" }, elements: [{ id: "ft", type: "footer", isVisible: true, isLocked: false, styles: { color: "#b45309" }, content: { text: "© 2025 Aurum Jewellers. Crafted for eternity.", links: [] } }] }
+        ]
+      }]
+    }
+  },
+
+  // ── Coworking Space ───────────────────────────────────────
+  {
+    id: "coworking",
+    name: "Coworking Space",
+    description: "Modern template for coworking spaces and business centres",
+    category: "Business",
+    thumbnail: "💼",
+    primaryColor: "#0d9488",
+    secondaryColor: "#f0fdfa",
+    builderJson: {
+      version: "1",
+      siteSettings: { siteName: "Nexus Hub – Coworking Accra", primaryColor: "#0d9488", secondaryColor: "#f0fdfa", fontFamily: "Inter, system-ui, sans-serif" },
+      globalStyles: { bodyBackground: "#f0fdfa", textColor: "#0f3430" },
+      pages: [{ id: "home", name: "Home", slug: "/", isHomePage: true,
+        seo: { title: "Nexus Hub – Premium Coworking Space in Accra", description: "Hot desks, private offices and meeting rooms in the heart of Accra" },
+        sections: [
+          { id: "s-nav", type: "nav", isVisible: true, styles: { backgroundColor: "#fff", paddingTop: 0, paddingBottom: 0 }, elements: [{ id: "n1", type: "navigation", isVisible: true, isLocked: false, styles: {}, content: { logo: "Nexus Hub", links: [{ label: "Spaces", href: "#spaces" }, { label: "Amenities", href: "#amenities" }, { label: "Pricing", href: "#pricing" }, { label: "Community", href: "#community" }], ctaText: "Book a Tour" } }] },
+          { id: "s-hero", type: "hero", isVisible: true, styles: { background: "linear-gradient(135deg,#042f2e 0%,#0d9488 60%,#2dd4bf 100%)", paddingTop: 110, paddingBottom: 100 }, elements: [
+            { id: "h1", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#fff", fontSize: "clamp(2.5rem,6vw,4.5rem)", fontWeight: "800" }, content: { text: "Work Better. Together.", level: "h1" } },
+            { id: "h2", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "rgba(255,255,255,0.9)", fontSize: "1.15rem", margin: "20px auto", maxWidth: "620px", lineHeight: "1.8" }, content: { text: "Premium coworking space in the heart of Accra. Hot desks, private offices, meeting rooms and a community of ambitious professionals." } },
+            { id: "hb", type: "button", isVisible: true, isLocked: false, styles: { display: "flex", justifyContent: "center", marginTop: "40px" }, content: { text: "Book a Free Tour", href: "#book", variant: "outline" } }
+          ] },
+          { id: "s-stats", type: "section", isVisible: true, styles: { backgroundColor: "#042f2e", paddingTop: 50, paddingBottom: 50 }, elements: [{ id: "st1", type: "stats-counter", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { stats: [{ number: "500+", label: "Members" }, { number: "120", label: "Desks Available" }, { number: "8", label: "Meeting Rooms" }, { number: "24/7", label: "Access" }] } }] },
+          { id: "s-spaces", type: "section", isVisible: true, styles: { backgroundColor: "#fff", paddingTop: 90, paddingBottom: 90 }, elements: [
+            { id: "sp-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "12px" }, content: { text: "Our Spaces", level: "h2" } },
+            { id: "sp-f", type: "feature-grid", isVisible: true, isLocked: false, styles: {}, content: { heading: "", features: [
+              { icon: "🪑", title: "Hot Desks", desc: "Flexible daily or monthly desks in our open workspace" },
+              { icon: "🏢", title: "Private Offices", desc: "Lockable offices for teams of 1-20 people" },
+              { icon: "📊", title: "Meeting Rooms", desc: "Bookable rooms with projectors, whiteboards and video conferencing" },
+              { icon: "🎤", title: "Event Space", desc: "250-person venue for launches, conferences and workshops" },
+              { icon: "☕", title: "Cafe & Lounge", desc: "On-site café with premium coffee and healthy food options" },
+              { icon: "📮", title: "Registered Address", desc: "Use our address as your official business address" }
+            ] } }
+          ] },
+          { id: "s-amenities", type: "section", isVisible: true, styles: { backgroundColor: "#f0fdfa", paddingTop: 80, paddingBottom: 80 }, elements: [
+            { id: "am-it", type: "image-text", isVisible: true, isLocked: false, styles: {}, content: { heading: "Everything You Need to Focus", body: "Nexus Hub provides 1Gbps fibre internet, 24/7 security and building access, air conditioning, printing and scanning, daily cleaning, complimentary coffee and tea, standing desks on request, and a rooftop terrace for when you need a break.", image: "", imageLeft: false } }
+          ] },
+          { id: "s-pricing", type: "section", isVisible: true, styles: { backgroundColor: "#fff", paddingTop: 90, paddingBottom: 90 }, elements: [
+            { id: "pk-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "50px" }, content: { text: "Simple Monthly Plans", level: "h2" } },
+            { id: "pk-p", type: "pricing-table", isVisible: true, isLocked: false, styles: {}, content: { plans: [
+              { name: "Day Pass", price: "GHS 80", period: "/day", features: ["Hot desk access", "Wifi & power", "Café access", "8am–8pm"], cta: "Get Day Pass" },
+              { name: "Flex Member", price: "GHS 600", period: "/month", features: ["10 days/month", "Mail & address service", "2 meeting room hours", "Community events", "24/7 access"], cta: "Go Flex", highlighted: true },
+              { name: "Dedicated Desk", price: "GHS 1,200", period: "/month", features: ["Your own locked desk", "Unlimited access", "8 meeting room hours", "1 guest per day", "Storage locker"], cta: "Get My Desk" }
+            ] } }
+          ] },
+          { id: "s-testimonial", type: "section", isVisible: true, styles: { backgroundColor: "#f0fdfa", paddingTop: 80, paddingBottom: 80 }, elements: [
+            { id: "tm-el", type: "testimonial", isVisible: true, isLocked: false, styles: { maxWidth: "650px", margin: "0 auto", textAlign: "center" }, content: { quote: "Nexus Hub transformed how I work. The environment is inspiring, the internet is fast and the community is incredible. I've made 3 business partnerships just from being here. Worth every pesewa.", author: "Yaa Darko-Asante", role: "Freelance Consultant & Member", avatar: "" } }
+          ] },
+          { id: "s-faq", type: "section", isVisible: true, styles: { backgroundColor: "#fff", paddingTop: 80, paddingBottom: 80 }, elements: [
+            { id: "fq-el", type: "faq-accordion", isVisible: true, isLocked: false, styles: {}, content: { items: [
+              { q: "Can I bring clients to meetings?", a: "Yes! All plans include guest access. Meeting rooms can be booked for client meetings." },
+              { q: "Is there parking available?", a: "Yes, we have 50 parking spaces available for members. Street parking is also nearby." },
+              { q: "Can I pay daily?", a: "Yes, daily passes are available at GHS 80/day. No commitment required." },
+              { q: "Do you host networking events?", a: "Yes! We run monthly member mixers, skill workshops and business pitch nights." }
+            ] } }
+          ] },
+          { id: "s-book", type: "section", isVisible: true, styles: { backgroundColor: "#0d9488", paddingTop: 80, paddingBottom: 80 }, elements: [
+            { id: "bk-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#fff", marginBottom: "40px" }, content: { text: "Book a Free Tour", level: "h2" } },
+            { id: "bk-f", type: "form", isVisible: true, isLocked: false, styles: { maxWidth: "500px", margin: "0 auto" }, content: { title: "", fields: [{ name: "name", label: "Your Name", type: "text", required: true }, { name: "email", label: "Email", type: "email", required: true }, { name: "phone", label: "Phone", type: "tel", required: true }, { name: "date", label: "Preferred Tour Date", type: "text", required: false }, { name: "plan", label: "Plan you're interested in", type: "text", required: false }], submitText: "Schedule My Tour" } }
+          ] },
+          { id: "s-wa", type: "section", isVisible: true, styles: { backgroundColor: "#042f2e", paddingTop: 50, paddingBottom: 50 }, elements: [
+            { id: "wa-el", type: "whatsapp-button", isVisible: true, isLocked: false, styles: { display: "flex", justifyContent: "center" }, content: { number: "", message: "Hello Nexus Hub! I'd like to book a tour of the coworking space.", label: "Book a Tour via WhatsApp" } }
+          ] },
+          { id: "s-footer", type: "footer", isVisible: true, styles: { backgroundColor: "#021a19" }, elements: [{ id: "ft", type: "footer", isVisible: true, isLocked: false, styles: { color: "#0d9488" }, content: { text: "© 2025 Nexus Hub Coworking. Where work happens.", links: [] } }] }
+        ]
+      }]
+    }
+  },
+
+  // ── Podcast ───────────────────────────────────────────────
+  {
+    id: "podcast",
+    name: "Podcast / YouTube Channel",
+    description: "Dynamic template for podcasters, YouTubers and content creators",
+    category: "Creative",
+    thumbnail: "🎙️",
+    primaryColor: "#7c3aed",
+    secondaryColor: "#f5f3ff",
+    builderJson: {
+      version: "1",
+      siteSettings: { siteName: "The Real Talk Podcast", primaryColor: "#7c3aed", secondaryColor: "#f5f3ff", fontFamily: "Inter, system-ui, sans-serif" },
+      globalStyles: { bodyBackground: "#09050f", textColor: "#f1f5f9" },
+      pages: [{ id: "home", name: "Home", slug: "/", isHomePage: true,
+        seo: { title: "The Real Talk Podcast – Ghana's #1 Lifestyle Show", description: "Raw, honest conversations about life, business and success in Ghana" },
+        sections: [
+          { id: "s-nav", type: "nav", isVisible: true, styles: { backgroundColor: "rgba(9,5,15,0.95)", paddingTop: 0, paddingBottom: 0 }, elements: [{ id: "n1", type: "navigation", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { logo: "🎙 Real Talk", links: [{ label: "Episodes", href: "#episodes" }, { label: "Guests", href: "#guests" }, { label: "Sponsor", href: "#sponsor" }, { label: "Subscribe", href: "#subscribe" }], ctaText: "Listen Now" } }] },
+          { id: "s-hero", type: "hero", isVisible: true, styles: { background: "linear-gradient(135deg,#09050f 0%,#2e1065 50%,#7c3aed 100%)", paddingTop: 120, paddingBottom: 110 }, elements: [
+            { id: "h1", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#fff", fontSize: "clamp(2.5rem,6vw,5rem)", fontWeight: "900" }, content: { text: "Real Talk. No Filter.", level: "h1" } },
+            { id: "h2", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#a78bfa", fontSize: "1.2rem", margin: "20px auto", maxWidth: "600px", lineHeight: "1.8" }, content: { text: "Ghana's most honest conversations about entrepreneurship, relationships, culture and life. New episode every Tuesday." } },
+            { id: "hb", type: "button", isVisible: true, isLocked: false, styles: { display: "flex", justifyContent: "center", gap: "12px", marginTop: "40px" }, content: { text: "🎧 Listen to Latest Episode", href: "#episode", variant: "primary" } }
+          ] },
+          { id: "s-stats", type: "section", isVisible: true, styles: { backgroundColor: "#2e1065", paddingTop: 50, paddingBottom: 50 }, elements: [{ id: "st1", type: "stats-counter", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { stats: [{ number: "50K+", label: "Monthly Listeners" }, { number: "200+", label: "Episodes" }, { number: "#1", label: "Ghana Lifestyle Charts" }, { number: "150+", label: "Notable Guests" }] } }] },
+          { id: "s-about", type: "section", isVisible: true, styles: { backgroundColor: "#09050f", paddingTop: 90, paddingBottom: 90 }, elements: [
+            { id: "ab-it", type: "image-text", isVisible: true, isLocked: false, styles: {}, content: { heading: "About the Show", body: "Real Talk was started in 2021 to give Ghanaians a platform for honest, unfiltered conversations. Every week, we sit down with entrepreneurs, creatives, professionals and everyday people sharing stories that inspire, educate and entertain.", image: "", imageLeft: false } }
+          ] },
+          { id: "s-platforms", type: "section", isVisible: true, styles: { backgroundColor: "#2e1065", paddingTop: 70, paddingBottom: 70 }, elements: [
+            { id: "pl-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#fff", marginBottom: "40px" }, content: { text: "Listen & Watch Everywhere", level: "h2" } },
+            { id: "pl-f", type: "feature-grid", isVisible: true, isLocked: false, styles: {}, content: { heading: "", features: [
+              { icon: "🎵", title: "Spotify", desc: "Search 'Real Talk Ghana' and subscribe for free" },
+              { icon: "🎙️", title: "Apple Podcasts", desc: "Available on all Apple devices — search and subscribe" },
+              { icon: "▶️", title: "YouTube", desc: "Full video episodes on our YouTube channel" },
+              { icon: "📻", title: "Audiomack", desc: "Stream free on Audiomack — popular in Ghana" }
+            ] } }
+          ] },
+          { id: "s-sponsor", type: "section", isVisible: true, styles: { backgroundColor: "#09050f", paddingTop: 90, paddingBottom: 90 }, elements: [
+            { id: "sp-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#fff", marginBottom: "16px" }, content: { text: "Partner With Us", level: "h2" } },
+            { id: "sp-t", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#a78bfa", marginBottom: "40px", maxWidth: "600px", margin: "0 auto 40px" }, content: { text: "Reach 50,000+ engaged Ghanaians each week. Our audience is 25-45, educated and entrepreneurial." } },
+            { id: "sp-f", type: "form", isVisible: true, isLocked: false, styles: { maxWidth: "500px", margin: "0 auto" }, content: { title: "", fields: [{ name: "brand", label: "Brand / Company Name", type: "text", required: true }, { name: "email", label: "Email", type: "email", required: true }, { name: "budget", label: "Sponsorship Budget", type: "text", required: false }, { name: "goal", label: "What do you want to achieve?", type: "textarea", required: false }], submitText: "Enquire About Sponsorship" } }
+          ] },
+          { id: "s-newsletter", type: "section", isVisible: true, styles: { background: "linear-gradient(135deg,#7c3aed,#2e1065)", paddingTop: 70, paddingBottom: 70 }, elements: [
+            { id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { title: "Get notified when new episodes drop", placeholder: "Enter your email", buttonLabel: "Subscribe" } }
+          ] },
+          { id: "s-footer", type: "footer", isVisible: true, styles: { backgroundColor: "#050209" }, elements: [{ id: "ft", type: "footer", isVisible: true, isLocked: false, styles: { color: "#7c3aed" }, content: { text: "© 2025 The Real Talk Podcast. Real stories. Real impact.", links: [] } }] }
+        ]
+      }]
+    }
+  },
+
+  // ── Recruitment Agency ────────────────────────────────────
+  {
+    id: "recruitment",
+    name: "Recruitment Agency",
+    description: "Professional template for staffing agencies and headhunters",
+    category: "Professional",
+    thumbnail: "🤝",
+    primaryColor: "#1d4ed8",
+    secondaryColor: "#eff6ff",
+    builderJson: {
+      version: "1",
+      siteSettings: { siteName: "TalentBridge Recruitment", primaryColor: "#1d4ed8", secondaryColor: "#eff6ff", fontFamily: "Inter, system-ui, sans-serif" },
+      globalStyles: { bodyBackground: "#f8faff", textColor: "#0f172a" },
+      pages: [{ id: "home", name: "Home", slug: "/", isHomePage: true,
+        seo: { title: "TalentBridge – Leading Recruitment Agency in Ghana", description: "Connecting top talent with the best employers across Ghana and Africa" },
+        sections: [
+          { id: "s-nav", type: "nav", isVisible: true, styles: { backgroundColor: "#fff", paddingTop: 0, paddingBottom: 0 }, elements: [{ id: "n1", type: "navigation", isVisible: true, isLocked: false, styles: {}, content: { logo: "TalentBridge", links: [{ label: "For Employers", href: "#employers" }, { label: "For Candidates", href: "#candidates" }, { label: "Sectors", href: "#sectors" }, { label: "Contact", href: "#contact" }], ctaText: "Post a Job" } }] },
+          { id: "s-hero", type: "hero", isVisible: true, styles: { background: "linear-gradient(135deg,#1e3a8a 0%,#1d4ed8 60%,#60a5fa 100%)", paddingTop: 110, paddingBottom: 100 }, elements: [
+            { id: "h1", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#fff", fontSize: "clamp(2.5rem,6vw,4.5rem)", fontWeight: "800" }, content: { text: "The Right People. The Right Roles.", level: "h1" } },
+            { id: "h2", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "rgba(255,255,255,0.9)", fontSize: "1.15rem", margin: "20px auto", maxWidth: "620px", lineHeight: "1.8" }, content: { text: "Ghana's leading specialist recruitment agency. We connect high-performing candidates with the companies that need them most." } },
+            { id: "hb", type: "button", isVisible: true, isLocked: false, styles: { display: "flex", justifyContent: "center", marginTop: "40px" }, content: { text: "Find Top Talent →", href: "#employers", variant: "outline" } }
+          ] },
+          { id: "s-stats", type: "section", isVisible: true, styles: { backgroundColor: "#1e3a8a", paddingTop: 50, paddingBottom: 50 }, elements: [{ id: "st1", type: "stats-counter", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { stats: [{ number: "2,500+", label: "Placements Made" }, { number: "300+", label: "Employer Partners" }, { number: "98%", label: "Retention Rate" }, { number: "48hrs", label: "Avg Time to Shortlist" }] } }] },
+          { id: "s-for-employers", type: "section", isVisible: true, styles: { backgroundColor: "#fff", paddingTop: 90, paddingBottom: 90 }, elements: [
+            { id: "em-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "12px" }, content: { text: "For Employers", level: "h2" } },
+            { id: "em-t", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#64748b", marginBottom: "50px" }, content: { text: "We fill roles faster and better than any other agency" } },
+            { id: "em-f", type: "feature-grid", isVisible: true, isLocked: false, styles: {}, content: { heading: "", features: [
+              { icon: "🎯", title: "Executive Search", desc: "C-suite, directors and senior management placement" },
+              { icon: "⚡", title: "Contract Staffing", desc: "Flexible contract workers for project-based needs" },
+              { icon: "👥", title: "Volume Hiring", desc: "Rapid scale-up hiring for growing businesses" },
+              { icon: "🌍", title: "International Sourcing", desc: "Diaspora talent return and international recruitment" }
+            ] } }
+          ] },
+          { id: "s-sectors", type: "section", isVisible: true, styles: { backgroundColor: "#eff6ff", paddingTop: 80, paddingBottom: 80 }, elements: [
+            { id: "sc-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "40px" }, content: { text: "Sectors We Serve", level: "h2" } },
+            { id: "sc-t", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#1d4ed8", fontSize: "1.1rem" }, content: { text: "🏦 Banking & Finance · 💻 Technology & IT · 🏥 Healthcare · ⛏️ Mining & Energy · 🏗️ Construction · 🛒 FMCG & Retail · 📞 Telecoms · 🎓 Education · 🏛️ NGO & Development" } }
+          ] },
+          { id: "s-testimonial", type: "section", isVisible: true, styles: { backgroundColor: "#fff", paddingTop: 80, paddingBottom: 80 }, elements: [
+            { id: "tm-el", type: "testimonial", isVisible: true, isLocked: false, styles: { maxWidth: "650px", margin: "0 auto", textAlign: "center" }, content: { quote: "TalentBridge filled our CFO role in just 10 days with a shortlist of 4 exceptional candidates. The quality of their network and speed of delivery is unmatched in Ghana.", author: "Kwabena Osei", role: "CEO, Osei Holdings Group", avatar: "" } }
+          ] },
+          { id: "s-faq", type: "section", isVisible: true, styles: { backgroundColor: "#eff6ff", paddingTop: 80, paddingBottom: 80 }, elements: [
+            { id: "fq-el", type: "faq-accordion", isVisible: true, isLocked: false, styles: {}, content: { items: [
+              { q: "How do your fees work?", a: "We charge a placement fee based on the annual salary of the hired candidate, payable only on successful hire." },
+              { q: "How long does recruitment take?", a: "We aim to deliver a shortlist within 48 hours for most roles. Senior searches take 1-2 weeks." },
+              { q: "Do you work with SMEs?", a: "Yes! We work with businesses of all sizes, from startups to large corporations." },
+              { q: "Do you offer a replacement guarantee?", a: "Yes, we offer a free replacement within 3 months if a placed candidate leaves." }
+            ] } }
+          ] },
+          { id: "s-contact", type: "section", isVisible: true, styles: { backgroundColor: "#1d4ed8", paddingTop: 80, paddingBottom: 80 }, elements: [
+            { id: "ct-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#fff", marginBottom: "40px" }, content: { text: "Hire Faster. Hire Better.", level: "h2" } },
+            { id: "ct-f", type: "form", isVisible: true, isLocked: false, styles: { maxWidth: "560px", margin: "0 auto" }, content: { title: "", fields: [{ name: "company", label: "Company Name", type: "text", required: true }, { name: "name", label: "Your Name", type: "text", required: true }, { name: "email", label: "Email", type: "email", required: true }, { name: "role", label: "Role(s) to fill", type: "text", required: true }, { name: "timeline", label: "When do you need them?", type: "text", required: false }], submitText: "Request Talent Now" } }
+          ] },
+          { id: "s-footer", type: "footer", isVisible: true, styles: { backgroundColor: "#0c1a4a" }, elements: [{ id: "ft", type: "footer", isVisible: true, isLocked: false, styles: { color: "#3b82f6" }, content: { text: "© 2025 TalentBridge Recruitment. Your people are everything.", links: [] } }] }
+        ]
+      }]
+    }
+  },
+
+  // ── Car Wash ──────────────────────────────────────────────
+  {
+    id: "car-wash",
+    name: "Car Wash & Detailing",
+    description: "Clean, bold template for car wash services and auto detailing",
+    category: "Automotive",
+    thumbnail: "🚿",
+    primaryColor: "#2563eb",
+    secondaryColor: "#eff6ff",
+    builderJson: {
+      version: "1",
+      siteSettings: { siteName: "AquaShine Car Wash", primaryColor: "#2563eb", secondaryColor: "#eff6ff", fontFamily: "Inter, system-ui, sans-serif" },
+      globalStyles: { bodyBackground: "#f0f9ff", textColor: "#0c2461" },
+      pages: [{ id: "home", name: "Home", slug: "/", isHomePage: true,
+        seo: { title: "AquaShine Car Wash – Professional Car Cleaning in Accra", description: "Exterior wash, full detailing and interior cleaning services in Accra" },
+        sections: [
+          { id: "s-nav", type: "nav", isVisible: true, styles: { backgroundColor: "#fff", paddingTop: 0, paddingBottom: 0 }, elements: [{ id: "n1", type: "navigation", isVisible: true, isLocked: false, styles: {}, content: { logo: "AquaShine", links: [{ label: "Services", href: "#services" }, { label: "Packages", href: "#packages" }, { label: "Book", href: "#book" }], ctaText: "Book Now" } }] },
+          { id: "s-hero", type: "hero", isVisible: true, styles: { background: "linear-gradient(135deg,#1e3a8a 0%,#2563eb 50%,#38bdf8 100%)", paddingTop: 100, paddingBottom: 100 }, elements: [
+            { id: "h1", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#fff", fontSize: "clamp(2.5rem,6vw,4.5rem)", fontWeight: "900" }, content: { text: "Your Car Deserves the Best", level: "h1" } },
+            { id: "h2", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "rgba(255,255,255,0.9)", fontSize: "1.15rem", margin: "20px auto", maxWidth: "600px", lineHeight: "1.8" }, content: { text: "Professional car wash and detailing services in Accra. We use premium products and techniques to keep your car looking showroom-fresh." } },
+            { id: "hb", type: "button", isVisible: true, isLocked: false, styles: { display: "flex", justifyContent: "center", marginTop: "36px" }, content: { text: "Book a Wash Today", href: "#book", variant: "outline" } }
+          ] },
+          { id: "s-stats", type: "section", isVisible: true, styles: { backgroundColor: "#1e3a8a", paddingTop: 50, paddingBottom: 50 }, elements: [{ id: "st1", type: "stats-counter", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { stats: [{ number: "10,000+", label: "Cars Cleaned" }, { number: "8yrs", label: "In Business" }, { number: "4.9★", label: "Google Rating" }, { number: "Same Day", label: "Service Available" }] } }] },
+          { id: "s-services", type: "section", isVisible: true, styles: { backgroundColor: "#fff", paddingTop: 90, paddingBottom: 90 }, elements: [
+            { id: "sv-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "50px" }, content: { text: "Our Services", level: "h2" } },
+            { id: "sv-f", type: "feature-grid", isVisible: true, isLocked: false, styles: {}, content: { heading: "", features: [
+              { icon: "🚿", title: "Exterior Wash", desc: "Hand wash, rinse and blow dry — spot free results" },
+              { icon: "✨", title: "Interior Cleaning", desc: "Vacuuming, wipe-down and odour treatment" },
+              { icon: "💎", title: "Full Detailing", desc: "Complete inside and outside deep clean — like new!" },
+              { icon: "🎨", title: "Polish & Wax", desc: "Paint protection and showroom shine coating" },
+              { icon: "🪑", title: "Leather Treatment", desc: "Conditioning and protection for leather seats" },
+              { icon: "🚗", title: "Mobile Wash", desc: "We come to you — home or office wash available" }
+            ] } }
+          ] },
+          { id: "s-packages", type: "section", isVisible: true, styles: { backgroundColor: "#eff6ff", paddingTop: 90, paddingBottom: 90 }, elements: [
+            { id: "pk-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "50px" }, content: { text: "Wash Packages", level: "h2" } },
+            { id: "pk-p", type: "pricing-table", isVisible: true, isLocked: false, styles: {}, content: { plans: [
+              { name: "Quick Wash", price: "GHS 40", period: "", features: ["Exterior hand wash", "Wheel clean", "Window wipe", "Air freshener"], cta: "Book Now" },
+              { name: "Full Clean", price: "GHS 100", period: "", features: ["Exterior + interior", "Vacuum & wipe", "Dashboard clean", "Tyre dress & shine"], cta: "Most Popular", highlighted: true },
+              { name: "Premium Detail", price: "GHS 250", period: "", features: ["Full clean", "Clay bar treatment", "Polish & wax", "Leather care", "Engine bay clean"], cta: "Book Detail" }
+            ] } }
+          ] },
+          { id: "s-testimonial", type: "section", isVisible: true, styles: { backgroundColor: "#fff", paddingTop: 80, paddingBottom: 80 }, elements: [
+            { id: "tm-el", type: "testimonial", isVisible: true, isLocked: false, styles: { maxWidth: "600px", margin: "0 auto", textAlign: "center" }, content: { quote: "I got the full detail done and my 5-year-old car looks brand new inside and out! The team is professional, thorough and great value. I won't go anywhere else now.", author: "Kwesi Annan-Forson", role: "Regular Customer", avatar: "" } }
+          ] },
+          { id: "s-faq", type: "section", isVisible: true, styles: { backgroundColor: "#eff6ff", paddingTop: 80, paddingBottom: 80 }, elements: [
+            { id: "fq-el", type: "faq-accordion", isVisible: true, isLocked: false, styles: {}, content: { items: [
+              { q: "How long does a full detail take?", a: "A full detail takes 3-5 hours depending on the size and condition of the vehicle." },
+              { q: "Do you come to my home or office?", a: "Yes! Our mobile service comes to your location in Accra for an extra GHS 20 travel fee." },
+              { q: "What products do you use?", a: "We use premium imported car care products that are safe on all paint types and finishes." },
+              { q: "Do I need to book in advance?", a: "Walk-ins are welcome but booking ahead guarantees your preferred time slot." }
+            ] } }
+          ] },
+          { id: "s-book", type: "section", isVisible: true, styles: { backgroundColor: "#2563eb", paddingTop: 80, paddingBottom: 80 }, elements: [
+            { id: "bk-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#fff", marginBottom: "40px" }, content: { text: "Book Your Wash", level: "h2" } },
+            { id: "bk-f", type: "form", isVisible: true, isLocked: false, styles: { maxWidth: "500px", margin: "0 auto" }, content: { title: "", fields: [{ name: "name", label: "Your Name", type: "text", required: true }, { name: "phone", label: "Phone / WhatsApp", type: "tel", required: true }, { name: "car", label: "Vehicle Type & Model", type: "text", required: true }, { name: "package", label: "Package Preferred", type: "text", required: true }, { name: "date", label: "Preferred Date & Time", type: "text", required: false }], submitText: "Book Now" } }
+          ] },
+          { id: "s-wa", type: "section", isVisible: true, styles: { backgroundColor: "#1e3a8a", paddingTop: 50, paddingBottom: 50 }, elements: [
+            { id: "wa-el", type: "whatsapp-button", isVisible: true, isLocked: false, styles: { display: "flex", justifyContent: "center" }, content: { number: "", message: "Hello AquaShine! I'd like to book a car wash.", label: "Book on WhatsApp" } }
+          ] },
+          { id: "s-footer", type: "footer", isVisible: true, styles: { backgroundColor: "#0c1a4e" }, elements: [{ id: "ft", type: "footer", isVisible: true, isLocked: false, styles: { color: "#60a5fa" }, content: { text: "© 2025 AquaShine Car Wash. We make cars shine.", links: [] } }] }
+        ]
+      }]
+    }
+  },
+
+  // ── Language School ───────────────────────────────────────
+  {
+    id: "language-school",
+    name: "Language School",
+    description: "Bright template for language institutes and tutoring centres",
+    category: "Education",
+    thumbnail: "🌍",
+    primaryColor: "#059669",
+    secondaryColor: "#ecfdf5",
+    builderJson: {
+      version: "1",
+      siteSettings: { siteName: "Lingua Institute Ghana", primaryColor: "#059669", secondaryColor: "#ecfdf5", fontFamily: "Inter, system-ui, sans-serif" },
+      globalStyles: { bodyBackground: "#f0fdf4", textColor: "#064e3b" },
+      pages: [{ id: "home", name: "Home", slug: "/", isHomePage: true,
+        seo: { title: "Lingua Institute – Language Learning Centre in Accra", description: "French, Spanish, Mandarin, German and English language courses in Accra" },
+        sections: [
+          { id: "s-nav", type: "nav", isVisible: true, styles: { backgroundColor: "#fff", paddingTop: 0, paddingBottom: 0 }, elements: [{ id: "n1", type: "navigation", isVisible: true, isLocked: false, styles: {}, content: { logo: "Lingua Institute", links: [{ label: "Languages", href: "#languages" }, { label: "Courses", href: "#courses" }, { label: "Exams", href: "#exams" }, { label: "Enrol", href: "#enrol" }], ctaText: "Enrol Now" } }] },
+          { id: "s-hero", type: "hero", isVisible: true, styles: { background: "linear-gradient(135deg,#064e3b 0%,#059669 60%,#6ee7b7 100%)", paddingTop: 100, paddingBottom: 100 }, elements: [
+            { id: "h1", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#fff", fontSize: "clamp(2.5rem,6vw,4.5rem)", fontWeight: "900" }, content: { text: "Speak the World's Languages", level: "h1" } },
+            { id: "h2", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "rgba(255,255,255,0.9)", fontSize: "1.15rem", margin: "20px auto", maxWidth: "620px", lineHeight: "1.8" }, content: { text: "Ghana's leading language learning institute. Expert tutors, small classes and internationally recognised certifications." } },
+            { id: "hb", type: "button", isVisible: true, isLocked: false, styles: { display: "flex", justifyContent: "center", marginTop: "40px" }, content: { text: "Start Your Free Trial Lesson", href: "#enrol", variant: "outline" } }
+          ] },
+          { id: "s-stats", type: "section", isVisible: true, styles: { backgroundColor: "#064e3b", paddingTop: 50, paddingBottom: 50 }, elements: [{ id: "st1", type: "stats-counter", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { stats: [{ number: "3,000+", label: "Students Enrolled" }, { number: "8", label: "Languages Offered" }, { number: "20+", label: "Native Tutors" }, { number: "95%", label: "Exam Pass Rate" }] } }] },
+          { id: "s-languages", type: "section", isVisible: true, styles: { backgroundColor: "#fff", paddingTop: 90, paddingBottom: 90 }, elements: [
+            { id: "ln-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "12px" }, content: { text: "Languages We Teach", level: "h2" } },
+            { id: "ln-f", type: "feature-grid", isVisible: true, isLocked: false, styles: {}, content: { heading: "", features: [
+              { icon: "🇫🇷", title: "French (DELF/DALF)", desc: "From beginner to C2 with official DELF certification" },
+              { icon: "🇪🇸", title: "Spanish (DELE)", desc: "Conversational to advanced with DELE exam preparation" },
+              { icon: "🇨🇳", title: "Mandarin Chinese (HSK)", desc: "The world's most spoken language — start today" },
+              { icon: "🇩🇪", title: "German (Goethe)", desc: "A2 to C2 with Goethe-Institut certification" },
+              { icon: "🇬🇧", title: "Business English", desc: "Professional English for corporate and academic settings" },
+              { icon: "🇵🇹", title: "Portuguese", desc: "Brazilian and European Portuguese for business and travel" }
+            ] } }
+          ] },
+          { id: "s-courses", type: "section", isVisible: true, styles: { backgroundColor: "#ecfdf5", paddingTop: 80, paddingBottom: 80 }, elements: [
+            { id: "cr-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "50px" }, content: { text: "Course Options", level: "h2" } },
+            { id: "cr-p", type: "pricing-table", isVisible: true, isLocked: false, styles: {}, content: { plans: [
+              { name: "Evening Classes", price: "GHS 350", period: "/month", features: ["3x per week (7pm-9pm)", "Small groups (max 8)", "Materials included", "Monthly assessments"], cta: "Enrol Now" },
+              { name: "Intensive Course", price: "GHS 650", period: "/month", features: ["Daily sessions (5 days/wk)", "Small groups (max 5)", "Fast-track progress", "Exam prep included", "Certificate on completion"], cta: "Fast-Track", highlighted: true },
+              { name: "1-on-1 Private", price: "GHS 150", period: "/session", features: ["Your own schedule", "Tailored curriculum", "Native tutor", "Business or conversational focus", "Online or in-person"], cta: "Book Private" }
+            ] } }
+          ] },
+          { id: "s-testimonial", type: "section", isVisible: true, styles: { backgroundColor: "#fff", paddingTop: 80, paddingBottom: 80 }, elements: [
+            { id: "tm-el", type: "testimonial", isVisible: true, isLocked: false, styles: { maxWidth: "600px", margin: "0 auto", textAlign: "center" }, content: { quote: "I passed my DELF B2 on my first attempt after 8 months at Lingua. The tutors are patient, engaging and really push you. I got a promotion at work because of my French skills. Life-changing!", author: "Maame Akua Boateng", role: "Student — French B2 Graduate", avatar: "" } }
+          ] },
+          { id: "s-faq", type: "section", isVisible: true, styles: { backgroundColor: "#ecfdf5", paddingTop: 80, paddingBottom: 80 }, elements: [
+            { id: "fq-el", type: "faq-accordion", isVisible: true, isLocked: false, styles: {}, content: { items: [
+              { q: "Do I need any prior knowledge to enrol?", a: "No! We have beginner classes for complete newcomers to every language." },
+              { q: "Are your certificates internationally recognised?", a: "Yes, we offer DELF (French), DELE (Spanish), Goethe (German) and HSK (Mandarin) exams." },
+              { q: "Do you offer online classes?", a: "Yes! Both in-person and online (Zoom) options are available for all levels." },
+              { q: "How long does it take to become fluent?", a: "Most students reach conversational level (B1) in 12-18 months of regular study." }
+            ] } }
+          ] },
+          { id: "s-enrol", type: "section", isVisible: true, styles: { backgroundColor: "#059669", paddingTop: 80, paddingBottom: 80 }, elements: [
+            { id: "en-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#fff", marginBottom: "40px" }, content: { text: "Enrol or Book a Free Trial", level: "h2" } },
+            { id: "en-f", type: "form", isVisible: true, isLocked: false, styles: { maxWidth: "520px", margin: "0 auto" }, content: { title: "", fields: [{ name: "name", label: "Your Name", type: "text", required: true }, { name: "phone", label: "Phone / WhatsApp", type: "tel", required: true }, { name: "email", label: "Email", type: "email", required: true }, { name: "language", label: "Language of Interest", type: "text", required: true }, { name: "level", label: "Your Current Level", type: "text", required: false }], submitText: "Start Learning" } }
+          ] },
+          { id: "s-footer", type: "footer", isVisible: true, styles: { backgroundColor: "#022c22" }, elements: [{ id: "ft", type: "footer", isVisible: true, isLocked: false, styles: { color: "#059669" }, content: { text: "© 2025 Lingua Institute Ghana. Open doors through language.", links: [] } }] }
+        ]
+      }]
+    }
+  },
+
 ];
 
 export function getTemplateById(id: string): Template | undefined {
