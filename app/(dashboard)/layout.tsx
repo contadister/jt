@@ -4,11 +4,11 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
-import SessionKeepAlive from "@/components/auth/SessionKeepAlive";
 import { useTheme } from "next-themes";
 import {
   LayoutDashboard,
   Globe,
+  Zap,
   Layout,
   Plus,
   Bell,
@@ -28,6 +28,7 @@ import {
 const navItems = [
   { label: "Dashboard",  href: "/dashboard",  icon: LayoutDashboard },
   { label: "My Sites",   href: "/sites",       icon: Globe },
+  { label: "⚡ Quick Site", href: "/instant",  icon: Zap },
   { label: "Templates",  href: "/templates",   icon: Layout },
   { label: "Billing",    href: "/billing",     icon: CreditCard },
   { label: "Account",    href: "/account",     icon: User },
@@ -255,7 +256,6 @@ export default function DashboardLayout({
 
         {/* Page content */}
         <main className="flex-1 overflow-y-auto">
-          <SessionKeepAlive />
           {children}
         </main>
       </div>
