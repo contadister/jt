@@ -108,7 +108,7 @@ export async function POST(
     }
 
     // 5. Trigger deployment
-    const deployment = await triggerDeployment(vercelProjectId, githubRepoName!, process.env.GITHUB_ORG);
+    const deployment = await triggerDeployment(vercelProjectId);
 
     // 6. Get the auto-assigned Vercel domain
     let vercelDomain = site.vercelDomain;
@@ -167,14 +167,13 @@ export async function POST(
 
     return NextResponse.json({ success: true, url: liveUrl, deploymentId: deployment.id });
   } catch (error) {
-    const message = error instanceof Error ? error.message : String(error);
-    console.error("Deploy error:", message);
+    console.error("Deploy error:", error);
 
     await prisma.site.update({
       where: { id: params.siteId },
       data: { status: "BUILDING" },
     }).catch(() => undefined);
 
-    return NextResponse.json({ error: "Deployment failed", detail: message }, { status: 500 });
+    return NextResponse.json({ error: "Deployment failed" }, { status: 500 });
   }
 }
