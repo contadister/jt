@@ -1,19 +1,19 @@
 export const dynamic = "force-dynamic";
 
 import { NextResponse } from "next/server";
+import { createServerClient } from "@/lib/supabase/server";
 import { prisma } from "@/lib/prisma/client";
-import { requireUser } from "@/lib/auth/requireUser";
-import { requireSite } from "@/lib/auth/requireSite";
 
 async function getAuthedSite(siteId: string, userId: string) {
   return prisma.site.findFirst({ where: { id: siteId, userId } });
 }
 
-export async function GET(req: Request, { params }: { params: { siteId: string } }) {
-  const user = await requireUser(req);
-  if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+export async function GET(_req: Request, { params }: { params: { siteId: string } }) {
+  const supabase = createServerClient();
+  const { data: { session } } = await supabase.auth.getSession();
+  if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-  const site = await getAuthedSite(params.siteId, user.prismaId);
+  const site = await getAuthedSite(params.siteId, session.user.id);
   if (!site) return NextResponse.json({ error: "Not found" }, { status: 404 });
 
   const coupons = await prisma.coupon.findMany({
@@ -25,10 +25,11 @@ export async function GET(req: Request, { params }: { params: { siteId: string }
 }
 
 export async function POST(req: Request, { params }: { params: { siteId: string } }) {
-  const user = await requireUser(req);
-  if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  const supabase = createServerClient();
+  const { data: { session } } = await supabase.auth.getSession();
+  if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-  const site = await getAuthedSite(params.siteId, user.prismaId);
+  const site = await getAuthedSite(params.siteId, session.user.id);
   if (!site) return NextResponse.json({ error: "Not found" }, { status: 404 });
 
   const body = await req.json();
@@ -67,10 +68,11 @@ export async function POST(req: Request, { params }: { params: { siteId: string 
 }
 
 export async function PATCH(req: Request, { params }: { params: { siteId: string } }) {
-  const user = await requireUser(req);
-  if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  const supabase = createServerClient();
+  const { data: { session } } = await supabase.auth.getSession();
+  if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-  const site = await getAuthedSite(params.siteId, user.prismaId);
+  const site = await getAuthedSite(params.siteId, session.user.id);
   if (!site) return NextResponse.json({ error: "Not found" }, { status: 404 });
 
   const { id, isActive } = await req.json();
@@ -85,10 +87,11 @@ export async function PATCH(req: Request, { params }: { params: { siteId: string
 }
 
 export async function DELETE(req: Request, { params }: { params: { siteId: string } }) {
-  const user = await requireUser(req);
-  if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  const supabase = createServerClient();
+  const { data: { session } } = await supabase.auth.getSession();
+  if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-  const site = await getAuthedSite(params.siteId, user.prismaId);
+  const site = await getAuthedSite(params.siteId, session.user.id);
   if (!site) return NextResponse.json({ error: "Not found" }, { status: 404 });
 
   const url = new URL(req.url);

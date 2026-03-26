@@ -106,7 +106,7 @@ export const TEMPLATES: Template[] = [
   {
     id: "business-classic",
     name: "Business Pro",
-    description: "Clean professional layout for SMEs, agencies & service businesses.",
+    description: "Complete professional website for SMEs, agencies and service businesses",
     category: "Business",
     siteType: "BUSINESS",
     thumbnail: "🏢",
@@ -115,108 +115,121 @@ export const TEMPLATES: Template[] = [
     featured: true,
     builderJson: {
       version: "1",
-      siteSettings: BASE_SETTINGS("My Business", "#6272f1"),
-      globalStyles: BASE_GLOBAL("#6272f1"),
+      siteSettings: { siteName: "My Business", primaryColor: "#6272f1", secondaryColor: "#8b5cf6", fontFamily: "Inter, system-ui, sans-serif", seoTitle: "My Business – Professional Services", seoDescription: "We deliver professional services that grow your business." },
+      globalStyles: { primaryColor: "#6272f1", bodyBackground: "#ffffff", textColor: "#1e293b", fontFamily: "Inter, system-ui, sans-serif" },
       pages: [{
         id: "home", name: "Home", slug: "/", isHomePage: true,
-        seo: { title: "My Business", description: "Professional services" },
+        seo: { title: "My Business – Professional Services", description: "We deliver results that matter. Trusted by 500+ clients across Ghana." },
         sections: [
-          {
-            id: "nav", type: "nav", isVisible: true,
-            styles: { backgroundColor: "#fff", paddingTop: 0, paddingBottom: 0 },
-            elements: [{
-              id: "nav-el", type: "navigation", isVisible: true, isLocked: false,
-              styles: {},
-              content: { links: [{ label: "Home", href: "/" }, { label: "Services", href: "#services" }, { label: "Contact", href: "#contact" }] }
-            }]
-          },
-          {
-            id: "hero", type: "hero", isVisible: true,
-            styles: { paddingTop: 0, paddingBottom: 0 },
-            elements: [{
-              id: "hero-el", type: "hero", isVisible: true, isLocked: false,
-              styles: {},
-              content: { title: "Professional Services for Your Business", subtitle: "We help businesses grow with tailored solutions.", buttonLabel: "Get Started", buttonHref: "#contact", overlay: false }
-            }]
-          },
-          {
-            id: "stats", type: "stats", isVisible: true,
-            styles: { backgroundColor: "#f8fafc", paddingTop: 60, paddingBottom: 60 },
-            elements: [{
-              id: "stats-el", type: "stats-counter", isVisible: true, isLocked: false,
-              styles: {},
-              content: { stats: [{ value: "500+", label: "Happy Clients" }, { value: "10yrs", label: "Experience" }, { value: "98%", label: "Satisfaction" }, { value: "24/7", label: "Support" }] }
-            }]
-          },
-          {
-            id: "services", type: "services", isVisible: true,
-            styles: { paddingTop: 80, paddingBottom: 80 },
+          { id: "s-nav", type: "nav", isVisible: true, styles: { backgroundColor: "#ffffff", paddingTop: 0, paddingBottom: 0 },
+            elements: [{ id: "nav-el", type: "navigation", isVisible: true, isLocked: false, styles: {}, content: { logo: "My Business", links: [{ label: "Home", href: "/" }, { label: "Services", href: "#services" }, { label: "About", href: "#about" }, { label: "Pricing", href: "#pricing" }, { label: "Contact", href: "#contact" }], ctaText: "Get Started" } }] },
+          { id: "s-hero", type: "hero", isVisible: true, styles: { background: "linear-gradient(135deg,#1e1b4b 0%,#6272f1 50%,#8b5cf6 100%)", paddingTop: 120, paddingBottom: 120 },
             elements: [
-              { id: "sv-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "40px" }, content: { text: "Our Services", level: "h2" } },
-              { id: "sv-t", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#64748b", marginBottom: "40px" }, content: { text: "Everything you need to grow your business" } }
-            ]
-          },
-          {
-            id: "cta", type: "cta", isVisible: true,
-            styles: { backgroundColor: "#6272f1", paddingTop: 80, paddingBottom: 80 },
+              { id: "h-tag", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "rgba(255,255,255,0.7)", fontSize: "0.8rem", fontWeight: "700", letterSpacing: "0.2em", marginBottom: "20px" }, content: { text: "⭐ TRUSTED BY 500+ BUSINESSES ACROSS GHANA" } },
+              { id: "h1", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#ffffff", fontSize: "clamp(2.5rem,6vw,4.5rem)", fontWeight: "900", lineHeight: "1.1", letterSpacing: "-0.02em" }, content: { text: "Grow Your Business With Expert Services", level: "h1" } },
+              { id: "h2", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "rgba(255,255,255,0.85)", fontSize: "1.2rem", margin: "24px auto", maxWidth: "650px", lineHeight: "1.8" }, content: { text: "We deliver professional, results-driven services that help Ghanaian businesses grow, compete and thrive. Join hundreds of satisfied clients." } },
+              { id: "hb1", type: "button", isVisible: true, isLocked: false, styles: { display: "flex", justifyContent: "center", gap: "12px", marginTop: "40px" }, content: { text: "Get a Free Quote →", href: "#contact", variant: "primary" } }
+            ] },
+          { id: "s-logos", type: "section", isVisible: true, styles: { backgroundColor: "#f8fafc", paddingTop: 40, paddingBottom: 40 },
             elements: [
-              { id: "cta-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#fff", marginBottom: "16px" }, content: { text: "Ready to get started?", level: "h2" } },
-              { id: "cta-b", type: "button", isVisible: true, isLocked: false, styles: {}, content: { label: "Contact Us Today", href: "#contact", variant: "outline" } }
-            ]
-          },
-          {
-            id: "contact", type: "contact", isVisible: true,
-            styles: { paddingTop: 80, paddingBottom: 80 },
+              { id: "lg-t", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#94a3b8", fontSize: "0.75rem", fontWeight: "700", letterSpacing: "0.15em", marginBottom: "20px" }, content: { text: "TRUSTED BY BUSINESSES ACROSS GHANA" } },
+              { id: "lg-l", type: "brand-logos", isVisible: true, isLocked: false, styles: {}, content: { heading: "", logos: [{ name: "GCB Bank" }, { name: "MTN Ghana" }, { name: "Melcom Group" }, { name: "Ecobank GH" }, { name: "GOIL Company" }] } }
+            ] },
+          { id: "s-stats", type: "section", isVisible: true, styles: { background: "linear-gradient(135deg,#1e1b4b,#312e81)", paddingTop: 70, paddingBottom: 70 },
+            elements: [{ id: "st1", type: "stats-counter", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { stats: [{ number: "500+", label: "Happy Clients" }, { number: "12yrs", label: "In Business" }, { number: "98%", label: "Satisfaction Rate" }, { number: "24/7", label: "Support Available" }] } }] },
+          { id: "s-services", type: "section", isVisible: true, styles: { backgroundColor: "#ffffff", paddingTop: 100, paddingBottom: 100 },
             elements: [
-              { id: "ct-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "40px" }, content: { text: "Get In Touch", level: "h2" } },
-              { id: "ct-f", type: "form", isVisible: true, isLocked: false, styles: { maxWidth: "600px", margin: "0 auto" },
-                content: { formId: "contact", submitLabel: "Send Message", successMessage: "Thanks! We will get back to you within 24 hours.",
-                  fields: [
-                    { name: "name", label: "Your Name", type: "text", required: true },
-                    { name: "email", label: "Email Address", type: "email", required: true },
-                    { name: "phone", label: "Phone Number", type: "tel", required: false },
-                    { name: "message", label: "Message", type: "textarea", required: true },
-                  ]
-                }
-              }
-            ]
-          },
-          { id: "s-testimonial", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#f8fafc" }, elements: [
-            { id: "tm-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "32px" }, content: { text: "What Our Clients Say", level: "h2" } },
-            { id: "tm-el", type: "testimonial", isVisible: true, isLocked: false, styles: { maxWidth: "600px", margin: "0 auto", textAlign: "center" }, content: { quote: "Working with this team transformed our business. Professional, reliable and results-driven. I'd recommend them to any business owner.", author: "Ama Asante", role: "CEO, Asante Trading Co.", avatar: "" } }
-          ] },
-          { id: "s-faq", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#fff" }, elements: [
-            { id: "fq-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "40px" }, content: { text: "Frequently Asked Questions", level: "h2" } },
-            { id: "fq-el", type: "faq-accordion", isVisible: true, isLocked: false, styles: {}, content: { items: [
-              { q: "How quickly can you get started?", a: "We typically begin within 2 business days of your enquiry." },
-              { q: "Do you offer payment plans?", a: "Yes, we offer flexible payment plans tailored to your budget." },
-              { q: "What areas do you serve?", a: "We serve clients across Ghana and can work remotely with international clients." },
-              { q: "How do I get a quote?", a: "Simply fill in the contact form above or call us directly for a free consultation." }
-            ] } }
-          ] },
-          { id: "s-whatsapp", type: "section", isVisible: true, styles: { padding: "50px 40px", background: "#f0fdf4", textAlign: "center" }, elements: [
-            { id: "wa-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "8px" }, content: { text: "Chat With Us on WhatsApp", level: "h2" } },
-            { id: "wa-t", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#64748b", marginBottom: "24px" }, content: { text: "We typically reply within minutes." } },
-            { id: "wa-el", type: "whatsapp-button", isVisible: true, isLocked: false, styles: { display: "flex", justifyContent: "center" }, content: { number: "", message: "Hello! I found you online and I'd like to know more about your services.", label: "Chat With Us" } }
-          ] },
-{ id: "s-newsletter", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#6272f1" }, elements: [
-            { id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { title: "Get business tips & updates in your inbox", placeholder: "Enter your email address", buttonLabel: "Subscribe" } }
-          ] },
-          {
-            id: "footer", type: "footer", isVisible: true,
-            styles: { backgroundColor: "#1e293b", paddingTop: 0, paddingBottom: 0 },
-            elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: { color: "#94a3b8" }, content: { text: "© 2025 My Business. All rights reserved.", links: [{ label: "Privacy", href: "/privacy" }] } }]
-          }
+              { id: "sv-tag", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#6272f1", fontSize: "0.8rem", fontWeight: "700", letterSpacing: "0.15em", marginBottom: "12px" }, content: { text: "WHAT WE DO" } },
+              { id: "sv-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "12px" }, content: { text: "Services Built for Your Growth", level: "h2" } },
+              { id: "sv-t", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#64748b", marginBottom: "56px", maxWidth: "600px", margin: "0 auto 56px" }, content: { text: "Every service we offer is designed to deliver measurable results and real value for your business." } },
+              { id: "sv-f", type: "feature-grid", isVisible: true, isLocked: false, styles: {}, content: { heading: "", features: [
+                { icon: "🎯", title: "Strategic Consulting", desc: "Business strategy, market analysis and growth planning tailored to your industry" },
+                { icon: "📊", title: "Business Analytics", desc: "Data-driven insights that help you make better decisions and outperform competitors" },
+                { icon: "🚀", title: "Digital Marketing", desc: "Social media, SEO, and paid ads campaigns that bring real customers to your door" },
+                { icon: "💼", title: "Operations Management", desc: "Streamline your processes, reduce costs and improve efficiency across your operations" },
+                { icon: "🌐", title: "Web & Digital Presence", desc: "Professional websites and digital tools that represent your brand beautifully online" },
+                { icon: "🛡️", title: "Compliance & Legal", desc: "Navigate regulations, contracts and compliance with expert guidance and support" }
+              ] } }
+            ] },
+          { id: "s-about", type: "section", isVisible: true, styles: { backgroundColor: "#f8fafc", paddingTop: 100, paddingBottom: 100 },
+            elements: [
+              { id: "ab1", type: "image-text", isVisible: true, isLocked: false, styles: {}, content: { heading: "12 Years of Making Businesses Grow", body: "We started in 2012 with a simple mission: to give Ghanaian businesses access to the kind of professional services that were previously only available to large corporations. Today, we have served over 500 clients across every industry — from startups to listed companies — and our results speak for themselves.
+
+We are not just service providers. We are your growth partners.", image: "", imageLeft: true } }
+            ] },
+          { id: "s-process", type: "section", isVisible: true, styles: { backgroundColor: "#ffffff", paddingTop: 100, paddingBottom: 100 },
+            elements: [
+              { id: "pr-tag", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#6272f1", fontSize: "0.8rem", fontWeight: "700", letterSpacing: "0.15em", marginBottom: "12px" }, content: { text: "HOW WE WORK" } },
+              { id: "pr-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "48px" }, content: { text: "Simple. Fast. Effective.", level: "h2" } },
+              { id: "pr-s", type: "steps-process", isVisible: true, isLocked: false, styles: {}, content: { heading: "", steps: [
+                { number: "1", title: "Free Consultation", desc: "Tell us about your business and goals. We listen first, then advise. No pressure, no commitment." },
+                { number: "2", title: "Custom Proposal", desc: "We build a tailored plan with clear deliverables, timelines and transparent pricing." },
+                { number: "3", title: "Execution", desc: "Our experienced team gets to work. You get regular updates and full transparency throughout." },
+                { number: "4", title: "Results & Growth", desc: "We measure every outcome against your goals and continue to optimise for maximum impact." }
+              ] } }
+            ] },
+          { id: "s-pricing", type: "section", isVisible: true, styles: { backgroundColor: "#f8fafc", paddingTop: 100, paddingBottom: 100 },
+            elements: [
+              { id: "pk-tag", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#6272f1", fontSize: "0.8rem", fontWeight: "700", letterSpacing: "0.15em", marginBottom: "12px" }, content: { text: "PRICING" } },
+              { id: "pk-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "12px" }, content: { text: "Transparent, Flexible Pricing", level: "h2" } },
+              { id: "pk-t", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#64748b", marginBottom: "56px" }, content: { text: "No hidden fees. No surprises. Pay only for what you need." } },
+              { id: "pk-p", type: "pricing-table", isVisible: true, isLocked: false, styles: {}, content: { plans: [
+                { name: "Starter", price: "GHS 500", period: "/month", features: ["Monthly strategy session", "Basic analytics report", "Email support", "1 service area"], cta: "Get Started" },
+                { name: "Growth", price: "GHS 1,500", period: "/month", features: ["Weekly strategy sessions", "Full analytics dashboard", "Priority support", "3 service areas", "Marketing campaigns included"], cta: "Most Popular", highlighted: true },
+                { name: "Enterprise", price: "Custom", period: "", features: ["Dedicated account manager", "Unlimited services", "Board-level reporting", "On-site visits included", "SLA guarantee"], cta: "Contact Us" }
+              ] } }
+            ] },
+          { id: "s-testimonial", type: "section", isVisible: true, styles: { background: "linear-gradient(135deg,#1e1b4b,#6272f1)", paddingTop: 100, paddingBottom: 100 },
+            elements: [
+              { id: "tm-tag", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "rgba(255,255,255,0.6)", fontSize: "0.8rem", fontWeight: "700", letterSpacing: "0.15em", marginBottom: "20px" }, content: { text: "CLIENT SUCCESS STORIES" } },
+              { id: "tm-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#fff", marginBottom: "48px" }, content: { text: "Don't Take Our Word For It", level: "h2" } },
+              { id: "tm-el", type: "testimonial", isVisible: true, isLocked: false, styles: { maxWidth: "700px", margin: "0 auto" }, content: { quote: "Working with this team completely transformed how we operate. In 6 months our revenue grew by 40% and our operational costs dropped by 25%. They genuinely care about results — not just deliverables.", author: "Kwame Asante-Mensah", role: "CEO, Asante Trading Group", avatar: "" } }
+            ] },
+          { id: "s-faq", type: "section", isVisible: true, styles: { backgroundColor: "#ffffff", paddingTop: 100, paddingBottom: 100 },
+            elements: [
+              { id: "fq-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "48px" }, content: { text: "Frequently Asked Questions", level: "h2" } },
+              { id: "fq-el", type: "faq-accordion", isVisible: true, isLocked: false, styles: { maxWidth: "720px", margin: "0 auto" }, content: { items: [
+                { q: "How quickly can you get started?", a: "We typically begin within 2 business days of signing. For urgent projects we can start same day." },
+                { q: "Do you offer payment plans?", a: "Yes! We offer flexible monthly retainers, milestone-based billing, and custom arrangements for long-term engagements." },
+                { q: "What industries do you serve?", a: "We work across all industries including finance, retail, manufacturing, healthcare, tech, real estate, and NGOs." },
+                { q: "How do you measure success?", a: "We agree on specific KPIs before starting — revenue growth, cost reduction, lead generation or other measurables. You see your ROI clearly." },
+                { q: "Do you offer a refund if I'm not satisfied?", a: "We offer a money-back guarantee on our first month if we don't meet agreed deliverables. We are confident in our work." }
+              ] } }
+            ] },
+          { id: "s-whatsapp", type: "section", isVisible: true, styles: { backgroundColor: "#f0fdf4", paddingTop: 70, paddingBottom: 70 },
+            elements: [
+              { id: "wa-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "8px" }, content: { text: "Prefer to Chat? We Reply in Minutes", level: "h2" } },
+              { id: "wa-t", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#64748b", marginBottom: "28px" }, content: { text: "Send us a WhatsApp message and get a response from a real person — not a bot." } },
+              { id: "wa-el", type: "whatsapp-button", isVisible: true, isLocked: false, styles: { display: "flex", justifyContent: "center" }, content: { number: "", message: "Hello! I found your business online and I'd like to discuss how you can help me grow my business.", label: "Chat With Us on WhatsApp" } }
+            ] },
+          { id: "s-contact", type: "section", isVisible: true, styles: { backgroundColor: "#1e1b4b", paddingTop: 100, paddingBottom: 100 },
+            elements: [
+              { id: "ct-tag", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "rgba(255,255,255,0.5)", fontSize: "0.8rem", fontWeight: "700", letterSpacing: "0.15em", marginBottom: "12px" }, content: { text: "GET IN TOUCH" } },
+              { id: "ct-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#ffffff", marginBottom: "12px" }, content: { text: "Let's Grow Your Business", level: "h2" } },
+              { id: "ct-t", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "rgba(255,255,255,0.7)", marginBottom: "48px" }, content: { text: "Free consultation. No obligation. Just an honest conversation about your business." } },
+              { id: "ct-f", type: "form", isVisible: true, isLocked: false, styles: { maxWidth: "600px", margin: "0 auto" }, content: { formId: "contact", submitText: "Book Free Consultation", successMessage: "Thank you! We will call you within 24 hours.", fields: [
+                { name: "name", label: "Full Name", type: "text", required: true },
+                { name: "email", label: "Email Address", type: "email", required: true },
+                { name: "phone", label: "Phone Number", type: "tel", required: true },
+                { name: "company", label: "Company / Business Name", type: "text", required: false },
+                { name: "service", label: "Service You're Interested In", type: "text", required: false },
+                { name: "message", label: "Tell us about your goals", type: "textarea", required: false }
+              ] } }
+            ] },
+          { id: "s-newsletter", type: "section", isVisible: true, styles: { background: "linear-gradient(135deg,#6272f1,#8b5cf6)", paddingTop: 70, paddingBottom: 70 },
+            elements: [{ id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: {}, content: { title: "Get free business tips & insights every week", placeholder: "Enter your email address", buttonLabel: "Subscribe Free" } }] },
+          { id: "s-footer", type: "footer", isVisible: true, styles: { backgroundColor: "#0f0c29", paddingTop: 0, paddingBottom: 0 },
+            elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: { color: "#64748b" }, content: { text: "© 2025 My Business. Professional services that deliver real results.", links: [{ label: "Privacy Policy", href: "/privacy" }, { label: "Terms of Service", href: "/terms" }] } }] }
         ]
       }]
     }
-  },
+  }
 
   // ── Restaurant ────────────────────────────────────────────
   {
     id: "restaurant",
     name: "Restaurant & Chop Bar",
-    description: "Showcase your menu, hours and location. Perfect for chop bars, restaurants & cafes.",
+    description: "Showcase your menu, hours and location. Perfect for chop bars, restaurants & cafes",
     category: "Food & Drink",
     siteType: "RESTAURANT",
     thumbnail: "🍽️",
@@ -225,51 +238,96 @@ export const TEMPLATES: Template[] = [
     featured: true,
     builderJson: {
       version: "1",
-      siteSettings: { ...BASE_SETTINGS("Mama's Kitchen", "#ef4444"), secondaryColor: "#f97316" },
-      globalStyles: BASE_GLOBAL("#ef4444"),
+      siteSettings: { siteName: "Mama's Kitchen", primaryColor: "#ef4444", secondaryColor: "#f97316", fontFamily: "Georgia, serif", seoTitle: "Mama's Kitchen – Authentic Ghanaian Cuisine", seoDescription: "Fresh, authentic Ghanaian food made daily with love." },
+      globalStyles: { primaryColor: "#ef4444", bodyBackground: "#fffdf9", textColor: "#1c0800", fontFamily: "Georgia, serif" },
       pages: [{
         id: "home", name: "Home", slug: "/", isHomePage: true,
-        seo: { title: "Mama's Kitchen", description: "Authentic Ghanaian cuisine" },
+        seo: { title: "Mama's Kitchen – Authentic Ghanaian Cuisine", description: "Fresh, authentic Ghanaian food made daily with love in Accra." },
         sections: [
-          { id: "nav", type: "nav", isVisible: true, styles: { backgroundColor: "#1a0000" }, elements: [{ id: "n1", type: "navigation", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { links: [{ label: "Menu", href: "#menu" }, { label: "About", href: "#about" }, { label: "Contact", href: "#contact" }] } }] },
-          { id: "hero", type: "hero", isVisible: true, styles: {}, elements: [{ id: "h1", type: "hero", isVisible: true, isLocked: false, styles: {}, content: { title: "Authentic Ghanaian Cuisine", subtitle: "Made with love, served with pride. Fresh ingredients, traditional recipes.", buttonLabel: "View Our Menu", buttonHref: "#menu", overlay: false } }] },
-          { id: "menu", type: "menu", isVisible: true, styles: { paddingTop: 80, paddingBottom: 80 }, elements: [
-            { id: "m-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "12px" }, content: { text: "Our Menu", level: "h2" } },
-            { id: "m-t", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#64748b", marginBottom: "40px" }, content: { text: "Fresh, local ingredients prepared daily" } },
-            { id: "m-s", type: "menu-section", isVisible: true, isLocked: false, styles: {}, content: { title: "Main Dishes", items: [
-              { name: "Jollof Rice & Chicken", description: "Our signature smoky jollof with grilled chicken, fried plantain & coleslaw", price: "GHS 45" },
-              { name: "Banku & Tilapia", description: "Fermented corn & cassava dough with grilled tilapia, pepper sauce & garden egg", price: "GHS 55" },
-              { name: "Fufu & Groundnut Soup", description: "Pounded yam & plantain with rich groundnut soup and assorted meat", price: "GHS 50" },
-              { name: "Waakye", description: "Rice & beans cooked with sorghum leaves, served with stew, spaghetti & egg", price: "GHS 30" },
-            ]}}
-          ]},
-          { id: "contact", type: "contact", isVisible: true, styles: { backgroundColor: "#fef2f2", paddingTop: 60, paddingBottom: 60 }, elements: [
-            { id: "c-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "20px" }, content: { text: "Find Us", level: "h2" } },
-            { id: "c-t", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center" }, content: { text: "📍 123 High Street, Accra · Open Mon-Sat 7am-10pm, Sun 9am-6pm · 📞 +233 24 000 0000" } },
-            { id: "c-w", type: "whatsapp-button", isVisible: true, isLocked: false, styles: { display: "flex", justifyContent: "center", marginTop: "20px" }, content: { number: "233240000000", message: "Hello! I'd like to make a reservation.", label: "Reserve a Table" } }
-          ]},
-
-          { id: "s-testimonial", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#f8fafc" }, elements: [
-            { id: "tm-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "32px" }, content: { text: "What Our Clients Say", level: "h2" } },
-            { id: "tm-el", type: "testimonial", isVisible: true, isLocked: false, styles: { maxWidth: "600px", margin: "0 auto", textAlign: "center" }, content: { quote: "The jollof rice here is unbelievable! Fresh ingredients, generous portions and friendly staff. My family's favourite spot!", author: "Kwame Mensah", role: "Regular Customer", avatar: "" } }
-          ] },
-          { id: "s-faq", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#fff" }, elements: [
-            { id: "fq-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "40px" }, content: { text: "Frequently Asked Questions", level: "h2" } },
-            { id: "fq-el", type: "faq-accordion", isVisible: true, isLocked: false, styles: {}, content: { items: [
-              { q: "Do you take reservations?", a: "Yes! WhatsApp or call us to reserve your table. Walk-ins are also welcome." },
-              { q: "Do you offer delivery?", a: "Yes, we deliver within 5km. Minimum order GHS 30." },
-              { q: "Do you cater for events?", a: "Yes! We offer full catering for weddings, funerals and corporate events. Call for a quote." },
-              { q: "Are there vegetarian options?", a: "Yes, we have a selection of vegetarian dishes. Just ask our staff." }
-            ] } }
-          ] },
-          { id: "s-newsletter", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#6272f1" }, elements: [
-            { id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { title: "Get our weekly specials & new menu items", placeholder: "Enter your email address", buttonLabel: "Subscribe" } }
-          ] },
-          { id: "footer", type: "footer", isVisible: true, styles: { backgroundColor: "#1a0000" }, elements: [{ id: "f1", type: "footer", isVisible: true, isLocked: false, styles: { color: "#fca5a5" }, content: { text: "© 2025 Mama's Kitchen" } }] }
+          { id: "s-nav", type: "nav", isVisible: true, styles: { backgroundColor: "#1a0000", paddingTop: 0, paddingBottom: 0 },
+            elements: [{ id: "nav-el", type: "navigation", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { logo: "🍽️ Mama's Kitchen", links: [{ label: "Menu", href: "#menu" }, { label: "About", href: "#about" }, { label: "Hours", href: "#hours" }, { label: "Find Us", href: "#location" }], ctaText: "Order Now" } }] },
+          { id: "s-hero", type: "hero", isVisible: true, styles: { background: "linear-gradient(135deg,#1a0000 0%,#7f1d1d 40%,#ef4444 100%)", paddingTop: 120, paddingBottom: 120 },
+            elements: [
+              { id: "h-badge", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#fca5a5", fontSize: "0.85rem", fontWeight: "700", letterSpacing: "0.1em", marginBottom: "20px" }, content: { text: "🌟 OPEN DAILY · FRESH INGREDIENTS · MADE WITH LOVE" } },
+              { id: "h1", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#fff", fontSize: "clamp(2.5rem,7vw,5rem)", fontWeight: "800", fontStyle: "italic", lineHeight: "1.1" }, content: { text: "Authentic Ghanaian Cuisine", level: "h1" } },
+              { id: "h2", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "rgba(255,255,255,0.85)", fontSize: "1.15rem", margin: "20px auto 40px", maxWidth: "580px", lineHeight: "1.8" }, content: { text: "Traditional recipes passed down through generations. Every dish tells a story — come taste the real Ghana." } },
+              { id: "hb", type: "button", isVisible: true, isLocked: false, styles: { display: "flex", justifyContent: "center", gap: "16px" }, content: { text: "View Full Menu", href: "#menu", variant: "outline" } }
+            ] },
+          { id: "s-stats", type: "section", isVisible: true, styles: { backgroundColor: "#7f1d1d", paddingTop: 50, paddingBottom: 50 },
+            elements: [{ id: "st1", type: "stats-counter", isVisible: true, isLocked: false, styles: { color: "#fef2f2" }, content: { stats: [{ number: "15+", label: "Years Cooking" }, { number: "30+", label: "Dishes Daily" }, { number: "500+", label: "Happy Diners Weekly" }, { number: "4.9 ★", label: "Google Rating" }] } }] },
+          { id: "s-specials", type: "section", isVisible: true, styles: { backgroundColor: "#fffdf9", paddingTop: 90, paddingBottom: 90 },
+            elements: [
+              { id: "sp-badge", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#ef4444", fontSize: "0.8rem", fontWeight: "700", letterSpacing: "0.15em", marginBottom: "12px" }, content: { text: "TODAY'S SPECIALS" } },
+              { id: "sp-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "12px" }, content: { text: "Chef's Recommendations", level: "h2" } },
+              { id: "sp-t", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#92400e", marginBottom: "50px" }, content: { text: "Cooked fresh every morning with ingredients from local markets" } },
+              { id: "sp-f", type: "feature-grid", isVisible: true, isLocked: false, styles: {}, content: { heading: "", features: [
+                { icon: "🍖", title: "Jollof Rice & Chicken", desc: "Our signature smoky jollof with grilled chicken, fried plantain & coleslaw — GHS 45" },
+                { icon: "🐟", title: "Banku & Tilapia", desc: "Fermented corn dough with whole grilled tilapia, pepper sauce & garden egg — GHS 55" },
+                { icon: "🥘", title: "Fufu & Groundnut Soup", desc: "Pounded cassava with rich groundnut soup and assorted meat — GHS 50" },
+                { icon: "🍚", title: "Waakye", desc: "Rice & beans with sorghum leaves, stew, spaghetti, fish & boiled egg — GHS 30" },
+                { icon: "🫕", title: "Light Soup & Ampesi", desc: "Boiled yam, plantain & cocoyam with fresh tomato light soup — GHS 40" },
+                { icon: "🌽", title: "Tuo Zaafi", desc: "Northern specialty with ayoyo leaf soup and dried fish — GHS 35" }
+              ] } }
+            ] },
+          { id: "s-menu", type: "section", isVisible: true, styles: { backgroundColor: "#fef2f2", paddingTop: 90, paddingBottom: 90 },
+            elements: [
+              { id: "mn-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "12px" }, content: { text: "Full Menu", level: "h2" } },
+              { id: "mn-t", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#7f1d1d", marginBottom: "48px" }, content: { text: "All dishes prepared fresh to order" } },
+              { id: "mn-s1", type: "menu-section", isVisible: true, isLocked: false, styles: {}, content: { title: "🍚 Rice & Stew Dishes", items: [
+                { name: "Jollof Rice (Chicken)", description: "Smoky tomato rice with grilled chicken, salad & plantain", price: "GHS 45" },
+                { name: "Jollof Rice (Fish)", description: "Smoky tomato rice with fried fish, salad & plantain", price: "GHS 40" },
+                { name: "Fried Rice & Chicken", description: "Mixed vegetable rice, grilled chicken & coleslaw", price: "GHS 45" },
+                { name: "Waakye Special", description: "Full waakye with stew, spaghetti, boiled egg, fish & wele", price: "GHS 35" }
+              ] } },
+              { id: "sp-12", type: "spacer", isVisible: true, isLocked: false, styles: {}, content: { height: 32 } },
+              { id: "mn-s2", type: "menu-section", isVisible: true, isLocked: false, styles: {}, content: { title: "🥘 Soups & Fufu", items: [
+                { name: "Fufu & Groundnut Soup", description: "Pounded cassava with rich groundnut soup, assorted meat & fish", price: "GHS 50" },
+                { name: "Fufu & Palm Nut Soup", description: "Pounded cassava with fresh palm nut soup & chicken", price: "GHS 48" },
+                { name: "Banku & Light Soup", description: "Fermented corn dough with fresh tomato light soup & meat", price: "GHS 42" },
+                { name: "Tuo Zaafi & Ayoyo", description: "Northern millet paste with ayoyo leaf soup & dried fish", price: "GHS 35" }
+              ] } }
+            ] },
+          { id: "s-about", type: "section", isVisible: true, styles: { backgroundColor: "#fffdf9", paddingTop: 90, paddingBottom: 90 },
+            elements: [
+              { id: "ab1", type: "image-text", isVisible: true, isLocked: false, styles: {}, content: { heading: "Cooking Since 2009 with Love", body: "Mama's Kitchen was founded by Maame Ama in 2009 in her family home in Accra. What started as cooking for neighbours grew into one of the most loved restaurants in the city. We use only fresh, locally sourced ingredients and cook every dish from scratch each morning. No shortcuts. No frozen food. Just real Ghanaian cooking the way your grandmother made it.", image: "", imageLeft: true } }
+            ] },
+          { id: "s-hours", type: "section", isVisible: true, styles: { backgroundColor: "#fef2f2", paddingTop: 80, paddingBottom: 80 },
+            elements: [
+              { id: "hr-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "40px" }, content: { text: "Opening Hours", level: "h2" } },
+              { id: "hr-el", type: "business-hours", isVisible: true, isLocked: false, styles: {}, content: { title: "", hours: [
+                { day: "Monday – Friday", time: "7:00am – 9:00pm" },
+                { day: "Saturday", time: "7:00am – 10:00pm" },
+                { day: "Sunday", time: "9:00am – 8:00pm" }
+              ] } }
+            ] },
+          { id: "s-testimonial", type: "section", isVisible: true, styles: { backgroundColor: "#7f1d1d", paddingTop: 80, paddingBottom: 80 },
+            elements: [
+              { id: "tm-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#fef2f2", marginBottom: "40px" }, content: { text: "What Our Diners Say", level: "h2" } },
+              { id: "tm-el", type: "testimonial", isVisible: true, isLocked: false, styles: { maxWidth: "640px", margin: "0 auto" }, content: { quote: "The best jollof rice in Accra — full stop. The chicken is always perfectly grilled, the plantain is caramelised just right and the portions are generous. I bring every visiting friend and family member here!", author: "Akosua Frimpong", role: "Regular Diner, East Legon", avatar: "" } }
+            ] },
+          { id: "s-faq", type: "section", isVisible: true, styles: { backgroundColor: "#fffdf9", paddingTop: 80, paddingBottom: 80 },
+            elements: [
+              { id: "fq-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "40px" }, content: { text: "Good to Know", level: "h2" } },
+              { id: "fq-el", type: "faq-accordion", isVisible: true, isLocked: false, styles: { maxWidth: "680px", margin: "0 auto" }, content: { items: [
+                { q: "Do you take reservations?", a: "Yes! WhatsApp or call us to reserve your table, especially for groups of 4+. Walk-ins are always welcome for available seats." },
+                { q: "Do you offer delivery?", a: "Yes, we deliver within 5km. Minimum order GHS 50. Call or WhatsApp to place a delivery order." },
+                { q: "Do you cater for events?", a: "Absolutely! We cater for weddings, funerals, corporate events and parties. Call for a custom quote." },
+                { q: "Are there vegetarian options?", a: "Yes! We have vegetarian versions of waakye, vegetable fried rice, and vegetable kontomire stew." }
+              ] } }
+            ] },
+          { id: "s-location", type: "section", isVisible: true, styles: { backgroundColor: "#1a0000", paddingTop: 80, paddingBottom: 80 },
+            elements: [
+              { id: "lc-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#fef2f2", marginBottom: "12px" }, content: { text: "Find Us", level: "h2" } },
+              { id: "lc-t", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#fca5a5", marginBottom: "24px" }, content: { text: "📍 123 High Street, Osu, Accra · Open Daily 7am–10pm · 📞 +233 24 000 0000" } },
+              { id: "wa-el", type: "whatsapp-button", isVisible: true, isLocked: false, styles: { display: "flex", justifyContent: "center", marginBottom: "32px" }, content: { number: "", message: "Hello Mama's Kitchen! I'd like to reserve a table / place an order.", label: "Reserve a Table on WhatsApp" } },
+              { id: "mp-el", type: "map", isVisible: true, isLocked: false, styles: { borderRadius: "16px", overflow: "hidden" }, content: { address: "Osu, Accra, Ghana", zoom: 15 } }
+            ] },
+          { id: "s-footer", type: "footer", isVisible: true, styles: { backgroundColor: "#0a0000" },
+            elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: { color: "#7f1d1d" }, content: { text: "© 2025 Mama's Kitchen. Made with love since 2009.", links: [] } }] }
         ]
       }]
     }
-  },
+  }
 
   // ── Portfolio ─────────────────────────────────────────────
   {
@@ -290,7 +348,8 @@ export const TEMPLATES: Template[] = [
         seo: { title: "Portfolio", description: "Creative portfolio" },
         sections: [
           { id: "hero", type: "hero", isVisible: true, styles: { backgroundColor: "#0f0a1e", paddingTop: 100, paddingBottom: 100 }, elements: [
-            { id: "h1", type: "heading", isVisible: true, isLocked: false, styles: { fontSize: "clamp(2.5rem,6vw,4rem)", fontWeight: "800", color: "#fff", textAlign: "center" }, content: { text: "Hello, I'm a Creative", level: "h1" } },
+            { id: "h-badge", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "rgba(255,255,255,0.8)", fontSize: "0.75rem", fontWeight: "700", letterSpacing: "0.2em", marginBottom: "20px" }, content: { text: "🏆 CREATIVE PROFESSIONAL BASED IN ACCRA" } },
+              { id: "h1", type: "heading", isVisible: true, isLocked: false, styles: { fontSize: "clamp(2.5rem,6vw,4rem)", fontWeight: "800", color: "#fff", textAlign: "center" }, content: { text: "Hello, I'm a Creative", level: "h1" } },
             { id: "h2", type: "text", isVisible: true, isLocked: false, styles: { color: "#94a3b8", textAlign: "center", fontSize: "1.2rem", margin: "16px 0 32px" }, content: { text: "Designer · Developer · Storyteller" } },
             { id: "hb", type: "button", isVisible: true, isLocked: false, styles: {}, content: { label: "View My Work ↓", href: "#work", variant: "primary" } }
           ]},
@@ -347,7 +406,8 @@ export const TEMPLATES: Template[] = [
         seo: { title: "My Shop", description: "Shop the best products" },
         sections: [
           { id: "nav", type: "nav", isVisible: true, styles: {}, elements: [{ id: "n1", type: "navigation", isVisible: true, isLocked: false, styles: {}, content: { links: [{ label: "Shop", href: "#products" }, { label: "About", href: "#about" }, { label: "Contact", href: "#contact" }] } }] },
-          { id: "hero", type: "hero", isVisible: true, styles: {}, elements: [{ id: "h1", type: "hero", isVisible: true, isLocked: false, styles: {}, content: { title: "Shop the Best Products", subtitle: "Quality goods delivered to your door. Free delivery in Accra.", buttonLabel: "Shop Now", buttonHref: "#products" } }] },
+          { id: "hero", type: "hero", isVisible: true, styles: {}, elements: [{ id: "h-badge", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "rgba(255,255,255,0.8)", fontSize: "0.75rem", fontWeight: "700", letterSpacing: "0.2em", marginBottom: "20px" }, content: { text: "🛍️ FREE DELIVERY IN ACCRA ON ALL ORDERS" } },
+              { id: "h1", type: "hero", isVisible: true, isLocked: false, styles: {}, content: { title: "Shop the Best Products", subtitle: "Quality goods delivered to your door. Free delivery in Accra.", buttonLabel: "Shop Now", buttonHref: "#products" } }] },
           { id: "newsletter", type: "newsletter", isVisible: true, styles: { backgroundColor: "#f0fdf4", paddingTop: 60, paddingBottom: 60 }, elements: [{ id: "nl", type: "newsletter-signup", isVisible: true, isLocked: false, styles: {}, content: { title: "Get exclusive deals in your inbox", buttonLabel: "Subscribe" } }] },
 
           { id: "s-testimonial", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#f8fafc" }, elements: [
@@ -392,7 +452,8 @@ export const TEMPLATES: Template[] = [
         id: "home", name: "Home", slug: "/", isHomePage: true,
         seo: { title: "Our Organization", description: "Making a difference" },
         sections: [
-          { id: "hero", type: "hero", isVisible: true, styles: {}, elements: [{ id: "h1", type: "hero", isVisible: true, isLocked: false, styles: {}, content: { title: "Together We Can Make a Difference", subtitle: "Join us in creating lasting change in our communities.", buttonLabel: "Support Our Cause", buttonHref: "#donate" } }] },
+          { id: "hero", type: "hero", isVisible: true, styles: {}, elements: [{ id: "h-badge", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "rgba(255,255,255,0.8)", fontSize: "0.75rem", fontWeight: "700", letterSpacing: "0.2em", marginBottom: "20px" }, content: { text: "🌍 CREATING CHANGE IN OUR COMMUNITIES" } },
+              { id: "h1", type: "hero", isVisible: true, isLocked: false, styles: {}, content: { title: "Together We Can Make a Difference", subtitle: "Join us in creating lasting change in our communities.", buttonLabel: "Support Our Cause", buttonHref: "#donate" } }] },
           { id: "stats", type: "stats", isVisible: true, styles: { backgroundColor: "#fefce8", paddingTop: 60, paddingBottom: 60 }, elements: [{ id: "s1", type: "stats-counter", isVisible: true, isLocked: false, styles: {}, content: { stats: [{ value: "10,000+", label: "Lives Impacted" }, { value: "50+", label: "Communities" }, { value: "GHS 2M+", label: "Raised" }, { value: "200+", label: "Volunteers" }] } }] },
           { id: "mission", type: "mission", isVisible: true, styles: { paddingTop: 80, paddingBottom: 80 }, elements: [
             { id: "m-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "16px" }, content: { text: "Our Mission", level: "h2" } },
@@ -449,7 +510,8 @@ export const TEMPLATES: Template[] = [
         seo: { title: "My Blog", description: "Thoughts, stories and ideas" },
         sections: [
           { id: "nav", type: "nav", isVisible: true, styles: {}, elements: [{ id: "n1", type: "navigation", isVisible: true, isLocked: false, styles: {}, content: { links: [{ label: "Home", href: "/" }, { label: "Blog", href: "#posts" }, { label: "About", href: "#about" }] } }] },
-          { id: "hero", type: "hero", isVisible: true, styles: {}, elements: [{ id: "h1", type: "hero", isVisible: true, isLocked: false, styles: {}, content: { title: "Welcome to My Corner of the Internet", subtitle: "Thoughts on tech, life, and everything in between.", buttonLabel: "Read My Posts ↓", buttonHref: "#posts" } }] },
+          { id: "hero", type: "hero", isVisible: true, styles: {}, elements: [{ id: "h-badge", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "rgba(255,255,255,0.8)", fontSize: "0.75rem", fontWeight: "700", letterSpacing: "0.2em", marginBottom: "20px" }, content: { text: "✍️ THOUGHTS, STORIES & IDEAS FROM GHANA" } },
+              { id: "h1", type: "hero", isVisible: true, isLocked: false, styles: {}, content: { title: "Welcome to My Corner of the Internet", subtitle: "Thoughts on tech, life, and everything in between.", buttonLabel: "Read My Posts ↓", buttonHref: "#posts" } }] },
           { id: "newsletter", type: "newsletter", isVisible: true, styles: { backgroundColor: "#faf5ff", paddingTop: 60, paddingBottom: 60 }, elements: [{ id: "nl", type: "newsletter-signup", isVisible: true, isLocked: false, styles: {}, content: { title: "Never miss a new post", placeholder: "your@email.com", buttonLabel: "Subscribe" } }] },
 
           { id: "s-testimonial", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#f8fafc" }, elements: [
@@ -543,7 +605,8 @@ export const TEMPLATES: Template[] = [
         seo: { title: "My Event", description: "Join us for an unforgettable experience" },
         sections: [
           { id: "hero", type: "hero", isVisible: true, styles: { backgroundColor: "#0c0a09", paddingTop: 100, paddingBottom: 60 }, elements: [
-            { id: "h1", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#fff", fontSize: "clamp(2rem,5vw,3.5rem)", fontWeight: "800" }, content: { text: "🎪 Event Name 2025", level: "h1" } },
+            { id: "h-badge", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "rgba(255,255,255,0.8)", fontSize: "0.75rem", fontWeight: "700", letterSpacing: "0.2em", marginBottom: "20px" }, content: { text: "🎪 LIMITED TICKETS — DON'T MISS OUT" } },
+              { id: "h1", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#fff", fontSize: "clamp(2rem,5vw,3.5rem)", fontWeight: "800" }, content: { text: "🎪 Event Name 2025", level: "h1" } },
             { id: "h2", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#d6d3d1", fontSize: "1.2rem", margin: "12px 0 20px" }, content: { text: "📅 March 15, 2025 · 📍 Accra International Conference Centre" } },
             { id: "cd", type: "countdown", isVisible: true, isLocked: false, styles: { margin: "32px 0" }, content: { title: "Event starts in:", targetDate: "2025-03-15T09:00:00" } },
             { id: "hb", type: "button", isVisible: true, isLocked: false, styles: {}, content: { label: "Get Your Ticket →", href: "#tickets", variant: "primary" } }
@@ -576,62 +639,122 @@ export const TEMPLATES: Template[] = [
   {
     id: "salon",
     name: "Salon & Beauty",
-    description: "Elegant template for salons, spas, and beauty studios",
+    description: "Elegant, stunning template for salons, beauty studios and spas",
     category: "Beauty",
     thumbnail: "💅",
     primaryColor: "#d4488a",
     secondaryColor: "#fce7f3",
     builderJson: {
-      siteSettings: { siteName: "Glam Studio", primaryColor: "#d4488a", secondaryColor: "#fce7f3", fontFamily: "Georgia, serif" },
-      globalStyles: { bodyBackground: "#fff9fb" },
+      version: "1",
+      siteSettings: { siteName: "Glam Studio", primaryColor: "#d4488a", secondaryColor: "#fce7f3", fontFamily: "Georgia, serif", seoTitle: "Glam Studio – Premium Beauty & Salon", seoDescription: "Accra's premier beauty salon. Hair, nails, facials and more." },
+      globalStyles: { primaryColor: "#d4488a", bodyBackground: "#fff9fb", textColor: "#1a0010", fontFamily: "Georgia, serif" },
       pages: [{
         id: "home", name: "Home", slug: "/", isHomePage: true,
-        seo: { title: "Glam Studio – Beauty & Salon", description: "Professional beauty services in a luxurious setting" },
+        seo: { title: "Glam Studio – Premium Beauty & Salon in Accra", description: "Professional hair, nails, skincare and makeup services. Book your appointment today." },
         sections: [
-          { id: "s-nav", type: "nav", isVisible: true, styles: {}, elements: [{ id: "nav-el", type: "navigation", isVisible: true, isLocked: false, styles: {}, content: { logo: "Glam Studio", links: [{ label: "Services", href: "#services" }, { label: "Gallery", href: "#gallery" }, { label: "Book", href: "#book" }], ctaText: "Book Now" } }] },
-          { id: "s-hero", type: "hero", isVisible: true, styles: { background: "linear-gradient(135deg,#fce7f3 0%,#fff 60%)", padding: "80px 40px" }, elements: [{ id: "hero-el", type: "hero", isVisible: true, isLocked: false, styles: {}, content: { title: "Where Beauty Meets Luxury", subtitle: "Professional hair, nails, and skincare services tailored to you", ctaText: "Book Appointment", ctaHref: "#book", image: "" } }] },
-          { id: "s-services", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#fff" }, elements: [
-            { id: "sv-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "12px" }, content: { text: "Our Services", level: "h2" } },
-            { id: "sv-t", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#64748b", marginBottom: "40px" }, content: { text: "Indulge in our premium beauty treatments" } },
-            { id: "sv-f", type: "feature-grid", isVisible: true, isLocked: false, styles: {}, content: { heading: "", features: [{ icon: "💅", title: "Nail Art", desc: "Gel, acrylic, manicure & pedicure" }, { icon: "💇", title: "Hair Styling", desc: "Cut, colour, braids & treatments" }, { icon: "✨", title: "Skincare", desc: "Facials, waxing & body treatments" }, { icon: "💄", title: "Makeup", desc: "Bridal, events & everyday glam" }] } }
+          { id: "s-nav", type: "nav", isVisible: true, styles: { backgroundColor: "rgba(255,249,251,0.97)", paddingTop: 0, paddingBottom: 0 },
+            elements: [{ id: "nav-el", type: "navigation", isVisible: true, isLocked: false, styles: {}, content: { logo: "Glam Studio", links: [{ label: "Services", href: "#services" }, { label: "Gallery", href: "#gallery" }, { label: "Prices", href: "#prices" }, { label: "Book", href: "#book" }], ctaText: "Book Now" } }] },
+          { id: "s-hero", type: "hero", isVisible: true, styles: { background: "linear-gradient(135deg,#500724 0%,#be185d 50%,#d4488a 80%,#f9a8d4 100%)", paddingTop: 120, paddingBottom: 120 },
+            elements: [
+              { id: "h-badge", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#fce7f3", fontSize: "0.8rem", fontWeight: "700", letterSpacing: "0.2em", marginBottom: "24px" }, content: { text: "✨ ACCRA'S PREMIER BEAUTY DESTINATION" } },
+              { id: "h1", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#fff", fontSize: "clamp(2.8rem,7vw,5.5rem)", fontWeight: "300", letterSpacing: "0.05em", lineHeight: "1.1" }, content: { text: "Where Beauty Meets Luxury", level: "h1" } },
+              { id: "h2", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "rgba(255,255,255,0.88)", fontSize: "1.15rem", margin: "24px auto 44px", maxWidth: "580px", lineHeight: "1.9" }, content: { text: "Professional hair styling, nail art, skincare and makeup services in a luxurious, relaxing environment. Walk away feeling extraordinary." } },
+              { id: "hb", type: "button", isVisible: true, isLocked: false, styles: { display: "flex", justifyContent: "center" }, content: { text: "Book Your Appointment", href: "#book", variant: "outline" } }
+            ] },
+          { id: "s-stats", type: "section", isVisible: true, styles: { backgroundColor: "#500724", paddingTop: 50, paddingBottom: 50 },
+            elements: [{ id: "st1", type: "stats-counter", isVisible: true, isLocked: false, styles: { color: "#fce7f3" }, content: { stats: [{ number: "2,000+", label: "Happy Clients" }, { number: "8yrs", label: "In Business" }, { number: "4.9 ★", label: "Average Rating" }, { number: "100%", label: "Natural Products" }] } }] },
+          { id: "s-services", type: "section", isVisible: true, styles: { backgroundColor: "#fff9fb", paddingTop: 100, paddingBottom: 100 },
+            elements: [
+              { id: "sv-badge", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#d4488a", fontSize: "0.8rem", fontWeight: "700", letterSpacing: "0.15em", marginBottom: "12px" }, content: { text: "OUR SPECIALTIES" } },
+              { id: "sv-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "12px" }, content: { text: "Indulge in Our Treatments", level: "h2" } },
+              { id: "sv-t", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#9d174d", marginBottom: "56px" }, content: { text: "Every treatment uses premium, skin-safe products for stunning results" } },
+              { id: "sv-f", type: "feature-grid", isVisible: true, isLocked: false, styles: {}, content: { heading: "", features: [
+                { icon: "💇", title: "Hair Styling & Treatments", desc: "Cuts, colouring, relaxers, deep conditioning, blow-dry, braiding & protective styles" },
+                { icon: "💅", title: "Nail Art & Extensions", desc: "Gel, acrylic, dip powder, nail art designs, manicure & pedicure with paraffin treatment" },
+                { icon: "✨", title: "Facials & Skincare", desc: "Deep cleansing facials, brightening treatments, microdermabrasion & gua sha massage" },
+                { icon: "💄", title: "Makeup & Glam", desc: "Bridal makeup, event glam, airbrush makeup and makeup lessons" },
+                { icon: "🧖", title: "Body Treatments", desc: "Full body massage, waxing, body scrubs and hot stone therapy" },
+                { icon: "👁️", title: "Lashes & Brows", desc: "Lash extensions, lash lifts, brow lamination, threading & tinting" }
+              ] } }
+            ] },
+          { id: "s-prices", type: "section", isVisible: true, styles: { backgroundColor: "#fdf2f8", paddingTop: 90, paddingBottom: 90 },
+            elements: [
+              { id: "pr-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "56px" }, content: { text: "Our Price List", level: "h2" } },
+              { id: "pr-p", type: "pricing-table", isVisible: true, isLocked: false, styles: {}, content: { plans: [
+                { name: "Hair", price: "From GHS 80", period: "", features: ["Blow dry & style", "Relaxer treatment", "Braiding (from GHS 120)", "Colouring (from GHS 200)", "Deep conditioning"], cta: "Book Hair" },
+                { name: "Nails & Skin", price: "From GHS 60", period: "", features: ["Classic manicure/pedicure", "Gel nails (from GHS 100)", "Facial (from GHS 120)", "Body wax (from GHS 80)", "Eyelash extensions (GHS 150)"], cta: "Book Beauty", highlighted: true },
+                { name: "Bridal Package", price: "From GHS 800", period: "", features: ["Bridal makeup", "Hair styling", "Manicure & pedicure", "Trial session", "Bridal party discounts"], cta: "Book Bridal" }
+              ] } }
+            ] },
+          { id: "s-gallery", type: "section", isVisible: true, styles: { backgroundColor: "#500724", paddingTop: 90, paddingBottom: 90 },
+            elements: [
+              { id: "gl-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#fce7f3", marginBottom: "40px" }, content: { text: "Our Work", level: "h2" } },
+              { id: "gl-g", type: "gallery", isVisible: true, isLocked: false, styles: {}, content: { images: [], columns: 3 } }
+            ] },
+          { id: "s-process", type: "section", isVisible: true, styles: { backgroundColor: "#fff9fb", paddingTop: 80, paddingBottom: 80 },
+            elements: [
+              { id: "pr-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "48px" }, content: { text: "How to Book", level: "h2" } },
+              { id: "pr-s", type: "steps-process", isVisible: true, isLocked: false, styles: {}, content: { heading: "", steps: [
+                { number: "1", title: "Choose Your Service", desc: "Browse our menu and pick the treatment(s) you'd like. Combine multiple for a full glam day!" },
+                { number: "2", title: "Book Your Slot", desc: "Fill in the booking form below or WhatsApp us. We'll confirm within 30 minutes." },
+                { number: "3", title: "Come In & Relax", desc: "Arrive 5 minutes before your appointment. Enjoy complimentary drinks while we work our magic." },
+                { number: "4", title: "Leave Glowing", desc: "Walk out looking and feeling extraordinary. Your satisfaction is guaranteed." }
+              ] } }
+            ] },
+          { id: "s-testimonial", type: "section", isVisible: true, styles: { background: "linear-gradient(135deg,#be185d,#d4488a)", paddingTop: 80, paddingBottom: 80 },
+            elements: [
+              { id: "tm-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#fff", marginBottom: "40px" }, content: { text: "Our Clients Love Us", level: "h2" } },
+              { id: "tm-el", type: "testimonial", isVisible: true, isLocked: false, styles: { maxWidth: "640px", margin: "0 auto" }, content: { quote: "I wouldn't go anywhere else! The nail technicians are incredibly skilled — my nail art always gets compliments. The atmosphere is luxurious and the staff treat you like royalty. My go-to salon for 5 years!", author: "Efua Boateng-Asante", role: "Loyal Client since 2019", avatar: "" } }
+            ] },
+          { id: "s-faq", type: "section", isVisible: true, styles: { backgroundColor: "#fdf2f8", paddingTop: 80, paddingBottom: 80 },
+            elements: [
+              { id: "fq-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "40px" }, content: { text: "Frequently Asked Questions", level: "h2" } },
+              { id: "fq-el", type: "faq-accordion", isVisible: true, isLocked: false, styles: { maxWidth: "680px", margin: "0 auto" }, content: { items: [
+                { q: "Do I need to book in advance?", a: "Booking is strongly recommended, especially on weekends. We do accept walk-ins for quick services when slots are available." },
+                { q: "How long do appointments take?", a: "Simple services (nails, eyebrows) take 30-60 minutes. Hair and full glam packages can take 2-4 hours. We always give time estimates when booking." },
+                { q: "Do you use quality products?", a: "Yes! We use only professional-grade, dermatologically tested products including OPI, Essie, Wella and Dermalogica." },
+                { q: "What is your cancellation policy?", a: "Please cancel at least 24 hours in advance. Late cancellations may incur a 50% charge to cover the reserved slot." }
+              ] } }
+            ] },
+          { id: "s-hours", type: "section", isVisible: true, styles: { backgroundColor: "#fff9fb", paddingTop: 60, paddingBottom: 60 },
+            elements: [
+              { id: "hr-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "32px" }, content: { text: "Opening Hours", level: "h2" } },
+              { id: "hr-el", type: "business-hours", isVisible: true, isLocked: false, styles: {}, content: { title: "", hours: [
+                { day: "Monday – Friday", time: "8:00am – 7:00pm" },
+                { day: "Saturday", time: "8:00am – 8:00pm" },
+                { day: "Sunday", time: "10:00am – 5:00pm" }
+              ] } }
+            ] },
+          { id: "s-book", type: "section", isVisible: true, styles: { backgroundColor: "#d4488a", paddingTop: 90, paddingBottom: 90 },
+            elements: [
+              { id: "bk-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#fff", marginBottom: "12px" }, content: { text: "Book Your Appointment", level: "h2" } },
+              { id: "bk-t", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "rgba(255,255,255,0.85)", marginBottom: "40px" }, content: { text: "Monday – Sunday. Available slots confirmed within 30 minutes." } },
+              { id: "bk-f", type: "form", isVisible: true, isLocked: false, styles: { maxWidth: "560px", margin: "0 auto" }, content: { formId: "booking", submitText: "Request Appointment", successMessage: "Thank you! We will confirm your slot within 30 minutes.", fields: [
+                { name: "name", label: "Your Name", type: "text", required: true },
+                { name: "phone", label: "Phone / WhatsApp", type: "tel", required: true },
+                { name: "service", label: "Service(s) Requested", type: "text", required: true },
+                { name: "date", label: "Preferred Date & Time", type: "text", required: true },
+                { name: "notes", label: "Any special requests?", type: "textarea", required: false }
+              ] } }
+            ] },
+          { id: "s-wa", type: "section", isVisible: true, styles: { backgroundColor: "#500724", paddingTop: 60, paddingBottom: 60 },
+            elements: [
+              { id: "wa-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#fce7f3", marginBottom: "24px" }, content: { text: "Or Book on WhatsApp", level: "h3" } },
+              { id: "wa-el", type: "whatsapp-button", isVisible: true, isLocked: false, styles: { display: "flex", justifyContent: "center" }, content: { number: "", message: "Hello Glam Studio! I'd like to book an appointment.", label: "Book via WhatsApp" } }
+            ] },
+          { id: "s-newsletter", type: "section", isVisible: true, styles: { background: "linear-gradient(135deg,#d4488a,#be185d)", paddingTop: 60, paddingBottom: 60 },
+            elements: [{ id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: {}, content: { title: "Get exclusive offers & beauty tips", placeholder: "Your email address", buttonLabel: "Subscribe" } }] },
+          { id: "s-compare", type: "section", isVisible: true, styles: { paddingTop: 80, paddingBottom: 80, backgroundColor: "#f8fafc" }, elements: [
+            { id: "cmp-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "12px" }, content: { text: "See the Difference", level: "h2" } },
+            { id: "cmp-t", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#64748b", marginBottom: "40px" }, content: { text: "Real results from our clients" } },
+            { id: "cmp-el", type: "image-compare", isVisible: true, isLocked: false, styles: {}, content: { beforeImage: "", afterImage: "", beforeLabel: "Before Your Visit", afterLabel: "After Your Treatment" } }
           ] },
-          { id: "s-gallery", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#fff9fb" }, elements: [
-            { id: "gl-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "32px" }, content: { text: "Our Work", level: "h2" } },
-            { id: "gl-g", type: "gallery", isVisible: true, isLocked: false, styles: {}, content: { images: [], columns: 3 } }
-          ] },
-          { id: "s-book", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#d4488a" }, elements: [{ id: "bk-el", type: "booking-widget", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { title: "Book Your Appointment", subtitle: "Available Monday–Saturday, 9am–7pm", bookingUrl: "#contact" } }] },
-          { id: "s-contact", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#fff" }, elements: [
-            { id: "ct-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "32px" }, content: { text: "Get In Touch", level: "h2" } },
-            { id: "ct-f", type: "form", isVisible: true, isLocked: false, styles: { maxWidth: "500px", margin: "0 auto" }, content: { title: "", fields: [{ name: "name", label: "Full Name", type: "text", required: true }, { name: "email", label: "Email", type: "email", required: true }, { name: "phone", label: "Phone", type: "tel", required: false }, { name: "service", label: "Service Interested In", type: "text", required: false }, { name: "message", label: "Message", type: "textarea", required: false }], submitText: "Send Message" } }
-          ] },
-
-          { id: "s-testimonial", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#f8fafc" }, elements: [
-            { id: "tm-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "32px" }, content: { text: "What Our Clients Say", level: "h2" } },
-            { id: "tm-el", type: "testimonial", isVisible: true, isLocked: false, styles: { maxWidth: "600px", margin: "0 auto", textAlign: "center" }, content: { quote: "I won't go anywhere else! The staff are skilled, professional and the salon is always spotless. My hair has never looked better.", author: "Efua Quaye", role: "Regular Client", avatar: "" } }
-          ] },
-          { id: "s-faq", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#fff" }, elements: [
-            { id: "fq-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "40px" }, content: { text: "Frequently Asked Questions", level: "h2" } },
-            { id: "fq-el", type: "faq-accordion", isVisible: true, isLocked: false, styles: {}, content: { items: [
-              { q: "Do I need to book in advance?", a: "Booking is recommended, especially on weekends. Walk-ins are welcome subject to availability." },
-              { q: "How long do appointments take?", a: "Most services take 30 minutes to 2 hours. We'll give you an estimate when you book." },
-              { q: "Do you use quality products?", a: "Yes, we use only professional, hair-safe products from trusted brands." },
-              { q: "What's your cancellation policy?", a: "Please cancel at least 24 hours in advance so we can offer the slot to another client." }
-            ] } }
-          ] },
-          { id: "s-whatsapp", type: "section", isVisible: true, styles: { padding: "50px 40px", background: "#f0fdf4", textAlign: "center" }, elements: [
-            { id: "wa-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "8px" }, content: { text: "Chat With Us on WhatsApp", level: "h2" } },
-            { id: "wa-t", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#64748b", marginBottom: "24px" }, content: { text: "We typically reply within minutes." } },
-            { id: "wa-el", type: "whatsapp-button", isVisible: true, isLocked: false, styles: { display: "flex", justifyContent: "center" }, content: { number: "", message: "Hello! I'd like to book an appointment at the salon.", label: "Book an Appointment" } }
-          ] },
-          { id: "s-newsletter", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#6272f1" }, elements: [
-            { id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { title: "Get our latest offers & beauty tips", placeholder: "Enter your email address", buttonLabel: "Subscribe" } }
-          ] },
-          { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 Glam Studio. All rights reserved.", links: [] } }] }
+          { id: "s-footer", type: "footer", isVisible: true, styles: { backgroundColor: "#1a0010" },
+            elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: { color: "#9d174d" }, content: { text: "© 2025 Glam Studio. Where beauty meets luxury.", links: [] } }] }
         ]
       }]
     }
-  },
-
+  }
   {
     id: "church",
     name: "Church & Ministry",
@@ -859,6 +982,9 @@ export const TEMPLATES: Template[] = [
           { id: "s-newsletter", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#6272f1" }, elements: [
             { id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { title: "Get workout tips, class updates & member offers", placeholder: "Enter your email address", buttonLabel: "Subscribe" } }
           ] },
+          { id: "s-hours", type: "section", isVisible: true, styles: { paddingTop: 70, paddingBottom: 70, backgroundColor: "#fff" }, elements: [
+            { id: "hr-el", type: "business-hours", isVisible: true, isLocked: false, styles: {}, content: { title: "Opening Hours", hours: [{ day: "Monday – Friday", time: "5:00am – 10:00pm" }, { day: "Saturday", time: "6:00am – 8:00pm" }, { day: "Sunday", time: "8:00am – 6:00pm" }, { day: "Public Holidays", time: "8:00am – 4:00pm" }] } }
+          ] },
           { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: { color: "#94a3b8" }, content: { text: "© 2025 PowerFit Gym. Train Hard. Live Strong.", links: [] } }] }
         ]
       }]
@@ -916,6 +1042,9 @@ export const TEMPLATES: Template[] = [
           ] },
           { id: "s-newsletter", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#6272f1" }, elements: [
             { id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { title: "Get health tips & clinic news", placeholder: "Enter your email address", buttonLabel: "Subscribe" } }
+          ] },
+          { id: "s-hours", type: "section", isVisible: true, styles: { paddingTop: 70, paddingBottom: 70, backgroundColor: "#fff" }, elements: [
+            { id: "hr-el", type: "business-hours", isVisible: true, isLocked: false, styles: {}, content: { title: "Opening Hours", hours: [{ day: "Monday – Friday", time: "8:00am – 6:00pm" }, { day: "Saturday", time: "9:00am – 2:00pm" }, { day: "Sunday", time: "Emergency only" }, { day: "24/7 Emergency Line", time: "Always available" }] } }
           ] },
           { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 HealthCare Clinic. Caring for Ghana.", links: [] } }] }
         ]
@@ -1054,7 +1183,12 @@ export const TEMPLATES: Template[] = [
           { id: "s-nav", type: "nav", isVisible: true, styles: { borderBottom: "3px solid #c9a84c" }, elements: [{ id: "nav-el", type: "navigation", isVisible: true, isLocked: false, styles: {}, content: { logo: "Agyei & Partners", links: [{ label: "Practice Areas", href: "#practice" }, { label: "Our Team", href: "#team" }, { label: "About", href: "#about" }, { label: "Contact", href: "#contact" }], ctaText: "Free Consultation" } }] },
           { id: "s-hero", type: "hero", isVisible: true, styles: { background: "linear-gradient(135deg,#1e293b 0%,#334155 100%)", padding: "100px 40px" }, elements: [{ id: "hero-el", type: "hero", isVisible: true, isLocked: false, styles: {}, content: { title: "Justice. Integrity. Results.", subtitle: "Ghana's trusted legal firm serving corporations, individuals and government institutions since 1998.", ctaText: "Book Free Consultation", ctaHref: "#contact", image: "" } }] },
           { id: "s-stats", type: "section", isVisible: true, styles: { padding: "40px", background: "#c9a84c" }, elements: [{ id: "st-el", type: "stats-counter", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { stats: [{ number: "25+", label: "Years Experience" }, { number: "2,000+", label: "Cases Won" }, { number: "15", label: "Attorneys" }, { number: "98%", label: "Success Rate" }] } }] },
-          { id: "s-practice", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#fff" }, elements: [
+          { id: "s-logos", type: "section", isVisible: true, styles: { backgroundColor: "#f8fafc", paddingTop: 50, paddingBottom: 50 }, elements: [
+            { id: "lg-el", type: "brand-logos", isVisible: true, isLocked: false, styles: {}, content: { heading: "Trusted By Leading Businesses", logos: [
+              { name: "Stanbic Bank" }, { name: "MTN Ghana" }, { name: "Vodafone GH" }, { name: "Melcom Group" }, { name: "Accra Mall" }
+            ] } }
+          ] },
+                   { id: "s-practice", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#fff" }, elements: [
             { id: "pa-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "32px" }, content: { text: "Practice Areas", level: "h2" } },
             { id: "pa-f", type: "feature-grid", isVisible: true, isLocked: false, styles: {}, content: { heading: "", features: [{ icon: "🏢", title: "Corporate Law", desc: "Company formation, mergers & commercial contracts" }, { icon: "⚖️", title: "Litigation", desc: "Civil, criminal and arbitration representation" }, { icon: "🏠", title: "Property Law", desc: "Conveyancing, land disputes and leases" }, { icon: "👨‍👩‍👧", title: "Family Law", desc: "Divorce, child custody and inheritance" }, { icon: "🌍", title: "Immigration", desc: "Visa applications and work permits" }, { icon: "💼", title: "Employment Law", desc: "Labour disputes and workplace rights" }] } }
           ] },
@@ -1112,7 +1246,12 @@ export const TEMPLATES: Template[] = [
           { id: "s-nav", type: "nav", isVisible: true, styles: {}, elements: [{ id: "nav-el", type: "navigation", isVisible: true, isLocked: false, styles: {}, content: { logo: "LaunchPad", links: [{ label: "Features", href: "#features" }, { label: "Pricing", href: "#pricing" }, { label: "About", href: "#about" }], ctaText: "Start Free Trial" } }] },
           { id: "s-hero", type: "hero", isVisible: true, styles: { background: "linear-gradient(135deg,#4c1d95 0%,#7c3aed 60%,#a78bfa 100%)", padding: "100px 40px" }, elements: [{ id: "hero-el", type: "hero", isVisible: true, isLocked: false, styles: {}, content: { title: "Build Faster.\nShip Smarter.\nGrow Bigger.", subtitle: "The complete platform to launch and scale your digital business. No code required.", ctaText: "Start Free — No Card Needed", ctaHref: "#signup", image: "" } }] },
           { id: "s-stats", type: "section", isVisible: true, styles: { padding: "40px", background: "#faf5ff" }, elements: [{ id: "st-el", type: "stats-counter", isVisible: true, isLocked: false, styles: {}, content: { stats: [{ number: "10,000+", label: "Users" }, { number: "50K+", label: "Sites Built" }, { number: "99.9%", label: "Uptime" }, { number: "4.9★", label: "Rating" }] } }] },
-          { id: "s-features", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#fff" }, elements: [
+          { id: "s-logos", type: "section", isVisible: true, styles: { backgroundColor: "#f8fafc", paddingTop: 50, paddingBottom: 50 }, elements: [
+            { id: "lg-el", type: "brand-logos", isVisible: true, isLocked: false, styles: {}, content: { heading: "Trusted By Leading Businesses", logos: [
+              { name: "Stanbic Bank" }, { name: "MTN Ghana" }, { name: "Vodafone GH" }, { name: "Melcom Group" }, { name: "Accra Mall" }
+            ] } }
+          ] },
+                   { id: "s-features", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#fff" }, elements: [
             { id: "fe-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "12px" }, content: { text: "Everything You Need", level: "h2" } },
             { id: "fe-t", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#64748b", marginBottom: "40px" }, content: { text: "One platform. Every feature. Zero headaches." } },
             { id: "fe-f", type: "feature-grid", isVisible: true, isLocked: false, styles: {}, content: { heading: "", features: [{ icon: "⚡", title: "Lightning Fast", desc: "Sub-second load times on every device, everywhere" }, { icon: "🎨", title: "Beautiful by Default", desc: "Pro-grade templates designed by experts" }, { icon: "🔌", title: "100+ Integrations", desc: "Connect with tools you already use" }, { icon: "📊", title: "Real-time Analytics", desc: "Know exactly what's working and why" }, { icon: "🔒", title: "Enterprise Security", desc: "SSL, 2FA and data encryption built in" }, { icon: "💬", title: "24/7 Support", desc: "Live chat support whenever you need it" }] } }
@@ -1307,6 +1446,11 @@ export const TEMPLATES: Template[] = [
           { id: "s-newsletter", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#6272f1" }, elements: [
             { id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { title: "Get cleaning tips & special offers", placeholder: "Enter your email address", buttonLabel: "Subscribe" } }
           ] },
+          { id: "s-compare", type: "section", isVisible: true, styles: { paddingTop: 80, paddingBottom: 80, backgroundColor: "#f8fafc" }, elements: [
+            { id: "cmp-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "12px" }, content: { text: "See the Difference", level: "h2" } },
+            { id: "cmp-t", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#64748b", marginBottom: "40px" }, content: { text: "Real results from our clients" } },
+            { id: "cmp-el", type: "image-compare", isVisible: true, isLocked: false, styles: {}, content: { beforeImage: "", afterImage: "", beforeLabel: "Before Cleaning", afterLabel: "Spotlessly Clean" } }
+          ] },
           { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 SparkleClean GH. We clean so you don't have to.", links: [] } }] }
         ]
       }]
@@ -1416,6 +1560,14 @@ export const TEMPLATES: Template[] = [
           { id: "s-newsletter", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#6272f1" }, elements: [
             { id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { title: "Get our latest styles & special offers", placeholder: "Enter your email address", buttonLabel: "Subscribe" } }
           ] },
+          { id: "s-compare", type: "section", isVisible: true, styles: { paddingTop: 80, paddingBottom: 80, backgroundColor: "#f8fafc" }, elements: [
+            { id: "cmp-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "12px" }, content: { text: "See the Difference", level: "h2" } },
+            { id: "cmp-t", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#64748b", marginBottom: "40px" }, content: { text: "Real results from our clients" } },
+            { id: "cmp-el", type: "image-compare", isVisible: true, isLocked: false, styles: {}, content: { beforeImage: "", afterImage: "", beforeLabel: "Before", afterLabel: "Fresh Cut" } }
+          ] },
+          { id: "s-hours", type: "section", isVisible: true, styles: { paddingTop: 70, paddingBottom: 70, backgroundColor: "#fff" }, elements: [
+            { id: "hr-el", type: "business-hours", isVisible: true, isLocked: false, styles: {}, content: { title: "Opening Hours", hours: [{ day: "Monday", time: "8:00am – 7:00pm" }, { day: "Tuesday", time: "8:00am – 7:00pm" }, { day: "Wednesday", time: "8:00am – 7:00pm" }, { day: "Thursday", time: "8:00am – 8:00pm" }, { day: "Friday", time: "8:00am – 8:00pm" }, { day: "Saturday", time: "7:00am – 6:00pm" }, { day: "Sunday", time: "10:00am – 3:00pm" }] } }
+          ] },
           { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: { color: "#94a3b8" }, content: { text: "© 2025 Kingcuts Barbershop. Stay sharp.", links: [] } }] }
         ]
       }]
@@ -1500,7 +1652,12 @@ export const TEMPLATES: Template[] = [
           { id: "s-nav", type: "nav", isVisible: true, styles: {}, elements: [{ id: "nav-el", type: "navigation", isVisible: true, isLocked: false, styles: {}, content: { logo: "Kofi Mensah", links: [{ label: "Services", href: "#services" }, { label: "About", href: "#about" }, { label: "Testimonials", href: "#testimonials" }, { label: "Contact", href: "#contact" }], ctaText: "Book a Call" } }] },
           { id: "s-hero", type: "hero", isVisible: true, styles: { background: "linear-gradient(135deg,#1d4ed8 0%,#2563eb 100%)", padding: "100px 40px" }, elements: [{ id: "hero-el", type: "hero", isVisible: true, isLocked: false, styles: {}, content: { title: "I Help Businesses\nGrow & Scale", subtitle: "10+ years helping Ghanaian entrepreneurs build systems, raise capital and dominate their market.", ctaText: "Book Free Strategy Call", ctaHref: "#contact", image: "" } }] },
           { id: "s-stats", type: "section", isVisible: true, styles: { padding: "40px", background: "#fff" }, elements: [{ id: "st-el", type: "stats-counter", isVisible: true, isLocked: false, styles: {}, content: { stats: [{ number: "150+", label: "Clients Served" }, { number: "10yrs", label: "Experience" }, { number: "GHS 5M+", label: "Revenue Generated" }, { number: "4.9★", label: "Client Rating" }] } }] },
-          { id: "s-services", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#f8fafc" }, elements: [
+          { id: "s-logos", type: "section", isVisible: true, styles: { backgroundColor: "#f8fafc", paddingTop: 50, paddingBottom: 50 }, elements: [
+            { id: "lg-el", type: "brand-logos", isVisible: true, isLocked: false, styles: {}, content: { heading: "Trusted By Leading Businesses", logos: [
+              { name: "Stanbic Bank" }, { name: "MTN Ghana" }, { name: "Vodafone GH" }, { name: "Melcom Group" }, { name: "Accra Mall" }
+            ] } }
+          ] },
+                   { id: "s-services", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#f8fafc" }, elements: [
             { id: "sv-f", type: "feature-grid", isVisible: true, isLocked: false, styles: {}, content: { heading: "How I Help You", features: [{ icon: "📊", title: "Business Strategy", desc: "Market entry, growth plans and competitive positioning" }, { icon: "💰", title: "Fundraising", desc: "Pitch decks, investor introductions and grant applications" }, { icon: "⚙️", title: "Operations", desc: "Systems, SOPs and process optimisation" }, { icon: "📱", title: "Digital Transformation", desc: "Tech adoption and online business development" }] } }
           ] },
           { id: "s-about", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#fff" }, elements: [
@@ -1555,7 +1712,8 @@ export const TEMPLATES: Template[] = [
         seo: { title: "Vida Pharmacy – Your Health Partner", description: "Certified pharmacy with genuine medicines and expert advice" },
         sections: [
           { id: "s-nav", type: "nav", isVisible: true, styles: {}, elements: [{ id: "nav-el", type: "navigation", isVisible: true, isLocked: false, styles: {}, content: { logo: "Vida Pharmacy", links: [{ label: "Products", href: "#products" }, { label: "Services", href: "#services" }, { label: "About", href: "#about" }, { label: "Contact", href: "#contact" }], ctaText: "Order Medicines" } }] },
-          { id: "s-hero", type: "hero", isVisible: true, styles: { background: "linear-gradient(135deg,#15803d 0%,#16a34a 100%)", padding: "80px 40px" }, elements: [{ id: "hero-el", type: "hero", isVisible: true, isLocked: false, styles: {}, content: { title: "Your Trusted Health Partner", subtitle: "Genuine medicines, expert pharmacist advice and health products. Now with home delivery across Accra.", ctaText: "Order Now", ctaHref: "#order", image: "" } }] },
+          { id: "s-hero", type: "hero", isVisible: true, styles: { background: "linear-gradient(135deg,#15803d 0%,#16a34a 100%)", padding: "80px 40px" }, elements: [{ id: "h-badge", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "rgba(255,255,255,0.8)", fontSize: "0.75rem", fontWeight: "700", letterSpacing: "0.2em", marginBottom: "20px" }, content: { text: "💊 YOUR HEALTH IS OUR PRIORITY" } },
+              { id: "hero-el", type: "hero", isVisible: true, isLocked: false, styles: {}, content: { title: "Your Trusted Health Partner", subtitle: "Genuine medicines, expert pharmacist advice and health products. Now with home delivery across Accra.", ctaText: "Order Now", ctaHref: "#order", image: "" } }] },
           { id: "s-services", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#fff" }, elements: [
             { id: "sv-f", type: "feature-grid", isVisible: true, isLocked: false, styles: {}, content: { heading: "Our Services", features: [{ icon: "💊", title: "Prescription Medicines", desc: "Certified pharmacists to dispense all prescriptions" }, { icon: "🏥", title: "OTC Products", desc: "Pain relief, vitamins, skincare and wellness products" }, { icon: "🚚", title: "Home Delivery", desc: "Same-day delivery within Accra (GHS 10)" }, { icon: "👨‍⚕️", title: "Health Advice", desc: "Free consultations with our licensed pharmacists" }, { icon: "💉", title: "Vaccinations", desc: "Flu, travel and childhood vaccination services" }, { icon: "🧪", title: "Health Screening", desc: "Blood pressure, glucose and BMI checks" }] } }
           ] },
@@ -1581,6 +1739,9 @@ export const TEMPLATES: Template[] = [
           { id: "s-newsletter", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#6272f1" }, elements: [
             { id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { title: "Get health tips & pharmacy promotions", placeholder: "Enter your email address", buttonLabel: "Subscribe" } }
           ] },
+          { id: "s-hours", type: "section", isVisible: true, styles: { paddingTop: 70, paddingBottom: 70, backgroundColor: "#fff" }, elements: [
+            { id: "hr-el", type: "business-hours", isVisible: true, isLocked: false, styles: {}, content: { title: "Opening Hours", hours: [{ day: "Monday – Friday", time: "7:00am – 9:00pm" }, { day: "Saturday", time: "8:00am – 8:00pm" }, { day: "Sunday", time: "9:00am – 5:00pm" }, { day: "24-Hour Emergency", time: "Call our hotline" }] } }
+          ] },
           { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 Vida Pharmacy. Your health, our priority.", links: [] } }] }
         ]
       }]
@@ -1602,9 +1763,15 @@ export const TEMPLATES: Template[] = [
         seo: { title: "SwiftMove Logistics – Fast, Reliable Delivery", description: "Same-day and next-day courier and freight services across Ghana" },
         sections: [
           { id: "s-nav", type: "nav", isVisible: true, styles: {}, elements: [{ id: "nav-el", type: "navigation", isVisible: true, isLocked: false, styles: {}, content: { logo: "SwiftMove", links: [{ label: "Services", href: "#services" }, { label: "Track", href: "#track" }, { label: "Pricing", href: "#pricing" }, { label: "Contact", href: "#contact" }], ctaText: "Get a Quote" } }] },
-          { id: "s-hero", type: "hero", isVisible: true, styles: { background: "linear-gradient(135deg,#c2410c 0%,#ea580c 100%)", padding: "90px 40px" }, elements: [{ id: "hero-el", type: "hero", isVisible: true, isLocked: false, styles: {}, content: { title: "Deliver Anywhere in Ghana, Fast", subtitle: "Same-day Accra delivery. Next-day nationwide. Freight, parcels, documents — handled with care.", ctaText: "Get Instant Quote", ctaHref: "#quote", image: "" } }] },
+          { id: "s-hero", type: "hero", isVisible: true, styles: { background: "linear-gradient(135deg,#c2410c 0%,#ea580c 100%)", padding: "90px 40px" }, elements: [{ id: "h-badge", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "rgba(255,255,255,0.8)", fontSize: "0.75rem", fontWeight: "700", letterSpacing: "0.2em", marginBottom: "20px" }, content: { text: "🚚 FAST & RELIABLE DELIVERY" } },
+              { id: "hero-el", type: "hero", isVisible: true, isLocked: false, styles: {}, content: { title: "Deliver Anywhere in Ghana, Fast", subtitle: "Same-day Accra delivery. Next-day nationwide. Freight, parcels, documents — handled with care.", ctaText: "Get Instant Quote", ctaHref: "#quote", image: "" } }] },
           { id: "s-stats", type: "section", isVisible: true, styles: { padding: "40px", background: "#fff" }, elements: [{ id: "st-el", type: "stats-counter", isVisible: true, isLocked: false, styles: {}, content: { stats: [{ number: "5,000+", label: "Deliveries Monthly" }, { number: "16", label: "Regions Covered" }, { number: "98%", label: "On-Time Rate" }, { number: "3hrs", label: "Avg Accra Delivery" }] } }] },
-          { id: "s-services", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#fff7ed" }, elements: [{ id: "sv-f", type: "feature-grid", isVisible: true, isLocked: false, styles: {}, content: { heading: "Our Services", features: [{ icon: "📦", title: "Parcel Delivery", desc: "Same-day and next-day parcels across Ghana" }, { icon: "📄", title: "Document Courier", desc: "Secure, tracked document delivery" }, { icon: "🏪", title: "E-commerce Fulfilment", desc: "Last-mile delivery for online stores" }, { icon: "🚛", title: "Freight & Bulk", desc: "Heavy cargo and bulk goods transport" }, { icon: "❄️", title: "Cold Chain", desc: "Temperature-controlled delivery for perishables" }, { icon: "🌍", title: "International", desc: "DHL partnership for global shipments" }] } }] },
+          { id: "s-logos", type: "section", isVisible: true, styles: { backgroundColor: "#f8fafc", paddingTop: 50, paddingBottom: 50 }, elements: [
+            { id: "lg-el", type: "brand-logos", isVisible: true, isLocked: false, styles: {}, content: { heading: "Trusted By Leading Businesses", logos: [
+              { name: "Stanbic Bank" }, { name: "MTN Ghana" }, { name: "Vodafone GH" }, { name: "Melcom Group" }, { name: "Accra Mall" }
+            ] } }
+          ] },
+                   { id: "s-services", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#fff7ed" }, elements: [{ id: "sv-f", type: "feature-grid", isVisible: true, isLocked: false, styles: {}, content: { heading: "Our Services", features: [{ icon: "📦", title: "Parcel Delivery", desc: "Same-day and next-day parcels across Ghana" }, { icon: "📄", title: "Document Courier", desc: "Secure, tracked document delivery" }, { icon: "🏪", title: "E-commerce Fulfilment", desc: "Last-mile delivery for online stores" }, { icon: "🚛", title: "Freight & Bulk", desc: "Heavy cargo and bulk goods transport" }, { icon: "❄️", title: "Cold Chain", desc: "Temperature-controlled delivery for perishables" }, { icon: "🌍", title: "International", desc: "DHL partnership for global shipments" }] } }] },
           { id: "s-quote", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#ea580c" }, elements: [
             { id: "qt-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "32px", color: "#fff" }, content: { text: "Get an Instant Quote", level: "h2" } },
             { id: "qt-f", type: "form", isVisible: true, isLocked: false, styles: { maxWidth: "500px", margin: "0 auto" }, content: { title: "", fields: [{ name: "name", label: "Name", type: "text", required: true }, { name: "phone", label: "Phone", type: "tel", required: true }, { name: "pickup", label: "Pickup Location", type: "text", required: true }, { name: "delivery", label: "Delivery Location", type: "text", required: true }, { name: "item", label: "What are you sending?", type: "text", required: true }, { name: "weight", label: "Approximate Weight (kg)", type: "text", required: false }], submitText: "Get My Quote" } }
@@ -1752,9 +1919,15 @@ export const TEMPLATES: Template[] = [
         seo: { title: "Guardian Shield Security – Professional Security Services", description: "Licensed and trusted security services for homes and businesses" },
         sections: [
           { id: "s-nav", type: "nav", isVisible: true, styles: { background: "#0f172a", borderBottom: "1px solid #1e293b" }, elements: [{ id: "nav-el", type: "navigation", isVisible: true, isLocked: false, styles: {}, content: { logo: "Guardian Shield", links: [{ label: "Services", href: "#services" }, { label: "Why Us", href: "#why" }, { label: "Clients", href: "#clients" }, { label: "Contact", href: "#contact" }], ctaText: "Request Guards" } }] },
-          { id: "s-hero", type: "hero", isVisible: true, styles: { background: "linear-gradient(135deg,#020617 0%,#0f172a 60%,#1e3a5f 100%)", padding: "100px 40px" }, elements: [{ id: "hero-el", type: "hero", isVisible: true, isLocked: false, styles: {}, content: { title: "Protecting What\nMatters Most", subtitle: "Licensed, trained and trusted. Guardian Shield provides professional security for homes, businesses and events across Ghana.", ctaText: "Get a Security Assessment", ctaHref: "#contact", image: "" } }] },
+          { id: "s-hero", type: "hero", isVisible: true, styles: { background: "linear-gradient(135deg,#020617 0%,#0f172a 60%,#1e3a5f 100%)", padding: "100px 40px" }, elements: [{ id: "h-badge", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "rgba(255,255,255,0.8)", fontSize: "0.75rem", fontWeight: "700", letterSpacing: "0.2em", marginBottom: "20px" }, content: { text: "🛡️ PROTECTING WHAT MATTERS MOST" } },
+              { id: "hero-el", type: "hero", isVisible: true, isLocked: false, styles: {}, content: { title: "Protecting What\nMatters Most", subtitle: "Licensed, trained and trusted. Guardian Shield provides professional security for homes, businesses and events across Ghana.", ctaText: "Get a Security Assessment", ctaHref: "#contact", image: "" } }] },
           { id: "s-stats", type: "section", isVisible: true, styles: { padding: "40px", background: "#1e293b" }, elements: [{ id: "st-el", type: "stats-counter", isVisible: true, isLocked: false, styles: {}, content: { stats: [{ number: "500+", label: "Guards Deployed" }, { number: "200+", label: "Client Sites" }, { number: "15yrs", label: "In Operation" }, { number: "24/7", label: "Response" }] } }] },
-          { id: "s-services", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#0f172a" }, elements: [{ id: "sv-f", type: "feature-grid", isVisible: true, isLocked: false, styles: {}, content: { heading: "Our Services", features: [{ icon: "👮", title: "Manned Guarding", desc: "Uniformed guards for residential and commercial sites" }, { icon: "📹", title: "CCTV & Monitoring", desc: "24/7 remote surveillance and installation" }, { icon: "🚗", title: "Mobile Patrol", desc: "Regular patrol rounds for your property" }, { icon: "🎉", title: "Event Security", desc: "Crowd management and VIP protection" }, { icon: "🔒", title: "Access Control", desc: "Biometric and key card systems" }, { icon: "🚨", title: "Alarm Response", desc: "Fast armed response to triggered alarms" }] } }] },
+          { id: "s-logos", type: "section", isVisible: true, styles: { backgroundColor: "#f8fafc", paddingTop: 50, paddingBottom: 50 }, elements: [
+            { id: "lg-el", type: "brand-logos", isVisible: true, isLocked: false, styles: {}, content: { heading: "Trusted By Leading Businesses", logos: [
+              { name: "Stanbic Bank" }, { name: "MTN Ghana" }, { name: "Vodafone GH" }, { name: "Melcom Group" }, { name: "Accra Mall" }
+            ] } }
+          ] },
+                   { id: "s-services", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#0f172a" }, elements: [{ id: "sv-f", type: "feature-grid", isVisible: true, isLocked: false, styles: {}, content: { heading: "Our Services", features: [{ icon: "👮", title: "Manned Guarding", desc: "Uniformed guards for residential and commercial sites" }, { icon: "📹", title: "CCTV & Monitoring", desc: "24/7 remote surveillance and installation" }, { icon: "🚗", title: "Mobile Patrol", desc: "Regular patrol rounds for your property" }, { icon: "🎉", title: "Event Security", desc: "Crowd management and VIP protection" }, { icon: "🔒", title: "Access Control", desc: "Biometric and key card systems" }, { icon: "🚨", title: "Alarm Response", desc: "Fast armed response to triggered alarms" }] } }] },
           { id: "s-contact", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#1e293b" }, elements: [
             { id: "ct-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "32px", color: "#fff" }, content: { text: "Request a Security Assessment", level: "h2" } },
             { id: "ct-f", type: "form", isVisible: true, isLocked: false, styles: { maxWidth: "500px", margin: "0 auto" }, content: { title: "", fields: [{ name: "name", label: "Name / Company", type: "text", required: true }, { name: "phone", label: "Phone", type: "tel", required: true }, { name: "location", label: "Property Location", type: "text", required: true }, { name: "service", label: "Service Required", type: "text", required: true }, { name: "guards", label: "No. of Guards Needed", type: "text", required: false }], submitText: "Request Assessment" } }
@@ -1804,7 +1977,12 @@ export const TEMPLATES: Template[] = [
           { id: "s-nav", type: "nav", isVisible: true, styles: {}, elements: [{ id: "nav-el", type: "navigation", isVisible: true, isLocked: false, styles: {}, content: { logo: "BuildRight", links: [{ label: "Services", href: "#services" }, { label: "Projects", href: "#projects" }, { label: "About", href: "#about" }, { label: "Contact", href: "#contact" }], ctaText: "Get a Quote" } }] },
           { id: "s-hero", type: "hero", isVisible: true, styles: { background: "linear-gradient(135deg,#78350f 0%,#ca8a04 100%)", padding: "90px 40px" }, elements: [{ id: "hero-el", type: "hero", isVisible: true, isLocked: false, styles: {}, content: { title: "Building Ghana's\nFuture, One Slab at a Time", subtitle: "20 years of delivering quality residential, commercial and civil construction projects across Ghana. On time. On budget.", ctaText: "View Our Projects", ctaHref: "#projects", image: "" } }] },
           { id: "s-stats", type: "section", isVisible: true, styles: { padding: "40px", background: "#fff" }, elements: [{ id: "st-el", type: "stats-counter", isVisible: true, isLocked: false, styles: {}, content: { stats: [{ number: "300+", label: "Projects Completed" }, { number: "20yrs", label: "Experience" }, { number: "100+", label: "Staff & Artisans" }, { number: "GHS 50M+", label: "Projects Delivered" }] } }] },
-          { id: "s-services", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#fefce8" }, elements: [{ id: "sv-f", type: "feature-grid", isVisible: true, isLocked: false, styles: {}, content: { heading: "Our Services", features: [{ icon: "🏠", title: "Residential Building", desc: "Bungalows, townhouses and estate housing" }, { icon: "🏢", title: "Commercial Construction", desc: "Offices, shopping centres and warehouses" }, { icon: "🛣️", title: "Civil & Road Works", desc: "Road construction and drainage systems" }, { icon: "🏗️", title: "Renovation", desc: "Remodelling and facility upgrades" }, { icon: "🔧", title: "Plumbing & Electrical", desc: "MEP works for all building types" }, { icon: "📐", title: "Quantity Surveying", desc: "Cost estimation and project management" }] } }] },
+          { id: "s-logos", type: "section", isVisible: true, styles: { backgroundColor: "#f8fafc", paddingTop: 50, paddingBottom: 50 }, elements: [
+            { id: "lg-el", type: "brand-logos", isVisible: true, isLocked: false, styles: {}, content: { heading: "Trusted By Leading Businesses", logos: [
+              { name: "Stanbic Bank" }, { name: "MTN Ghana" }, { name: "Vodafone GH" }, { name: "Melcom Group" }, { name: "Accra Mall" }
+            ] } }
+          ] },
+                   { id: "s-services", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#fefce8" }, elements: [{ id: "sv-f", type: "feature-grid", isVisible: true, isLocked: false, styles: {}, content: { heading: "Our Services", features: [{ icon: "🏠", title: "Residential Building", desc: "Bungalows, townhouses and estate housing" }, { icon: "🏢", title: "Commercial Construction", desc: "Offices, shopping centres and warehouses" }, { icon: "🛣️", title: "Civil & Road Works", desc: "Road construction and drainage systems" }, { icon: "🏗️", title: "Renovation", desc: "Remodelling and facility upgrades" }, { icon: "🔧", title: "Plumbing & Electrical", desc: "MEP works for all building types" }, { icon: "📐", title: "Quantity Surveying", desc: "Cost estimation and project management" }] } }] },
           { id: "s-projects", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#fff" }, elements: [
             { id: "pj-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "32px" }, content: { text: "Recent Projects", level: "h2" } },
             { id: "pj-g", type: "gallery", isVisible: true, isLocked: false, styles: {}, content: { images: [], columns: 3 } }
@@ -1856,7 +2034,8 @@ export const TEMPLATES: Template[] = [
         seo: { title: "AceMind Tutoring – Private Tutors for BECE, WASSCE & University", description: "Expert tutoring to boost grades and build confidence" },
         sections: [
           { id: "s-nav", type: "nav", isVisible: true, styles: {}, elements: [{ id: "nav-el", type: "navigation", isVisible: true, isLocked: false, styles: {}, content: { logo: "AceMind", links: [{ label: "Subjects", href: "#subjects" }, { label: "Tutors", href: "#tutors" }, { label: "Pricing", href: "#pricing" }, { label: "Book", href: "#book" }], ctaText: "Book Free Trial" } }] },
-          { id: "s-hero", type: "hero", isVisible: true, styles: { background: "linear-gradient(135deg,#5b21b6 0%,#7c3aed 100%)", padding: "90px 40px" }, elements: [{ id: "hero-el", type: "hero", isVisible: true, isLocked: false, styles: {}, content: { title: "Better Grades.\nBigger Dreams.", subtitle: "Expert tutors for BECE, WASSCE, university entry and beyond. Online and in-person sessions across Ghana.", ctaText: "Book Free Trial Lesson", ctaHref: "#book", image: "" } }] },
+          { id: "s-hero", type: "hero", isVisible: true, styles: { background: "linear-gradient(135deg,#5b21b6 0%,#7c3aed 100%)", padding: "90px 40px" }, elements: [{ id: "h-badge", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "rgba(255,255,255,0.8)", fontSize: "0.75rem", fontWeight: "700", letterSpacing: "0.2em", marginBottom: "20px" }, content: { text: "📚 RESULTS GUARANTEED" } },
+              { id: "hero-el", type: "hero", isVisible: true, isLocked: false, styles: {}, content: { title: "Better Grades.\nBigger Dreams.", subtitle: "Expert tutors for BECE, WASSCE, university entry and beyond. Online and in-person sessions across Ghana.", ctaText: "Book Free Trial Lesson", ctaHref: "#book", image: "" } }] },
           { id: "s-stats", type: "section", isVisible: true, styles: { padding: "40px", background: "#fff" }, elements: [{ id: "st-el", type: "stats-counter", isVisible: true, isLocked: false, styles: {}, content: { stats: [{ number: "1,500+", label: "Students Tutored" }, { number: "95%", label: "Grade Improvement" }, { number: "50+", label: "Expert Tutors" }, { number: "15+", label: "Subjects" }] } }] },
           { id: "s-subjects", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#ede9fe" }, elements: [{ id: "sb-f", type: "feature-grid", isVisible: true, isLocked: false, styles: {}, content: { heading: "Subjects We Offer", features: [{ icon: "➕", title: "Mathematics", desc: "Core & Elective Maths from JHS to university" }, { icon: "🔬", title: "Science", desc: "Biology, Chemistry and Physics" }, { icon: "📖", title: "English Language", desc: "Grammar, comprehension and essay writing" }, { icon: "💻", title: "ICT / Computing", desc: "Programming, databases and web design" }, { icon: "🌍", title: "Social Studies / History", desc: "BECE and WASSCE social sciences" }, { icon: "📊", title: "Economics / Accounts", desc: "A-Level and SHS economics" }] } }] },
           { id: "s-pricing", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#fff" }, elements: [
@@ -1910,7 +2089,8 @@ export const TEMPLATES: Template[] = [
         seo: { title: "Serenity Spa & Wellness – Relax, Restore, Revive", description: "Luxury spa treatments, yoga and wellness therapies" },
         sections: [
           { id: "s-nav", type: "nav", isVisible: true, styles: {}, elements: [{ id: "nav-el", type: "navigation", isVisible: true, isLocked: false, styles: {}, content: { logo: "Serenity", links: [{ label: "Treatments", href: "#treatments" }, { label: "Yoga", href: "#yoga" }, { label: "Book", href: "#book" }, { label: "Gift Cards", href: "#gift" }], ctaText: "Book a Session" } }] },
-          { id: "s-hero", type: "hero", isVisible: true, styles: { background: "linear-gradient(135deg,#134e4a 0%,#0d9488 100%)", padding: "100px 40px" }, elements: [{ id: "hero-el", type: "hero", isVisible: true, isLocked: false, styles: {}, content: { title: "Find Your Calm.\nFeed Your Soul.", subtitle: "Luxury spa treatments, yoga classes and holistic wellness therapies. Your sanctuary from the everyday.", ctaText: "Book Your Escape", ctaHref: "#book", image: "" } }] },
+          { id: "s-hero", type: "hero", isVisible: true, styles: { background: "linear-gradient(135deg,#134e4a 0%,#0d9488 100%)", padding: "100px 40px" }, elements: [{ id: "h-badge", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "rgba(255,255,255,0.8)", fontSize: "0.75rem", fontWeight: "700", letterSpacing: "0.2em", marginBottom: "20px" }, content: { text: "🧘 YOUR SANCTUARY AWAITS" } },
+              { id: "hero-el", type: "hero", isVisible: true, isLocked: false, styles: {}, content: { title: "Find Your Calm.\nFeed Your Soul.", subtitle: "Luxury spa treatments, yoga classes and holistic wellness therapies. Your sanctuary from the everyday.", ctaText: "Book Your Escape", ctaHref: "#book", image: "" } }] },
           { id: "s-treatments", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#fff" }, elements: [{ id: "tr-f", type: "feature-grid", isVisible: true, isLocked: false, styles: {}, content: { heading: "Our Treatments", features: [{ icon: "💆", title: "Deep Tissue Massage", desc: "60 & 90-minute full body release sessions" }, { icon: "🌸", title: "Aromatherapy", desc: "Essential oil massage for stress and tension" }, { icon: "🛁", title: "Body Scrubs", desc: "Exfoliating treatments for glowing skin" }, { icon: "💅", title: "Manicure & Pedicure", desc: "Luxury nail care with premium products" }, { icon: "🧖", title: "Facials", desc: "Deep cleanse, brightening and anti-ageing treatments" }, { icon: "🏊", title: "Hydrotherapy", desc: "Water-based relaxation and healing" }] } }] },
           { id: "s-pricing", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#f0fdfa" }, elements: [
             { id: "pr-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "32px" }, content: { text: "Treatment Prices", level: "h2" } },
@@ -1942,6 +2122,14 @@ export const TEMPLATES: Template[] = [
           ] },
           { id: "s-newsletter", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#6272f1" }, elements: [
             { id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { title: "Get wellness tips & exclusive spa deals", placeholder: "Enter your email address", buttonLabel: "Subscribe" } }
+          ] },
+          { id: "s-compare", type: "section", isVisible: true, styles: { paddingTop: 80, paddingBottom: 80, backgroundColor: "#f8fafc" }, elements: [
+            { id: "cmp-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "12px" }, content: { text: "See the Difference", level: "h2" } },
+            { id: "cmp-t", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#64748b", marginBottom: "40px" }, content: { text: "Real results from our clients" } },
+            { id: "cmp-el", type: "image-compare", isVisible: true, isLocked: false, styles: {}, content: { beforeImage: "", afterImage: "", beforeLabel: "Before Treatment", afterLabel: "After Treatment" } }
+          ] },
+          { id: "s-hours", type: "section", isVisible: true, styles: { paddingTop: 70, paddingBottom: 70, backgroundColor: "#fff" }, elements: [
+            { id: "hr-el", type: "business-hours", isVisible: true, isLocked: false, styles: {}, content: { title: "Opening Hours", hours: [{ day: "Monday – Friday", time: "9:00am – 8:00pm" }, { day: "Saturday", time: "9:00am – 6:00pm" }, { day: "Sunday", time: "10:00am – 5:00pm" }] } }
           ] },
           { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 Serenity Spa & Wellness. Your peace awaits.", links: [] } }] }
         ]
@@ -2082,6 +2270,11 @@ export const TEMPLATES: Template[] = [
           { id: "s-newsletter", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#6272f1" }, elements: [
             { id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { title: "Get skincare tips, new launches & exclusive deals", placeholder: "Enter your email address", buttonLabel: "Subscribe" } }
           ] },
+          { id: "s-compare", type: "section", isVisible: true, styles: { paddingTop: 80, paddingBottom: 80, backgroundColor: "#f8fafc" }, elements: [
+            { id: "cmp-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "12px" }, content: { text: "See the Difference", level: "h2" } },
+            { id: "cmp-t", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#64748b", marginBottom: "40px" }, content: { text: "Real results from our clients" } },
+            { id: "cmp-el", type: "image-compare", isVisible: true, isLocked: false, styles: {}, content: { beforeImage: "", afterImage: "", beforeLabel: "Natural Skin", afterLabel: "After Treatment" } }
+          ] },
           { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 Lumière Beauty. Celebrating African beauty.", links: [] } }] }
         ]
       }]
@@ -2132,6 +2325,11 @@ export const TEMPLATES: Template[] = [
           { id: "s-newsletter", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#6272f1" }, elements: [
             { id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { title: "Get car maintenance tips & workshop specials", placeholder: "Enter your email address", buttonLabel: "Subscribe" } }
           ] },
+          { id: "s-compare", type: "section", isVisible: true, styles: { paddingTop: 80, paddingBottom: 80, backgroundColor: "#f8fafc" }, elements: [
+            { id: "cmp-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "12px" }, content: { text: "See the Difference", level: "h2" } },
+            { id: "cmp-t", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#64748b", marginBottom: "40px" }, content: { text: "Real results from our clients" } },
+            { id: "cmp-el", type: "image-compare", isVisible: true, isLocked: false, styles: {}, content: { beforeImage: "", afterImage: "", beforeLabel: "Before Service", afterLabel: "After Service" } }
+          ] },
           { id: "s-footer", type: "footer", isVisible: true, styles: { background: "#0f172a" }, elements: [{ id: "ft", type: "footer", isVisible: true, isLocked: false, styles: { color: "#94a3b8" }, content: { text: "© 2025 ProAuto Workshop. Quality you can trust.", links: [] } }] }
         ]
       }]
@@ -2155,7 +2353,8 @@ export const TEMPLATES: Template[] = [
         seo: { title: "GreenFields Farm – Fresh Produce Direct from the Farm", description: "Fresh vegetables, fruits and organic produce delivered across Ghana" },
         sections: [
           { id: "s-nav", type: "nav", isVisible: true, styles: {}, elements: [{ id: "nav-el", type: "navigation", isVisible: true, isLocked: false, styles: {}, content: { logo: "🌾 GreenFields", links: [{ label: "Products", href: "#products" }, { label: "About", href: "#about" }, { label: "Order", href: "#order" }], ctaText: "Order Fresh" } }] },
-          { id: "s-hero", type: "hero", isVisible: true, styles: { background: "linear-gradient(135deg,#14532d 0%,#15803d 60%,#22c55e 100%)", padding: "100px 40px" }, elements: [{ id: "hero-el", type: "hero", isVisible: true, isLocked: false, styles: {}, content: { title: "Fresh From Our Farm to Your Table", subtitle: "Certified organic vegetables, fruits and grains grown sustainably in the Volta Region. Weekly delivery to Accra.", ctaText: "Order This Week", ctaHref: "#order", image: "" } }] },
+          { id: "s-hero", type: "hero", isVisible: true, styles: { background: "linear-gradient(135deg,#14532d 0%,#15803d 60%,#22c55e 100%)", padding: "100px 40px" }, elements: [{ id: "h-badge", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "rgba(255,255,255,0.8)", fontSize: "0.75rem", fontWeight: "700", letterSpacing: "0.2em", marginBottom: "20px" }, content: { text: "🌾 FROM FARM TO TABLE" } },
+              { id: "hero-el", type: "hero", isVisible: true, isLocked: false, styles: {}, content: { title: "Fresh From Our Farm to Your Table", subtitle: "Certified organic vegetables, fruits and grains grown sustainably in the Volta Region. Weekly delivery to Accra.", ctaText: "Order This Week", ctaHref: "#order", image: "" } }] },
           { id: "s-products", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#fff" }, elements: [
             { id: "p-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "40px" }, content: { text: "What We Grow", level: "h2" } },
             { id: "p-f", type: "feature-grid", isVisible: true, isLocked: false, styles: {}, content: { heading: "", features: [{ icon: "🥬", title: "Vegetables", desc: "Tomatoes, peppers, cabbage, garden eggs, lettuce" }, { icon: "🫚", title: "Palm Products", desc: "Red palm oil, palm kernel oil, palm nuts" }, { icon: "🍌", title: "Fruits", desc: "Plantain, banana, pineapple, watermelon, mango" }, { icon: "🌽", title: "Grains", desc: "Maize, sorghum, rice, groundnuts, soybeans" }, { icon: "🌿", title: "Herbs & Spices", desc: "Ginger, garlic, turmeric, moringa, basil" }, { icon: "🐔", title: "Poultry", desc: "Free-range chickens, eggs and guinea fowl" }] } }
@@ -2208,7 +2407,8 @@ export const TEMPLATES: Template[] = [
         seo: { title: "Little Stars Daycare – Safe & Nurturing Childcare", description: "Professional daycare and early childhood education for children aged 3 months to 6 years" },
         sections: [
           { id: "s-nav", type: "nav", isVisible: true, styles: {}, elements: [{ id: "nav-el", type: "navigation", isVisible: true, isLocked: false, styles: {}, content: { logo: "🌟 Little Stars", links: [{ label: "About", href: "#about" }, { label: "Programs", href: "#programs" }, { label: "Gallery", href: "#gallery" }, { label: "Enroll", href: "#enroll" }], ctaText: "Enroll Now" } }] },
-          { id: "s-hero", type: "hero", isVisible: true, styles: { background: "linear-gradient(135deg,#92400e 0%,#d97706 60%,#fbbf24 100%)", padding: "80px 40px" }, elements: [{ id: "hero-el", type: "hero", isVisible: true, isLocked: false, styles: {}, content: { title: "Where Little Stars Shine Brightest", subtitle: "A safe, nurturing environment where children learn, play and grow. Ages 3 months to 6 years.", ctaText: "Schedule a Visit", ctaHref: "#enroll", image: "" } }] },
+          { id: "s-hero", type: "hero", isVisible: true, styles: { background: "linear-gradient(135deg,#92400e 0%,#d97706 60%,#fbbf24 100%)", padding: "80px 40px" }, elements: [{ id: "h-badge", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "rgba(255,255,255,0.8)", fontSize: "0.75rem", fontWeight: "700", letterSpacing: "0.2em", marginBottom: "20px" }, content: { text: "🧸 WHERE LITTLE ONES FLOURISH" } },
+              { id: "hero-el", type: "hero", isVisible: true, isLocked: false, styles: {}, content: { title: "Where Little Stars Shine Brightest", subtitle: "A safe, nurturing environment where children learn, play and grow. Ages 3 months to 6 years.", ctaText: "Schedule a Visit", ctaHref: "#enroll", image: "" } }] },
           { id: "s-programs", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#fff" }, elements: [
             { id: "pr-f", type: "feature-grid", isVisible: true, isLocked: false, styles: {}, content: { heading: "Our Programs", features: [{ icon: "🍼", title: "Infant Care (0–12m)", desc: "Safe, loving care with regular parent updates" }, { icon: "🦆", title: "Toddler Group (1–3yr)", desc: "Play-based learning, motor skills and socialisation" }, { icon: "📚", title: "Pre-School (3–6yr)", desc: "School readiness, reading, numbers and creativity" }, { icon: "🎨", title: "After School", desc: "Homework help, arts, sports and supervised play" }] } }
           ] },
@@ -2262,7 +2462,12 @@ export const TEMPLATES: Template[] = [
           { id: "s-nav", type: "nav", isVisible: true, styles: {}, elements: [{ id: "nav-el", type: "navigation", isVisible: true, isLocked: false, styles: {}, content: { logo: "📊 Mensah & Associates", links: [{ label: "Services", href: "#services" }, { label: "About", href: "#about" }, { label: "Team", href: "#team" }, { label: "Contact", href: "#contact" }], ctaText: "Free Consultation" } }] },
           { id: "s-hero", type: "hero", isVisible: true, styles: { background: "linear-gradient(135deg,#1e3a8a 0%,#1e40af 60%,#3b82f6 100%)", padding: "90px 40px" }, elements: [{ id: "hero-el", type: "hero", isVisible: true, isLocked: false, styles: {}, content: { title: "Your Financial Success Is Our Business", subtitle: "Chartered accountants providing audit, tax compliance, payroll and financial advisory for SMEs across Ghana.", ctaText: "Book Free Consultation", ctaHref: "#contact", image: "" } }] },
           { id: "s-stats", type: "stats", isVisible: true, styles: { padding: "40px", background: "#fff" }, elements: [{ id: "st-el", type: "stats-counter", isVisible: true, isLocked: false, styles: {}, content: { stats: [{ number: "200+", label: "Clients Served" }, { number: "15yr", label: "In Practice" }, { number: "8", label: "Qualified Accountants" }, { number: "100%", label: "Filing Success Rate" }] } }] },
-          { id: "s-services", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#eff6ff" }, elements: [
+          { id: "s-logos", type: "section", isVisible: true, styles: { backgroundColor: "#f8fafc", paddingTop: 50, paddingBottom: 50 }, elements: [
+            { id: "lg-el", type: "brand-logos", isVisible: true, isLocked: false, styles: {}, content: { heading: "Trusted By Leading Businesses", logos: [
+              { name: "Stanbic Bank" }, { name: "MTN Ghana" }, { name: "Vodafone GH" }, { name: "Melcom Group" }, { name: "Accra Mall" }
+            ] } }
+          ] },
+                   { id: "s-services", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#eff6ff" }, elements: [
             { id: "sv-f", type: "feature-grid", isVisible: true, isLocked: false, styles: {}, content: { heading: "Our Services", features: [{ icon: "📋", title: "Audit & Assurance", desc: "Statutory and internal audits to GRA and ICAG standards" }, { icon: "💰", title: "Tax Services", desc: "Corporate tax, VAT registration, filing and compliance" }, { icon: "💼", title: "Payroll Management", desc: "SSNIT, PAYE, tier 1/2/3 and payslip processing" }, { icon: "📈", title: "Financial Advisory", desc: "Business planning, projections and investor reports" }, { icon: "🏦", title: "Accounting Software", desc: "QuickBooks and Sage setup and training" }, { icon: "🤝", title: "Company Registration", desc: "GHS, Registrar General, EPA and sector permits" }] } }
           ] },
           { id: "s-team", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#fff" }, elements: [
@@ -2320,7 +2525,8 @@ export const TEMPLATES: Template[] = [
         seo: { title: "Kojo Beat – Ghana's Finest Afrobeats Producer", description: "Music releases, booking info and collaborations" },
         sections: [
           { id: "s-nav", type: "nav", isVisible: true, styles: { background: "#09090b" }, elements: [{ id: "nav-el", type: "navigation", isVisible: true, isLocked: false, styles: {}, content: { logo: "🎵 KOJO BEAT", links: [{ label: "Music", href: "#music" }, { label: "Events", href: "#events" }, { label: "About", href: "#about" }, { label: "Booking", href: "#booking" }], ctaText: "Book Me" } }] },
-          { id: "s-hero", type: "hero", isVisible: true, styles: { background: "linear-gradient(135deg,#09090b 0%,#1c0040 50%,#7c3aed 100%)", padding: "120px 40px" }, elements: [{ id: "hero-el", type: "hero", isVisible: true, isLocked: false, styles: {}, content: { title: "Music That Moves the Soul", subtitle: "Afrobeats, Highlife and Afropop producer & artist from Accra, Ghana. Available for shows, features and studio sessions.", ctaText: "Stream My Music", ctaHref: "#music", image: "" } }] },
+          { id: "s-hero", type: "hero", isVisible: true, styles: { background: "linear-gradient(135deg,#09090b 0%,#1c0040 50%,#7c3aed 100%)", padding: "120px 40px" }, elements: [{ id: "h-badge", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "rgba(255,255,255,0.8)", fontSize: "0.75rem", fontWeight: "700", letterSpacing: "0.2em", marginBottom: "20px" }, content: { text: "🎵 BOOKING EVENTS NATIONWIDE" } },
+              { id: "hero-el", type: "hero", isVisible: true, isLocked: false, styles: {}, content: { title: "Music That Moves the Soul", subtitle: "Afrobeats, Highlife and Afropop producer & artist from Accra, Ghana. Available for shows, features and studio sessions.", ctaText: "Stream My Music", ctaHref: "#music", image: "" } }] },
           { id: "s-stats", type: "stats", isVisible: true, styles: { padding: "40px", background: "#18181b" }, elements: [{ id: "st-el", type: "stats-counter", isVisible: true, isLocked: false, styles: {}, content: { stats: [{ number: "5M+", label: "Streams" }, { number: "50+", label: "Songs Released" }, { number: "100+", label: "Shows Performed" }, { number: "10+", label: "Artists Produced" }] } }] },
           { id: "s-music", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#09090b" }, elements: [
             { id: "m-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "20px", color: "#f4f4f5" }, content: { text: "Latest Releases", level: "h2" } },
@@ -2380,7 +2586,8 @@ export const TEMPLATES: Template[] = [
         seo: { title: "PawCare Vet Clinic – Expert Animal Care in Accra", description: "Veterinary consultations, vaccinations, surgery and pet grooming for all animals" },
         sections: [
           { id: "s-nav", type: "nav", isVisible: true, styles: {}, elements: [{ id: "nav-el", type: "navigation", isVisible: true, isLocked: false, styles: {}, content: { logo: "🐾 PawCare", links: [{ label: "Services", href: "#services" }, { label: "Team", href: "#team" }, { label: "Book", href: "#booking" }], ctaText: "Book Appointment" } }] },
-          { id: "s-hero", type: "hero", isVisible: true, styles: { background: "linear-gradient(135deg,#164e63 0%,#0891b2 60%,#22d3ee 100%)", padding: "90px 40px" }, elements: [{ id: "hero-el", type: "hero", isVisible: true, isLocked: false, styles: {}, content: { title: "Quality Care for Your Beloved Pets", subtitle: "Experienced veterinarians providing compassionate care for dogs, cats, birds and farm animals in Accra.", ctaText: "Book Appointment", ctaHref: "#booking", image: "" } }] },
+          { id: "s-hero", type: "hero", isVisible: true, styles: { background: "linear-gradient(135deg,#164e63 0%,#0891b2 60%,#22d3ee 100%)", padding: "90px 40px" }, elements: [{ id: "h-badge", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "rgba(255,255,255,0.8)", fontSize: "0.75rem", fontWeight: "700", letterSpacing: "0.2em", marginBottom: "20px" }, content: { text: "🐾 COMPASSIONATE CARE FOR EVERY PET" } },
+              { id: "hero-el", type: "hero", isVisible: true, isLocked: false, styles: {}, content: { title: "Quality Care for Your Beloved Pets", subtitle: "Experienced veterinarians providing compassionate care for dogs, cats, birds and farm animals in Accra.", ctaText: "Book Appointment", ctaHref: "#booking", image: "" } }] },
           { id: "s-services", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#fff" }, elements: [
             { id: "sv-f", type: "feature-grid", isVisible: true, isLocked: false, styles: {}, content: { heading: "Our Services", features: [{ icon: "💉", title: "Vaccinations", desc: "Core and non-core vaccines for all pets and farm animals" }, { icon: "🔬", title: "Diagnostics", desc: "Blood tests, X-ray and ultrasound on-site" }, { icon: "🏥", title: "Surgery", desc: "Spay/neuter, dental, orthopaedic and emergency surgery" }, { icon: "🛁", title: "Grooming", desc: "Bathing, haircut, nail clipping and ear cleaning" }, { icon: "🐄", title: "Farm Animals", desc: "Cattle, poultry, pigs and goat veterinary services" }, { icon: "🚨", title: "Emergency Care", desc: "24/7 emergency line for critical cases" }] } }
           ] },
@@ -2513,7 +2720,12 @@ export const TEMPLATES: Template[] = [
             { id: "hb", type: "button", isVisible: true, isLocked: false, styles: { display: "flex", justifyContent: "center", marginTop: "40px" }, content: { text: "Get Your Free Marketing Audit →", href: "#audit", variant: "primary" } }
           ] },
           { id: "s-stats", type: "section", isVisible: true, styles: { backgroundColor: "#0d0d2b", paddingTop: 60, paddingBottom: 60 }, elements: [{ id: "st1", type: "stats-counter", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { stats: [{ number: "200+", label: "Clients Grown" }, { number: "GHS 50M+", label: "Revenue Generated" }, { number: "850%", label: "Average ROI" }, { number: "5yrs", label: "In Business" }] } }] },
-          { id: "s-services", type: "section", isVisible: true, styles: { backgroundColor: "#050510", paddingTop: 90, paddingBottom: 90 }, elements: [
+          { id: "s-logos", type: "section", isVisible: true, styles: { backgroundColor: "#f8fafc", paddingTop: 50, paddingBottom: 50 }, elements: [
+            { id: "lg-el", type: "brand-logos", isVisible: true, isLocked: false, styles: {}, content: { heading: "Trusted By Leading Businesses", logos: [
+              { name: "Stanbic Bank" }, { name: "MTN Ghana" }, { name: "Vodafone GH" }, { name: "Melcom Group" }, { name: "Accra Mall" }
+            ] } }
+          ] },
+                   { id: "s-services", type: "section", isVisible: true, styles: { backgroundColor: "#050510", paddingTop: 90, paddingBottom: 90 }, elements: [
             { id: "sv-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#fff", marginBottom: "12px" }, content: { text: "What We Do", level: "h2" } },
             { id: "sv-t", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#64748b", marginBottom: "50px" }, content: { text: "Full-service digital marketing that delivers measurable results" } },
             { id: "sv-f", type: "feature-grid", isVisible: true, isLocked: false, styles: {}, content: { heading: "", features: [
@@ -2898,6 +3110,9 @@ export const TEMPLATES: Template[] = [
           { id: "s-wa", type: "section", isVisible: true, styles: { backgroundColor: "#0c4a6e", paddingTop: 50, paddingBottom: 50 }, elements: [
             { id: "wa-el", type: "whatsapp-button", isVisible: true, isLocked: false, styles: { display: "flex", justifyContent: "center" }, content: { number: "", message: "Hello SmileCare! I'd like to book a dental appointment.", label: "Book on WhatsApp" } }
           ] },
+          { id: "s-hours", type: "section", isVisible: true, styles: { paddingTop: 70, paddingBottom: 70, backgroundColor: "#fff" }, elements: [
+            { id: "hr-el", type: "business-hours", isVisible: true, isLocked: false, styles: {}, content: { title: "Opening Hours", hours: [{ day: "Monday – Wednesday", time: "8:00am – 5:00pm" }, { day: "Thursday", time: "8:00am – 7:00pm" }, { day: "Friday", time: "8:00am – 5:00pm" }, { day: "Saturday", time: "9:00am – 1:00pm" }, { day: "Sunday", time: "Closed" }] } }
+          ] },
           { id: "s-footer", type: "footer", isVisible: true, styles: { backgroundColor: "#082f49" }, elements: [{ id: "ft", type: "footer", isVisible: true, isLocked: false, styles: { color: "#7dd3fc" }, content: { text: "© 2025 SmileCare Dental Clinic. Your smile is our priority.", links: [] } }] }
         ]
       }]
@@ -2967,6 +3182,11 @@ export const TEMPLATES: Template[] = [
           ] },
           { id: "s-wa", type: "section", isVisible: true, styles: { backgroundColor: "#500724", paddingTop: 50, paddingBottom: 50 }, elements: [
             { id: "wa-el", type: "whatsapp-button", isVisible: true, isLocked: false, styles: { display: "flex", justifyContent: "center" }, content: { number: "", message: "Hello Ama! I'd like to book a makeup session with you.", label: "Book via WhatsApp" } }
+          ] },
+          { id: "s-compare", type: "section", isVisible: true, styles: { paddingTop: 80, paddingBottom: 80, backgroundColor: "#f8fafc" }, elements: [
+            { id: "cmp-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "12px" }, content: { text: "See the Difference", level: "h2" } },
+            { id: "cmp-t", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#64748b", marginBottom: "40px" }, content: { text: "Real results from our clients" } },
+            { id: "cmp-el", type: "image-compare", isVisible: true, isLocked: false, styles: {}, content: { beforeImage: "", afterImage: "", beforeLabel: "Before Makeup", afterLabel: "After Glam" } }
           ] },
           { id: "s-footer", type: "footer", isVisible: true, styles: { backgroundColor: "#1a0010" }, elements: [{ id: "ft", type: "footer", isVisible: true, isLocked: false, styles: { color: "#be185d" }, content: { text: "© 2025 Glam by Ama. Because you deserve to feel beautiful.", links: [] } }] }
         ]
@@ -3303,7 +3523,12 @@ export const TEMPLATES: Template[] = [
             { id: "hb", type: "button", isVisible: true, isLocked: false, styles: { display: "flex", justifyContent: "center", marginTop: "40px" }, content: { text: "Find Top Talent →", href: "#employers", variant: "outline" } }
           ] },
           { id: "s-stats", type: "section", isVisible: true, styles: { backgroundColor: "#1e3a8a", paddingTop: 50, paddingBottom: 50 }, elements: [{ id: "st1", type: "stats-counter", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { stats: [{ number: "2,500+", label: "Placements Made" }, { number: "300+", label: "Employer Partners" }, { number: "98%", label: "Retention Rate" }, { number: "48hrs", label: "Avg Time to Shortlist" }] } }] },
-          { id: "s-for-employers", type: "section", isVisible: true, styles: { backgroundColor: "#fff", paddingTop: 90, paddingBottom: 90 }, elements: [
+          { id: "s-logos", type: "section", isVisible: true, styles: { backgroundColor: "#f8fafc", paddingTop: 50, paddingBottom: 50 }, elements: [
+            { id: "lg-el", type: "brand-logos", isVisible: true, isLocked: false, styles: {}, content: { heading: "Trusted By Leading Businesses", logos: [
+              { name: "Stanbic Bank" }, { name: "MTN Ghana" }, { name: "Vodafone GH" }, { name: "Melcom Group" }, { name: "Accra Mall" }
+            ] } }
+          ] },
+                   { id: "s-for-employers", type: "section", isVisible: true, styles: { backgroundColor: "#fff", paddingTop: 90, paddingBottom: 90 }, elements: [
             { id: "em-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", marginBottom: "12px" }, content: { text: "For Employers", level: "h2" } },
             { id: "em-t", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#64748b", marginBottom: "50px" }, content: { text: "We fill roles faster and better than any other agency" } },
             { id: "em-f", type: "feature-grid", isVisible: true, isLocked: false, styles: {}, content: { heading: "", features: [
@@ -3397,6 +3622,9 @@ export const TEMPLATES: Template[] = [
           ] },
           { id: "s-wa", type: "section", isVisible: true, styles: { backgroundColor: "#1e3a8a", paddingTop: 50, paddingBottom: 50 }, elements: [
             { id: "wa-el", type: "whatsapp-button", isVisible: true, isLocked: false, styles: { display: "flex", justifyContent: "center" }, content: { number: "", message: "Hello AquaShine! I'd like to book a car wash.", label: "Book on WhatsApp" } }
+          ] },
+          { id: "s-hours", type: "section", isVisible: true, styles: { paddingTop: 70, paddingBottom: 70, backgroundColor: "#fff" }, elements: [
+            { id: "hr-el", type: "business-hours", isVisible: true, isLocked: false, styles: {}, content: { title: "Opening Hours", hours: [{ day: "Monday – Friday", time: "7:00am – 6:00pm" }, { day: "Saturday", time: "7:00am – 5:00pm" }, { day: "Sunday", time: "9:00am – 3:00pm" }] } }
           ] },
           { id: "s-footer", type: "footer", isVisible: true, styles: { backgroundColor: "#0c1a4e" }, elements: [{ id: "ft", type: "footer", isVisible: true, isLocked: false, styles: { color: "#60a5fa" }, content: { text: "© 2025 AquaShine Car Wash. We make cars shine.", links: [] } }] }
         ]

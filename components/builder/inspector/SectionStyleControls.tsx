@@ -1,7 +1,7 @@
 "use client";
 
 import { useBuilderStore } from "@/store/builderStore";
-import { BuilderSection } from "@/lib/types/builder";
+import { BuilderSection } from "@/types/builder";
 
 export function SectionStyleControls({ section }: { section: BuilderSection }) {
   const { updateSectionStyles, updateSection } = useBuilderStore();

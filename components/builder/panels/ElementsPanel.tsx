@@ -19,8 +19,6 @@ interface ElementDef {
 
 const ELEMENTS: ElementDef[] = [
   // Basic
-  { type: "image-text", label: "Image + Text", icon: Layout, category: "Layout", defaultContent: { heading: "About Us", body: "Tell your story here.", image: "", imageLeft: true } },
-  { type: "feature-grid", label: "Feature Grid", icon: Square, category: "Layout", defaultContent: { heading: "Why Choose Us", features: [{ icon: "⚡", title: "Fast", desc: "Lightning-fast delivery" }, { icon: "🔒", title: "Secure", desc: "Your data is safe" }, { icon: "💬", title: "Support", desc: "24/7 customer support" }] } },
   { type: "heading", label: "Heading", icon: Type, category: "Basic", defaultContent: { text: "Your Heading", level: "h2" } },
   { type: "text", label: "Text", icon: Type, category: "Basic", defaultContent: { text: "Add your text here. Click to edit this paragraph." } },
   { type: "image", label: "Image", icon: Image, category: "Basic", defaultContent: { src: "", alt: "Image", caption: "" } },
@@ -47,7 +45,7 @@ const ELEMENTS: ElementDef[] = [
   { type: "stats-counter", label: "Stats", icon: Square, category: "Content", defaultContent: { stats: [{ number: "100+", label: "Clients" }] } },
   { type: "countdown", label: "Countdown", icon: Timer, category: "Content", defaultContent: { targetDate: "", title: "Coming Soon" } },
   // Forms
-  { type: "form", label: "Contact Form", icon: Mail, category: "Forms", defaultContent: { title: "Contact Us", fields: [{ name: "name", label: "Full Name", type: "text", required: true }, { name: "email", label: "Email", type: "email", required: true }, { name: "message", label: "Message", type: "textarea", required: false }], submitText: "Send" } },
+  { type: "form", label: "Contact Form", icon: Mail, category: "Forms", defaultContent: { title: "Contact Us", fields: ["name", "email", "message"], submitText: "Send" } },
   { type: "newsletter-signup", label: "Newsletter", icon: Mail, category: "Forms", defaultContent: { title: "Subscribe", placeholder: "Enter your email", buttonText: "Subscribe" } },
   // Navigation
   { type: "navigation", label: "Navigation", icon: Layout, category: "Navigation", defaultContent: { logo: "", links: [], ctaText: "" } },
@@ -56,14 +54,9 @@ const ELEMENTS: ElementDef[] = [
   { type: "map", label: "Google Map", icon: MapPin, category: "Misc", defaultContent: { address: "", zoom: 14 } },
   { type: "menu-section", label: "Menu Section", icon: UtensilsCrossed, category: "Misc", defaultContent: { title: "Menu", items: [] } },
   { type: "link-in-bio", label: "Link in Bio", icon: Link2, category: "Misc", defaultContent: { links: [] } },
-  { type: "business-hours", label: "Business Hours", icon: Timer, category: "Misc", defaultContent: { title: "Opening Hours", hours: [{ day: "Monday – Friday", time: "8:00 AM – 6:00 PM" }, { day: "Saturday", time: "9:00 AM – 4:00 PM" }, { day: "Sunday", time: "Closed" }] } },
-  // Process
-  { type: "steps-process", label: "Steps / Process", icon: MessageSquare, category: "Content", defaultContent: { heading: "How It Works", steps: [{ number: "1", title: "Step One", desc: "Describe the first step here" }, { number: "2", title: "Step Two", desc: "Describe the second step here" }, { number: "3", title: "Step Three", desc: "Describe the third step here" }] } },
-  { type: "brand-logos", label: "Brand Logos / Partners", icon: Square, category: "Content", defaultContent: { heading: "Trusted By", logos: [{ name: "Brand 1", url: "" }, { name: "Brand 2", url: "" }, { name: "Brand 3", url: "" }] } },
-  { type: "image-compare", label: "Before / After", icon: Layout, category: "Media", defaultContent: { beforeImage: "", afterImage: "", beforeLabel: "Before", afterLabel: "After" } },
 ];
 
-const CATEGORIES = Array.from(new Set(ELEMENTS.map((e) => e.category)));
+const CATEGORIES = [...new Set(ELEMENTS.map((e) => e.category))];
 
 function DraggableElement({ element }: { element: ElementDef }) {
   const { attributes, listeners, setNodeRef, transform, isDragging } = useDraggable({
