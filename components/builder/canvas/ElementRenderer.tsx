@@ -310,10 +310,10 @@ function ElementContent({ element, content }: { element: BuilderElement; content
             {(content.beforeImage as string) ? <img src={content.beforeImage as string} alt="Before" className="w-full h-36 object-cover" /> : <div className="w-full h-36 bg-slate-200 flex items-center justify-center text-slate-400 text-sm">Before Image</div>}
             <div className="absolute bottom-2 left-2 text-xs font-black bg-black/50 text-white px-2 py-0.5 rounded-full">{content.beforeLabel as string || "Before"}</div>
           </div>
-          <div className="relative rounded-xl overflow-hidden">
-            {(content.afterImage as string) ? <img src={content.afterImage as string} alt="After" className="w-full h-36 object-cover" /> : <div className="w-full h-36 bg-slate-200 flex items-center justify-center text-slate-400 text-sm">After Image</div>}
-            <div className="absolute bottom-2 left-2 text-xs font-black text-white px-2 py-0.5 rounded-full" className="bg-josett-600">{content.afterLabel as string || "After"}</div>
-          </div>
+             <div className="relative rounded-xl overflow-hidden">
+              {(content.afterImage as string) ? <img src={content.afterImage as string} alt="After" className="w-full h-36 object-cover" /> : <div className="w-full h-36 bg-slate-200 flex items-center justify-center text-slate-400 text-sm">After Image</div>}
+            <div className="absolute bottom-2 left-2 text-xs font-black text-white px-2 py-0.5 rounded-full bg-josett-600">{content.afterLabel as string || "After"}</div>
+           </div>
         </div>
       );
 
