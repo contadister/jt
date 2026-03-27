@@ -325,7 +325,7 @@ export const TEMPLATES: Template[] = [
         ]
       }]
     }
-  }
+  },
 
   // ── Portfolio ─────────────────────────────────────────────
   {
