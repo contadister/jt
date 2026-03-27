@@ -752,7 +752,7 @@ export const TEMPLATES: Template[] = [
         ]
       }]
     }
-  }
+  },
   {
     id: "church",
     name: "Church & Ministry",
