@@ -217,11 +217,11 @@ export const TEMPLATES: Template[] = [
           { id: "s-newsletter", type: "section", isVisible: true, styles: { background: "linear-gradient(135deg,#6272f1,#8b5cf6)", paddingTop: 70, paddingBottom: 70 },
             elements: [{ id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: {}, content: { title: "Get free business tips & insights every week", placeholder: "Enter your email address", buttonLabel: "Subscribe Free" } }] },
           { id: "s-footer", type: "footer", isVisible: true, styles: { backgroundColor: "#0f0c29", paddingTop: 0, paddingBottom: 0 },
-            elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: { color: "#64748b" }, content: { text: "© 2025 My Business. Professional services that deliver real results.", links: [{ label: "Privacy Policy", href: "/privacy" }, { label: "Terms of Service", href: "/terms" }] } }] }
+            elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: { color: "#64748b" }, content: { text: "© 2025 My Business. Professional services that deliver real results.", links: [{ label: "Privacy Policy", href: "/privacy" }, { label: "Terms of Service", href: "/terms" }] } }] },
         ]
       }]
     }
-  }
+  },
 
   // ── Restaurant ────────────────────────────────────────────
   {
@@ -321,7 +321,7 @@ export const TEMPLATES: Template[] = [
               { id: "mp-el", type: "map", isVisible: true, isLocked: false, styles: { borderRadius: "16px", overflow: "hidden" }, content: { address: "Osu, Accra, Ghana", zoom: 15 } }
             ] },
           { id: "s-footer", type: "footer", isVisible: true, styles: { backgroundColor: "#0a0000" },
-            elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: { color: "#7f1d1d" }, content: { text: "© 2025 Mama's Kitchen. Made with love since 2009.", links: [] } }] }
+            elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: { color: "#7f1d1d" }, content: { text: "© 2025 Mama's Kitchen. Made with love since 2009.", links: [] } }] },
         ]
       }]
     }
@@ -426,7 +426,7 @@ export const TEMPLATES: Template[] = [
             { id: "wa-t", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#64748b", marginBottom: "24px" }, content: { text: "We typically reply within minutes." } },
             { id: "wa-el", type: "whatsapp-button", isVisible: true, isLocked: false, styles: { display: "flex", justifyContent: "center" }, content: { number: "", message: "Hello! I'd like to place an order.", label: "Message Us to Order" } }
           ] },
-          { id: "footer", type: "footer", isVisible: true, styles: { backgroundColor: "#064e3b" }, elements: [{ id: "f1", type: "footer", isVisible: true, isLocked: false, styles: { color: "#6ee7b7" }, content: { text: "© 2025 My Shop. Secured by Paystack." } }] }
+          { id: "footer", type: "footer", isVisible: true, styles: { backgroundColor: "#064e3b" }, elements: [{ id: "f1", type: "footer", isVisible: true, isLocked: false, styles: { color: "#6ee7b7" }, content: { text: "© 2025 My Shop. Secured by Paystack." } }] },
         ]
       }]
     }
@@ -483,7 +483,7 @@ export const TEMPLATES: Template[] = [
           { id: "s-newsletter", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#6272f1" }, elements: [
             { id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { title: "Stay updated on our impact & latest news", placeholder: "Enter your email address", buttonLabel: "Subscribe" } }
           ] },
-          { id: "footer", type: "footer", isVisible: true, styles: { backgroundColor: "#1c1917" }, elements: [{ id: "f1", type: "footer", isVisible: true, isLocked: false, styles: { color: "#a8a29e" }, content: { text: "© 2025 Our Organization. Registered NGO." } }] }
+          { id: "footer", type: "footer", isVisible: true, styles: { backgroundColor: "#1c1917" }, elements: [{ id: "f1", type: "footer", isVisible: true, isLocked: false, styles: { color: "#a8a29e" }, content: { text: "© 2025 Our Organization. Registered NGO." } }] },
         ]
       }]
     }
@@ -525,7 +525,7 @@ export const TEMPLATES: Template[] = [
               { q: "Can I republish your articles?", a: "Please contact me first. I'm open to syndication with proper attribution." }
             ] } }
           ] },
-          { id: "footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "f1", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 My Blog. Written with ❤️ from Ghana." } }] }
+          { id: "footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "f1", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 My Blog. Written with ❤️ from Ghana." } }] },
         ]
       }]
     }
@@ -629,7 +629,7 @@ export const TEMPLATES: Template[] = [
           { id: "s-newsletter", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#6272f1" }, elements: [
             { id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { title: "Get event updates & early bird ticket alerts", placeholder: "Enter your email address", buttonLabel: "Subscribe" } }
           ] },
-          { id: "footer", type: "footer", isVisible: true, styles: { backgroundColor: "#0c0a09" }, elements: [{ id: "f1", type: "footer", isVisible: true, isLocked: false, styles: { color: "#a8a29e" }, content: { text: "© 2025 Event Name. All rights reserved." } }] }
+          { id: "footer", type: "footer", isVisible: true, styles: { backgroundColor: "#0c0a09" }, elements: [{ id: "f1", type: "footer", isVisible: true, isLocked: false, styles: { color: "#a8a29e" }, content: { text: "© 2025 Event Name. All rights reserved." } }] },
         ]
       }]
     }
@@ -748,7 +748,7 @@ export const TEMPLATES: Template[] = [
             { id: "cmp-el", type: "image-compare", isVisible: true, isLocked: false, styles: {}, content: { beforeImage: "", afterImage: "", beforeLabel: "Before Your Visit", afterLabel: "After Your Treatment" } }
           ] },
           { id: "s-footer", type: "footer", isVisible: true, styles: { backgroundColor: "#1a0010" },
-            elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: { color: "#9d174d" }, content: { text: "© 2025 Glam Studio. Where beauty meets luxury.", links: [] } }] }
+            elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: { color: "#9d174d" }, content: { text: "© 2025 Glam Studio. Where beauty meets luxury.", links: [] } }] },
         ]
       }]
     }
@@ -809,7 +809,7 @@ export const TEMPLATES: Template[] = [
           { id: "s-newsletter", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#6272f1" }, elements: [
             { id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { title: "Get our weekly sermon notes & church updates", placeholder: "Enter your email address", buttonLabel: "Subscribe" } }
           ] },
-          { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 Grace Community Church. All are welcome.", links: [] } }] }
+          { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 Grace Community Church. All are welcome.", links: [] } }] },
         ]
       }]
     }
@@ -863,7 +863,7 @@ export const TEMPLATES: Template[] = [
           { id: "s-newsletter", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#6272f1" }, elements: [
             { id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { title: "Get school news, events & term dates", placeholder: "Enter your email address", buttonLabel: "Subscribe" } }
           ] },
-          { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 Bright Futures Academy. Excellence in Education.", links: [] } }] }
+          { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 Bright Futures Academy. Excellence in Education.", links: [] } }] },
         ]
       }]
     }
@@ -922,7 +922,7 @@ export const TEMPLATES: Template[] = [
           { id: "s-newsletter", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#6272f1" }, elements: [
             { id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { title: "Get new property listings & market updates", placeholder: "Enter your email address", buttonLabel: "Subscribe" } }
           ] },
-          { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 Prime Properties GH. Licensed Real Estate Agency.", links: [] } }] }
+          { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 Prime Properties GH. Licensed Real Estate Agency.", links: [] } }] },
         ]
       }]
     }
@@ -983,7 +983,7 @@ export const TEMPLATES: Template[] = [
           { id: "s-hours", type: "section", isVisible: true, styles: { paddingTop: 70, paddingBottom: 70, backgroundColor: "#fff" }, elements: [
             { id: "hr-el", type: "business-hours", isVisible: true, isLocked: false, styles: {}, content: { title: "Opening Hours", hours: [{ day: "Monday – Friday", time: "5:00am – 10:00pm" }, { day: "Saturday", time: "6:00am – 8:00pm" }, { day: "Sunday", time: "8:00am – 6:00pm" }, { day: "Public Holidays", time: "8:00am – 4:00pm" }] } }
           ] },
-          { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: { color: "#94a3b8" }, content: { text: "© 2025 PowerFit Gym. Train Hard. Live Strong.", links: [] } }] }
+          { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: { color: "#94a3b8" }, content: { text: "© 2025 PowerFit Gym. Train Hard. Live Strong.", links: [] } }] },
         ]
       }]
     }
@@ -1044,7 +1044,7 @@ export const TEMPLATES: Template[] = [
           { id: "s-hours", type: "section", isVisible: true, styles: { paddingTop: 70, paddingBottom: 70, backgroundColor: "#fff" }, elements: [
             { id: "hr-el", type: "business-hours", isVisible: true, isLocked: false, styles: {}, content: { title: "Opening Hours", hours: [{ day: "Monday – Friday", time: "8:00am – 6:00pm" }, { day: "Saturday", time: "9:00am – 2:00pm" }, { day: "Sunday", time: "Emergency only" }, { day: "24/7 Emergency Line", time: "Always available" }] } }
           ] },
-          { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 HealthCare Clinic. Caring for Ghana.", links: [] } }] }
+          { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 HealthCare Clinic. Caring for Ghana.", links: [] } }] },
         ]
       }]
     }
@@ -1096,7 +1096,7 @@ export const TEMPLATES: Template[] = [
               { q: "What rights do I get to the images?", a: "You receive full commercial rights to all delivered images." }
             ] } }
           ] },
-          { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 Lens & Light Photography. Capturing Ghana's best moments.", links: [] } }] }
+          { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 Lens & Light Photography. Capturing Ghana's best moments.", links: [] } }] },
         ]
       }]
     }
@@ -1157,7 +1157,7 @@ export const TEMPLATES: Template[] = [
           { id: "s-newsletter", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#6272f1" }, elements: [
             { id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { title: "Get exclusive rates & special offers", placeholder: "Enter your email address", buttonLabel: "Subscribe" } }
           ] },
-          { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 The Grand Hotel Ghana. Luxury Hospitality.", links: [] } }] }
+          { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 The Grand Hotel Ghana. Luxury Hospitality.", links: [] } }] },
         ]
       }]
     }
@@ -1220,7 +1220,7 @@ export const TEMPLATES: Template[] = [
           { id: "s-newsletter", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#6272f1" }, elements: [
             { id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { title: "Get legal tips & firm updates", placeholder: "Enter your email address", buttonLabel: "Subscribe" } }
           ] },
-          { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 Agyei & Partners Legal. All rights reserved. Not legal advice.", links: [] } }] }
+          { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 Agyei & Partners Legal. All rights reserved. Not legal advice.", links: [] } }] },
         ]
       }]
     }
@@ -1285,7 +1285,7 @@ export const TEMPLATES: Template[] = [
           { id: "s-newsletter", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#6272f1" }, elements: [
             { id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { title: "Get product updates & early access to new features", placeholder: "Enter your email address", buttonLabel: "Subscribe" } }
           ] },
-          { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 LaunchPad Technologies. Built with ❤️ in Ghana.", links: [{ label: "Privacy", href: "/privacy" }, { label: "Terms", href: "/terms" }] } }] }
+          { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 LaunchPad Technologies. Built with ❤️ in Ghana.", links: [{ label: "Privacy", href: "/privacy" }, { label: "Terms", href: "/terms" }] } }] },
         ]
       }]
     }
@@ -1331,7 +1331,7 @@ export const TEMPLATES: Template[] = [
               { q: "Do you accept custom orders?", a: "Yes! We do custom orders for events, uniforms and corporate wear. Contact us for pricing." }
             ] } }
           ] },
-          { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 Kente & Co. African Fashion.", links: [] } }] }
+          { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 Kente & Co. African Fashion.", links: [] } }] },
         ]
       }]
     }
@@ -1388,7 +1388,7 @@ export const TEMPLATES: Template[] = [
           { id: "s-newsletter", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#6272f1" }, elements: [
             { id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { title: "Get new stock alerts & special deals", placeholder: "Enter your email address", buttonLabel: "Subscribe" } }
           ] },
-          { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 Premier Auto GH. Drive with confidence.", links: [] } }] }
+          { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 Premier Auto GH. Drive with confidence.", links: [] } }] },
         ]
       }]
     }
@@ -1449,7 +1449,7 @@ export const TEMPLATES: Template[] = [
             { id: "cmp-t", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#64748b", marginBottom: "40px" }, content: { text: "Real results from our clients" } },
             { id: "cmp-el", type: "image-compare", isVisible: true, isLocked: false, styles: {}, content: { beforeImage: "", afterImage: "", beforeLabel: "Before Cleaning", afterLabel: "Spotlessly Clean" } }
           ] },
-          { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 SparkleClean GH. We clean so you don't have to.", links: [] } }] }
+          { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 SparkleClean GH. We clean so you don't have to.", links: [] } }] },
         ]
       }]
     }
@@ -1501,7 +1501,7 @@ export const TEMPLATES: Template[] = [
           { id: "s-newsletter", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#6272f1" }, elements: [
             { id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { title: "Get our weekly menu & special event packages", placeholder: "Enter your email address", buttonLabel: "Subscribe" } }
           ] },
-          { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 Mama's Kitchen. Cooked with love.", links: [] } }] }
+          { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 Mama's Kitchen. Cooked with love.", links: [] } }] },
         ]
       }]
     }
@@ -1566,7 +1566,7 @@ export const TEMPLATES: Template[] = [
           { id: "s-hours", type: "section", isVisible: true, styles: { paddingTop: 70, paddingBottom: 70, backgroundColor: "#fff" }, elements: [
             { id: "hr-el", type: "business-hours", isVisible: true, isLocked: false, styles: {}, content: { title: "Opening Hours", hours: [{ day: "Monday", time: "8:00am – 7:00pm" }, { day: "Tuesday", time: "8:00am – 7:00pm" }, { day: "Wednesday", time: "8:00am – 7:00pm" }, { day: "Thursday", time: "8:00am – 8:00pm" }, { day: "Friday", time: "8:00am – 8:00pm" }, { day: "Saturday", time: "7:00am – 6:00pm" }, { day: "Sunday", time: "10:00am – 3:00pm" }] } }
           ] },
-          { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: { color: "#94a3b8" }, content: { text: "© 2025 Kingcuts Barbershop. Stay sharp.", links: [] } }] }
+          { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: { color: "#94a3b8" }, content: { text: "© 2025 Kingcuts Barbershop. Stay sharp.", links: [] } }] },
         ]
       }]
     }
@@ -1626,7 +1626,7 @@ export const TEMPLATES: Template[] = [
           { id: "s-newsletter", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#6272f1" }, elements: [
             { id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { title: "Get event inspiration & planning tips", placeholder: "Enter your email address", buttonLabel: "Subscribe" } }
           ] },
-          { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 Celebrations by Adwoa. Every moment deserves to be magical.", links: [] } }] }
+          { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 Celebrations by Adwoa. Every moment deserves to be magical.", links: [] } }] },
         ]
       }]
     }
@@ -1688,7 +1688,7 @@ export const TEMPLATES: Template[] = [
           { id: "s-newsletter", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#6272f1" }, elements: [
             { id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { title: "Get business strategy tips & insights", placeholder: "Enter your email address", buttonLabel: "Subscribe" } }
           ] },
-          { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 Kofi Mensah Consulting. Building Africa's next generation of great businesses.", links: [] } }] }
+          { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 Kofi Mensah Consulting. Building Africa's next generation of great businesses.", links: [] } }] },
         ]
       }]
     }
@@ -1740,7 +1740,7 @@ export const TEMPLATES: Template[] = [
           { id: "s-hours", type: "section", isVisible: true, styles: { paddingTop: 70, paddingBottom: 70, backgroundColor: "#fff" }, elements: [
             { id: "hr-el", type: "business-hours", isVisible: true, isLocked: false, styles: {}, content: { title: "Opening Hours", hours: [{ day: "Monday – Friday", time: "7:00am – 9:00pm" }, { day: "Saturday", time: "8:00am – 8:00pm" }, { day: "Sunday", time: "9:00am – 5:00pm" }, { day: "24-Hour Emergency", time: "Call our hotline" }] } }
           ] },
-          { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 Vida Pharmacy. Your health, our priority.", links: [] } }] }
+          { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 Vida Pharmacy. Your health, our priority.", links: [] } }] },
         ]
       }]
     }
@@ -1796,7 +1796,7 @@ export const TEMPLATES: Template[] = [
           { id: "s-newsletter", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#6272f1" }, elements: [
             { id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { title: "Get logistics tips & delivery promotions", placeholder: "Enter your email address", buttonLabel: "Subscribe" } }
           ] },
-          { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 SwiftMove Logistics. Delivering trust, one package at a time.", links: [] } }] }
+          { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 SwiftMove Logistics. Delivering trust, one package at a time.", links: [] } }] },
         ]
       }]
     }
@@ -1847,7 +1847,7 @@ export const TEMPLATES: Template[] = [
           { id: "s-newsletter", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#6272f1" }, elements: [
             { id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { title: "Get design inspiration & décor tips", placeholder: "Enter your email address", buttonLabel: "Subscribe" } }
           ] },
-          { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 Afia Interiors. Beautiful spaces, beautifully done.", links: [] } }] }
+          { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 Afia Interiors. Beautiful spaces, beautifully done.", links: [] } }] },
         ]
       }]
     }
@@ -1896,7 +1896,7 @@ export const TEMPLATES: Template[] = [
           { id: "s-newsletter", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#6272f1" }, elements: [
             { id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { title: "Get new product updates & special printing deals", placeholder: "Enter your email address", buttonLabel: "Subscribe" } }
           ] },
-          { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 PrintKing GH. Print it right.", links: [] } }] }
+          { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 PrintKing GH. Print it right.", links: [] } }] },
         ]
       }]
     }
@@ -1952,7 +1952,7 @@ export const TEMPLATES: Template[] = [
           { id: "s-newsletter", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#6272f1" }, elements: [
             { id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { title: "Get security tips & company updates", placeholder: "Enter your email address", buttonLabel: "Subscribe" } }
           ] },
-          { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: { color: "#94a3b8" }, content: { text: "© 2025 Guardian Shield Security. Protecting Ghana.", links: [] } }] }
+          { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: { color: "#94a3b8" }, content: { text: "© 2025 Guardian Shield Security. Protecting Ghana.", links: [] } }] },
         ]
       }]
     }
@@ -2011,7 +2011,7 @@ export const TEMPLATES: Template[] = [
           { id: "s-newsletter", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#6272f1" }, elements: [
             { id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { title: "Get construction tips & project showcases", placeholder: "Enter your email address", buttonLabel: "Subscribe" } }
           ] },
-          { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 BuildRight Construction. Quality you can build on.", links: [] } }] }
+          { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 BuildRight Construction. Quality you can build on.", links: [] } }] },
         ]
       }]
     }
@@ -2066,7 +2066,7 @@ export const TEMPLATES: Template[] = [
           { id: "s-newsletter", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#6272f1" }, elements: [
             { id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { title: "Get study tips, exam guides & session offers", placeholder: "Enter your email address", buttonLabel: "Subscribe" } }
           ] },
-          { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 AceMind Tutoring. Every child can excel.", links: [] } }] }
+          { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 AceMind Tutoring. Every child can excel.", links: [] } }] },
         ]
       }]
     }
@@ -2129,7 +2129,7 @@ export const TEMPLATES: Template[] = [
           { id: "s-hours", type: "section", isVisible: true, styles: { paddingTop: 70, paddingBottom: 70, backgroundColor: "#fff" }, elements: [
             { id: "hr-el", type: "business-hours", isVisible: true, isLocked: false, styles: {}, content: { title: "Opening Hours", hours: [{ day: "Monday – Friday", time: "9:00am – 8:00pm" }, { day: "Saturday", time: "9:00am – 6:00pm" }, { day: "Sunday", time: "10:00am – 5:00pm" }] } }
           ] },
-          { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 Serenity Spa & Wellness. Your peace awaits.", links: [] } }] }
+          { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 Serenity Spa & Wellness. Your peace awaits.", links: [] } }] },
         ]
       }]
     }
@@ -2177,7 +2177,7 @@ export const TEMPLATES: Template[] = [
           { id: "s-newsletter", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#6272f1" }, elements: [
             { id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { title: "Get tournament schedules, new games & special offers", placeholder: "Enter your email address", buttonLabel: "Subscribe" } }
           ] },
-          { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: { color: "#94a3b8" }, content: { text: "© 2025 GhanaGameZone. Play hard. Win harder.", links: [] } }] }
+          { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: { color: "#94a3b8" }, content: { text: "© 2025 GhanaGameZone. Play hard. Win harder.", links: [] } }] },
         ]
       }]
     }
@@ -2217,7 +2217,7 @@ export const TEMPLATES: Template[] = [
             { id: "bk-f", type: "form", isVisible: true, isLocked: false, styles: { maxWidth: "560px", margin: "0 auto" }, content: { title: "", fields: [{ name: "name", label: "Full Name", type: "text", required: true }, { name: "phone", label: "Phone / WhatsApp", type: "tel", required: true }, { name: "destination", label: "Destination", type: "text", required: true }, { name: "passengers", label: "Number of Passengers", type: "text", required: true }, { name: "travelDate", label: "Preferred Travel Date", type: "text", required: false }, { name: "budget", label: "Budget (GHS)", type: "text", required: false }], submitText: "Request Quote" } }
           ] },
           { id: "s-wa", type: "section", isVisible: true, styles: { padding: "20px 40px" }, elements: [{ id: "wa-el", type: "whatsapp-button", isVisible: true, isLocked: false, styles: {}, content: { number: "233200000000", message: "Hello! I'd like to inquire about travel packages." } }] },
-          { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 SkyBound Travel. Licensed travel agency in Ghana.", links: [{ label: "Privacy", href: "#" }] } }] }
+          { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft-el", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 SkyBound Travel. Licensed travel agency in Ghana.", links: [{ label: "Privacy", href: "#" }] } }] },
         ]
       }]
     }
@@ -2273,7 +2273,7 @@ export const TEMPLATES: Template[] = [
             { id: "cmp-t", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#64748b", marginBottom: "40px" }, content: { text: "Real results from our clients" } },
             { id: "cmp-el", type: "image-compare", isVisible: true, isLocked: false, styles: {}, content: { beforeImage: "", afterImage: "", beforeLabel: "Natural Skin", afterLabel: "After Treatment" } }
           ] },
-          { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 Lumière Beauty. Celebrating African beauty.", links: [] } }] }
+          { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 Lumière Beauty. Celebrating African beauty.", links: [] } }] },
         ]
       }]
     }
@@ -2328,7 +2328,7 @@ export const TEMPLATES: Template[] = [
             { id: "cmp-t", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#64748b", marginBottom: "40px" }, content: { text: "Real results from our clients" } },
             { id: "cmp-el", type: "image-compare", isVisible: true, isLocked: false, styles: {}, content: { beforeImage: "", afterImage: "", beforeLabel: "Before Service", afterLabel: "After Service" } }
           ] },
-          { id: "s-footer", type: "footer", isVisible: true, styles: { background: "#0f172a" }, elements: [{ id: "ft", type: "footer", isVisible: true, isLocked: false, styles: { color: "#94a3b8" }, content: { text: "© 2025 ProAuto Workshop. Quality you can trust.", links: [] } }] }
+          { id: "s-footer", type: "footer", isVisible: true, styles: { background: "#0f172a" }, elements: [{ id: "ft", type: "footer", isVisible: true, isLocked: false, styles: { color: "#94a3b8" }, content: { text: "© 2025 ProAuto Workshop. Quality you can trust.", links: [] } }] },
         ]
       }]
     }
@@ -2382,7 +2382,7 @@ export const TEMPLATES: Template[] = [
           { id: "s-newsletter", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#6272f1" }, elements: [
             { id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { title: "Get farming tips, market prices & company news", placeholder: "Enter your email address", buttonLabel: "Subscribe" } }
           ] },
-          { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 GreenFields Farm. Grown with love in Ghana.", links: [] } }] }
+          { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 GreenFields Farm. Grown with love in Ghana.", links: [] } }] },
         ]
       }]
     }
@@ -2435,7 +2435,7 @@ export const TEMPLATES: Template[] = [
           { id: "s-newsletter", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#6272f1" }, elements: [
             { id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { title: "Get parenting tips & centre updates", placeholder: "Enter your email address", buttonLabel: "Subscribe" } }
           ] },
-          { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 Little Stars Daycare. Nurturing the next generation.", links: [] } }] }
+          { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 Little Stars Daycare. Nurturing the next generation.", links: [] } }] },
         ]
       }]
     }
@@ -2499,7 +2499,7 @@ export const TEMPLATES: Template[] = [
           { id: "s-newsletter", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#6272f1" }, elements: [
             { id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { title: "Get tax tips & financial insights", placeholder: "Enter your email address", buttonLabel: "Subscribe" } }
           ] },
-          { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 Mensah & Associates. Chartered Accountants & Business Advisors.", links: [] } }] }
+          { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 Mensah & Associates. Chartered Accountants & Business Advisors.", links: [] } }] },
         ]
       }]
     }
@@ -2561,7 +2561,7 @@ export const TEMPLATES: Template[] = [
           { id: "s-newsletter", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#6272f1" }, elements: [
             { id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { title: "Get new music, tour dates & exclusive content", placeholder: "Enter your email address", buttonLabel: "Subscribe" } }
           ] },
-          { id: "s-footer", type: "footer", isVisible: true, styles: { background: "#09090b" }, elements: [{ id: "ft", type: "footer", isVisible: true, isLocked: false, styles: { color: "#71717a" }, content: { text: "© 2025 Kojo Beat. All rights reserved.", links: [] } }] }
+          { id: "s-footer", type: "footer", isVisible: true, styles: { background: "#09090b" }, elements: [{ id: "ft", type: "footer", isVisible: true, isLocked: false, styles: { color: "#71717a" }, content: { text: "© 2025 Kojo Beat. All rights reserved.", links: [] } }] },
         ]
       }]
     }
@@ -2611,7 +2611,7 @@ export const TEMPLATES: Template[] = [
           { id: "s-newsletter", type: "section", isVisible: true, styles: { padding: "60px 40px", background: "#6272f1" }, elements: [
             { id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { title: "Get pet care tips & clinic updates", placeholder: "Enter your email address", buttonLabel: "Subscribe" } }
           ] },
-          { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 PawCare Vet Clinic. Because every life matters.", links: [] } }] }
+          { id: "s-footer", type: "footer", isVisible: true, styles: {}, elements: [{ id: "ft", type: "footer", isVisible: true, isLocked: false, styles: {}, content: { text: "© 2025 PawCare Vet Clinic. Because every life matters.", links: [] } }] },
         ]
       }]
     }
@@ -2689,7 +2689,7 @@ export const TEMPLATES: Template[] = [
             { id: "wa-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#fff", marginBottom: "8px" }, content: { text: "Chat With Us on WhatsApp", level: "h2" } },
             { id: "wa-el", type: "whatsapp-button", isVisible: true, isLocked: false, styles: { display: "flex", justifyContent: "center" }, content: { number: "", message: "Hello! I'd like to enquire about wedding planning services.", label: "Chat With Our Planner" } }
           ] },
-          { id: "s-footer", type: "footer", isVisible: true, styles: { backgroundColor: "#1a0e08" }, elements: [{ id: "ft", type: "footer", isVisible: true, isLocked: false, styles: { color: "#8a7060" }, content: { text: "© 2025 Ivory & Gold Events. Crafting unforgettable moments.", links: [] } }] }
+          { id: "s-footer", type: "footer", isVisible: true, styles: { backgroundColor: "#1a0e08" }, elements: [{ id: "ft", type: "footer", isVisible: true, isLocked: false, styles: { color: "#8a7060" }, content: { text: "© 2025 Ivory & Gold Events. Crafting unforgettable moments.", links: [] } }] },
         ]
       }]
     }
@@ -2770,7 +2770,7 @@ export const TEMPLATES: Template[] = [
             { id: "ct-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#fff", marginBottom: "16px" }, content: { text: "Ready to Grow? Get Your Free Audit", level: "h2" } },
             { id: "ct-f", type: "form", isVisible: true, isLocked: false, styles: { maxWidth: "500px", margin: "0 auto" }, content: { title: "", fields: [{ name: "name", label: "Your Name", type: "text", required: true }, { name: "email", label: "Email Address", type: "email", required: true }, { name: "website", label: "Your Website URL", type: "text", required: false }, { name: "budget", label: "Monthly Marketing Budget", type: "text", required: false }], submitText: "Get My Free Audit" } }
           ] },
-          { id: "s-footer", type: "footer", isVisible: true, styles: { backgroundColor: "#030308" }, elements: [{ id: "ft", type: "footer", isVisible: true, isLocked: false, styles: { color: "#475569" }, content: { text: "© 2025 Apex Digital Agency. We Grow Businesses.", links: [] } }] }
+          { id: "s-footer", type: "footer", isVisible: true, styles: { backgroundColor: "#030308" }, elements: [{ id: "ft", type: "footer", isVisible: true, isLocked: false, styles: { color: "#475569" }, content: { text: "© 2025 Apex Digital Agency. We Grow Businesses.", links: [] } }] },
         ]
       }]
     }
@@ -2847,7 +2847,7 @@ export const TEMPLATES: Template[] = [
             { id: "wa-t", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "rgba(255,255,255,0.85)", marginBottom: "24px" }, content: { text: "I reply within minutes. No commitment required." } },
             { id: "wa-el", type: "whatsapp-button", isVisible: true, isLocked: false, styles: { display: "flex", justifyContent: "center" }, content: { number: "", message: "Hello Coach! I'm interested in your training programs. Can we chat?", label: "Message Coach Kofi" } }
           ] },
-          { id: "s-footer", type: "footer", isVisible: true, styles: { backgroundColor: "#030305" }, elements: [{ id: "ft", type: "footer", isVisible: true, isLocked: false, styles: { color: "#475569" }, content: { text: "© 2025 Coach Kofi Fitness. Transform. Inspire. Win.", links: [] } }] }
+          { id: "s-footer", type: "footer", isVisible: true, styles: { backgroundColor: "#030305" }, elements: [{ id: "ft", type: "footer", isVisible: true, isLocked: false, styles: { color: "#475569" }, content: { text: "© 2025 Coach Kofi Fitness. Transform. Inspire. Win.", links: [] } }] },
         ]
       }]
     }
@@ -2909,7 +2909,7 @@ export const TEMPLATES: Template[] = [
           { id: "s-wa", type: "section", isVisible: true, styles: { backgroundColor: "#92400e", paddingTop: 50, paddingBottom: 50 }, elements: [
             { id: "wa-el", type: "whatsapp-button", isVisible: true, isLocked: false, styles: { display: "flex", justifyContent: "center" }, content: { number: "", message: "Hello! I'd like to order from Sweet Crumbs Bakery.", label: "Order on WhatsApp" } }
           ] },
-          { id: "s-footer", type: "footer", isVisible: true, styles: { backgroundColor: "#1c0a00" }, elements: [{ id: "ft", type: "footer", isVisible: true, isLocked: false, styles: { color: "#92400e" }, content: { text: "© 2025 Sweet Crumbs Bakery. Baked with love daily.", links: [] } }] }
+          { id: "s-footer", type: "footer", isVisible: true, styles: { backgroundColor: "#1c0a00" }, elements: [{ id: "ft", type: "footer", isVisible: true, isLocked: false, styles: { color: "#92400e" }, content: { text: "© 2025 Sweet Crumbs Bakery. Baked with love daily.", links: [] } }] },
         ]
       }]
     }
@@ -2984,7 +2984,7 @@ export const TEMPLATES: Template[] = [
             { id: "ct-t", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "rgba(255,255,255,0.8)", marginBottom: "32px" }, content: { text: "Join 25,000+ learners building skills that matter." } },
             { id: "ct-f", type: "form", isVisible: true, isLocked: false, styles: { maxWidth: "440px", margin: "0 auto" }, content: { title: "", fields: [{ name: "name", label: "Your Name", type: "text", required: true }, { name: "email", label: "Email Address", type: "email", required: true }], submitText: "Create Free Account" } }
           ] },
-          { id: "s-footer", type: "footer", isVisible: true, styles: { backgroundColor: "#0f0720" }, elements: [{ id: "ft", type: "footer", isVisible: true, isLocked: false, styles: { color: "#6b21a8" }, content: { text: "© 2025 EduVault Academy. Learn. Grow. Succeed.", links: [] } }] }
+          { id: "s-footer", type: "footer", isVisible: true, styles: { backgroundColor: "#0f0720" }, elements: [{ id: "ft", type: "footer", isVisible: true, isLocked: false, styles: { color: "#6b21a8" }, content: { text: "© 2025 EduVault Academy. Learn. Grow. Succeed.", links: [] } }] },
         ]
       }]
     }
@@ -3047,7 +3047,7 @@ export const TEMPLATES: Template[] = [
             { id: "ct-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#fff", marginBottom: "40px" }, content: { text: "Start a Project", level: "h2" } },
             { id: "ct-f", type: "form", isVisible: true, isLocked: false, styles: { maxWidth: "560px", margin: "0 auto" }, content: { title: "", fields: [{ name: "name", label: "Your Name", type: "text", required: true }, { name: "email", label: "Email", type: "email", required: true }, { name: "phone", label: "Phone", type: "tel", required: true }, { name: "type", label: "Project Type", type: "text", required: true }, { name: "location", label: "Project Location", type: "text", required: false }, { name: "brief", label: "Brief Description", type: "textarea", required: false }], submitText: "Submit Brief" } }
           ] },
-          { id: "s-footer", type: "footer", isVisible: true, styles: { backgroundColor: "#020617" }, elements: [{ id: "ft", type: "footer", isVisible: true, isLocked: false, styles: { color: "#475569" }, content: { text: "© 2025 Form & Structure Architects. Designed in Ghana.", links: [] } }] }
+          { id: "s-footer", type: "footer", isVisible: true, styles: { backgroundColor: "#020617" }, elements: [{ id: "ft", type: "footer", isVisible: true, isLocked: false, styles: { color: "#475569" }, content: { text: "© 2025 Form & Structure Architects. Designed in Ghana.", links: [] } }] },
         ]
       }]
     }
@@ -3111,7 +3111,7 @@ export const TEMPLATES: Template[] = [
           { id: "s-hours", type: "section", isVisible: true, styles: { paddingTop: 70, paddingBottom: 70, backgroundColor: "#fff" }, elements: [
             { id: "hr-el", type: "business-hours", isVisible: true, isLocked: false, styles: {}, content: { title: "Opening Hours", hours: [{ day: "Monday – Wednesday", time: "8:00am – 5:00pm" }, { day: "Thursday", time: "8:00am – 7:00pm" }, { day: "Friday", time: "8:00am – 5:00pm" }, { day: "Saturday", time: "9:00am – 1:00pm" }, { day: "Sunday", time: "Closed" }] } }
           ] },
-          { id: "s-footer", type: "footer", isVisible: true, styles: { backgroundColor: "#082f49" }, elements: [{ id: "ft", type: "footer", isVisible: true, isLocked: false, styles: { color: "#7dd3fc" }, content: { text: "© 2025 SmileCare Dental Clinic. Your smile is our priority.", links: [] } }] }
+          { id: "s-footer", type: "footer", isVisible: true, styles: { backgroundColor: "#082f49" }, elements: [{ id: "ft", type: "footer", isVisible: true, isLocked: false, styles: { color: "#7dd3fc" }, content: { text: "© 2025 SmileCare Dental Clinic. Your smile is our priority.", links: [] } }] },
         ]
       }]
     }
@@ -3186,7 +3186,7 @@ export const TEMPLATES: Template[] = [
             { id: "cmp-t", type: "text", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#64748b", marginBottom: "40px" }, content: { text: "Real results from our clients" } },
             { id: "cmp-el", type: "image-compare", isVisible: true, isLocked: false, styles: {}, content: { beforeImage: "", afterImage: "", beforeLabel: "Before Makeup", afterLabel: "After Glam" } }
           ] },
-          { id: "s-footer", type: "footer", isVisible: true, styles: { backgroundColor: "#1a0010" }, elements: [{ id: "ft", type: "footer", isVisible: true, isLocked: false, styles: { color: "#be185d" }, content: { text: "© 2025 Glam by Ama. Because you deserve to feel beautiful.", links: [] } }] }
+          { id: "s-footer", type: "footer", isVisible: true, styles: { backgroundColor: "#1a0010" }, elements: [{ id: "ft", type: "footer", isVisible: true, isLocked: false, styles: { color: "#be185d" }, content: { text: "© 2025 Glam by Ama. Because you deserve to feel beautiful.", links: [] } }] },
         ]
       }]
     }
@@ -3246,7 +3246,7 @@ export const TEMPLATES: Template[] = [
           { id: "s-wa", type: "section", isVisible: true, styles: { background: "linear-gradient(135deg,#1c0a3e,#f59e0b22)", paddingTop: 60, paddingBottom: 60 }, elements: [
             { id: "wa-el", type: "whatsapp-button", isVisible: true, isLocked: false, styles: { display: "flex", justifyContent: "center" }, content: { number: "", message: "Hi Skyline! I'd like to reserve a table.", label: "Reserve on WhatsApp" } }
           ] },
-          { id: "s-footer", type: "footer", isVisible: true, styles: { backgroundColor: "#030105" }, elements: [{ id: "ft", type: "footer", isVisible: true, isLocked: false, styles: { color: "#f59e0b44" }, content: { text: "© 2025 Skyline Bar & Lounge. Accra's rooftop experience.", links: [] } }] }
+          { id: "s-footer", type: "footer", isVisible: true, styles: { backgroundColor: "#030105" }, elements: [{ id: "ft", type: "footer", isVisible: true, isLocked: false, styles: { color: "#f59e0b44" }, content: { text: "© 2025 Skyline Bar & Lounge. Accra's rooftop experience.", links: [] } }] },
         ]
       }]
     }
@@ -3309,7 +3309,7 @@ export const TEMPLATES: Template[] = [
           { id: "s-wa", type: "section", isVisible: true, styles: { backgroundColor: "#083344", paddingTop: 50, paddingBottom: 50 }, elements: [
             { id: "wa-el", type: "whatsapp-button", isVisible: true, isLocked: false, styles: { display: "flex", justifyContent: "center" }, content: { number: "", message: "Hello Horizon Travel! I'd like a travel quote.", label: "Chat With a Travel Agent" } }
           ] },
-          { id: "s-footer", type: "footer", isVisible: true, styles: { backgroundColor: "#041c24" }, elements: [{ id: "ft", type: "footer", isVisible: true, isLocked: false, styles: { color: "#0891b2" }, content: { text: "© 2025 Horizon Travel & Tours. Explore More, Stress Less.", links: [] } }] }
+          { id: "s-footer", type: "footer", isVisible: true, styles: { backgroundColor: "#041c24" }, elements: [{ id: "ft", type: "footer", isVisible: true, isLocked: false, styles: { color: "#0891b2" }, content: { text: "© 2025 Horizon Travel & Tours. Explore More, Stress Less.", links: [] } }] },
         ]
       }]
     }
@@ -3374,7 +3374,7 @@ export const TEMPLATES: Template[] = [
           { id: "s-wa", type: "section", isVisible: true, styles: { backgroundColor: "#1c0a00", paddingTop: 50, paddingBottom: 50 }, elements: [
             { id: "wa-el", type: "whatsapp-button", isVisible: true, isLocked: false, styles: { display: "flex", justifyContent: "center" }, content: { number: "", message: "Hello Aurum! I'm interested in your jewellery.", label: "Chat With a Jeweller" } }
           ] },
-          { id: "s-footer", type: "footer", isVisible: true, styles: { backgroundColor: "#0c0500" }, elements: [{ id: "ft", type: "footer", isVisible: true, isLocked: false, styles: { color: "#b45309" }, content: { text: "© 2025 Aurum Jewellers. Crafted for eternity.", links: [] } }] }
+          { id: "s-footer", type: "footer", isVisible: true, styles: { backgroundColor: "#0c0500" }, elements: [{ id: "ft", type: "footer", isVisible: true, isLocked: false, styles: { color: "#b45309" }, content: { text: "© 2025 Aurum Jewellers. Crafted for eternity.", links: [] } }] },
         ]
       }]
     }
@@ -3443,7 +3443,7 @@ export const TEMPLATES: Template[] = [
           { id: "s-wa", type: "section", isVisible: true, styles: { backgroundColor: "#042f2e", paddingTop: 50, paddingBottom: 50 }, elements: [
             { id: "wa-el", type: "whatsapp-button", isVisible: true, isLocked: false, styles: { display: "flex", justifyContent: "center" }, content: { number: "", message: "Hello Nexus Hub! I'd like to book a tour of the coworking space.", label: "Book a Tour via WhatsApp" } }
           ] },
-          { id: "s-footer", type: "footer", isVisible: true, styles: { backgroundColor: "#021a19" }, elements: [{ id: "ft", type: "footer", isVisible: true, isLocked: false, styles: { color: "#0d9488" }, content: { text: "© 2025 Nexus Hub Coworking. Where work happens.", links: [] } }] }
+          { id: "s-footer", type: "footer", isVisible: true, styles: { backgroundColor: "#021a19" }, elements: [{ id: "ft", type: "footer", isVisible: true, isLocked: false, styles: { color: "#0d9488" }, content: { text: "© 2025 Nexus Hub Coworking. Where work happens.", links: [] } }] },
         ]
       }]
     }
@@ -3492,7 +3492,7 @@ export const TEMPLATES: Template[] = [
           { id: "s-newsletter", type: "section", isVisible: true, styles: { background: "linear-gradient(135deg,#7c3aed,#2e1065)", paddingTop: 70, paddingBottom: 70 }, elements: [
             { id: "nl-el", type: "newsletter-signup", isVisible: true, isLocked: false, styles: { color: "#fff" }, content: { title: "Get notified when new episodes drop", placeholder: "Enter your email", buttonLabel: "Subscribe" } }
           ] },
-          { id: "s-footer", type: "footer", isVisible: true, styles: { backgroundColor: "#050209" }, elements: [{ id: "ft", type: "footer", isVisible: true, isLocked: false, styles: { color: "#7c3aed" }, content: { text: "© 2025 The Real Talk Podcast. Real stories. Real impact.", links: [] } }] }
+          { id: "s-footer", type: "footer", isVisible: true, styles: { backgroundColor: "#050209" }, elements: [{ id: "ft", type: "footer", isVisible: true, isLocked: false, styles: { color: "#7c3aed" }, content: { text: "© 2025 The Real Talk Podcast. Real stories. Real impact.", links: [] } }] },
         ]
       }]
     }
@@ -3555,7 +3555,7 @@ export const TEMPLATES: Template[] = [
             { id: "ct-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#fff", marginBottom: "40px" }, content: { text: "Hire Faster. Hire Better.", level: "h2" } },
             { id: "ct-f", type: "form", isVisible: true, isLocked: false, styles: { maxWidth: "560px", margin: "0 auto" }, content: { title: "", fields: [{ name: "company", label: "Company Name", type: "text", required: true }, { name: "name", label: "Your Name", type: "text", required: true }, { name: "email", label: "Email", type: "email", required: true }, { name: "role", label: "Role(s) to fill", type: "text", required: true }, { name: "timeline", label: "When do you need them?", type: "text", required: false }], submitText: "Request Talent Now" } }
           ] },
-          { id: "s-footer", type: "footer", isVisible: true, styles: { backgroundColor: "#0c1a4a" }, elements: [{ id: "ft", type: "footer", isVisible: true, isLocked: false, styles: { color: "#3b82f6" }, content: { text: "© 2025 TalentBridge Recruitment. Your people are everything.", links: [] } }] }
+          { id: "s-footer", type: "footer", isVisible: true, styles: { backgroundColor: "#0c1a4a" }, elements: [{ id: "ft", type: "footer", isVisible: true, isLocked: false, styles: { color: "#3b82f6" }, content: { text: "© 2025 TalentBridge Recruitment. Your people are everything.", links: [] } }] },
         ]
       }]
     }
@@ -3624,7 +3624,7 @@ export const TEMPLATES: Template[] = [
           { id: "s-hours", type: "section", isVisible: true, styles: { paddingTop: 70, paddingBottom: 70, backgroundColor: "#fff" }, elements: [
             { id: "hr-el", type: "business-hours", isVisible: true, isLocked: false, styles: {}, content: { title: "Opening Hours", hours: [{ day: "Monday – Friday", time: "7:00am – 6:00pm" }, { day: "Saturday", time: "7:00am – 5:00pm" }, { day: "Sunday", time: "9:00am – 3:00pm" }] } }
           ] },
-          { id: "s-footer", type: "footer", isVisible: true, styles: { backgroundColor: "#0c1a4e" }, elements: [{ id: "ft", type: "footer", isVisible: true, isLocked: false, styles: { color: "#60a5fa" }, content: { text: "© 2025 AquaShine Car Wash. We make cars shine.", links: [] } }] }
+          { id: "s-footer", type: "footer", isVisible: true, styles: { backgroundColor: "#0c1a4e" }, elements: [{ id: "ft", type: "footer", isVisible: true, isLocked: false, styles: { color: "#60a5fa" }, content: { text: "© 2025 AquaShine Car Wash. We make cars shine.", links: [] } }] },
         ]
       }]
     }
@@ -3687,7 +3687,7 @@ export const TEMPLATES: Template[] = [
             { id: "en-h", type: "heading", isVisible: true, isLocked: false, styles: { textAlign: "center", color: "#fff", marginBottom: "40px" }, content: { text: "Enrol or Book a Free Trial", level: "h2" } },
             { id: "en-f", type: "form", isVisible: true, isLocked: false, styles: { maxWidth: "520px", margin: "0 auto" }, content: { title: "", fields: [{ name: "name", label: "Your Name", type: "text", required: true }, { name: "phone", label: "Phone / WhatsApp", type: "tel", required: true }, { name: "email", label: "Email", type: "email", required: true }, { name: "language", label: "Language of Interest", type: "text", required: true }, { name: "level", label: "Your Current Level", type: "text", required: false }], submitText: "Start Learning" } }
           ] },
-          { id: "s-footer", type: "footer", isVisible: true, styles: { backgroundColor: "#022c22" }, elements: [{ id: "ft", type: "footer", isVisible: true, isLocked: false, styles: { color: "#059669" }, content: { text: "© 2025 Lingua Institute Ghana. Open doors through language.", links: [] } }] }
+          { id: "s-footer", type: "footer", isVisible: true, styles: { backgroundColor: "#022c22" }, elements: [{ id: "ft", type: "footer", isVisible: true, isLocked: false, styles: { color: "#059669" }, content: { text: "© 2025 Lingua Institute Ghana. Open doors through language.", links: [] } }] },
         ]
       }]
     }
