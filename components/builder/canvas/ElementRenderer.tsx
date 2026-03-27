@@ -271,12 +271,14 @@ function ElementContent({ element, content }: { element: BuilderElement; content
         <div>
           {(content.heading as string) && <h3 className="text-lg font-black text-slate-800 mb-6 text-center">{content.heading as string}</h3>}
           <div className="space-y-5 max-w-lg mx-auto">
-            {steps.map((step, i) => (
-              <div key={i} className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-full flex items-center justify-center text-white font-black text-sm shrink-0" className="bg-josett-600">{step.number}</div>
-                <div>
-                  <p className="font-bold text-slate-800">{step.title}</p>
-                  <p className="text-sm text-slate-500 mt-0.5">{step.desc}</p>
+{steps.map((step, i) => (
+               <div key={i} className="flex items-start gap-4">
+                 <div className="w-10 h-10 rounded-full flex items-center justify-center text-white font-black text-sm shrink-0 bg-josett-600">
+                     {step.number}
+               </div>
+ |                 <div>
+    <p className="font-bold text-slate-800">{step.title}</p>
+    <p className="text-sm text-slate-500 mt-0.5">{step.desc}</p>
                 </div>
               </div>
             ))}
