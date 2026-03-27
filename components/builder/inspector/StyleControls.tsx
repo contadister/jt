@@ -1,7 +1,7 @@
 "use client";
 
 import { useBuilderStore } from "@/store/builderStore";
-import { BuilderElement } from "@/types/builder";
+import { BuilderSection } from "@/lib/types/builder";
 
 interface StyleControlsProps {
   element: BuilderElement;
