@@ -2,6 +2,9 @@
 
 import { useBuilderStore } from "@/store/builderStore";
 import { BuilderSection } from "@/lib/types/builder";
+import { BuilderElement } from "@/lib/types/builder"; 
+
+
 
 interface StyleControlsProps {
   element: BuilderElement;
