@@ -153,9 +153,7 @@ export const TEMPLATES: Template[] = [
             ] },
           { id: "s-about", type: "section", isVisible: true, styles: { backgroundColor: "#f8fafc", paddingTop: 100, paddingBottom: 100 },
             elements: [
-              { id: "ab1", type: "image-text", isVisible: true, isLocked: false, styles: {}, content: { heading: "12 Years of Making Businesses Grow", body: "We started in 2012 with a simple mission: to give Ghanaian businesses access to the kind of professional services that were previously only available to large corporations. Today, we have served over 500 clients across every industry — from startups to listed companies — and our results speak for themselves.
-
-We are not just service providers. We are your growth partners.", image: "", imageLeft: true } }
+              { id: "ab1", type: "image-text", isVisible: true, isLocked: false, styles: {}, content: { heading: "12 Years of Making Businesses Grow", body: "We started in 2012 with a simple mission: to give Ghanaian businesses access to the kind of professional services that were previously only available to large corporations. Today, we have served over 500 clients across every industry — from startups to listed companies — and our results speak for themselves. We are not just service providers. We are your growth partners.", image: "", imageLeft: true } }
             ] },
           { id: "s-process", type: "section", isVisible: true, styles: { backgroundColor: "#ffffff", paddingTop: 100, paddingBottom: 100 },
             elements: [
